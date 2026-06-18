@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import { PostMeta, formatDate } from '@/lib/posts'
+import type { PostMeta } from '@/lib/posts'
+import { formatDate } from '@/lib/utils'
 
 export default function BlogCard({ post }: { post: PostMeta }) {
   return (

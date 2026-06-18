@@ -1,3 +1,4 @@
+import 'server-only'
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
@@ -61,10 +62,4 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
   }
 }
 
-export function formatDate(dateStr: string): string {
-  return new Date(dateStr).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  })
-}
+export { formatDate } from './utils'

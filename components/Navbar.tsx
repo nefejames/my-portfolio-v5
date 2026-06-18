@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 
@@ -17,8 +18,8 @@ export default function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#FAFAF7]/90 backdrop-blur-sm border-b border-[#E5E7EB]">
       <nav className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-        <Link href="/" className="text-base font-semibold tracking-tight text-[#111827] hover:text-[#4F46E5] transition-colors">
-          Nefe
+        <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
+          <Image src="/logo.svg" alt="NEA" width={36} height={36} priority />
         </Link>
 
         {/* Desktop */}

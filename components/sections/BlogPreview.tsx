@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import { getAllPosts, formatDate } from '@/lib/posts'
+import { getAllPosts } from '@/lib/posts'
+import { formatDate } from '@/lib/utils'
 
 export default async function BlogPreview() {
   const posts = await getAllPosts()
