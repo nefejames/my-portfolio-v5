@@ -35,3 +35,46 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+/* ─── Code blocks (rehype-pretty-code / Shiki) ──────────────────────────────
+   Shared by blog posts and portfolio articles. Token colors come from the
+   github-light Shiki theme (inline styles on each span); the block chrome
+   below is styled to match the site's surface/border tokens. */
+[data-rehype-pretty-code-figure] pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+/* Reset the inline-code pill styling for block code so only Shiki colors show. */
+[data-rehype-pretty-code-figure] code {
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0;
+  font-weight: 400;
+  counter-reset: line;
+}
+
+[data-rehype-pretty-code-figure] code [data-line] {
+  display: block;
+}
+
+/* Optional language/title label above a block. */
+[data-rehype-pretty-code-title] {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-bottom: 0;
+  border-radius: 0.75rem 0.75rem 0 0;
+  padding: 0.5rem 1rem;
+}
+[data-rehype-pretty-code-title] + pre {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}

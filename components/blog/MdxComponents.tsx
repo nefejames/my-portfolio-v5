@@ -133,7 +133,9 @@ export const mdxComponents = {
   Figure,
   h2: H2,
   h3: H3,
+  // Markdown images render as a <figure>; the alt text doubles as the visible
+  // caption (![This is the caption](./image.jpg)). Shared by blog + portfolio.
   img: ({ src, alt }: { src?: string; alt?: string }) => (
-    <Figure src={src ?? ''} alt={alt ?? ''} />
+    <Figure src={src ?? ''} alt={alt ?? ''} caption={alt || undefined} />
   ),
 }
