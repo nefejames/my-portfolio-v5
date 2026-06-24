@@ -152,6 +152,73 @@ function extractImageUrls(markdown) {
   return Array.from(urls)
 }
 
+// ─── Rich embeds ──────────────────────────────────────────────────────────────
+// Scraped markdown represents tweets / YouTube videos / LinkedIn posts as plain
+// links. The shared MDX renderer ships <Tweet>, <YouTube>, and <LinkedIn>
+// components (components/blog/MdxComponents.tsx), so we rewrite standalone embed
+// links into those component tags to get the same rich rendering as the blog.
+
+function youTubeId(url) {
+  const patterns = [
+    /(?:youtube\.com|youtube-nocookie\.com)\/(?:watch\?(?:[^&\s]*&)*v=|embed\/|shorts\/|v\/|live\/)([A-Za-z0-9_-]{11})/i,
+    /youtu\.be\/([A-Za-z0-9_-]{11})/i,
+  ]
+  for (const re of patterns) {
+    const m = url.match(re)
+    if (m) return m[1]
+  }
+  return null
+}
+
+function tweetId(url) {
+  const m = url.match(/(?:twitter\.com|x\.com)\/[^/]+\/status(?:es)?\/(\d+)/i)
+  return m ? m[1] : null
+}
+
+function linkedInEmbedUrl(url) {
+  return /linkedin\.com\/(?:posts|embed|feed\/update)\//i.test(url) ? url : null
+}
+
+/** Map a single URL to its component tag, or null if it isn't a known embed. */
+function embedTagForUrl(url) {
+  const yt = youTubeId(url)
+  if (yt) return `<YouTube id="${yt}" />`
+  const tw = tweetId(url)
+  if (tw) return `<Tweet id="${tw}" />`
+  const li = linkedInEmbedUrl(url)
+  if (li) return `<LinkedIn url="${li}" />`
+  return null
+}
+
+/** Extract the primary URL of a line that is *only* a link (bare, autolink, or
+ *  markdown link — including a thumbnail like [![](thumb)](url)). Returns null
+ *  for prose lines so inline reference links are never touched. */
+function standaloneUrl(line) {
+  const t = line.trim()
+  let m
+  if ((m = t.match(/^<(https?:\/\/[^>]+)>$/))) return m[1]
+  if ((m = t.match(/^(https?:\/\/\S+)$/))) return m[1].replace(/[.,;]+$/, '')
+  // Trailing ](url) catches both [text](url) and [![alt](thumb)](url).
+  if ((m = t.match(/\]\((https?:\/\/[^)\s]+)(?:\s+"[^"]*")?\)$/))) return m[1]
+  return null
+}
+
+/** Replace standalone embed links with their component tags. Runs before image
+ *  download so embed thumbnails aren't downloaded as article images. */
+function convertEmbeds(markdown) {
+  let count = 0
+  const lines = markdown.split('\n').map((line) => {
+    const url = standaloneUrl(line)
+    if (!url) return line
+    const tag = embedTagForUrl(url)
+    if (!tag) return line
+    count++
+    // Blank-line padding keeps the tag a valid MDX flow element.
+    return `\n${tag}\n`
+  })
+  return { content: lines.join('\n'), count }
+}
+
 async function downloadImage(url, destDir, index, contentTypeHint) {
   const res = await fetch(url)
   if (!res.ok) throw new Error(`HTTP ${res.status}`)
@@ -204,9 +271,13 @@ async function importDocument(doc, clientSlug, sourceUrl) {
   const imageDestDir = path.join(PUBLIC_DIR, clientSlug, articleFolder)
   const publicBase = `/portfolio/${clientSlug}/${articleFolder}`
 
+  // Convert standalone tweet/YouTube/LinkedIn links into component tags first,
+  // so embed thumbnails aren't mistaken for downloadable article images.
+  const { content: contentWithEmbeds, count: embedCount } = convertEmbeds(markdown)
+
   // Download images and rewrite the markdown to local absolute URLs.
-  let content = markdown
-  const imageUrls = extractImageUrls(markdown)
+  let content = contentWithEmbeds
+  const imageUrls = extractImageUrls(content)
   let downloaded = 0
   for (let i = 0; i < imageUrls.length; i++) {
     const url = imageUrls[i]
@@ -259,6 +330,7 @@ async function importDocument(doc, clientSlug, sourceUrl) {
 
   console.log(`  ✓ ${title}`)
   console.log(`    images: ${downloaded}/${imageUrls.length}${coverImage ? ' (+cover)' : ''}`)
+  console.log(`    embeds: ${embedCount} (tweet/youtube/linkedin → component tags)`)
   console.log(`    output: ${path.relative(ROOT, outFile)}`)
 }
 
@@ -361,7 +433,12 @@ async function main() {
   console.log('\nDone.')
 }
 
-main().catch((err) => {
-  console.error('Fatal:', err)
-  process.exit(1)
-})
+// Run only when invoked directly, so the helpers can be unit-tested via require.
+if (require.main === module) {
+  main().catch((err) => {
+    console.error('Fatal:', err)
+    process.exit(1)
+  })
+}
+
+module.exports = { convertEmbeds, embedTagForUrl, standaloneUrl }
