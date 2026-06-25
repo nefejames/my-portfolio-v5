@@ -274,6 +274,47 @@ function extractSchemaVideos(html) {
   return videos.filter((v) => v.youtubeId && !seen.has(v.youtubeId) && seen.add(v.youtubeId))
 }
 
+// ─── schema.org publish date ──────────────────────────────────────────────────
+// Some publishers (e.g. AltexSoft) don't expose the publish date via standard
+// <meta> tags, so FireCrawl's metadata.publishedTime comes back empty and the
+// import would otherwise default to today. The date IS in the page's schema.org
+// Article/BlogPosting JSON-LD — pull datePublished from there.
+const ARTICLE_TYPES = ['Article', 'BlogPosting', 'NewsArticle', 'TechArticle', 'ScholarlyArticle', 'Report']
+
+function collectArticleDates(node, acc) {
+  if (!node || typeof node !== 'object') return
+  if (Array.isArray(node)) {
+    for (const item of node) collectArticleDates(item, acc)
+    return
+  }
+  const type = node['@type']
+  const isArticle =
+    (typeof type === 'string' && ARTICLE_TYPES.includes(type)) ||
+    (Array.isArray(type) && type.some((t) => ARTICLE_TYPES.includes(t)))
+  if (isArticle && node.datePublished) acc.push(node.datePublished)
+  for (const key of Object.keys(node)) {
+    if (key === '@type') continue
+    collectArticleDates(node[key], acc)
+  }
+}
+
+/** Extract the article's publish date (YYYY-MM-DD) from schema.org JSON-LD, or
+ *  null if none is found. */
+function extractSchemaDate(html) {
+  if (!html) return null
+  const dates = []
+  const scriptRe = /<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi
+  let m
+  while ((m = scriptRe.exec(html)) !== null) {
+    try {
+      collectArticleDates(JSON.parse(m[1].trim()), dates)
+    } catch {
+      /* skip malformed JSON-LD blocks */
+    }
+  }
+  return dates.length ? toIsoDate(dates[0]) : null
+}
+
 // ─── AltexSoft cleanup ────────────────────────────────────────────────────────
 // AltexSoft's pages wrap the article body in template chrome that FireCrawl's
 // onlyMainContent doesn't fully strip. This removes that chrome so an AltexSoft
@@ -392,6 +433,8 @@ async function importDocument(doc, clientSlug, sourceUrl) {
     toIsoDate(meta.publishedTime) ||
     toIsoDate(meta.dcDateCreated) ||
     toIsoDate(meta.dcDate) ||
+    // schema.org datePublished — covers sites (AltexSoft) with no date <meta>.
+    extractSchemaDate(doc.rawHtml || doc.html || '') ||
     toIsoDate(meta.modifiedTime) ||
     new Date().toISOString().slice(0, 10)
   const excerpt = (meta.description || meta.ogDescription || '').trim()
@@ -522,11 +565,19 @@ async function runSingle(client, clientSlug, url) {
 async function runBatch(client, clientSlug, file) {
   const filePath = path.isAbsolute(file) ? file : path.join(process.cwd(), file)
   if (!fs.existsSync(filePath)) throw new Error(`Batch file not found: ${filePath}`)
+  // Extract the first URL on each line, so the file can be a plain list, a
+  // numbered list ("1. https://…"), a markdown list ("- https://…"), etc.
+  // Lines starting with # are treated as comments.
   const urls = fs
     .readFileSync(filePath, 'utf8')
     .split('\n')
     .map((l) => l.trim())
     .filter((l) => l && !l.startsWith('#'))
+    .map((l) => {
+      const m = l.match(/https?:\/\/\S+/)
+      return m ? m[0].replace(/[).,;]+$/, '') : null
+    })
+    .filter(Boolean)
   console.log(`Batch: ${urls.length} URL(s) from ${file}`)
   for (const url of urls) {
     await scrapeAndImport(client, clientSlug, url)
@@ -605,4 +656,5 @@ module.exports = {
   standaloneUrl,
   altexsoftCleanup,
   extractSchemaVideos,
+  extractSchemaDate,
 }
