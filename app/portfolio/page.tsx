@@ -2,10 +2,19 @@ import type { Metadata } from 'next'
 import { getAllPortfolioArticles, getPortfolioClients } from '@/lib/portfolio'
 import PortfolioList from '@/components/portfolio/PortfolioList'
 
+const description =
+  'Articles and long-form content written for clients like AltexSoft, Prismic, LogRocket, and Dojah.'
+
 export const metadata: Metadata = {
   title: 'Portfolio',
-  description:
-    'Articles and long-form content written for clients like AltexSoft, Prismic, LogRocket, and Dojah.',
+  description,
+  alternates: { canonical: '/portfolio' },
+  openGraph: {
+    type: 'website',
+    url: '/portfolio',
+    title: 'Portfolio',
+    description,
+  },
 }
 
 export default async function PortfolioPage() {

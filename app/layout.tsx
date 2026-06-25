@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import JsonLd from '@/components/JsonLd'
+import { SITE } from '@/lib/site'
 import 'react-tweet/theme.css'
 import './globals.css'
 
@@ -9,28 +11,76 @@ const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] })
 const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'] })
 
 export const metadata: Metadata = {
+  // metadataBase lets every relative canonical / OG URL resolve to an absolute
+  // one, and silences the Next.js build warning about social image URLs.
+  metadataBase: new URL(SITE.url),
   title: {
-    default: 'Emadamerho-Atori Nefe — Content Marketer & SEO Manager',
+    default: SITE.title,
     template: '%s | Nefe',
   },
-  description:
-    'Technical content writer and SEO manager with 4+ years of experience helping tech companies grow through content that earns top rankings and drives real results.',
+  description: SITE.description,
   keywords: ['content marketer', 'SEO manager', 'technical writer', 'content strategy'],
-  authors: [{ name: 'Emadamerho-Atori Nefe' }],
+  authors: [{ name: SITE.name, url: SITE.url }],
+  creator: SITE.name,
+  publisher: SITE.name,
+  alternates: {
+    canonical: '/',
+  },
   verification: {
     google: 'GcQps8NnuJg7pln3rZQ2sGB1P8haOsu0iGWzI_CuUDU',
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
+  },
   openGraph: {
     type: 'website',
-    locale: 'en_US',
-    siteName: 'Emadamerho-Atori Nefe',
+    locale: SITE.locale,
+    siteName: SITE.name,
+    url: SITE.url,
+    title: SITE.title,
+    description: SITE.description,
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: SITE.title,
+    description: SITE.description,
+  },
+}
+
+// Site-wide structured data: who the author is, and the site itself. Page-level
+// schema (BlogPosting, Article, BreadcrumbList) is added in each route.
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: SITE.name,
+  url: SITE.url,
+  email: `mailto:${SITE.email}`,
+  jobTitle: SITE.jobTitle,
+  description: SITE.description,
+  sameAs: [SITE.social.linkedin],
+}
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE.name,
+  url: SITE.url,
+  author: { '@type': 'Person', name: SITE.name, url: SITE.url },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body className="min-h-screen flex flex-col">
+        <JsonLd data={[personSchema, websiteSchema]} />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

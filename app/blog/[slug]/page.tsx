@@ -3,10 +3,12 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { getAllPosts, getPostBySlug, formatDate } from '@/lib/posts'
 import { extractToc } from '@/lib/toc'
+import { SITE, absoluteUrl } from '@/lib/site'
 import MdxContent from '@/components/blog/MdxContent'
 import TableOfContents from '@/components/blog/TableOfContents'
 import MobileTableOfContents from '@/components/blog/MobileTableOfContents'
 import ScrollProgress from '@/components/blog/ScrollProgress'
+import JsonLd from '@/components/JsonLd'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -19,7 +21,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const post = await getPostBySlug(slug)
   if (!post) return {}
-  return { title: post.title, description: post.excerpt }
+
+  const url = `/blog/${post.slug}`
+  return {
+    title: post.title,
+    description: post.excerpt,
+    alternates: { canonical: url },
+    openGraph: {
+      type: 'article',
+      url,
+      title: post.title,
+      description: post.excerpt,
+      publishedTime: new Date(post.date).toISOString(),
+      authors: [SITE.name],
+      tags: post.tags,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt,
+    },
+  }
 }
 
 export default async function BlogPostPage({ params }: Props) {
@@ -29,8 +51,37 @@ export default async function BlogPostPage({ params }: Props) {
 
   const toc = extractToc(post.content)
 
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: new Date(post.date).toISOString(),
+    dateModified: new Date(post.date).toISOString(),
+    keywords: post.tags.join(', '),
+    image: absoluteUrl(`/blog/${post.slug}/opengraph-image`),
+    url: absoluteUrl(`/blog/${post.slug}`),
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': absoluteUrl(`/blog/${post.slug}`),
+    },
+    author: { '@type': 'Person', name: SITE.name, url: SITE.url },
+    publisher: { '@type': 'Person', name: SITE.name, url: SITE.url },
+  }
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: absoluteUrl('/blog') },
+      { '@type': 'ListItem', position: 3, name: post.title, item: absoluteUrl(`/blog/${post.slug}`) },
+    ],
+  }
+
   return (
     <>
+      <JsonLd data={[articleSchema, breadcrumbSchema]} />
       <ScrollProgress />
 
       <div className="max-w-5xl mx-auto px-6 pt-32 pb-24">

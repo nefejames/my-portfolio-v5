@@ -2,9 +2,19 @@ import type { Metadata } from 'next'
 import { getAllPosts } from '@/lib/posts'
 import BlogList from '@/components/blog/BlogList'
 
+const description =
+  'Thoughts on content marketing, SEO, technical writing, and building a brand in public.'
+
 export const metadata: Metadata = {
   title: 'Blog',
-  description: 'Thoughts on content marketing, SEO, technical writing, and building a brand in public.',
+  description,
+  alternates: { canonical: '/blog' },
+  openGraph: {
+    type: 'website',
+    url: '/blog',
+    title: 'Blog',
+    description,
+  },
 }
 
 export default async function BlogPage() {

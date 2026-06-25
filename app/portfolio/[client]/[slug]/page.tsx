@@ -7,10 +7,12 @@ import {
   formatDate,
 } from '@/lib/portfolio'
 import { extractToc } from '@/lib/toc'
+import { SITE, absoluteUrl } from '@/lib/site'
 import MdxContent from '@/components/blog/MdxContent'
 import TableOfContents from '@/components/blog/TableOfContents'
 import MobileTableOfContents from '@/components/blog/MobileTableOfContents'
 import ScrollProgress from '@/components/blog/ScrollProgress'
+import JsonLd from '@/components/JsonLd'
 
 type Props = { params: Promise<{ client: string; slug: string }> }
 
@@ -29,6 +31,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     // Tells search engines the original publication is the authoritative copy.
     // Portfolio articles only — personal blog posts don't set this.
     alternates: { canonical: article.canonical },
+    openGraph: {
+      type: 'article',
+      // OG url points at the authoritative original, matching the canonical.
+      url: article.canonical,
+      title: article.title,
+      description: article.excerpt,
+      publishedTime: new Date(article.publishedAt).toISOString(),
+      authors: [SITE.name],
+      tags: article.tags,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: article.title,
+      description: article.excerpt,
+    },
   }
 }
 
@@ -39,8 +56,36 @@ export default async function PortfolioArticlePage({ params }: Props) {
 
   const toc = extractToc(article.content)
 
+  const pageUrl = absoluteUrl(`/portfolio/${article.clientSlug}/${article.slug}`)
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: article.title,
+    description: article.excerpt,
+    datePublished: new Date(article.publishedAt).toISOString(),
+    keywords: article.tags.join(', '),
+    image: absoluteUrl(`/portfolio/${article.clientSlug}/${article.slug}/opengraph-image`),
+    // Canonical original is the authoritative copy this republication is based on.
+    url: article.canonical,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': article.canonical },
+    isBasedOn: article.originalUrl,
+    author: { '@type': 'Person', name: SITE.name, url: SITE.url },
+    publisher: { '@type': 'Organization', name: article.client },
+  }
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+      { '@type': 'ListItem', position: 2, name: 'Portfolio', item: absoluteUrl('/portfolio') },
+      { '@type': 'ListItem', position: 3, name: article.title, item: pageUrl },
+    ],
+  }
+
   return (
     <>
+      <JsonLd data={[articleSchema, breadcrumbSchema]} />
       <ScrollProgress />
 
       <div className="max-w-5xl mx-auto px-6 pt-32 pb-24">
