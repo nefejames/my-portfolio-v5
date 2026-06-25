@@ -1,0 +1,236 @@
+---
+title: "Model Context Protocol (MCP) Explained With Examples"
+client: "AltexSoft"
+clientSlug: "altexsoft"
+originalUrl: "https://www.altexsoft.com/blog/model-context-protocol/"
+publishedAt: "2025-07-17"
+canonical: "https://www.altexsoft.com/blog/model-context-protocol/"
+excerpt: "Learn how the Model Context Protocol (MCP)simplifies complex tool interactions in agentic systems and AI development."
+coverImage: "/portfolio/altexsoft/025-model-context-protocol/cover.jpg"
+tags: []
+---
+[Large language models (LLMs)](https://www.altexsoft.com/blog/language-models-gpt/) are, while powerful on their own, limited to generating text, images, and other outputs. To expand their capabilities—whether for searching the web, sending an email, or updating a [database](https://www.altexsoft.com/blog/databases-database-management-systems/)—they need to connect with external tools and services.
+
+Until now, integrating these tools has been messy. Each service has its own [API](https://www.altexsoft.com/blog/what-is-api-definition-types-specifications-documentation/), setup requirements, and quirks. Developers end up building one-off connections, writing glue code, and constantly updating things whenever APIs change. While it works, this approach is hard to maintain and scale.
+
+The Model Context Protocol (MCP) changes that. It introduces a shared standard that acts as a bridge between LLMs and external tools and resources.This article explores the MCP in detail and how it works. Let’s dive in.
+
+## What is the Model Context Protocol?
+
+The [**Model Context Protocol**](https://www.altexsoft.com/blog/mcp-servers-travel/) is a universal communication layer between LLMs and external systems. It standardizes how LLMs access local resources and remote services like cloud apps or [databases](https://www.altexsoft.com/blog/comparing-database-management-systems-mysql-postgresql-mssql-server-mongodb-elasticsearch-and-others/) via APIs without needing custom integrations for each one.
+
+Think of MCP as
+
+- a translator: It lets LLMs “talk” to different services in a language they understand;
+- a connector: It acts like a multi-socket adapter. Plug in different tools and the LLM knows how to use them; and
+- an interface standard: Just like HTTP standardized the web, MCP is standardizing how LLMs call tools.
+
+Instead of building individual API integrations, developers can now expose any service through an MCP layer and plug that into [AI tools](https://www.altexsoft.com/blog/ai-tools) (like [Cursor](https://www.altexsoft.com/blog/cursor-pros-and-cons/), Windsurf, or Claude) supporting the protocol.
+
+Anthropic launched MCP in November 2024 and it has since become an official standard in the [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/mcp/). OpenAI has adopted this protocol and uses it to define how tools are exposed and consumed by [AI agents](https://www.altexsoft.com/blog/ai-agents/).
+
+_Another important protocol for setting up agentic infrastructure is the [Agent2Agent (A2A) protocol](https://www.altexsoft.com/blog/a2a-protocol-explained/), which standardizes how AI agents communicate and collaborate on tasks. Learn about it in our dedicated article. Also, read our article on Google's [Universal Commerce Protocol](https://www.altexsoft.com/blog/universal-commerce-protocol/)._
+
+### What problem does the Model Context Protocol solve?
+
+Let’s say you want to build an AI assistant that can pull data from your [NoSQL database](https://www.altexsoft.com/blog/nosql-databases/), read a file from Google Drive, and send a message on Slack. Without MCP, you’d have to
+
+- write custom code to connect the LLM to each service;
+- handle tool-specific API formats, authentication methods, and error cases; and
+- manually update integrations when something changes in the tool’s API.
+
+![How MCP improves agentic tool integration](/portfolio/altexsoft/025-model-context-protocol/image-1.png)
+
+Now, imagine you want to add more tools like [n8n](https://www.altexsoft.com/blog/n8n-pros-and-cons/), Supabase, GitHub, etc. This creates a scalability bottleneck. Every new service you want your LLM to use means more code, more maintenance, and more chances for things to break.
+
+MCP solves this by introducing a shared standard for how LLMs access local and remote resources. Instead of one-off integrations, tools are exposed through [MCP servers](https://www.altexsoft.com/blog/mcp-servers-for-developers/) that speak a common language.
+
+The LLM connects to these servers and knows exactly how to interact with them—no custom logic needed. With MCP, each tool only has to support the standard, then any compatible LLM can use it.
+
+With MCP in place, the only people who need to interact with provider APIs or write custom integration code are the developers building the MCP layer. Everyone else—LLM vendors and end users—just plug into the standard and get consistent, ready-to-use access.
+
+### APIs vs the Model Context Protocol: how they differ
+
+A common question is: _“We already have APIs—so why do we need MCP?”_
+
+It's a fair question as APIs are still essential. They allow software systems to communicate with each other and are still the way tools are exposed within the MCP framework. But while APIs are designed for general software-to-software communication, MCP is created purposely to support how AI agents and LLMs interact with other tools and systems.
+
+![Differences between APIs and MCP](/portfolio/altexsoft/025-model-context-protocol/image-2.png)
+
+Here’s how they differ in the context of large language models.
+
+**APIs** are designed to make system-to-system interactions possible and manageable. They define how software components should interact and exchange data, using clear formats, endpoints, and protocols.
+
+**MCP** takes this further by standardizing how AI systems interact with external tools. It doesn’t replace APIs but relies on them. It is a layer of abstraction designed specifically for LLMs.
+
+MCP lets LLMs know in a consistent way what tools are available, what they do, how to use them, and what inputs are needed. This makes it easier for AI agents to reason about and use those instruments. In a sense, MCP acts like “APIs for APIs.”
+
+### Features of Model Context Protocol
+
+Model Context Protocol (MCP) introduces a set of features designed to make it easier for language models to reliably and securely interact with external tools, services, and data.
+
+**Standardized tool calling.** Instead of custom coding a function or API call for every task, MCP allows developers to expose their services in a standardized way that any MCP-enabled agent can understand and use. This creates plug-and-play compatibility across tools and platforms.
+
+**Context modularity.** MCP lets you define and manage reusable [context](https://www.altexsoft.com/blog/context7/) blocks—like user instructions, memory, tool configurations, or constraints—in a structured format (typically JSON). These blocks can be versioned, shared, and updated independently, which makes your workflows more portable, testable, and reproducible throughout different models and environments.
+
+**Decoupling.** With MCP, the logic for calling a tool or service is separated from the model or agent using it. This separation means that LLMs can talk to any tool that follows the protocol. This way, a model can use multiple tools or switch from one tool provider to another without recoding or reprompting.
+
+Decoupling also allows you to quickly switch between LLMs, giving teams the flexibility to choose the best model for the task without changing the tool setup.
+
+**Dynamic self-discovery.** A common issue with APIs is that if a provider updates their API—like changing an endpoint or adding a new one—developers must manually update their integration. MCP solves this with a feature called _dynamic self-discovery_.
+
+Every time an AI model connects to a tool, it can automatically fetch the server’s latest capabilities. This means it always knows what tools or functions are available without needing hardcoded changes or manual updates. The model can instantly adapt to new or updated tool definitions, making MCP integrations more flexible and future-proof.
+
+## How does the Model Context Protocol work? Architecture and key components
+
+MCP follows a client-server architecture that’s built around three main components: hosts, clients, and servers. Its architecture allows LLMs to connect with both local data sources (files, logs, etc.) and external services (APIs or cloud-based tools).
+
+Let’s explore how MCP’s components work together and the role each plays.
+
+![The model context protocol architecture and components](/portfolio/altexsoft/025-model-context-protocol/image-3.png)
+
+### Host
+
+The host is the environment where the language model operates. This could be a chatbot, an AI agent in a [coding tool](https://www.altexsoft.com/blog/ai-coding-tools), a [travel assistant](https://www.altexsoft.com/blog/ai-travel-agent/), or any LLM-powered application. It’s what the user interacts with directly, where they make requests, and where they receive the AI’s responses.
+
+The host doesn’t talk directly to APIs or tools. It connects through an MCP client. It manages client lifecycles, routes requests between the model and the outside world, enforces permission scopes, and applies security policies.
+
+### MCP client
+
+The MCP client lives in the host. It acts as a bridge and handles communication between the LLM and a single [MCP server](https://www.altexsoft.com/blog/mcp-server-claude-code-cursor/). Think of it as a smart router. When the model needs to perform an external action, it sends that request to the MCP client.
+
+The client handles several responsibilities. It translates the model’s request into a protocol-compliant format, forwards it to the correct MCP server, and manages the connection lifecycle, including waiting for and returning the server’s response.
+
+Each client maintains a one-to-one connection with a single server. This means that hosts interacting with three servers need to run three client instances.
+
+To support smooth interactions, the client also employs a few mechanisms.
+
+- Roots: The base paths or locations a server is allowed to [access](https://www.altexsoft.com/blog/access-control-matrix-acm/). While often used for filesystem directories, roots can be any valid URI, such as HTTP URLs. They are commonly used to define project directories, repository locations, API endpoints, configuration paths, or resource boundaries.
+- Sampling: Allows MCP servers to access model capabilities without needing direct API access or keys. Instead, the client handles the request, queries the model internally, and returns a structured response. This setup keeps the model secure, allows for better control over server interactions, and makes it easy to include a human in the loop for review or approval.
+- Elicitation: A way for servers to ask users for more information through the client during an interaction. This lets the server collect structured input without directly interacting with the user and keeps all control and privacy with the client.
+
+These features ensure the MCP client—and the user by extension—is in control of all interaction. They ensure that dialogs between models and external services remain secure, structured, and model-centric.
+
+### MCP server
+
+MCP servers are model-facing adapters built and managed by tool providers to share their functionality and data in a model-friendly way. You can think of MCP servers as plug-and-play wrappers around APIs—they standardize how services are described and interacted with.
+
+Each MCP server can expose three core building blocks, called primitives, which define how models, users, and applications interact with external systems.
+
+- Prompts: Structured templates that servers make available to clients to guide the model's behavior. Rather than requiring meticulous [prompt engineering](https://www.altexsoft.com/blog/prompt-engineering/) from scratch, these primitives provide structured starting points that users can select from. Each prompt includes a name, title, description, and a list of arguments it needs to function (e.g., a snippet of code to review).
+- Resources: Files, documents, or other data that MCP servers share with the model to provide it with necessary context. Each resource is identified by a URI and described with [metadata](https://www.altexsoft.com/blog/metadata-management/) such as name, type, and format. Resources help the model complete tasks by giving it access to useful information.
+- Tools:Executable actions such as creating a calendar event, querying a database, or sending a message. Tools are automatically triggered based on the model’s understanding of the current context and the user’s prompt.
+
+MCP servers can run remotely on the cloud—hosted by tool providers or vendors—or locally on your PC, depending on your privacy, access, or latency needs. You can find an array of remote MCP servers on platforms like [mcp.so](https://mcp.so/), [OpenTools registry](https://opentools.com/registry), and [MCP server finder](https://www.mcpserverfinder.com/), which list available MCP-compatible tools across categories.
+
+![Interaction with Supabase MCP server’s list_tables tool via Cursor](/portfolio/altexsoft/025-model-context-protocol/image-4.png)
+
+Interaction with Supabase MCP server’s list\_tables tool via Cursor
+
+In the image above, I used Supabase’s MCP server to interact with a database I set up. The server has 19 tools, including a “ **list\_tables**,” which allows the model to query and return all tables in the database.
+
+Regarding tool usage, Anthropic recommends adding [AI guardrails](https://www.altexsoft.com/blog/ai-guardrails/) to ensure safety, accountability, and user control. Since tools can trigger real-world actions, it's important that applications clearly indicate when a tool can be used and which tools are available to the model. For sensitive actions, apps should also prompt users to review and approve the request.
+
+I had to click a "run tool" button before Cursor could execute the tool. This [human-in-the-loop](https://www.altexsoft.com/blog/human-in-the-loop/) system ensures the user is in full control of the agent's actions.
+
+_Read our article on [MCP servers in travel](https://www.altexsoft.com/blog/mcp-servers-travel/) to learn about the current landscape and providers._
+
+### Transport layer
+
+The transport layer handles how messages are exchanged between MCP clients and servers. While the host, client, and server form the structure of MCP, the transport layer defines how they communicate at runtime. Think of it as the delivery mechanism that moves structured requests and responses between the model and external tools.
+
+All MCP communication follows the JSON-RPC 2.0 specification. This format structures every interaction between client and server as either:
+
+- Requests: Used to call a method or tool;
+- Responses: Used to return the result or error of a request; and
+- Notifications: Used for one-way events that don't expect a response.
+
+MCP defines two built-in transport types that serve different use cases depending on the environment: standard input/output (stdio) and streamable HTTP.
+
+The **stdio transport** is used when the MCP client and server run locally on the same machine. It connects processes through standard input and output streams (stdin/stdout), making it ideal for command-line tools or local scripts.
+
+**Streamable HTTP** is the recommended transport for remote or cloud-based MCP servers. It uses HTTP POST requests to send messages from client to server and optional Server-Sent Events (SSE) to stream responses back from server to client.
+
+This dual-transport design gives MCP the flexibility to support both local and remote tools in a consistent way. Whether the tool runs in the cloud or on your PC, the client and host don’t need to worry about the implementation details. Instead, the transport layer handles it.
+
+## Example MCP clients and servers
+
+White it’s a fairly new communication protocol, MCP is already being widely used by many apps and platforms to power their AI-agents. To wrap things up, let’s explore examples of real-world clients and servers.
+
+### MCP clients
+
+Here are some well-known MCP clients.
+
+**Shortwave**
+
+[Shortwave](https://www.shortwave.com/blog/integrate-ai-with-all-your-apps-mcp/), an AI-powered email communications app, provides MCP support that lets you connect its AI Assistant to various business applications. Its MCP client’s key features include
+
+- one-click setup for tools like GitHub, Linear, and Notion;
+- web browser access to explore links and gather information; and
+- Zapier support for connecting to thousands of other apps.
+
+Shortwave’s MCP client allows you to proceed with various tools that support the MCP protocol straight from your inbox.
+
+**Slack MCP client**
+
+The [Slack MCP client](https://github.com/tuannvm/slack-mcp-client) allows teams to interact with MCP-enabled tools and agents directly from Slack. Once installed and authorized, users can call prompts, run tools, and interact with MCP servers in channels or direct messages. Its features include
+
+- support for both channels and direct messages in Slack;
+- compatibility with multiple LLM providers like OpenAI, Anthropic, and Ollama;
+- an agent mode that performs multi-step reasoning and automatically chains tools for complex tasks; and
+- integration with Prometheus for tracking metrics such as tool usage, error rates, and token consumption.
+
+Slack’s MCP client is designed for teams that want to use LLMs in operational or communication workflows without switching platforms.
+
+**VSCode GitHub Copilot**
+
+VS Code integrates MCP into GitHub Copilot’s agent mode, letting developers use tools from MCP servers directly in their coding workflows. Key features of its MCP client includes
+
+- support for both stdio and server-sent events (SSE) transport protocols;
+- allowing users to pick tools for each agent session;
+- debugging support with server restarts and detailed output logs; and
+- editable tool inputs and an “always allow” toggle for repeated use.
+
+VSCode’s MCP client supports [30+ MCP servers](https://code.visualstudio.com/mcp) and allows you to manually [add other servers](https://code.visualstudio.com/docs/copilot/chat/mcp-servers#_add-an-mcp-server).
+
+### MCP servers
+
+Below are some commonly used MCP servers that help agents work with various external platforms.
+
+**Auth0 MCP server**
+
+[Auth0’s MCP server](https://github.com/auth0/auth0-mcp-server) enables AI agents to perform tasks or make changes in your Auth0 account. You can connect it to MCP clients and perform identity and access management tasks such as creating apps, generating JWT tokens, managing APIs, and reviewing logs.
+
+Key features include
+
+- managing Auth0 applications: list, create, update, and view details;
+- creating, updating, and deploying Auth0 actions;
+- retrieving logs for Auth0-related activities; and
+- managing Auth0 forms, including login and password reset forms.
+
+Since this server gives AI agents the ability to directly interact with your Auth0 tenant, ensure you review permissions and limit access to only what’s necessary.
+
+**Cloudflare’s MCP server**
+
+Cloudflare provides [10+ MCP servers](https://github.com/cloudflare/mcp-server-cloudflare) for its various products. Key ones include
+
+- the documentation server for browsing live reference docs for all Cloudflare products;
+- **t** he Workers Bindings server for building apps with Cloudflare Workers—a serverless platform that lets you run [JavaScript](https://www.altexsoft.com/blog/mean-mern-javascript-full-stack/) close to your users without managing any infrastructure;
+- **t** he observability server for viewing logs and analytics to debug and monitor applications; and
+- the browser rendering serverfor fetching web pages, converting them to Markdown—a simple formatting syntax used to write structured content for the web—and capturing screenshots.
+
+Each server has the tools, prompts, and resources that it makes available.
+
+**Liveblocks MCP server**
+
+Liveblocks, a real-time collaboration platform, provides an [MCP server](https://liveblocks.io/docs/tools/mcp-server) to let AI agents inspect and manage your Liveblocks project from apps like Cursor, Claude Desktop, and VS Code.
+
+Key features include
+
+- access to 39 tools that cover most of the Liveblocks REST API;
+- the ability to create and modify rooms, threads, comments, and notifications; and
+- tools for marking threads and notifications as read or unread.
+
+**_Quick note on using MCP servers_** _: MCP servers can execute code on your system. To stay safe, only use servers from trusted sources. Always check who published the server and review its configuration before starting it._
+
+_Also, don’t hardcode sensitive data like API keys or credentials. Use input variables or environment files instead to keep secrets secure._

@@ -18,3 +18,13 @@
 13. https://www.altexsoft.com/blog/websockets/
 14. https://www.altexsoft.com/blog/corporate-travel-cards/
 15. https://www.altexsoft.com/blog/redis-pros-and-cons/
+16. https://www.altexsoft.com/blog/event-management-software/
+17. https://www.altexsoft.com/blog/cloud-migration-strategy/
+18. https://www.altexsoft.com/blog/keras-pros-and-cons/
+19. https://www.altexsoft.com/blog/data-orchestration/
+20. https://www.altexsoft.com/blog/ai-travel-agent/
+21. https://www.altexsoft.com/blog/ai-driven-software-development/
+22. https://www.altexsoft.com/blog/ai-guardrails/
+23. https://www.altexsoft.com/blog/cursor-pros-and-cons/
+24. https://www.altexsoft.com/blog/model-context-protocol/
+25. https://www.altexsoft.com/blog/ai-for-project-management/

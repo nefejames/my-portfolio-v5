@@ -1,0 +1,204 @@
+---
+title: "The Good and Bad of Keras Deep Learning API"
+client: "AltexSoft"
+clientSlug: "altexsoft"
+originalUrl: "https://www.altexsoft.com/blog/keras-pros-and-cons/"
+publishedAt: "2025-03-31"
+canonical: "https://www.altexsoft.com/blog/keras-pros-and-cons/"
+excerpt: "Is Keras the right choice for deep learning? Explore its features, advantages, and disadvantages for AI model development."
+coverImage: "/portfolio/altexsoft/019-keras-pros-and-cons/cover.jpg"
+tags: []
+---
+Every time you use [generative AI](https://www.altexsoft.com/blog/generative-ai/) tools, rely on recommendation systems, interact with AI-powered [chatbots](https://www.altexsoft.com/blog/conversational-ai/), or use tools that translate languages in real-time, deep learning models work behind the scenes to make these experiences possible. These models power everything from [image recognition](https://www.altexsoft.com/blog/image-recognition-neural-networks-use-cases/) to [language translation](https://www.altexsoft.com/blog/language-models-gpt/).
+
+Keras, a high-level API designed to simplify neural network development, is at the core of many deep learning applications. This article will explore Keras's advantages and limitations and how it compares with other deep learning frameworks. Let’s dive in.
+
+Confused about the [difference between data science, machine learning](https://www.altexsoft.com/blog/data-science-artificial-intelligence-machine-learning-deep-learning-data-mining/), deep learning, and data mining? Read our dedicated article to find out.
+
+## What is Keras?
+
+Introduced in 2015 by François Chollet, a Google engineer, Keras is a high-level, [Python](https://www.altexsoft.com/blog/python-pros-and-cons/)-based API designed for simplicity and rapid development of deep learning frameworks.
+
+Ismail Aslan, Machine Learning Engineer at AltexSoft, explains that, _“Keras is an open-source, deep learning library that provides a user-friendly interface for building and training neural networks. It can run on backends like TensorFlow, PyTorch, or JAX. Keras abstracts much of the complexities of [deep learning](https://www.altexsoft.com/blog/deep-learning/), like defining computational graphs and handling low-level tensor operations. Its design allows developers to build models with less code.”_
+
+Keras’s user-friendly approach makes Keras particularly appealing if you're new to deep learning or prefer a straightforward interface for quick prototyping. It is one of the leading [machine learning tools](https://www.altexsoft.com/blog/the-best-machine-learning-tools-experts-top-picks/) and is used by organizations like CERN, NASA, Google, YouTube, Amazon, and Hugging Face.
+
+<YouTube id="vW9fIro6N6g" caption="Generative AI in Business: 5 Use Cases" />
+
+5 business use cases of generative AI
+
+## Use cases of Keras
+
+[Data scientists](https://www.altexsoft.com/blog/data-scientist-vs-data-engineer/), researchers, and other professionals apply Keras in many ways such as these.
+
+**Image recognition and computer vision.** Keras provides a range of various pretrained models, like VGG, ResNet, and MobileNet, that are specifically designed for several image recognition and [computer vision](https://www.altexsoft.com/blog/computer-vision-healthcare/) tasks—image classification, object detection, facial recognition, etc. These models are trained on large datasets like [ImageNet](https://www.image-net.org/), which contains over 14 million [labeled](https://www.altexsoft.com/blog/data-labeling/) images spread across thousands of categories.
+
+**[Large language model (LLM)](https://www.altexsoft.com/blog/language-models-gpt/) development.** You can build, train, and fine-tune LLMs with Keras. For example, Google uses Keras for its [Gemma](https://ai.google.dev/gemma), which is a family of LLM models based on Gemini.
+
+**[Natural language processing (NLP)](https://www.altexsoft.com/blog/natural-language-processing/).** For instance, our team used Keras and TensorFlow to build Choicy, an NLP [ranking and scoring](https://www.altexsoft.com/case-studies/travel/altexsoft-builds-machine-learning-based-platform-to-score-hotel-amenities/) platform that helps travelers compare hotels based on amenities like breakfast, Wi-Fi, or the quality of the pool. We build two text-based [sentiment analysis](https://www.altexsoft.com/blog/sentiment-analysis-types-tools-and-use-cases/) models trained on a dataset of 100,000 hotel reviews. The platform pulls in reviews from public sources, analyzes them, and generates scores for each amenity.
+
+**Time-series forecasting and predictive analytics.** Keras allows data scientists to analyze historical data and accurately predict future industry trends. We worked with [Key Data Dashboard](https://www.altexsoft.com/case-studies/travel/altexsoft-and-key-data-dashboard-advancing-a-business-intelligence-tool-with-ai/) to build a [time-series](https://www.altexsoft.com/blog/time-series-analysis-and-forecasting-novel-business-perspectives/) model that predicts occupancy rates. This model was trained on a large dataset with information from over 120,000 properties and 20,000 areas. By adding AI-powered features, Key Data’s users can compare vacation rentals in similar areas more accurately, helping them make better decisions. The platform also provides forecasts of future occupancy rates, which is incredibly useful for planning.
+
+**Recommendation systems.** Keras models can provide personalized recommendations for products, movies, [music](https://www.altexsoft.com/blog/sound-music-voice-generation/), or online content by analyzing user preferences, past interactions, and behavioral patterns. Companies like Netflix, Spotify, and Amazon use [recommendation systems](https://www.altexsoft.com/blog/recommender-system-personalization/) to improve user engagement and customer experience.
+
+## How Keras API works: concepts and components
+
+Let’s explore some core concepts and components behind Keras’s architecture.
+
+### Reliance on computational engines
+
+The first thing to know about Keras is that it doesn’t function alone since it’s only a high-level [API](https://www.altexsoft.com/blog/llm-api-integration/) and doesn’t have a computational engine. It needs a backend framework to handle the actual mathematical operations, like tensor manipulations, gradient calculations, automatic differentiation, and hardware acceleration. Without a backend, Keras could not perform these critical tasks and would be incapable of training or running models.
+
+![Keras and its computational engines](/portfolio/altexsoft/019-keras-pros-and-cons/image-1.png)
+
+Keras’s latest version, [Keras 3.0](https://keras.io/keras_3/), currently supports three backend frameworks: TensorFlow, PyTorch, and Jax. TensorFlow has tightly [integrated Keras](https://www.tensorflow.org/guide/keras) into its platform and made it accessible via its [tf](https://www.tensorflow.org/api_docs/python/tf/keras) [.keras](https://www.tensorflow.org/api_docs/python/tf/keras) module. This allows TensorFlow to provide the computational infrastructure that Keras needs to function.
+
+When you define a model in Keras, it translates your high-level code into TensorFlow (or another backend) instructions. The backend then performs the low-level operations necessary for training the models.
+
+### Keras layers API
+
+Layers are the fundamental building blocks of a neural network, with each one performing a specific operation on the data and transforming it in some way. Think of layers as steps in a recipe—each step takes the output from the previous step, processes it, and passes it on to the next step.
+
+For example, if you’re building a model to recognize images, the first layer might detect simple features like edges or corners. The next layer might combine these edges to detect more complex shapes, like circles or squares. Finally, the last layer might use these shapes to identify objects, like a cat or a dog.
+
+Keras provides over 40 built-in layers designed for a specific task. Here are some categories of layers.
+
+- **Convolution layers** for detecting patterns like edges, textures, and shapes in data, making them essential for tasks like [image classification](https://www.altexsoft.com/blog/image-recognition-neural-networks-use-cases/) and object detection. They help the model learn features like edges, shapes, and textures;
+- **Pooling layers** that shrink the data and reduce its size by summarizing small sections of it, keeping only the most important details. For example, **max pooling** takes the highest value from each section, while **average pooling** calculates the average value;
+- **Recurrent layers** are made for sequential data like stock market prices and sensor readings. They remember what happened earlier in the sequence to help make better predictions or understand the data more accurately; and
+- **Preprocessing layers** that prepare and [clean the data](https://www.altexsoft.com/blog/data-cleaning/) before passing it to the model for training. They perform tasks like normalization and data augmentation so that the model receives data in the right format.
+
+Much like building with LEGO blocks, you can stack these layers to create complex models that can solve many problems.
+
+### Keras models API
+
+Keras models are a collection of layers that define the structure of a neural network. They define how data will flow from input to output through different layers. Think of a model as a pipeline where data comes in and is processed by different layers. At the end of the pipeline, the model produces an output, such as a prediction or [classification](https://www.altexsoft.com/blog/document-classification/).
+
+![Keras model building methods](/portfolio/altexsoft/019-keras-pros-and-cons/image-2.png)
+
+Keras provides two main methods to create models.
+
+- **Sequential API:** This is the simplest way to build a model. You stack layers one after the other, and the data flows straight from input to output. It’s ideal for models with a straightforward structure.
+- **Functional API:** This allows you to create more complex models with data that can flow in different directions, multiple inputs and outputs, or shared layers. It’s perfect for scenarios where more flexibility is required.
+
+Consider the complexity of your project when choosing between the sequential and functional APIs.
+
+### Keras callbacks
+
+Keras callbacks are functions that allow you to monitor and control your model's training process. They are executed at specific points during training, like after a batch of data is processed. You can use them to adjust learning rates, save a model’s weights, or stop training early if the model stops improving.
+
+### Keras ops
+
+Keras ops (operations) are the low-level mathematical functions that power all computations in Keras models. There are functions for addition, multiplication, reshaping tensors, and more complex operations. Keras uses these ops to perform tasks like forward passes, backpropagation, and tensor transformations.
+
+Keras ops are typically handled by backend engines like TensorFlow, which optimize them and execute them on your computer’s CPUs, GPUs, or TPUs.
+
+## Pros of Keras
+
+Here are some of the benefits you can enjoy by working with Keras.
+
+### Ease of use
+
+One of the first things you'll notice about Keras is its simple and clean API, with a syntax that’s similar to Python code. It is designed to make the development process easier by abstracting away much of the complexity of building neural networks. Instead of dealing with low-level operations like tensor manipulations, gradient calculations, or writing custom training loops from scratch, you can focus on defining layers and setting up your model’s architecture.
+
+With just a few lines of code, you can build models that would otherwise require many more lines if written in a lower-level framework.
+
+### Rapid prototyping
+
+Besides its high-level nature and flexible options for building models—the sequential and functional APIs—there are other characteristics that make it a great tool for rapid prototyping and experimentation.
+
+First, Keras provides built-in [datasets](https://www.altexsoft.com/blog/best-public-machine-learning-datasets/) like MNIST, CIFAR-10, IMDB, and Fashion-MNIST that you can easily load and use to test new ideas. This eliminates the time you would normally spend searching for data, downloading, and performing [data collection](https://www.altexsoft.com/blog/data-collection-machine-learning/) and [preparation](https://www.altexsoft.com/blog/preparing-your-dataset-for-machine-learning-8-basic-techniques-that-make-your-data-better/) tasks.
+
+Second is [KerasHub](https://keras.io/keras_hub/), a library of off-the-shelf models that gives you access to ready-to-use versions of well-known deep-learning models. It also provides weights that have been pretrained on large datasets. The available models include
+
+- vision models like ResNet and EfficientNet, useful for tasks like image classification, object detection, and segmentation;
+- NLP models like BERT, GPT-2, and RoBERTa, which can be used for [document classification](https://www.altexsoft.com/blog/document-classification/) (from [structured](https://www.altexsoft.com/blog/structured-unstructured-data/), [semi-structured](https://www.altexsoft.com/blog/semi-structured-data/), and [unstructured data formats](https://www.altexsoft.com/blog/unstructured-data/)), language modeling, translation, and answering questions; and
+- [Audio models](https://www.altexsoft.com/blog/audio-analysis/), like Whisper, useful for speech recognition, speech translation, and language identification.
+
+These pretrained models save you time and computing resources, allowing you to focus on fine-tuning and adapting them to your specific tasks rather than building models from scratch.
+
+<YouTube id="oGvHtpJMO3M" caption="How Computer Vision Applications Work" />
+
+How computer vision applications work
+
+### Large community support
+
+Keras has a strong, global community of developers, researchers, and educators who contribute tutorials, code examples, and assistance. In terms of numbers, Keras has over [42,000](https://stackoverflow.com/questions/tagged/keras) Stack Overflow questions, [62,700](https://github.com/keras-team/keras) GitHub stars, and various Reddit communities totaling over [4,700](https://www.reddit.com/search/?q=keras&type=communities) members.
+
+### Clear and well-structured documentation
+
+Keras offers well-organized and detailed [documentation](https://www.altexsoft.com/blog/api-documentation/) that consists of installation steps, starter tutorials, comprehensive guides, and API references. It also provides [code examples](https://keras.io/examples/) for various applications to speed up the learning process.
+
+Additionally, Keras maintains separate documentation for different versions, ensuring that you always have access to the correct information for the version you are using. This prevents confusion when APIs or functions change between updates.
+
+### Backend framework flexibility
+
+While Keras is closely associated with TensorFlow today—having been integrated as TensorFlow’s official high-level API—it has always been a multi-backend framework. Keras 3 supports PyTorch, JAX, and TensorFlow, while earlier versions supported other backends like Theano, Microsoft Cognitive Toolkit (CNTK), and PlaidML. This flexibility means you can define models in Keras and choose the computational engine that best fits your needs.
+
+### Distributed training and memory efficiency for improved performance.
+
+Training on a single GPU may not be enough, especially when working with large datasets and complex models. In such cases, Keras’s [distribution API](https://keras.io/guides/distribution/) allows you to scale your training across multiple GPUs. This means you don’t need to re-architect your codebase to take advantage of distributed deep learning.
+
+Beyond multi-GPU support, Keras also helps improve performance when dealing with large datasets. As Ismail puts it, _"When working with large datasets, Keras uses a data generator to avoid overloading memory. Instead of loading the entire dataset into memory, Keras processes data in batches, which allows for more efficient training with large datasets that cannot fit all at once."_
+
+## Cons of Keras
+
+Keras, like every tool, isn’t one size fits all; it comes with its limitations. Let’s explore some of them.
+
+### No built-in visualization
+
+Keras itself lacks a built-in visualization tool. You’ll need to use third-party solutions like [Visualkeras](https://github.com/paulgavrikov/visualkeras) or [TensorBoard](https://www.tensorflow.org/tensorboard) (courtesy of its tight integration with TensorFlow) to visualize your model's architecture and training progress or feature maps. Setting up these external tools adds extra steps and effort to your workflow.
+
+### Historically inconsistent backend support
+
+Keras has not always had stable backend support, as it has changed the computation engines it supports over and over. Earlier versions started with support for Theano, TensorFlow, and CNTK. Over time, Keras shifted to rely solely on TensorFlow, and with Keras 3.0, it returned to supporting multiple backends (TensorFlow, PyTorch, and JAX).
+
+Keras’s shuffle between various backends has made long-term compatibility and consistency a challenge for developers, especially those maintaining older projects. In some cases, you may need to rewrite projects to keep up with changes.
+
+### Rigid training process
+
+Keras’s high-level design is suited for standard operations. However, it can be limiting when you need to implement custom behaviors, like dynamic gradient updates, specialized loss functions, dynamic learning rate adjustments, or complex training procedures like those required for [reinforcement learning](https://www.altexsoft.com/blog/reinforcement-learning-explained-overview-comparisons-and-applications-in-business/) or Generative Adversarial Networks (GANs).​
+
+In cases where your project demands granular control, you may need to write training loops from scratch using the backend’s lower-level APIs.
+
+### Debugging challenges
+
+​When using Keras, you may encounter challenges when debugging your models due to its high-level abstraction. This design simplifies model development but can make it difficult to trace errors at the source of the problem if something goes wrong deep in the computation graph or training loop. In such cases, you may have to drop down to backend’s debugging tools to diagnose problems.
+
+## Keras vs PyTorch vs TensorFlow
+
+[PyTorch](https://www.altexsoft.com/blog/pytorch-library/) is a popular deep learning framework developed by Meta. It is known for its Python-like code, and its design is inspired by libraries like Scikit-Learn and Chainer.
+
+[TensorFlow](https://www.altexsoft.com/blog/choosing-an-open-source-machine-learning-framework-tensorflow-theano-torch-scikit-learn-caffe/), developed by Google, is one of the most widely used deep learning frameworks and has evolved significantly with the release of TensorFlow 2. It has become more user-friendly by fully integrating Keras as its official high-level API, simplifying model building and training.
+
+Technically, Keras can’t be directly compared with these frameworks since they serve different purposes: Keras’s high-level interface runs on these engines.
+
+![Keras vs PyTorch vs TensorFlow](/portfolio/altexsoft/019-keras-pros-and-cons/image-3.png)
+
+But if you decide to opt for Keras instead of working directly with TensorFlow or PyTorch libraries, here are the differences you may notice.
+
+**Ease of use.** One of Keras’s biggest strengths is its simplicity and user-friendly design. According to Ismail: _"In my experience, Keras has been one of the most user-friendly tools for machine learning and deep learning. Compared to PyTorch, where you often need to write more code to set up and train a model, Keras makes the process much simpler and faster."_ This simplicity makes Keras more accessible to beginners and allows developers to quickly prototype and deploy models without getting bogged down in the intricacies of deep learning. Keras abstracts away many complexities of deep learning, making it easier to build models with just a few lines of code.
+
+PyTorch and TensorFlow offer more granular control over the model-building process. This provides greater flexibility but can be more time-consuming and requires a deeper understanding of the underlying mechanics.
+
+**Flexibility.** While Keras excels in simplicity, PyTorch is often praised for its flexibility. PyTorch's dynamic computation graph allows for easier modification of models during runtime. Ismail noted, _"PyTorch is often the preferred choice for research because it offers more flexibility and allows developers to customize models and experiment with complex architectures or implement cutting-edge techniques that high-level APIs like Keras may not support."_
+
+TensorFlow also offers strong flexibility through its low-level API. Developers can step down to TensorFlow's core API for full control over computations, custom operations, and advanced architectures.
+
+**Hardware acceleration support.** Keras itself doesn’t support hardware acceleration. Instead, it relies on backends like TensorFlow for GPU, TPU, and CPU optimizations. Ismail pointed out something crucial in this regard: _"In recent times, setting up TensorFlow with GPU support on Windows has become difficult as TensorFlow no longer supports GPU installation natively on Windows. The TensorFlow team recommends using Linux or running a Docker container, which adds extra setup steps."_
+
+PyTorch, like TensorFlow, provides GPU and TPU support. Although its TPU support is less mature and more experimental.
+
+**Community**. Keras has the smallest community of the lot. However, it benefits from TensorFlow’s ecosystem thanks to their close integration. PyTorch also has a large, fast-growing community. In terms of numbers, Tensor’s GitHub repo boasted 189k stars while PyTorch’s is 88.1k stars. TensorFlow also leads in Reddit numbers as its subreddit has 31k members while PyTorch’s subreddit is 20k strong.
+
+## Getting started with Keras
+
+Here are some valuable resources to help you begin working with Keras.
+
+**Official documentation.** The [Keras documentation](https://keras.io/api/) offers detailed information on installation procedures, API references, and advanced use cases. It's an excellent starting point for grasping the fundamentals of Keras.
+
+**Code examples.** Keras offers a comprehensive collection of [code examples](https://keras.io/examples/). These examples are typically under 300 lines and cover various deep-learning tasks, like image classification, segmentation, NLP, and generative models. The examples are Jupyter notebooks that you can run directly in Google Colab without any setup.
+
+**GitHub repository.** For those interested in exploring the codebase, the [Keras GitHub repository](https://github.com/keras-team/keras) provides insight into its development and structure. It's an active project with various contributions.
+
+**Courses and learning materials.** There are many educational resources you can explore. View the paid and free Keras and deep learning courses on platforms like [Udemy](https://www.udemy.com/) and [Coursera](https://www.coursera.org/). There’s also the [Awesome Keras GitHub repository](https://github.com/markusschanta/awesome-keras), which is a list of resources on the Keras ecosystem.
