@@ -1,36 +1,105 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Emadamerho-Atori Nefe — Portfolio & Blog
 
-## Getting Started
+Personal portfolio site for a content marketer / SEO manager. It combines a
+personal **blog**, a **portfolio archive** of articles written for clients
+(AltexSoft, Prismic, LogRocket, Dojah…), and a shared MDX rendering pipeline so
+both surfaces get the same features automatically.
 
-First, run the development server:
+Built with **Next.js 16 (App Router)**, **TypeScript**, **Tailwind CSS v4**, and
+**MDX**. Deployed on Vercel.
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Other scripts: `npm run build`, `npm run start`, `npm run lint`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Create `.env.local` (gitignored):
 
-## Learn More
+```bash
+FIRECRAWL_API_KEY=fc-...          # for the portfolio import script
+NEXT_PUBLIC_SITE_URL=https://...  # canonical production origin (see Backlog)
+```
 
-To learn more about Next.js, take a look at the following resources:
+> If `NEXT_PUBLIC_SITE_URL` is unset, the site falls back to a placeholder
+> origin defined in [`lib/site.ts`](lib/site.ts). That origin feeds **every**
+> canonical tag, the sitemap, OG images, and JSON-LD — so set it to the real
+> domain before relying on SEO. See **Backlog**.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Content
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Type | Location | Notes |
+|---|---|---|
+| Blog posts | `content/posts/*.mdx` | Personal-brand articles |
+| Portfolio articles | `content/portfolio/<client>/NNN-slug.mdx` | Client-published work, numbered per client |
+| Article images | `public/portfolio/<client>/<article>/` | Served by `next/image` |
 
-## Deploy on Vercel
+Both are loaded through `lib/posts.ts` / `lib/portfolio.ts` (the data layer is
+abstracted so a future CMS swap touches only those files).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Featuring on the homepage:** add `featured: true` to a post's or article's
+frontmatter. The homepage "Writing for my own brand" and "Selected work"
+sections each show up to 6 featured items.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Shared MDX renderer
+
+`components/blog/MdxContent.tsx` renders both blog and portfolio MDX with one
+pipeline — Shiki syntax highlighting, image captions (`<figure>`/`<figcaption>`),
+and embeds: `<Tweet id=…>`, `<YouTube id=… caption=…>`, `<LinkedIn url=…>`.
+Improvements here benefit both surfaces at once.
+
+## Importing portfolio articles (FireCrawl)
+
+```bash
+node scripts/import-article.js --url "<article-url>" --client <slug>
+node scripts/import-article.js --batch urls.txt --client <slug>
+node scripts/import-article.js --crawl "<author-page>" --client <slug>
+```
+
+The script scrapes via FireCrawl, downloads images locally, rewrites URLs,
+converts tweet/YouTube/LinkedIn links to embed components, and auto-numbers the
+file. AltexSoft imports also run `altexsoftCleanup()` (strips page chrome and
+restores YouTube embeds from schema.org video data).
+
+> **Local TLS note:** this machine runs a TLS-intercepting proxy that Node
+> doesn't trust by default. Prefix import commands with
+> `NODE_OPTIONS=--use-system-ca` if FireCrawl/image fetches fail with a
+> certificate error.
+
+## SEO
+
+- `app/robots.ts` + `app/sitemap.ts`
+- Self-referencing canonicals + `metadataBase` (root) / external canonicals
+  (portfolio articles point to the original publication)
+- Dynamic OG + Twitter cards via `lib/og.tsx`
+- JSON-LD (Person, WebSite, BlogPosting/Article, BreadcrumbList) via
+  `components/JsonLd.tsx`
+- Baseline security headers in `next.config.ts`
+
+## Backlog / TODO
+
+- [ ] **Buy the domain and set `NEXT_PUBLIC_SITE_URL`.** Until then the site
+      uses a placeholder Vercel origin in `lib/site.ts`, so canonicals, the
+      sitemap, OG image URLs, and JSON-LD all point at a non-final domain. Set
+      the env var in Vercel **and** `.env.local` once the domain is live, then
+      re-submit the sitemap and re-verify in Google Search Console.
+- [ ] **Add a full Content-Security-Policy.** Deliberately omitted in
+      `next.config.ts` for now — it needs an allowlist for YouTube iframes,
+      react-tweet, and Google Fonts, and should be tested so it doesn't silently
+      break embeds.
+- [ ] **Per-client import cleanup.** Only `altexsoftCleanup()` exists. Other
+      publishers add their own chrome (e.g. Prismic callouts, promos, related
+      blocks) and need a dedicated `<client>Cleanup()` — don't reuse AltexSoft's.
+- [ ] **AltexSoft import dates.** AltexSoft pages expose no machine-readable
+      date, so imports default `publishedAt` to today and need a manual fix
+      (or parse the in-body "Published:" line).
+
+## Deploy
+
+Hosted on Vercel. Pushing to the default branch triggers a production deploy;
+preview deployments are created per branch/PR.
