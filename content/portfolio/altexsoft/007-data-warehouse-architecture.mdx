@@ -6,7 +6,7 @@ originalUrl: "https://www.altexsoft.com/blog/data-warehouse-architecture/"
 publishedAt: "2024-09-19"
 canonical: "https://www.altexsoft.com/blog/data-warehouse-architecture/"
 excerpt: "Discover the key layers in data warehouse architecture, how to build a scalable data warehouse, and popular schemas like star, snowflake, and data vault."
-coverImage: "/portfolio/altexsoft/007-data-warehouse-architecture-layers-components-and-schemas/cover.jpg"
+coverImage: "/portfolio/altexsoft/007-data-warehouse-architecture/cover.jpg"
 tags: []
 ---
 Over [64.2 zettabytes](https://www.statista.com/statistics/871513/worldwide-data-created/) of data are created yearly, which is equivalent to about 15.4 billion movies of ultra-HD quality—something you could hardly watch even if you lived hundreds of lives.
@@ -48,7 +48,7 @@ However, in both cases, DW architecture has four logical layers, each with its d
 - storage or data serving layer; and
 - presentation layer.
 
-![Data warehouse architecture diagram: layers of data warehouse](/portfolio/altexsoft/007-data-warehouse-architecture-layers-components-and-schemas/image-1.png)
+![Data warehouse architecture diagram: layers of data warehouse](/portfolio/altexsoft/007-data-warehouse-architecture/image-1.png)
 
 The names can differ from organization to organization, and there can be additional layers as the complexity of the system grows. Also, at each step, different tools will be used. Yet, the idea is always the same: working together, these layers ensure delivering accurate, timely, and meaningful insights from raw data.
 
@@ -56,7 +56,7 @@ The names can differ from organization to organization, and there can be additio
 
 The starting point for any data warehouse is its data sources. At this layer, the first phase of ETL/ELT  — extract  — happens. Traditional DWs only work with [structured data](https://www.altexsoft.com/blog/structured-unstructured-data/) (e.g., relational databases), while modern cloud-based data warehouses also support semi-structured (e.g., XML, JSON) and [unstructured data](https://www.altexsoft.com/blog/unstructured-data/) (e.g., texts and multimedia files).
 
-![Data source layer of data warehouse architecture](/portfolio/altexsoft/007-data-warehouse-architecture-layers-components-and-schemas/image-2.png)
+![Data source layer of data warehouse architecture](/portfolio/altexsoft/007-data-warehouse-architecture/image-2.png)
 
 Tools commonly used for data extraction have pre-built connectors to various databases, file systems, business applications, etc. Their functionality goes beyond pulling data from its sources and includes transformation capabilities. Among popular instruments are [Apache NiFi](https://nifi.apache.org/), [Stitch](https://ua.stitchdata.com/), and [Fivetran](https://www.fivetran.com/).
 
@@ -70,7 +70,7 @@ The physical location of a staging area where raw data temporarily lives and und
 
 In both cases, after transformation the data is moved to the storage layer.
 
-![Staging layer of data warehouse architecture ](/portfolio/altexsoft/007-data-warehouse-architecture-layers-components-and-schemas/image-3.png)
+![Staging layer of data warehouse architecture ](/portfolio/altexsoft/007-data-warehouse-architecture/image-3.png)
 
 Tools commonly used to run transformations are:
 
@@ -89,7 +89,7 @@ Data streaming explained
 
 The storage layer inside the data warehouse keeps transformed data ready for analysis using tools of the presentation layer. Depending on the architecture approach, it can include [data marts](https://www.altexsoft.com/blog/what-is-data-mart/), which are subsets of the WH designed for the needs of a specific department, business area, or user group. Experts like [data scientists](https://www.altexsoft.com/blog/data-scientist-vs-data-engineer/), [business analysts](https://www.altexsoft.com/blog/business-analyst-role-responsibilities-skills/), and data analysts can directly query data marts.
 
-![Storage layer of data warehouse architecture](/portfolio/altexsoft/007-data-warehouse-architecture-layers-components-and-schemas/image-4.png)
+![Storage layer of data warehouse architecture](/portfolio/altexsoft/007-data-warehouse-architecture/image-4.png)
 
 Popular options for the data storage layer include Amazon Redshift, Google BigQuery, Snowflake, and Microsoft Azure Synapse. All of them are scalable cloud-based platforms that support [big data analytics](https://www.altexsoft.com/blog/big-data-analytics-explained/).
 
@@ -97,7 +97,7 @@ Popular options for the data storage layer include Amazon Redshift, Google BigQu
 
 That’s where end users access and analyze data from the storage layer through friendly interfaces like reports, dashboards, and [visualizations](https://www.altexsoft.com/blog/data-visualization-tools-types-techniques/). In the background, analytical tools can run the [OLAP](https://www.altexsoft.com/blog/olap-online-analytical-processing/) (Online Analytical Processing) method that enables complex queries and multidimensional data analysis of large data sets.
 
-![Presentation layer of data warehouse architecture](/portfolio/altexsoft/007-data-warehouse-architecture-layers-components-and-schemas/image-5.png)
+![Presentation layer of data warehouse architecture](/portfolio/altexsoft/007-data-warehouse-architecture/image-5.png)
 
 [Business intelligence tools](https://www.altexsoft.com/blog/best-bi-tools-comparison/) used for the presentation layer include [Tableau](https://www.google.com/search?q=tableau&sca_esv=de8efa94a8e5fbd0&sca_upv=1&rlz=1C1CHBD_ukUA979UA979&sxsrf=ADLYWIKqwMnWIMry_MRYTRfsBTHUOhsoQQ%3A1726751215914&ei=7yHsZouuN4Ghi-gPw6SZiA4&ved=0ahUKEwjL4dvGic-IAxWB0AIHHUNSBuEQ4dUDCA8&uact=5&oq=tableau&gs_lp=Egxnd3Mtd2l6LXNlcnAiB3RhYmxlYXUyERAuGIAEGJECGNEDGMcBGIoFMgsQABiABBiRAhiKBTILEAAYgAQYkQIYigUyCxAAGIAEGJECGIoFMgsQABiABBiRAhiKBTIIEAAYgAQYywEyBRAAGIAEMggQABiABBjLATIFEAAYgAQyBRAAGIAEMiAQLhiABBiRAhjRAxjHARiKBRiXBRjcBBjeBBjgBNgBAUjyI1AAWJ0gcAh4AJABA5gBugKgAbwUqgEIMi4xNC4xLjG4AQPIAQD4AQGYAhagArQQqAIPwgIHECMYJxjqAsICFBAAGIAEGJECGLQCGIoFGOoC2AEBwgIEECMYJ8ICChAAGIAEGEMYigXCAhAQLhiABBjRAxgUGIcCGMcBwgIKEAAYgAQYFBiHAsICDhAuGIAEGNEDGMcBGMsBwgINEC4YgAQY0QMYxwEYCsICBxAAGIAEGArCAgsQLhiABBjRAxjHAcICChAuGIAEGEMYigXCAhAQLhiABBhDGMcBGIoFGK8BmAMJugYGCAEQARgBkgcGOS4xMi4xoAe1wgE&sclient=gws-wiz-serp), [Power BI](https://www.microsoft.com/en-us/power-platform/products/power-bi), [Looker Studio](https://lookerstudio.google.com/), and  [QlikView](https://www.qlik.com/us/products/qlikview).
 
@@ -116,7 +116,7 @@ The star schema is one of the simplest and most commonly used warehouse schemas.
 - a **fact table** that contains quantitative data like sales revenue, quantities sold, or transaction counts. Each record in the fact table is associated with keys that link to its respective dimension table.
 - **dimension tables** that surround the fact table. They hold descriptive information or metadata about the facts, like customer details and product categories.
 
-![Data warehouse star schema](/portfolio/altexsoft/007-data-warehouse-architecture-layers-components-and-schemas/image-6.png)
+![Data warehouse star schema](/portfolio/altexsoft/007-data-warehouse-architecture/image-6.png)
 
 Data warehouse star schema. The primary keys (PK) are unique identifiers for each record in a table. They become foreign keys (FK) when used as a reference in another table
 
@@ -126,7 +126,7 @@ The star schema is easy to understand and use, making it accessible for technica
 
 The [snowflake](https://www.altexsoft.com/blog/snowflake-data-warehouse-pros-cons/) schema is a more complex variation of the star schema. Like the star schema, it starts with a central fact table containing the quantitative data but breaks the dimensions down into multiple tables.
 
-![Data warehouse snowflake schema](/portfolio/altexsoft/007-data-warehouse-architecture-layers-components-and-schemas/image-7.png)
+![Data warehouse snowflake schema](/portfolio/altexsoft/007-data-warehouse-architecture/image-7.png)
 
 For example, in the product dimension, instead of storing all product-related attributes in a single table, the snowflake schema splits it into several related tables, like product categories, product types, and product brands.
 
@@ -136,7 +136,7 @@ Normalizing dimension tables and breaking them down into multiple related tables
 
 The data vault schema, or [data vault architecture](https://www.altexsoft.com/blog/data-vault-architecture/), was created by Dan Linstedt in the 1990s to address the limitations of star and snowflake schemas, which struggle with the complexity and volume of modern enterprise data.
 
-![Data warehouse data vault schema](/portfolio/altexsoft/007-data-warehouse-architecture-layers-components-and-schemas/image-8.png)
+![Data warehouse data vault schema](/portfolio/altexsoft/007-data-warehouse-architecture/image-8.png)
 
 The data vault structure consists of three main components:
 
@@ -154,7 +154,7 @@ Now, that we’ve explored logical layers and data schemas that make up a data w
 
 The top-down approach was introduced by Bill Inmon, an American computer scientist often called the father of the data warehouse. In this scenario, you first build the central data warehouse, which incorporates all key components and serves as the primary repository and single source of truth for all organizational data. After that, smaller, specialized data marts are created to serve individual departments.
 
-![Data warehouse design: top-down approach](/portfolio/altexsoft/007-data-warehouse-architecture-layers-components-and-schemas/image-9.png)
+![Data warehouse design: top-down approach](/portfolio/altexsoft/007-data-warehouse-architecture/image-9.png)
 
 **Pros**. The top-down pattern ensures that all departments are working with the same data. This guarantees data consistency, eliminates redundancies, and prevents discrepancies in reports and analyses.
 
@@ -164,7 +164,7 @@ The top-down approach was introduced by Bill Inmon, an American computer scienti
 
 The bottom-up approach, championed by Ralph Kimball, another data warehousing pioneer, starts with creating data marts, which are later integrated into a centralized data warehouse. This method is more flexible and business-centric compared to the Inmon’s version.
 
-![Data warehouse design: bottom-up approach](/portfolio/altexsoft/007-data-warehouse-architecture-layers-components-and-schemas/image-10.png)
+![Data warehouse design: bottom-up approach](/portfolio/altexsoft/007-data-warehouse-architecture/image-10.png)
 
 **Pros**. The bottom-up approach allows for faster implementation, as individual departments can start using their data marts without waiting for the full data warehouse to be built.
 

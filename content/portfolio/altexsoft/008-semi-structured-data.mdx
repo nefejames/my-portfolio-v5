@@ -6,7 +6,7 @@ originalUrl: "https://www.altexsoft.com/blog/semi-structured-data/"
 publishedAt: "2024-09-27"
 canonical: "https://www.altexsoft.com/blog/semi-structured-data/"
 excerpt: "Explore the examples, formats, and characteristics of semi-structured data. See how it differs from structured and unstructured data."
-coverImage: "/portfolio/altexsoft/008-what-is-semi-structured-data-examples-formats-and-characteristics/cover.jpg"
+coverImage: "/portfolio/altexsoft/008-semi-structured-data/cover.jpg"
 tags: []
 ---
 In an ideal world, data would be neatly organized, perfectly structured, and ready for analysis. But reality, as we know, is far from ideal. Data in the real world is messy, scattered across various sources and formats, and often doesn’t fit into the rigid structures of traditional databases.
@@ -23,11 +23,11 @@ The “structure” in semi-structured data comes from using tags, markers, [met
 
 Take JSON, a popular data format.In this format, keys like " **name**," " **age**," and " **email**" provide a basic level of organization by clearly labeling each data element. This makes it easy to understand and access specific pieces of information. For instance, one record might look like this:
 
-![Example JSON data](/portfolio/altexsoft/008-what-is-semi-structured-data-examples-formats-and-characteristics/image-1.png)
+![Example JSON data](/portfolio/altexsoft/008-semi-structured-data/image-1.png)
 
 However, JSON also allows for flexibility. Not all records need to have the same fields, which means you can adapt the structure as needed without breaking the data format. For example, another record might include additional fields or omit some altogether:
 
-![Sample JSON data with different fields added](/portfolio/altexsoft/008-what-is-semi-structured-data-examples-formats-and-characteristics/image-2.png)
+![Sample JSON data with different fields added](/portfolio/altexsoft/008-semi-structured-data/image-2.png)
 
 In the above example, the " **age**" field is missing, and a new property, " **preferences**," has been added.
 
@@ -37,19 +37,19 @@ The JSON example shows semi-structured data’s ability to handle diverse and ev
 
 Structured, unstructured, and semi-structured data share a common similarity: they’re all data. However, these forms of data have some key differences you should know. Let’s explore them.
 
-![Structured vs unstructured vs semi-structured data](/portfolio/altexsoft/008-what-is-semi-structured-data-examples-formats-and-characteristics/image-3.png)
+![Structured vs unstructured vs semi-structured data](/portfolio/altexsoft/008-semi-structured-data/image-3.png)
 
 **Structured data** is the most organized form of data. It adheres to a predefined data model and is typically stored in tables with rows and columns. Each data element is stored in a specific field, and all records follow the same format, making it ideal for [relational databases](https://www.altexsoft.com/blog/comparing-database-management-systems-mysql-postgresql-mssql-server-mongodb-elasticsearch-and-others/).
 
-![Structured data example: Excel spreadsheet with data on electric vehicles](/portfolio/altexsoft/008-what-is-semi-structured-data-examples-formats-and-characteristics/image-4.png)
+![Structured data example: Excel spreadsheet with data on electric vehicles](/portfolio/altexsoft/008-semi-structured-data/image-4.png)
 
 **Unstructured data** lacks a predefined format or schema, making it more challenging to store, search, and analyze. This type of data includes text documents, images, audio, and video, which do not fit neatly into traditional database systems. Social media posts, emails, and other digital content constitute this form of data.
 
-![Unstructured data example: A LinkedIn post](/portfolio/altexsoft/008-what-is-semi-structured-data-examples-formats-and-characteristics/image-5.png)
+![Unstructured data example: A LinkedIn post](/portfolio/altexsoft/008-semi-structured-data/image-5.png)
 
 **Semi-structured data** sits between structured and unstructured data, combining some of the characteristics of both. It doesn’t fit into a rigid schema but still retains some level of organization, often using tags or metadata to separate elements. Common formats for semi-structured data include XML, JSON, and YAML. Sources of semi-structured data include configuration files, log data, RSS feeds, [API](https://www.altexsoft.com/blog/what-is-api-definition-types-specifications-documentation/) responses, web pages, IoT devices, and [NoSQL databases](https://www.altexsoft.com/blog/databases-database-management-systems/).
 
-![Semi-structured data example: XML data representing a collection of books](/portfolio/altexsoft/008-what-is-semi-structured-data-examples-formats-and-characteristics/image-6.png)
+![Semi-structured data example: XML data representing a collection of books](/portfolio/altexsoft/008-semi-structured-data/image-6.png)
 
 ## Examples and formats of semi-structured data
 
@@ -59,7 +59,7 @@ Let’s explore some widely used formats of semi-structured data and their use c
 
 [NoSQL](https://www.altexsoft.com/blog/nosql-pros-cons/) database records are self-contained units of semi-structured data stored within a NoSQL database. Each document encapsulates all relevant information about an entity — user, product, transaction, etc. — in a single data object. These records can vary in structure, with some fields present in one document but absent in another, allowing you to quickly adapt to changing data needs.
 
-![Database records via the MongoDB Compass GUI](/portfolio/altexsoft/008-what-is-semi-structured-data-examples-formats-and-characteristics/image-7.png)
+![Database records via the MongoDB Compass GUI](/portfolio/altexsoft/008-semi-structured-data/image-7.png)
 
 **Use case**: NoSQL documents are ideal for various scenarios, including content management systems, IoT devices, and social media platforms.
 
@@ -67,7 +67,7 @@ Let’s explore some widely used formats of semi-structured data and their use c
 
 XML is a markup language for encoding documents in a format that is both human-readable and machine-readable. It uses nested tags to represent the structure of the data, making it ideal for representing hierarchical information.
 
-![Sample XML data of employees in a company](/portfolio/altexsoft/008-what-is-semi-structured-data-examples-formats-and-characteristics/image-8.png)
+![Sample XML data of employees in a company](/portfolio/altexsoft/008-semi-structured-data/image-8.png)
 
 **Use case**: XML is often used in configuration files, data interchange between applications, and in [SOAP](https://www.altexsoft.com/blog/what-is-soap-formats-protocols-message-structure-and-how-soap-is-different-from-rest/) web services.
 
@@ -75,7 +75,7 @@ XML is a markup language for encoding documents in a format that is both human-r
 
 JSON is one of the most widely used formats for semi-structured data. It is lightweight, human-readable, and simple for machines to parse and generate. It organizes data in key-value pairs, making it easy to understand and manipulate.
 
-![Sample JSON data of different movies in a cinema](/portfolio/altexsoft/008-what-is-semi-structured-data-examples-formats-and-characteristics/image-9.png)
+![Sample JSON data of different movies in a cinema](/portfolio/altexsoft/008-semi-structured-data/image-9.png)
 
 **Use case**: JSON is widely used in [web development](https://www.altexsoft.com/blog/mean-mern-javascript-full-stack/) for [API](https://www.altexsoft.com/blog/rest-api-design/) responses and configuration files.
 
@@ -83,7 +83,7 @@ JSON is one of the most widely used formats for semi-structured data. It is ligh
 
 YAML is a human-readable data serialization standard that uses indentation and a minimalist syntax to represent data structures.
 
-![Sample YAML configuration file for an application](/portfolio/altexsoft/008-what-is-semi-structured-data-examples-formats-and-characteristics/image-10.png)
+![Sample YAML configuration file for an application](/portfolio/altexsoft/008-semi-structured-data/image-10.png)
 
 **Use case**: YAML is commonly used for configuration files in [DevOps tools](https://www.altexsoft.com/blog/devops-tools/) (e.g., [Docker](https://www.altexsoft.com/blog/docker-pros-and-cons/), [Kubernetes](https://www.altexsoft.com/blog/kubernetes-pros-cons/)), continuous integration/continuous deployment ( [CI/CD](https://www.altexsoft.com/blog/cicd-tools-comparison/)) pipelines, and software [project management](https://www.altexsoft.com/whitepapers/agile-project-management-best-practices-and-methodologies/). For example, a [DevOps](https://www.altexsoft.com/blog/devops-principles-practices-and-devops-engineer-role/) engineer might use a YAML file to define the configuration of a Docker container.
 
@@ -91,7 +91,7 @@ YAML is a human-readable data serialization standard that uses indentation and a
 
 HTML is a standard markup language used for creating web pages. While primarily used to structure and display web content, it can be considered semi-structured because it uses tags to organize text, images, and multimedia elements.
 
-![Sample HTML markup for a company’s “About Us” page](/portfolio/altexsoft/008-what-is-semi-structured-data-examples-formats-and-characteristics/image-11.png)
+![Sample HTML markup for a company’s “About Us” page](/portfolio/altexsoft/008-semi-structured-data/image-11.png)
 
 Sample HTML markup of a company’s “About Us” page
 
@@ -107,13 +107,13 @@ Unlike structured data, semi-structured data’s flexible nature allows you to a
 
 For example, you have an online eCommerce platform that sells various products. The initial product entry might look like this:
 
-![JSON data for an ecommerce store’s smartphone product](/portfolio/altexsoft/008-what-is-semi-structured-data-examples-formats-and-characteristics/image-12.png)
+![JSON data for an ecommerce store’s smartphone product](/portfolio/altexsoft/008-semi-structured-data/image-12.png)
 
 JSON data for an eCommerce store’s smartphone product
 
 As the business evolves, you can decide to add a new attribute, " **customerReviews**," to store customer feedback directly within the product records:
 
-![A "customerReviews" attribute added to the smartphone’s JSON data](/portfolio/altexsoft/008-what-is-semi-structured-data-examples-formats-and-characteristics/image-13.png)
+![A "customerReviews" attribute added to the smartphone’s JSON data](/portfolio/altexsoft/008-semi-structured-data/image-13.png)
 
 A " **customerReviews**" attribute added to the smartphone’s JSON data
 
@@ -129,11 +129,11 @@ Semi-structured data is designed to handle irregular and incomplete data sets, m
 
 For instance, in a database of user profiles, some users might have extensive information, like address, phone number, DOB, and age:
 
-![User profile data (in JSON) with extensive information](/portfolio/altexsoft/008-what-is-semi-structured-data-examples-formats-and-characteristics/image-14.png)
+![User profile data (in JSON) with extensive information](/portfolio/altexsoft/008-semi-structured-data/image-14.png)
 
 On the other hand, there will also be user profiles with minimal information:
 
-![User profile data (in JSON) with minimal information](/portfolio/altexsoft/008-what-is-semi-structured-data-examples-formats-and-characteristics/image-15.png)
+![User profile data (in JSON) with minimal information](/portfolio/altexsoft/008-semi-structured-data/image-15.png)
 
 ### Hierarchical or graph-based structure
 

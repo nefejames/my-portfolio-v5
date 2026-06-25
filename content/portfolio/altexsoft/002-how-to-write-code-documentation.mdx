@@ -6,7 +6,7 @@ originalUrl: "https://www.altexsoft.com/blog/how-to-write-code-documentation/"
 publishedAt: "2026-05-07"
 canonical: "https://www.altexsoft.com/blog/how-to-write-code-documentation/"
 excerpt: "Master code documentation with essential steps, examples, best practices, and tools to streamline your process effectively."
-coverImage: "/portfolio/altexsoft/002-how-to-write-code-documentation-examples-types-best-practices-and-tools/cover.jpg"
+coverImage: "/portfolio/altexsoft/002-how-to-write-code-documentation/cover.jpg"
 tags: []
 ---
 Every developer has been there—staring at a [codebase](https://www.altexsoft.com/blog/legacy-modernization-using-ai-agents/) they wrote months ago, struggling to remember the reasoning behind certain decisions or how different components fit together. Few things are worse than looking at your own code later and not remembering what it does or how it works.
@@ -53,7 +53,7 @@ They can be single-line or multiline, the latter used for providing additional [
 
 Both groups improve code readability, clarity, and maintainability but serve different purposes. Each programming language has its own syntax for comments and documentation strings.
 
-![Comment syntax across different programming languages](/portfolio/altexsoft/002-how-to-write-code-documentation-examples-types-best-practices-and-tools/image-1.png)
+![Comment syntax across different programming languages](/portfolio/altexsoft/002-how-to-write-code-documentation/image-1.png)
 
 External code documentation is usually README files describing how to implement, run, and configure your code and its expected outputs.
 
@@ -63,7 +63,7 @@ API documentation is sometimes also referred to as code documentation. Our separ
 
 Code comments, also called inline comments, are brief notes that describe what a line or block of code means or does. They live exclusively in source code files and are invisible to compilers and browsers. The image below shows comment examples for a piece of JavaScript code.
 
-![JavaScript code with inline comments added.](/portfolio/altexsoft/002-how-to-write-code-documentation-examples-types-best-practices-and-tools/image-2.png)
+![JavaScript code with inline comments added.](/portfolio/altexsoft/002-how-to-write-code-documentation/image-2.png)
 
 JavaScript code with inline comments added
 
@@ -78,7 +78,7 @@ Code comments are useful for explaining non-obvious things, such as
 
 You can also use comment syntax to temporarily disable code sections during debugging or development for quick testing and iteration (since, as you remember, the compiler doesn’t see lines marked as comments).
 
-![Code comments explaining the implementation decisions behind a piece of JavaScript code.](/portfolio/altexsoft/002-how-to-write-code-documentation-examples-types-best-practices-and-tools/image-3.png)
+![Code comments explaining the implementation decisions behind a piece of JavaScript code.](/portfolio/altexsoft/002-how-to-write-code-documentation/image-3.png)
 
 Multiline code comments explaining the implementation decisions behind a piece of JavaScript
 
@@ -88,23 +88,23 @@ Let’s discuss some best practices for writing clear and helpful comments in yo
 
 **Write self-documenting code** **.** The best code is self-documenting—meaning, it’s so clear and expressive that little to no comments are required for additional explanation. The image below is an example of code that can be hard to understand.
 
-![An example of hard-to-understand Python code](/portfolio/altexsoft/002-how-to-write-code-documentation-examples-types-best-practices-and-tools/image-4.png)
+![An example of hard-to-understand Python code](/portfolio/altexsoft/002-how-to-write-code-documentation/image-4.png)
 
 The image below is an example of self-documenting code: The function and variable names clearly convey their meaning and purposes.
 
-![An example of clean Python code.](/portfolio/altexsoft/002-how-to-write-code-documentation-examples-types-best-practices-and-tools/image-5.png)
+![An example of clean Python code.](/portfolio/altexsoft/002-how-to-write-code-documentation/image-5.png)
 
 An example of self-documenting Python code
 
 **Ensure your comments are clear and easy to understand** **.** Write comments that are concise, clear, and easy to understand. Avoid jargon unless it's necessary and well-known in your field. The image below is an example of a vague and unhelpful code comment.
 
-![Unclear comments added to JavaScript code.](/portfolio/altexsoft/002-how-to-write-code-documentation-examples-types-best-practices-and-tools/image-6.png)
+![Unclear comments added to JavaScript code.](/portfolio/altexsoft/002-how-to-write-code-documentation/image-6.png)
 
 Unclear comments added to JavaScript code
 
 The image below is an example of detailed comments: They explain what the code does and even provide the formula being used.
 
-![Clear comments added to JavaScript code.](/portfolio/altexsoft/002-how-to-write-code-documentation-examples-types-best-practices-and-tools/image-7.png)
+![Clear comments added to JavaScript code.](/portfolio/altexsoft/002-how-to-write-code-documentation/image-7.png)
 
 Clear comments added to JavaScript code
 
@@ -112,19 +112,19 @@ Clear comments added to JavaScript code
 
 The comment in the image below does not explain “why” the quicksort algorithm was used. It only states what the code does, which is already evident.
 
-![Comments in Python code do not properly explain why coding decisions were made.](/portfolio/altexsoft/002-how-to-write-code-documentation-examples-types-best-practices-and-tools/image-8.png)
+![Comments in Python code do not properly explain why coding decisions were made.](/portfolio/altexsoft/002-how-to-write-code-documentation/image-8.png)
 
 Python code comment does not explain why coding decisions were made
 
 In contrast, comments in the next image properly explain why the developer chose the quicksort algorithm.
 
-![Comments in Python code properly explain why coding decisions were made.](/portfolio/altexsoft/002-how-to-write-code-documentation-examples-types-best-practices-and-tools/image-9.png)
+![Comments in Python code properly explain why coding decisions were made.](/portfolio/altexsoft/002-how-to-write-code-documentation/image-9.png)
 
 Comments in Python code explain why coding decisions were made
 
 **Link to the original source of external code.** It's important to provide links when adding code from external sources to your project. This practice gives credit to the original author and helps others understand the context and find additional information if needed. Including the source link ensures transparency and helps maintain your codebase's integrity.
 
-![Code comments showing the source of copied Python code](/portfolio/altexsoft/002-how-to-write-code-documentation-examples-types-best-practices-and-tools/image-10.png)
+![Code comments showing the source of copied Python code](/portfolio/altexsoft/002-how-to-write-code-documentation/image-10.png)
 
 Code comments showing the source for copied Python code
 
@@ -144,13 +144,13 @@ Documentation comments should accompany every single module, function, class, an
 
 For example, when defining a function, a doc comment should detail its parameters, input and return values, when it can be called, etc. The image below shows a docstring for a square function in Python.
 
-![Docstrings added to Python code.](/portfolio/altexsoft/002-how-to-write-code-documentation-examples-types-best-practices-and-tools/image-11.png)
+![Docstrings added to Python code.](/portfolio/altexsoft/002-how-to-write-code-documentation/image-11.png)
 
 Docstrings added to a square function in Python
 
 For a class, it’s essential to cover its purpose, behavior, attributes, and methods. Each method, in turn, needs a documentation comment about its usage, arguments, and side effects. Adding notes on exceptions informs other developers about possible error scenarios and how to handle them appropriately.
 
-![JavaScript function with a note that mentions an exception](/portfolio/altexsoft/002-how-to-write-code-documentation-examples-types-best-practices-and-tools/image-12.png)
+![JavaScript function with a note that mentions an exception](/portfolio/altexsoft/002-how-to-write-code-documentation/image-12.png)
 
 JavaScript divide function with a note that mentions an exception
 
@@ -175,13 +175,13 @@ Many IDEs and code editors come with embedded tools, plugins, and extensions to 
 
 [Better Comments](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments) categorizes annotations in alerts, TODOs, and other groups to make them more user-friendly. The tool supports nearly 80 programming languages.
 
-![Comments added to a code snippet with the Better Comments VSCode extension.](/portfolio/altexsoft/002-how-to-write-code-documentation-examples-types-best-practices-and-tools/image-13.png)
+![Comments added to a code snippet with the Better Comments VSCode extension.](/portfolio/altexsoft/002-how-to-write-code-documentation/image-13.png)
 
 Comments added to a code snippet with the Better Comments VSCode extension
 
 [autoDocstring](https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring) automatically generates documentation comments in Python, offering various docstring styles, including [Google’s](https://github.com/google/styleguide/blob/gh-pages/pyguide.md#38-comments-and-docstrings) and [NumPy’s](https://numpydoc.readthedocs.io/en/latest/), and allowing you to customize the docstring format.
 
-![Docstrings generated with the autoDocstring VSCode extension.](/portfolio/altexsoft/002-how-to-write-code-documentation-examples-types-best-practices-and-tools/image-14.png)
+![Docstrings generated with the autoDocstring VSCode extension.](/portfolio/altexsoft/002-how-to-write-code-documentation/image-14.png)
 
 Docstrings generated with the autoDocstring VSCode extension
 
@@ -191,7 +191,7 @@ Docstrings generated with the autoDocstring VSCode extension
 
 [GitHub Copilot](https://github.com/features/copilot), primarily known for its [AI coding](https://www.altexsoft.com/blog/ai-coding-tools/) capabilities, also generates inline comments explaining the behavior and purposes of a selected code fragment. It works as an extension of VS Code, Visual Studio, Neovim, the JetBrains suite of IDEs, and Azure Data Studio.
 
-![code documentation with GitHub Copilot](/portfolio/altexsoft/002-how-to-write-code-documentation-examples-types-best-practices-and-tools/image-15.png)
+![code documentation with GitHub Copilot](/portfolio/altexsoft/002-how-to-write-code-documentation/image-15.png)
 
 Code documentation with GitHub Copilot
 
@@ -201,7 +201,7 @@ Code documentation with GitHub Copilot
 
 Mintlify also has an AI [documentation writer](https://marketplace.visualstudio.com/items?itemName=mintlify.document) that supports 10+ languages and 9 formats and is available as a [VSCode](https://marketplace.visualstudio.com/items?itemName=mintlify.document) or [IntelliJ](https://plugins.jetbrains.com/plugin/18606-mintlify-doc-writer) extension. All you need to document a piece of code is to highlight a line or block and click the “generate docs” button.
 
-![Comments auto-generated by the Mintlify Doc Writer VSCode extension.](/portfolio/altexsoft/002-how-to-write-code-documentation-examples-types-best-practices-and-tools/image-16.png)
+![Comments auto-generated by the Mintlify Doc Writer VSCode extension.](/portfolio/altexsoft/002-how-to-write-code-documentation/image-16.png)
 
 Comments auto-generated by the Mintlify Doc Writer VSCode extension
 
@@ -217,7 +217,7 @@ How often legacy systems should be rewritten, and various approaches
 
 To document code with ChatGPT, you can either insert the part you want to describe into the ChatGPT interface or access AI right from your development environment if a corresponding plugin is available. Examples of ChatGPT extensions are [AssistAI](https://marketplace.eclipse.org/content/assistai-chatgpt-plugin-eclipse-ide) for Eclipse IDE, [EasyCode ChatGPT](https://plugins.jetbrains.com/plugin/21555-chat-gpt) for JetBrains IDEs, [the ChatGPT extension](https://marketplace.visualstudio.com/items?itemName=timkmecl.chatgpt) for VS Code, and more.
 
-![Comments added to JavaScript code with ChatGPT.](/portfolio/altexsoft/002-how-to-write-code-documentation-examples-types-best-practices-and-tools/image-17.png)
+![Comments added to JavaScript code with ChatGPT.](/portfolio/altexsoft/002-how-to-write-code-documentation/image-17.png)
 
 Comments added to JavaScript code with ChatGPT prompt “Generate comments for the following code snippet”
 
@@ -225,7 +225,7 @@ Comments added to JavaScript code with ChatGPT prompt “Generate comments for t
 
 A README file is a document that introduces users to your software product. Typically located in the root directory of the project, it’s the first software description people see when visiting your repository.
 
-![README file for React open-source GitHub repository.](/portfolio/altexsoft/002-how-to-write-code-documentation-examples-types-best-practices-and-tools/image-18.png)
+![README file for React open-source GitHub repository.](/portfolio/altexsoft/002-how-to-write-code-documentation/image-18.png)
 
 README file for React open-source [GitHub repository](https://github.com/facebook/react)
 
@@ -300,13 +300,13 @@ Before writing code documentation, it's crucial to understand who will be readin
 
 For example, a novice developer will require more details and simpler terminology than an expert with decades of experience. The image below shows code documentation fit for an expert JavaScript developer.
 
-![Code documentation for an audience of expert JavaScript developers.](/portfolio/altexsoft/002-how-to-write-code-documentation-examples-types-best-practices-and-tools/image-19.png)
+![Code documentation for an audience of expert JavaScript developers.](/portfolio/altexsoft/002-how-to-write-code-documentation/image-19.png)
 
 Code documentation for an audience of expert JavaScript developers
 
 The image below shows code documentation fit for a beginner JavaScript developer. While it is longer, it will be easier for this audience to understand.
 
-![Code documentation for an audience of beginner JavaScript developers.](/portfolio/altexsoft/002-how-to-write-code-documentation-examples-types-best-practices-and-tools/image-20.png)
+![Code documentation for an audience of beginner JavaScript developers.](/portfolio/altexsoft/002-how-to-write-code-documentation/image-20.png)
 
 Code documentation for an audience of beginner JavaScript developers
 
@@ -328,7 +328,7 @@ For example, the prerequisites for the project in the image below are Python ver
 
 Python code includes details of prerequisite information.
 
-![Python code include details of prerequisite information.](/portfolio/altexsoft/002-how-to-write-code-documentation-examples-types-best-practices-and-tools/image-21.png)
+![Python code include details of prerequisite information.](/portfolio/altexsoft/002-how-to-write-code-documentation/image-21.png)
 
 Prerequisite information
 
@@ -344,13 +344,13 @@ While comprehensive and thorough documentation is necessary, it's equally import
 
 An example of overdocumenting code and adding unneeded comments is explaining what an array or variable is, as most developers are familiar with these concepts. The image below shows overdocumented code.
 
-![An overdocumented JavaScript code.](/portfolio/altexsoft/002-how-to-write-code-documentation-examples-types-best-practices-and-tools/image-22.png)
+![An overdocumented JavaScript code.](/portfolio/altexsoft/002-how-to-write-code-documentation/image-22.png)
 
 An overdocumented JavaScript code
 
 The image below shows a concise code documentation that contains only the relevant information.
 
-![Concise JavaScript code documentation.](/portfolio/altexsoft/002-how-to-write-code-documentation-examples-types-best-practices-and-tools/image-23.png)
+![Concise JavaScript code documentation.](/portfolio/altexsoft/002-how-to-write-code-documentation/image-23.png)
 
 Concise JavaScript code documentation
 

@@ -6,7 +6,7 @@ originalUrl: "https://www.altexsoft.com/blog/redis-pros-and-cons/"
 publishedAt: "2025-02-10"
 canonical: "https://www.altexsoft.com/blog/redis-pros-and-cons/"
 excerpt: "Discover the pros and cons of Redis. Learn its key benefits, limitations, and when to use it for your project."
-coverImage: "/portfolio/altexsoft/016-the-good-and-the-bad-of-redis-in-memory-database/cover.jpg"
+coverImage: "/portfolio/altexsoft/016-redis-pros-and-cons/cover.jpg"
 tags: []
 ---
 When Salvatore Sanfilippo created Redis in 2009 to solve a scaling problem at his startup, he couldn't have predicted that it would become [one of the most widely used databases](https://survey.stackoverflow.co/2024/technology/), powering everything from [real-time analytics](https://www.altexsoft.com/blog/real-time-analytics/) to gaming leaderboards.
@@ -25,7 +25,7 @@ Redis is powerful, but is it always the right tool for the job? Let’s explore 
 - SSDs—the fastest available hardware for permanent storage—fetches data in **100 microseconds** at best (1,000 times slower than RAM).
 - Older HDDs need **10 milliseconds** for the same operation on average(100,000 times slower than RAM).
 
-![Key-value format](/portfolio/altexsoft/016-the-good-and-the-bad-of-redis-in-memory-database/image-1.png)
+![Key-value format](/portfolio/altexsoft/016-redis-pros-and-cons/image-1.png)
 
 Redis saves data in a key-value pair format, meaning each piece of data is associated with a unique key that acts as an identifier. Keys in Redis are always strings, while values can be different data types. For example, a key could be " **user:123:name**," and the value could be " **John Doe**."
 
@@ -51,7 +51,7 @@ Redis Stack can also be used as a [vector database](https://www.altexsoft.com/bl
 
 Redis is primarily used for caching frequently requested information to reduce the load on the main database and boost an app’s performance. In this scenario, the system first checks popular content like product pages or user profiles in the Redis cache. If it’s not there, queries the primary store, retrieves the data, and puts it in the cache for future use.
 
-![How Redis caching works](/portfolio/altexsoft/016-the-good-and-the-bad-of-redis-in-memory-database/image-2.png)
+![How Redis caching works](/portfolio/altexsoft/016-redis-pros-and-cons/image-2.png)
 
 Other popular use cases include but are not limited to the following.
 
@@ -71,7 +71,7 @@ Let’s learn how Redis works by exploring its features and characteristics.
 
 In the case of an in-memory store, all data would normally disappear when the server shuts down, crashes, or reboots. To prevent this, Redis uses persistence to periodically write data to a nonvolatile, permanent storage medium.
 
-![Redis persistence](/portfolio/altexsoft/016-the-good-and-the-bad-of-redis-in-memory-database/image-3.png)
+![Redis persistence](/portfolio/altexsoft/016-redis-pros-and-cons/image-3.png)
 
 There are 3 main persistence methods:
 
@@ -177,7 +177,7 @@ Though persistence options like RDB and AOF help reduce this risk, they are not 
 
 We’ve seen Redis's strengths and weaknesses. It's not the best fit for every situation, and some cases call for alternatives. Let’s explore these other solutions.
 
-![Redis vs alternatives](/portfolio/altexsoft/016-the-good-and-the-bad-of-redis-in-memory-database/image-4.png)
+![Redis vs alternatives](/portfolio/altexsoft/016-redis-pros-and-cons/image-4.png)
 
 ### Redis vs Memcached
 

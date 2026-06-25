@@ -6,7 +6,7 @@ originalUrl: "https://www.altexsoft.com/blog/data-vault-architecture/"
 publishedAt: "2024-07-30"
 canonical: "https://www.altexsoft.com/blog/data-vault-architecture/"
 excerpt: "Explore how data vaults handle large data volumes and maintain historical accuracy, providing robust solutions for modern enterprises."
-coverImage: "/portfolio/altexsoft/004-data-vault-warehouse-explained-vault-vs-star-schema/cover.jpg"
+coverImage: "/portfolio/altexsoft/004-data-vault-architecture/cover.jpg"
 tags: []
 ---
 Imagine a buffet restaurant where chefs constantly add new dishes and adjust recipes to cater to everyone's tastes. They can increase the number of meals and add new dishes as requested. This dynamic, adaptable system depicts a data vault schema in action.
@@ -31,7 +31,7 @@ The data vault methodology simplifies [data modeling](https://www.altexsoft.com/
 
 _**Note**: In this article, we will focusing on Data Vault 2.0, which is an improvement over the earlier version 1.0. We will also explore the_ differences between both versions later on in the article.
 
-![A data vault model consisting of hubs, links, and satellites](/portfolio/altexsoft/004-data-vault-warehouse-explained-vault-vs-star-schema/image-1.png)
+![A data vault model consisting of hubs, links, and satellites](/portfolio/altexsoft/004-data-vault-architecture/image-1.png)
 
 ### Hubs, links, satellites
 
@@ -41,7 +41,7 @@ Data vault modeling uses a unique architecture that separates data into three co
 
 Hub tables contain only a list of unique, unchanging identifiers (business keys) for entities. They do not store detailed information or attributes about the entity. For example, a customer hub will have customer IDs but not the customer's name, address, or phone number. Instead, that data will be stored in a satellite. This separation of concerns—a software engineering principle that involves breaking a system into distinct sections—helps organize and manage data efficiently for better analysis and reporting.
 
-![Sample of a customer hub table](/portfolio/altexsoft/004-data-vault-warehouse-explained-vault-vs-star-schema/image-2.png)
+![Sample of a customer hub table](/portfolio/altexsoft/004-data-vault-architecture/image-2.png)
 
 Hubs commonly contain:
 
@@ -54,7 +54,7 @@ Hubs commonly contain:
 
 For example, a link might connect a customer hub to a product hub, showing which customers bought which products. They ensure that relationships between entities are clear and traceable, just as rail lines show the connections between different stations.
 
-![Sample of a customer link table](/portfolio/altexsoft/004-data-vault-warehouse-explained-vault-vs-star-schema/image-3.png)
+![Sample of a customer link table](/portfolio/altexsoft/004-data-vault-architecture/image-3.png)
 
 Links commonly contain:
 
@@ -71,7 +71,7 @@ The data stored in satellite tables can change over time, so they are stored alo
 
 Hubs and links can have multiple satellites. However, satellites can have only one parent. Every record in a satellite is identified by its parent entity’s hash key and timestamp record of when attribute values change.
 
-![Sample of a customer satellite table with customer’s attributes](/portfolio/altexsoft/004-data-vault-warehouse-explained-vault-vs-star-schema/image-4.png)
+![Sample of a customer satellite table with customer’s attributes](/portfolio/altexsoft/004-data-vault-architecture/image-4.png)
 
 Sample of a customer satellite table with customer’s attributes updated in the second row
 
@@ -89,7 +89,7 @@ Hubs, links, and satellites work together to enable a scalable, auditable, and 
 
 The architecture of a data vault typically consists of several layers, each serving a specific purpose in the [data processing pipeline](https://www.altexsoft.com/blog/data-pipeline-components-and-types/).
 
-![Data vault architecture](/portfolio/altexsoft/004-data-vault-warehouse-explained-vault-vs-star-schema/image-5.png)
+![Data vault architecture](/portfolio/altexsoft/004-data-vault-architecture/image-5.png)
 
 **Raw data layer**. This initial layer consumes data from various sources, like transactional systems (e.g., CRM and billing systems), external data providers, spreadsheets and flat files, and real-time data streams (e.g., IoT sensors and web logs).
 
@@ -121,7 +121,7 @@ Traditional data warehouse approaches, like star or snowflake schemas, and data 
 
 Traditional data warehouses are designed to answer specific business questions. They typically employ dimensional modeling techniques, like star or snowflake schemas, to organize data into fact and dimension tables. This structure is optimized for specific types of queries and reporting needs.
 
-![Star schema data warehouse architecture with fact and dimension tables](/portfolio/altexsoft/004-data-vault-warehouse-explained-vault-vs-star-schema/image-6.png)
+![Star schema data warehouse architecture with fact and dimension tables](/portfolio/altexsoft/004-data-vault-architecture/image-6.png)
 
 In contrast, the data vault architecture is designed with flexibility and scalability in mind. It aims to accommodate changes in business requirements and data sources with minimal disruption.
 
@@ -191,7 +191,7 @@ For example, you have four hubs—Products, Orders, Customers, and Procurement. 
 
 Bridge tables are particularly useful for complex queries that are performed often.
 
-![Bridge table linking customer, product, procurement, and order hubs for complex querying](/portfolio/altexsoft/004-data-vault-warehouse-explained-vault-vs-star-schema/image-7.png)
+![Bridge table linking customer, product, procurement, and order hubs for complex querying](/portfolio/altexsoft/004-data-vault-architecture/image-7.png)
 
 **Point-in-time (PIT) tables**. These tables merge data from multiple satellite tables into a single, easily queryable structure.
 
@@ -199,7 +199,7 @@ PIT tables are designed to simplify and optimize queries by providing a snapshot
 
 For example, if you had a customer hub with multiple satellites tracking changes to customer information like contact details, preferences, and purchases, you can create a PIT table that will generate a report showing customer data as of the end of each month.
 
-![A pit table for a customer hub and its satellites](/portfolio/altexsoft/004-data-vault-warehouse-explained-vault-vs-star-schema/image-8.png)
+![A pit table for a customer hub and its satellites](/portfolio/altexsoft/004-data-vault-architecture/image-8.png)
 
 Here’s a breakdown of the different columns in the image.
 

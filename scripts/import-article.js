@@ -79,6 +79,17 @@ function slugify(text) {
     .trim()
 }
 
+// The article's URL slug is the last path segment of its original URL, so the
+// portfolio route mirrors the source (e.g. .../blog/websockets/ → "websockets").
+function slugFromUrl(u) {
+  try {
+    const pathname = new URL(u).pathname.replace(/\/+$/, '')
+    return (pathname.split('/').filter(Boolean).pop() || '').toLowerCase()
+  } catch {
+    return ''
+  }
+}
+
 function clientDisplayName(slug) {
   if (CLIENT_NAMES[slug]) return CLIENT_NAMES[slug]
   return slug.charAt(0).toUpperCase() + slug.slice(1)
@@ -503,7 +514,8 @@ async function importDocument(doc, clientSlug, sourceUrl) {
     new Date().toISOString().slice(0, 10)
   const excerpt = (meta.description || meta.ogDescription || '').trim()
 
-  const slug = slugify(title)
+  // Slug mirrors the original URL's last path segment; fall back to the title.
+  const slug = slugFromUrl(originalUrl) || slugify(title)
   const clientName = clientDisplayName(clientSlug)
 
   // Resolve target number, prompting if this slug was already imported.
@@ -723,4 +735,5 @@ module.exports = {
   extractSchemaDate,
   extractSchemaHeadline,
   sanitizeMdx,
+  slugFromUrl,
 }

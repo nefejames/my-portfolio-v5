@@ -103,7 +103,16 @@ function Figure({
   return (
     <figure className="my-8">
       <div className="relative w-full rounded-xl overflow-hidden bg-[#F3F4F6]">
-        <Image src={src} alt={alt} width={width} height={height} className="w-full h-auto" />
+        <Image
+          src={src}
+          alt={alt}
+          width={width}
+          height={height}
+          // The article column is ~720px on desktop, full width below `lg`.
+          // Without this, next/image assumes 100vw and serves oversized files.
+          sizes="(min-width: 1024px) 720px, 100vw"
+          className="w-full h-auto"
+        />
       </div>
       {caption && (
         <figcaption className="mt-3 text-center text-sm text-[#6B7280] italic">
