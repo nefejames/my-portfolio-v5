@@ -57,9 +57,12 @@ export const metadata: Metadata = {
 
 // Site-wide structured data: who the author is, and the site itself. Page-level
 // schema (BlogPosting, Article, BreadcrumbList) is added in each route.
+// Stable @id so other schema (e.g. the homepage ProfilePage) can reference this
+// one Person entity instead of duplicating it.
 const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
+  '@id': `${SITE.url}/#person`,
   name: SITE.name,
   url: SITE.url,
   email: `mailto:${SITE.email}`,
@@ -71,9 +74,10 @@ const personSchema = {
 const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
+  '@id': `${SITE.url}/#website`,
   name: SITE.name,
   url: SITE.url,
-  author: { '@type': 'Person', name: SITE.name, url: SITE.url },
+  author: { '@id': `${SITE.url}/#person` },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
