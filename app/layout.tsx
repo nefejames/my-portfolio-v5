@@ -17,6 +17,9 @@ export const metadata: Metadata = {
     'Technical content writer and SEO manager with 4+ years of experience helping tech companies grow through content that earns top rankings and drives real results.',
   keywords: ['content marketer', 'SEO manager', 'technical writer', 'content strategy'],
   authors: [{ name: 'Emadamerho-Atori Nefe' }],
+  verification: {
+    google: 'GcQps8NnuJg7pln3rZQ2sGB1P8haOsu0iGWzI_CuUDU',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
