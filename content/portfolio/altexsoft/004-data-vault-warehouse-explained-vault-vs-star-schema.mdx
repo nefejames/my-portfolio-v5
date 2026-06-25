@@ -1,0 +1,272 @@
+---
+title: "Data Vault Warehouse Explained, Vault vs Star Schema"
+client: "AltexSoft"
+clientSlug: "altexsoft"
+originalUrl: "https://www.altexsoft.com/blog/data-vault-architecture/"
+publishedAt: "2024-07-30"
+canonical: "https://www.altexsoft.com/blog/data-vault-architecture/"
+excerpt: "Explore how data vaults handle large data volumes and maintain historical accuracy, providing robust solutions for modern enterprises."
+coverImage: "/portfolio/altexsoft/004-data-vault-warehouse-explained-vault-vs-star-schema/cover.jpg"
+tags: []
+---
+Imagine a buffet restaurant where chefs constantly add new dishes and adjust recipes to cater to everyone's tastes. They can increase the number of meals and add new dishes as requested. This dynamic, adaptable system depicts a data vault schema in action.
+
+Now, picture a gourmet restaurant with a fixed menu—the food is great, but changing the menu takes time and effort. This efficient yet rigid system illustrates traditional [data warehouse](https://www.altexsoft.com/blog/enterprise-data-warehouse-concepts/) architecture like the star and [snowflake](https://www.altexsoft.com/blog/snowflake-data-warehouse-pros-cons/) schemas.
+
+Data vaults and traditional data warehouse schemas are methods for organizing and managing large amounts of data for [business intelligence](https://www.altexsoft.com/blog/complete-guide-to-business-intelligence-and-analytics-strategy-steps-processes-and-tools/) and [decision-making](https://www.altexsoft.com/blog/transform-decision-making-with-a-data-driven-culture/). Each schema has its strengths and optimal use cases.
+
+Wondering how a data vault stands out from other data warehouse schemas? You're in the right place. In this article, we’ll explore what a data vault is, its key concepts, and how it differs from traditional data warehouse architecture. Let’s dive in.
+
+## What is a data vault?
+
+A data vault, or DV for short, is a modeling approach for designing scalable enterprise data warehouses. It was invented in the 1990s by Dan Linstedt, a recognized expert in data warehousing and business intelligence, to help businesses with large volumes of data power their [data analytics](https://www.altexsoft.com/blog/big-data-analytics-explained/) and [data science](https://www.altexsoft.com/blog/data-science-artificial-intelligence-machine-learning-deep-learning-data-mining/) operations.
+
+Data vaults address the challenges of the third normal form (3NF)—a database normalization method that reduces duplication and ensures [data integrity](https://www.altexsoft.com/blog/data-integrity/)—and traditional data warehousing methods, like the star schema and snowflake schema, while also combining their strengths. This hybrid approach provides an agile, flexible, and scalable solution for integrating and managing large volumes of data from multiple sources for enterprise-scale analytics.
+
+The primary goal of a data vault is to provide a consistent and adaptable framework for [data engineers](https://www.altexsoft.com/blog/what-is-data-engineer-role-skills/) to capture and store historical records from various systems, ensuring data integrity, auditability, and scalability.
+
+## Data vault modeling explained
+
+The data vault methodology simplifies [data modeling](https://www.altexsoft.com/blog/data-modeling/) via its modular nature. This approach makes it easier to handle large amounts of data, keep track of historical changes, and adjust to new business needs.
+
+_**Note**: In this article, we will focusing on Data Vault 2.0, which is an improvement over the earlier version 1.0. We will also explore the_ differences between both versions later on in the article.
+
+![A data vault model consisting of hubs, links, and satellites](/portfolio/altexsoft/004-data-vault-warehouse-explained-vault-vs-star-schema/image-1.png)
+
+### Hubs, links, satellites
+
+Data vault modeling uses a unique architecture that separates data into three core components: hubs, links, and satellites. Let’s explore them.
+
+**Hubs**. Like a central train station that acts as the main point for identifying and organizing different rail lines, hubs are the major component of data vaults, and they represent core business concepts and entities, like customers, products, or sales.
+
+Hub tables contain only a list of unique, unchanging identifiers (business keys) for entities. They do not store detailed information or attributes about the entity. For example, a customer hub will have customer IDs but not the customer's name, address, or phone number. Instead, that data will be stored in a satellite. This separation of concerns—a software engineering principle that involves breaking a system into distinct sections—helps organize and manage data efficiently for better analysis and reporting.
+
+![Sample of a customer hub table](/portfolio/altexsoft/004-data-vault-warehouse-explained-vault-vs-star-schema/image-2.png)
+
+Hubs commonly contain:
+
+- **Business keys**: These are unique identifiers that represent real-world business entities or objects, like customers, products, or sales. They are naturally occurring keys that are already present in the source data (e.g., from a CRM system) and are human-readable ways to identify data entities. Examples include customer numbers, flight numbers, customer IDs, or product codes.
+- **Hash keys**: These are the primary keys (PK) for the records in a hub table and are also used as foreign keys of link and satellite tables. They are artificially generated by applying a hashing algorithm to business keys to create a unique, fixed-length representation of business keys. For example, the hash key generated from "CUST001" might be "HK\_CUST\_1A2B3C4D​." A table's PK becomes another table’s FK when used as a reference to establish a relationship between the two tables.
+- **Loading information**: A timestamp indicating the date and time the key first arrived in the hub. This helps maintain traceability of the arriving records for audits, troubleshooting, and data quality checks.
+- **Source of record**: This field identifies the source system from which the customer data originated. It's useful in environments with multiple data sources.
+
+**Links**. Links are like the train lines that connect a central train station to other stations in a city. They represent the relationship between hub tables, contain foreign keys that connect the hubs, and capture the connection between different business entities.
+
+For example, a link might connect a customer hub to a product hub, showing which customers bought which products. They ensure that relationships between entities are clear and traceable, just as rail lines show the connections between different stations.
+
+![Sample of a customer link table](/portfolio/altexsoft/004-data-vault-warehouse-explained-vault-vs-star-schema/image-3.png)
+
+Links commonly contain:
+
+- **Hash keys**: These unique identifiers are the hash keys for each record in the link table. It is often a hash value of all the business keys from the linked hubs.
+- **Foreign keys**: These identifiers link to specific business keys from related hubs. For example, a customer-product link table would have two foreign keys: the customer and product hub keys. The foreign keys are the hash keys of their related hubs, and they help establish a link between related hubs.
+- **Load date**: The date and time when the link was first recorded comprises a timestamp that helps track when the connection between the hubs was initially established, providing historical context for the link.
+- **Record source**: It indicates the source system where the relationship between the hubs originated.
+
+**Satellites**. Satellites store descriptive attributes and historical data about their parent hubs and links. They are like the information booths at train stations that provide detailed info about the station, like maps, schedules, and amenities.
+
+Satellites contain all descriptive data or attributes related to hubs or links, like timestamps, text-based descriptions, and numerical values. For example, customer satellites may contain details like the customer’s name, address, and contact information, while a product satellite would include descriptions, prices, and specifications.
+
+The data stored in satellite tables can change over time, so they are stored along with timestamps to track changes as they occur.
+
+Hubs and links can have multiple satellites. However, satellites can have only one parent. Every record in a satellite is identified by its parent entity’s hash key and timestamp record of when attribute values change.
+
+![Sample of a customer satellite table with customer’s attributes](/portfolio/altexsoft/004-data-vault-warehouse-explained-vault-vs-star-schema/image-4.png)
+
+Sample of a customer satellite table with customer’s attributes updated in the second row
+
+Satellites commonly contain:
+
+- **Parent hash keys**: These are hash keys of their parent hubs or links, and they serve two purposes: They act as primary keys for identifying each record within satellite table, and they act as foreign keys that link satellites to their corresponding hubs or links.
+- **Attributes**: They supply detailed data or descriptive information about the satellite’s parent.
+- **Load dates**: The date and time when the record was first loaded into the satellite table. This timestamp helps track when the detailed information was added or updated. Load dates also work together with parent hash keys to serve as the primary keys for satellites.
+
+- **Record source**: The source system from which the satellite data originated indicates where the detailed information came from.
+
+Hubs, links, and satellites work together to enable a scalable, auditable, and highly adaptive data warehouse design.
+
+### Data vault architecture
+
+The architecture of a data vault typically consists of several layers, each serving a specific purpose in the [data processing pipeline](https://www.altexsoft.com/blog/data-pipeline-components-and-types/).
+
+![Data vault architecture](/portfolio/altexsoft/004-data-vault-warehouse-explained-vault-vs-star-schema/image-5.png)
+
+**Raw data layer**. This initial layer consumes data from various sources, like transactional systems (e.g., CRM and billing systems), external data providers, spreadsheets and flat files, and real-time data streams (e.g., IoT sensors and web logs).
+
+The [raw data](https://www.altexsoft.com/blog/data-lake-architecture/) layer typically stores data in its original format without applying any transformations or business rules. It focuses on capturing and storing data as it is received, without modifications. This raw data forms the foundation for further processing and analysis.
+
+**Staging layer**. The staging layer receives data from the raw data layer. It uses [Extract, Transform, Load (ETL)](https://www.altexsoft.com/blog/etl-vs-elt/) processes to perform basic transformations, like data type conversions, to prepare the data for loading into the data vault layer.
+
+The staging layer’s primary objective is to [cleanse](https://www.altexsoft.com/blog/data-cleaning/) and normalize the data, ensuring it is consistent and ready for further processing.
+
+**Data vault layer**. This is the layer where the data vault model is applied. It is the core of the architecture. It consists of the hubs, links, and satellites we discussed earlier.
+
+This layer is designed to handle large volumes of data and complex relationships, providing a robust foundation for historical analysis and reporting.
+
+**The business data layer**. This layer builds on the data vault layer by integrating business logic, calculations, and optimizations that make the data more useful for business analysis, decision-making, and strategic planning. It extends the basic data model to include metrics and [KPIs](https://www.altexsoft.com/blog/15-key-product-management-metrics-and-kpis/) that are crucial for business operations.
+
+**Data marts**. These are user-facing subsets of a warehouse that provide business users with the information they need for reporting and decision-making.
+
+[Data marts](https://www.altexsoft.com/blog/what-is-data-mart/) are tailored to specific business areas, ensuring each department has easy access to the data it needs to function effectively.
+
+**Consumer layer**. This is the final layer that gives end-users access to the data. It presents the data through tools like [business intelligence (BI) platforms](https://www.altexsoft.com/blog/best-bi-tools-comparison/), [data visualization](https://www.altexsoft.com/blog/data-visualization-tools-types-techniques/) tools, and self-service analytics solutions.
+
+_To learn more about_ _[data engineering](https://www.altexsoft.com/blog/what-is-data-engineering-explaining-data-pipeline-data-warehouse-and-data-engineer-role/)_ _, check our separate article._
+
+## Data vault vs traditional star schema warehouse
+
+Traditional data warehouse approaches, like star or snowflake schemas, and data vault architecture, are the go-to methods for enterprise [data management](https://www.altexsoft.com/blog/data-management-strategy/). They both aim to organize and store large volumes of data for analysis and reporting but differ in their design philosophy and implementation. Let’s explore some key differences.
+
+### Data modeling approach and design philosophy
+
+Traditional data warehouses are designed to answer specific business questions. They typically employ dimensional modeling techniques, like star or snowflake schemas, to organize data into fact and dimension tables. This structure is optimized for specific types of queries and reporting needs.
+
+![Star schema data warehouse architecture with fact and dimension tables](/portfolio/altexsoft/004-data-vault-warehouse-explained-vault-vs-star-schema/image-6.png)
+
+In contrast, the data vault architecture is designed with flexibility and scalability in mind. It aims to accommodate changes in business requirements and data sources with minimal disruption.
+
+This design allows you to integrate data from multiple sources without being restricted by a rigid structure or predefined business rules.
+
+### Handling of historical data
+
+Traditional data warehouses may overwrite old data with new information, making it difficult to track historical changes. While techniques like slowly changing dimensions (SCDs), an approach for managing and tracking changes in dimension data over time, can preserve historical data, they are not as comprehensive.
+
+Data vaults are designed to maintain a complete historical record of all data changes. Every change to a business object is recorded as a new entry in the appropriate satellite table, with a timestamp attached. This approach ensures that no historical information is ever overwritten or lost and is essential for compliance and detailed historical analysis.
+
+### Data agility
+
+Due to their rigid schema design, traditional data warehouses are less flexible when integrating new data sources or accommodating changes in business requirements. Modifying the schema can be complex and time-consuming, often requiring significant updates to [ETL](https://www.altexsoft.com/blog/who-is-etl-developer-role-description-process-breakdown-responsibilities-and-skills/) processes and [data pipelines](https://www.altexsoft.com/blog/data-pipeline-components-and-types/).
+
+Data vaults are agile and can adapt to fast-changing business requirements thanks to their modular design. Their architecture makes it easy to adjust to new data sources or fast-changing business requirements without major rework, as you can add new hubs and links between them without rebuilding prior schema and ETL processes.
+
+### Data governance and compliance
+
+Traditional data warehouses focus on providing a single source of truth with pre-cleansed data. While they support data governance, maintaining detailed audit trails is challenging because the historical source data is transformed and overwritten before storage.
+
+The data vault's approach of storing raw, unaltered data provides a robust foundation for [data governance](https://www.altexsoft.com/blog/data-governance/) and compliance. They retain all historical changes to data, and this is crucial for auditing and regulatory requirements.
+
+### Query performance
+
+Traditional [data warehouse](https://www.altexsoft.com/blog/data-lake-vs-data-warehouse/) architecture and data vaults are ideal for [business intelligence activities](https://www.altexsoft.com/blog/business-intelligence-strategy/). However, traditional warehouses are optimized for query performance and analytical tasks. Their structured schema supports efficient querying and reporting.
+
+Data vaults perform slower when it comes to complex queries due to their normalized structure. Queries can be heavier and may involve joining multiple tables. However, vaults compensate for this with improved scalability and flexibility.
+
+### Capacity to handle large volumes of data
+
+Traditional data warehouses can handle large volumes of data, but they may struggle with scalability as data grows. Upgrading infrastructure to support massive datasets can be expensive and complex.
+
+Data vaults are designed to handle large volumes of data efficiently. Their architecture supports incremental updates and parallel processing, making it efficient for large-scale data operations. This capability is crucial for organizations expecting rapid data growth.
+
+## Data vault 1.0 vs. data vault 2.0
+
+Data vault 2.0 was suggested in 2013. It is an open-source extension and improvement of data vault 1.0. It builds on the foundation laid by data vault 1.0 while also addressing its limitations and incorporating modern data management practices to enhance its usability and effectiveness.
+
+### Key improvements in data vault 2.0
+
+Below are the key enhancements that came with the release of data vault 2.0.
+
+**Embraces big data technologies**. Data vault 2.0 embraces [NoSQL databases](https://www.altexsoft.com/blog/nosql-databases/) and big data analytics tools like [Hadoop](https://www.altexsoft.com/blog/hadoop-pros-cons/) and [Spark](https://www.altexsoft.com/blog/apache-spark-pros-cons/), allowing for better handling of massive datasets.
+
+**Encourages automation**. Data vault 2.0 architecture makes building automation software around its design easy. Tools like [WhereScape](https://www.wherescape.com/solutions/project-types/data-vault-automation/), [VaultSpeed](https://vaultspeed.com/), and [Datavault Builder](https://datavault-builder.com/core-module-data-vault-module/) reduce manual effort, minimize errors, and accelerate the time to insight.
+
+**Supports real-time and streaming capabilities**. Data vault 2.0 design considers real-time data ingestion and processing with technologies like [Apache Kafka](https://www.altexsoft.com/blog/apache-kafka-pros-cons/) and Flink. It is better suited for handling continuous data streams and is a significant improvement over data vault 1.0, which is more batch-oriented.
+
+<YouTube id="ag9jlVxM_18" caption="Data Streaming, Explained" />
+
+Data streaming explained in less than 12 minutes
+
+**Enhances data governance**. Data vault 2.0 aligns more closely with data governance practices like data lineage tracking and quality monitoring, enhancing data quality and compliance efforts.
+
+**Supports agile methodologies**. The updated version is more compatible with [agile development practices](https://www.altexsoft.com/whitepapers/agile-project-management-best-practices-and-methodologies/), allowing for faster iterations and deployments.
+
+### New concepts introduced in data vault 2.0
+
+Besides making improvements by building on data vault 1.0’s existing architecture, data vault 2.0 also introduces the following new concepts.
+
+**Hash keys**. In data vault 1.0, data keys were usually natural or surrogate keys, which could cause problems with consistency and performance as data changed. Data vault 2.0 addresses this by using hash keys generated by algorithms that convert data into a fixed-size string of characters. This ensures consistency and uniqueness throughout the data warehouse, improves performance, and simplifies the integration of various data sources.
+
+**Bridge tables**. These tables simplify complex queries and improve performance by creating direct relationships between hubs or links that do not have a direct connection in the data model. This reduces the number of joins needed to retrieve analytical data, making the queries faster and easier to manage.
+
+For example, you have four hubs—Products, Orders, Customers, and Procurement. They are connected by link tables, but there’s no Customer-Procurement link in the model. If you want to analyze the amount spent on procurement per customer, you need to join multiple tables. Having several joins can be complex and slow down query performance. Instead, you can build a bridge table connecting all these hubs and reducing the number of joins.
+
+Bridge tables are particularly useful for complex queries that are performed often.
+
+![Bridge table linking customer, product, procurement, and order hubs for complex querying](/portfolio/altexsoft/004-data-vault-warehouse-explained-vault-vs-star-schema/image-7.png)
+
+**Point-in-time (PIT) tables**. These tables merge data from multiple satellite tables into a single, easily queryable structure.
+
+PIT tables are designed to simplify and optimize queries by providing a snapshot of the state of data at specific points in time. They allow you to easily retrieve the state of data at various times without having to manually join multiple satellite tables.
+
+For example, if you had a customer hub with multiple satellites tracking changes to customer information like contact details, preferences, and purchases, you can create a PIT table that will generate a report showing customer data as of the end of each month.
+
+![A pit table for a customer hub and its satellites](/portfolio/altexsoft/004-data-vault-warehouse-explained-vault-vs-star-schema/image-8.png)
+
+Here’s a breakdown of the different columns in the image.
+
+- **Customer hash key:** the unique identifier for the customer hub
+- **Contact load date, Preference load date, and Purchase load date:** the load dates from each satellite, showing when the data was loaded into the system
+- **Contact satellite hash key, Preference satellite hash key, Purchase satellite hash key:** the hash keys from the respective satellites
+- **Snapshot date:** the date and time of the snapshot, representing the state of data at that specific point in time
+
+**Same-as links**. Same-as links are used to connect different identifiers that refer to the same entity. For example, a customer might be represented by different IDs in various systems—a customer ID in the sales database, a different ID in a support system, and another in the [marketing](https://www.altexsoft.com/blog/saas-marketing/) database.
+
+Same-as links help in mapping these different IDs to a single, unified identifier and are designed to highlight relationships that might not be immediately apparent.
+
+## Data vault best practices
+
+Setting up a data vault requires careful planning and execution. Here are some key best practices to follow during the implementation process.
+
+### Define business requirements
+
+Before designing the data vault, start by understanding the business objectives, goals, data requirements, and scope, as these will determine the structure of the vault’s design.
+
+For example, when defining business requirements for a retail company's data vault, you might identify needs like
+
+- tracking customer purchase history across all channels,
+- analyzing product performance by region and season,
+- monitoring inventory levels in real-time, and
+- generating reports on sales team performance.
+
+These requirements help shape the overall design and implementation of the data vault, including what data to include, how often it needs to be updated, what kind of queries it must support, and so on.
+
+### Avoid overloading the data vault with unnecessary or redundant data
+
+Not all data from source systems has to be loaded into the data vault. For example, a [retail](https://www.altexsoft.com/blog/how-retailers-use-artificial-intelligence-to-innovate-customer-experience-and-enhance-operations/) company might have detailed log data of every customer click on their website. While this data might be valuable for certain analyses, it may not be required in the core data vault. Instead, it’s better to include only key customer interaction data like purchases or product views.
+
+Also, don't store data that can be easily calculated from other fields. For instance, if you have **order\_date** and **ship\_date,** it's not necessary to store **days\_to\_ship** as it can be calculated when needed. This reduces redundancy and potential inconsistencies.
+
+### Implement robust data validation rules
+
+Establish clear data validation rules at various stages of your data pipeline. For instance, when loading customer data, you might validate email addresses for the correct format, check that dates fall within acceptable ranges, and ensure that required fields are not null.
+
+### Start small, scale incrementally
+
+The "start small, scale incrementally" approach is a manageable and practical method of building a robust and scalable data architecture. It requires beginning with a focused, manageable scope—perhaps a single business area or data source—and gradually expanding over time.
+
+This incremental strategy allows data teams to learn from real-world usage, refine processes, and optimize performance while slowly increasing their scope as business needs evolve.
+
+### Use error tables for data quality issues
+
+Instead of rejecting data that fails validation, consider using error tables to capture and analyze data quality issues. This approach allows you to load all data into the data vault while still maintaining a clear record of quality problems.
+
+### Implement effective partitioning strategies
+
+Partitioning involves dividing large tables into smaller, more manageable pieces, which offers several key benefits. It improves query performance by allowing queries to target specific partitions instead of scanning entire tables.
+
+One of the most common and effective partitioning strategies is time-based partitioning, which is particularly useful for historical data. For instance, a large eCommerce company might partition its sales transaction satellite table by month. This approach allows for quick access to recent data, such as last month's sales, without the need to scan years of historical information.
+
+### Implement consistent naming conventions
+
+Consistent naming conventions enhance clarity, maintainability, and [collaboration across teams](https://www.altexsoft.com/blog/how-to-build-better-collaboration-between-developers-and-designers/), ensuring that everyone understands the structure and purpose of tables, columns, and other database objects.
+
+Enforce consistency by using a standard format for naming hubs, links, and satellites. For example, hubs could start with **HUB\_**, links with **LINK\_,** and satellites with **SAT\_.**
+
+### Optimize for parallel processing
+
+Design your data loading and query processes to leverage parallel processing. This approach involves executing multiple tasks simultaneously rather than sequentially.
+
+For example, when populating your data vault, parallelize the process by simultaneously loading different hubs and satellites. This method significantly enhances efficiency and reduces overall processing time, especially when dealing with [large volumes of data](https://www.altexsoft.com/blog/big-data-healthcare/).
+
+### Monitor, measure, test, and iterate
+
+Data vaults are not set-it-and-forget-it projects. To be valuable, they require constant monitoring and optimization. So continually assess and scrutinize your data vault to spot areas for improvement and enhance its implementation as business needs change and new technologies emerge.

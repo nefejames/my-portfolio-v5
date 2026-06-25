@@ -344,13 +344,30 @@ function altexsoftCleanup(markdown, videos = []) {
   })
   if (cutAt !== -1) lines = lines.slice(0, cutAt)
 
-  // Step 3 — Remove the "Related Articles" sidebar: the heading and everything
-  // until the next H2 (## ...).
-  const relStart = lines.findIndex((l) => /^##\s+Related Articles/i.test(l))
-  if (relStart !== -1) {
-    let relEnd = lines.findIndex((l, i) => i > relStart && /^##\s+/.test(l))
-    if (relEnd === -1) relEnd = lines.length
-    lines.splice(relStart, relEnd - relStart)
+  // Step 3 — Remove every "Related Articles" widget. AltexSoft injects these
+  // mid-article, sometimes several times, interleaved with real content. Each is
+  // the heading followed by a run of "card" lines: linked "### [Title](url)"
+  // subheadings, "N min read" lines, thumbnails, and category-link lines. We
+  // consume ONLY those card lines and stop at the next real heading/paragraph,
+  // so real content between widgets is preserved (the old "until next ##" rule
+  // both ate real content and missed later blocks).
+  const isRelatedCardLine = (l) => {
+    const t = l.trim()
+    return (
+      t === '' ||
+      /^###\s+\[.*\]\(.*\)\s*$/.test(t) || // linked card heading
+      /^\d+\s*min read/i.test(t) || // read-time line
+      /^\[!\[/.test(t) || // [![thumb](img)…](url) image-link
+      /^!\[[^\]]*\]\([^)]*\)\s*$/.test(t) || // bare thumbnail image
+      /^(\[[^\]]*\]\([^)]*\)[\s,]*)+$/.test(t) // line of only links (categories)
+    )
+  }
+  for (let i = 0; i < lines.length; i++) {
+    if (!/^##\s+Related Articles/i.test(lines[i])) continue
+    let j = i + 1
+    while (j < lines.length && isRelatedCardLine(lines[j])) j++
+    lines.splice(i, j - i)
+    i-- // re-check this index after removal
   }
 
   // Step 4 — Remove the redundant "See Also" link box: the heading plus the
@@ -416,6 +433,34 @@ function altexsoftCleanup(markdown, videos = []) {
 
   // Step 7 — Collapse 3+ blank lines to a single blank line and trim.
   return lines.join('\n').replace(/\n{3,}/g, '\n\n').trim()
+}
+
+// ─── MDX safety ───────────────────────────────────────────────────────────────
+// Scraped prose can contain characters MDX parses as code: a stray "<" becomes a
+// JSX tag, "{ }" become expressions — either breaks compilation. Escape them to
+// HTML entities (which render identically) in prose only, leaving fenced code
+// blocks, inline code, and our own component tags untouched.
+function sanitizeMdx(markdown) {
+  const escape = (s) =>
+    s.replace(/[<{}]/g, (c) => ({ '<': '&lt;', '{': '&#123;', '}': '&#125;' }[c]))
+  const isComponentLine = (l) => /^<\/?(YouTube|Tweet|LinkedIn)\b/.test(l.trim())
+
+  let inFence = false
+  return markdown
+    .split('\n')
+    .map((line) => {
+      if (/^\s*(```|~~~)/.test(line)) {
+        inFence = !inFence
+        return line // fence delimiters and code stay verbatim
+      }
+      if (inFence || isComponentLine(line)) return line
+      // Escape everything except inline-code spans (`...`).
+      return line
+        .split(/(`[^`]*`)/)
+        .map((seg) => (seg.startsWith('`') && seg.endsWith('`') ? seg : escape(seg)))
+        .join('')
+    })
+    .join('\n')
 }
 
 // ─── Core: import one scraped document ────────────────────────────────────────
@@ -524,7 +569,7 @@ async function importDocument(doc, clientSlug, sourceUrl) {
   const outDir = path.join(CONTENT_DIR, clientSlug)
   fs.mkdirSync(outDir, { recursive: true })
   const outFile = path.join(outDir, `${articleFolder}.mdx`)
-  fs.writeFileSync(outFile, frontmatter + content.trim() + '\n')
+  fs.writeFileSync(outFile, frontmatter + sanitizeMdx(content).trim() + '\n')
 
   console.log(`  ✓ ${title}`)
   console.log(`    images: ${downloaded}/${imageUrls.length}${coverImage ? ' (+cover)' : ''}`)
@@ -657,4 +702,5 @@ module.exports = {
   altexsoftCleanup,
   extractSchemaVideos,
   extractSchemaDate,
+  sanitizeMdx,
 }

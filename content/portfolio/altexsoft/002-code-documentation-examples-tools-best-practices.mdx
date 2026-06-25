@@ -1,0 +1,365 @@
+---
+title: "Code Documentation: Examples, Tools, Best Practices"
+client: "AltexSoft"
+clientSlug: "altexsoft"
+originalUrl: "https://www.altexsoft.com/blog/how-to-write-code-documentation/"
+publishedAt: "2026-05-07"
+canonical: "https://www.altexsoft.com/blog/how-to-write-code-documentation/"
+excerpt: "Master code documentation with essential steps, examples, best practices, and tools to streamline your process effectively."
+coverImage: "/portfolio/altexsoft/002-code-documentation-examples-tools-best-practices/cover.jpg"
+tags: []
+---
+Every developer has been there—staring at a [codebase](https://www.altexsoft.com/blog/legacy-modernization-using-ai-agents/) they wrote months ago, struggling to remember the reasoning behind certain decisions or how different components fit together. Few things are worse than looking at your own code later and not remembering what it does or how it works.
+
+A far-from-unusual situation occurs when onboarding a project’s new team member who can’t understand the code because the previous developer felt it would be painfully obvious.
+
+These scenarios are all too familiar and highlight a crucial part of programming that often gets overlooked: code documentation. It’s not enough to write the most beautiful code ever. You should also explain it.
+
+In this article, we will explore the importance of code documentation, its types, best practices to follow, code documentation tools, and more. Let’s dive in.
+
+## What is code documentation?
+
+**Code documentation** is the process of creating descriptions and comments that explain how a piece of code works, what it does, and how to use it.
+
+These explanations bridge the gap between the code itself and the humans who interact with it. [Stakeholders](https://www.altexsoft.com/blog/stakeholder-analysis/) who use code documentation include
+
+- software developers—for example, your future self and colleagues collaborating on the same codebase, future maintainers of the code, and new team members;
+- project managerswho need to understand a project structure, determine its progress, assess technical debt, and plan future development;
+- members of a [quality assurance](https://www.altexsoft.com/whitepapers/quality-assurance-quality-control-and-testing-the-basics-of-software-quality-management/) team using code documentation to learn about the expected behavior of the software product and test both typical scenarios and edge cases; and
+- technical writers leveraging code documentation to create [user manuals](https://www.altexsoft.com/blog/user-manuals-documentation/) and other types of [technical documentatio](https://www.altexsoft.com/blog/technical-documentation-in-software-development-types-best-practices-and-tools/) [n](https://www.altexsoft.com/blog/technical-documentation-in-software-development-types-best-practices-and-tools/).
+
+Code documentation provides several benefits, including clarity, easier maintainability, better collaboration among team members, and improved developer onboarding for new hires joining a project.
+
+### Code documentation vs documentation as code
+
+While they sound similar, code documentation is not the same thing as documentation as code (docs-as-code). Code documentation is the practice of writing explanations directly within the code or in a separate file to help developers understand how it works and how to use it.
+
+On the other hand, docs-as-code is an approach that involves creating and managing documentation with the same tools and processes you use to write code. This includes
+
+- [version control systems](https://www.altexsoft.com/blog/github-gitlab-bitbucket/) to house source files, track changes, and store different variations of documents;
+- automated testing tools to find spelling and syntax errors, broken links, style violations, etc.; and
+- [CI/CD tools](https://www.altexsoft.com/blog/cicd-tools-comparison/) to generate, update, and deploy documentation.
+
+Docs-as-code ensures that all types of software are always up to date, versioned, and maintained alongside the project it describes. The approach covers code documentation but is not limited to it.
+
+### Code documentation types
+
+Code documentation can be internal—meaning that it’s located within the [codebase](https://www.altexsoft.com/blog/agentic-ai-codebase-mapping/) itself, or external, in the form of separate files. The former type, also called source code documentation, falls into two major groups:
+
+- code comments, and
+- documentation comments or strings (like docstring in Python) that can be parsed by documentation generators and converted into documents in HTML, PDF, or other formats.
+
+They can be single-line or multiline, the latter used for providing additional [context](https://www.altexsoft.com/blog/context7/) or explaining complex sections. Single-line comments are typically no longer than 80 characters.
+
+Both groups improve code readability, clarity, and maintainability but serve different purposes. Each programming language has its own syntax for comments and documentation strings.
+
+![Comment syntax across different programming languages](/portfolio/altexsoft/002-code-documentation-examples-tools-best-practices/image-1.png)
+
+External code documentation is usually README files describing how to implement, run, and configure your code and its expected outputs.
+
+API documentation is sometimes also referred to as code documentation. Our separate article, [How to Write API Documentation](https://www.altexsoft.com/blog/api-documentation/), explains more about it. In this post, we’ll focus on other varieties of code descriptions.
+
+## Code comments
+
+Code comments, also called inline comments, are brief notes that describe what a line or block of code means or does. They live exclusively in source code files and are invisible to compilers and browsers. The image below shows comment examples for a piece of JavaScript code.
+
+![JavaScript code with inline comments added.](/portfolio/altexsoft/002-code-documentation-examples-tools-best-practices/image-2.png)
+
+JavaScript code with inline comments added
+
+### When to use them
+
+Code comments are useful for explaining non-obvious things, such as
+
+- the high-level purpose of a code block;
+- novelty or complex algorithms;
+- why a particular (probably nonideal) solution was chosen, and other implementation decisions; and
+- TODO and FIXME notes as a reminder of what must be changed or improved.
+
+You can also use comment syntax to temporarily disable code sections during debugging or development for quick testing and iteration (since, as you remember, the compiler doesn’t see lines marked as comments).
+
+![Code comments explaining the implementation decisions behind a piece of JavaScript code.](/portfolio/altexsoft/002-code-documentation-examples-tools-best-practices/image-3.png)
+
+Multiline code comments explaining the implementation decisions behind a piece of JavaScript
+
+### How to write code comments
+
+Let’s discuss some best practices for writing clear and helpful comments in your code.
+
+**Write self-documenting code** **.** The best code is self-documenting—meaning, it’s so clear and expressive that little to no comments are required for additional explanation. The image below is an example of code that can be hard to understand.
+
+![An example of hard-to-understand Python code](/portfolio/altexsoft/002-code-documentation-examples-tools-best-practices/image-4.png)
+
+The image below is an example of self-documenting code: The function and variable names clearly convey their meaning and purposes.
+
+![An example of clean Python code.](/portfolio/altexsoft/002-code-documentation-examples-tools-best-practices/image-5.png)
+
+An example of self-documenting Python code
+
+**Ensure your comments are clear and easy to understand** **.** Write comments that are concise, clear, and easy to understand. Avoid jargon unless it's necessary and well-known in your field. The image below is an example of a vague and unhelpful code comment.
+
+![Unclear comments added to JavaScript code.](/portfolio/altexsoft/002-code-documentation-examples-tools-best-practices/image-6.png)
+
+Unclear comments added to JavaScript code
+
+The image below is an example of detailed comments: They explain what the code does and even provide the formula being used.
+
+![Clear comments added to JavaScript code.](/portfolio/altexsoft/002-code-documentation-examples-tools-best-practices/image-7.png)
+
+Clear comments added to JavaScript code
+
+**Explain why** **.** While it's important to document what your code does and how it does it, explaining why certain decisions were made can provide valuable context for future developers (including your future self). Give the reasoning behind architectural choices, algorithm selections, and even specific lines of code that might not be immediately obvious.
+
+The comment in the image below does not explain “why” the quicksort algorithm was used. It only states what the code does, which is already evident.
+
+![Comments in Python code do not properly explain why coding decisions were made.](/portfolio/altexsoft/002-code-documentation-examples-tools-best-practices/image-8.png)
+
+Python code comment does not explain why coding decisions were made
+
+In contrast, comments in the next image properly explain why the developer chose the quicksort algorithm.
+
+![Comments in Python code properly explain why coding decisions were made.](/portfolio/altexsoft/002-code-documentation-examples-tools-best-practices/image-9.png)
+
+Comments in Python code explain why coding decisions were made
+
+**Link to the original source of external code.** It's important to provide links when adding code from external sources to your project. This practice gives credit to the original author and helps others understand the context and find additional information if needed. Including the source link ensures transparency and helps maintain your codebase's integrity.
+
+![Code comments showing the source of copied Python code](/portfolio/altexsoft/002-code-documentation-examples-tools-best-practices/image-10.png)
+
+Code comments showing the source for copied Python code
+
+## Docstrings(documentation comments)
+
+Documentation comments (docstrings in Python, javadoc comments in Java, etc.) give a brief summary of classes, functions, methods, and packages. Ideally, they should enable readers to grasp what a particular block of code does.
+
+Similar to code comments, docstrings help keep the code readable. But while the former primarily targets developers who will maintain and modify the program, the latter's intended audience is engineers who will use the project and, thus, need to know how its different elements work. Most probably, they will interact not with the source code but with the [API](https://www.altexsoft.com/blog/what-is-api-definition-types-specifications-documentation/) or other documentation generated from docstrings.
+
+### When to use and how to write documentation comments
+
+Documentation comments should accompany every single module, function, class, and method that is part of a public API. This type of annotation must
+
+- start with a brief description of the object's purpose—it should be a one-line sentence following the “do this” structure;
+- provide detailed information on the code part; and
+- mention any exceptions and restrictions associated with the fragment.
+
+For example, when defining a function, a doc comment should detail its parameters, input and return values, when it can be called, etc. The image below shows a docstring for a square function in Python.
+
+![Docstrings added to Python code.](/portfolio/altexsoft/002-code-documentation-examples-tools-best-practices/image-11.png)
+
+Docstrings added to a square function in Python
+
+For a class, it’s essential to cover its purpose, behavior, attributes, and methods. Each method, in turn, needs a documentation comment about its usage, arguments, and side effects. Adding notes on exceptions informs other developers about possible error scenarios and how to handle them appropriately.
+
+![JavaScript function with a note that mentions an exception](/portfolio/altexsoft/002-code-documentation-examples-tools-best-practices/image-12.png)
+
+JavaScript divide function with a note that mentions an exception
+
+### Documentation generators
+
+Each language has its specific tools to automatically create API documentation in HTML, PDF, or other formats from documentation comments. Those are
+
+- [pydoc](https://docs.python.org/3/library/pydoc.html), [pdoc](https://pdoc.dev/), or [Sphinx](https://www.sphinx-doc.org/en/master/) for Python;
+- [javadoc](https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html) by Oracle for Java. IDEs like NetBeans, Eclipse, and IntelliJ IDEA have embedded support for javadoc;
+- [DocFX](https://dotnet.github.io/docfx/) for C# and other [.NET](https://www.altexsoft.com/blog/the-good-and-the-bad-of-net-framework-programming/) projects; and
+- [JSDoc](https://jsdoc.app/) for JavaScript.
+
+Though primarily working with Python, Sphinx also supports C++, [JavaScript](https://www.altexsoft.com/blog/javascript-ecosystem-38-tools-for-front-and-back-end-development/), and other languages. Alternatively, you can use [Doxygen](https://www.doxygen.nl/), an open-source platform-agnostic doc generator compatible with C, [C#](https://www.altexsoft.com/blog/c-sharp-pros-and-cons/), C++, [Java](https://www.altexsoft.com/blog/pros-and-cons-of-java-programming/), [Python](https://www.altexsoft.com/blog/python-pros-and-cons/), and [PHP](https://www.altexsoft.com/blog/comparing-best-code-editors-for-php-developers/). Note that doc generators are limited to annotations they come across in the source code—they’re not capable of adding any context or other useful information beyond comments.
+
+## Code documentation tools
+
+Today, different tools help developers write both code and documentation comments. You can access such assistants right in the integrated development environments (IDEs) or code editors, or easily add them as extensions. Though digital assistants can’t do all the code documentation work for you, they are great time savers.
+
+### Сode editor extensions
+
+Many IDEs and code editors come with embedded tools, plugins, and extensions to improve and simplify code documentation. For example, if you use **Visual Studio Code (VSCode),** one of the most popular code editors, you can take advantage of extensions like Better Comments or autoDocstring.
+
+[Better Comments](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments) categorizes annotations in alerts, TODOs, and other groups to make them more user-friendly. The tool supports nearly 80 programming languages.
+
+![Comments added to a code snippet with the Better Comments VSCode extension.](/portfolio/altexsoft/002-code-documentation-examples-tools-best-practices/image-13.png)
+
+Comments added to a code snippet with the Better Comments VSCode extension
+
+[autoDocstring](https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring) automatically generates documentation comments in Python, offering various docstring styles, including [Google’s](https://github.com/google/styleguide/blob/gh-pages/pyguide.md#38-comments-and-docstrings) and [NumPy’s](https://numpydoc.readthedocs.io/en/latest/), and allowing you to customize the docstring format.
+
+![Docstrings generated with the autoDocstring VSCode extension.](/portfolio/altexsoft/002-code-documentation-examples-tools-best-practices/image-14.png)
+
+Docstrings generated with the autoDocstring VSCode extension
+
+### Generative AI to automate code documentation
+
+[Generative AI](https://www.altexsoft.com/blog/generative-ai/) tools are becoming part of developers' daily routine. Powered by [large language models](https://www.altexsoft.com/blog/language-models-gpt/), they can assist you with explaining and documenting code. Of course, comments and descriptions produced by AI should be manually checked for accuracy and completeness.
+
+[GitHub Copilot](https://github.com/features/copilot), primarily known for its [AI coding](https://www.altexsoft.com/blog/ai-coding-tools/) capabilities, also generates inline comments explaining the behavior and purposes of a selected code fragment. It works as an extension of VS Code, Visual Studio, Neovim, the JetBrains suite of IDEs, and Azure Data Studio.
+
+![code documentation with GitHub Copilot](/portfolio/altexsoft/002-code-documentation-examples-tools-best-practices/image-15.png)
+
+Code documentation with GitHub Copilot
+
+[JetBrains AI Assistant](https://www.jetbrains.com/ai/) is an in-IDE tool driven by OpenAI models and available in all JetBrains development environments, such as IntelliJ IDEA for Java and Kotlin, PyCharm for Python and [data science](https://www.altexsoft.com/blog/how-to-structure-data-science-team-key-models-and-roles/), ReSharper for .NET, and others. In addition to code competition and refactoring, the assistant has a “ _Write Documentation”_ feature to analyze a selected class, function, or other code section and generate comments for it.
+
+[Mintlify](https://www.mintlify.com/) is an “intelligent knowledge platform” built around the idea that your docs should stay in sync with your code automatically. Its [AI agent](https://www.altexsoft.com/glossary/ai-agent/) monitors your codebase, detects changes, and opens pull requests with suggested documentation updates. It integrates with Git, supports a docs-as-code workflow, and has an [MCP server](https://www.altexsoft.com/blog/model-context-protocol/) for agentic workflow via [coding tools](https://www.altexsoft.com/blog/ai-coding-tools/) like Claude and [Cursor](https://www.altexsoft.com/blog/cursor-pros-and-cons/).
+
+Mintlify also has an AI [documentation writer](https://marketplace.visualstudio.com/items?itemName=mintlify.document) that supports 10+ languages and 9 formats and is available as a [VSCode](https://marketplace.visualstudio.com/items?itemName=mintlify.document) or [IntelliJ](https://plugins.jetbrains.com/plugin/18606-mintlify-doc-writer) extension. All you need to document a piece of code is to highlight a line or block and click the “generate docs” button.
+
+![Comments auto-generated by the Mintlify Doc Writer VSCode extension.](/portfolio/altexsoft/002-code-documentation-examples-tools-best-practices/image-16.png)
+
+Comments auto-generated by the Mintlify Doc Writer VSCode extension
+
+[Swimm](https://swimm.io/) is especially useful for teams working with complex or [legacy codebases](https://www.altexsoft.com/infographics/legacy-modernization-tools-compared/). Rather than treating documentation as a separate artifact, Swimm links documentation directly to specific code snippets. When that code changes, Swimm flags which documentation needs updating and can auto-generate draft updates to go with it.
+
+[Interlace](https://www.askinterlace.com/) is a great tool for codebases where documentation never existed or is long out of date. This code knowledge graph platform reverse-engineers an existing [codebase](https://www.altexsoft.com/blog/legacy-modernization-using-ai-agents/) through a multi-phase analysis pipeline and generates documentation from what it finds—architecture overviews, endpoint catalogs, entity relationships, and user flow walkthroughs. It's built for legacy systems where the first challenge is simply understanding what the code does before any [modernization](https://www.altexsoft.com/blog/legacy-modernization-using-ai-agents/) work can begin.
+
+<YouTube id="odY0iTatFjM" caption="Legacy System Modernization" />
+
+How often legacy systems should be rewritten, and various approaches
+
+[ChatGPT](https://chatgpt.com/) is a versatile tool that can be applied to various use cases, including documenting code. You can use prompts like “generate comments for the following code snippet” or more detailed commands—such as “add comments to explain the logic behind the algorithm” or “add comments that describe input parameters and expected values of the function.”
+
+To document code with ChatGPT, you can either insert the part you want to describe into the ChatGPT interface or access AI right from your development environment if a corresponding plugin is available. Examples of ChatGPT extensions are [AssistAI](https://marketplace.eclipse.org/content/assistai-chatgpt-plugin-eclipse-ide) for Eclipse IDE, [EasyCode ChatGPT](https://plugins.jetbrains.com/plugin/21555-chat-gpt) for JetBrains IDEs, [the ChatGPT extension](https://marketplace.visualstudio.com/items?itemName=timkmecl.chatgpt) for VS Code, and more.
+
+![Comments added to JavaScript code with ChatGPT.](/portfolio/altexsoft/002-code-documentation-examples-tools-best-practices/image-17.png)
+
+Comments added to JavaScript code with ChatGPT prompt “Generate comments for the following code snippet”
+
+## README files
+
+A README file is a document that introduces users to your software product. Typically located in the root directory of the project, it’s the first software description people see when visiting your repository.
+
+![README file for React open-source GitHub repository.](/portfolio/altexsoft/002-code-documentation-examples-tools-best-practices/image-18.png)
+
+README file for React open-source [GitHub repository](https://github.com/facebook/react)
+
+Every software project, regardless of its size or complexity, should have a README file.
+
+But it’s especially important for open-source projects. The document provides potential contributors with information on the project's purpose and how to get started with it, along with guidelines for contribution. A well-crafted README can be the difference between a thriving, community-driven project and one that struggles to gain adoption.
+
+### README files structure
+
+README files are typically written using Markdown, a lightweight markup language to format the style and structure of plain text. The document should contain the following sections.
+
+- Title—a name and a brief explanation of what the project is about
+- Description—a summary of what the project does, its purpose, and its key features
+- Table of contents—a list of the sections in the README, linked to their respective headers
+- Installation instructions containing any prerequisites, dependencies, commands, and configurations needed
+- Usage instructions, including code examples, CLI commands, or screenshots to illustrate its functionality
+- Features to help readers understand the project's capabilities
+- Contribution guidelines informing how others can contribute to the project, with guidelines for submitting issues, feature requests, and pull requests
+- License info, which is crucial for open-source projects
+- Acknowledgments, covering credits to any third-party libraries, tools, or resources used in your project
+- Project status—information about the project's current status (e.g., in development, stable, deprecated) if relevant
+
+The exact structure of a README file largely depends on the nature of your project and whether it is for internal use or open-sourced. For example, an internal project may not need sections for contribution and contact information.
+
+One thing worth keeping in mind is that README files are increasingly being read by AI tools, not just humans. When a developer asks a coding assistant about your project, the assistant may pull directly from your README to form its answer. Writing in plain, well-structured Markdown—which you're likely already doing—helps here. But beyond the README itself, teams maintaining larger projects or public APIs should also consider whether their broader documentation is structured for AI readability, which covers things like llms.txt files and Markdown-based doc pages. We cover this in more detail in the writing documentation for AI agents section below.
+
+### How to create READMEs
+
+As we mentioned above, you can leverage ChatGPT to help you with generating README files. Their quality will depend on the [prompts](https://www.altexsoft.com/blog/prompt-engineering/) you’ll create to make AI understand what you want from it. But there is also a range of other, simpler tools that can save you time when working on READMEs.
+
+**Markdown editors** are essential for writing and formatting README files. They have easy-to-use interfaces and offer features like live previews, syntax highlighting, table of contents generation, exporting to HTML, PDF, and other formats, and more. Great Markdown editors worth considering include [Typora](https://typora.io/), [Dillinger](https://dillinger.io/), and [Obsidian](https://obsidian.md/).
+
+**README generators** automate the creation of these files, providing templates and guided steps. They ensure that a document contains all the necessary sections and follows best practices. One of the most widely used README generators is [readme.so](https://readme.so/), an open-source tool that offers an interactive, web-based editor, pre-built sections and templates, live previews, and drag-and-drop section reordering.
+
+**Code hosting platforms** are primarily used for collaboration, version control, and storing code in repositories. However, they also support Markdown, making them suitable for creating and managing README files directly within the repository. For example, GitHub provides a web interface for editing and previewing README files directly in the repository. Also, since it supports version control, you can use it to track changes made to the README file and who made those changes.
+
+## Writing documentation for AI agents
+
+Software documentation has only ever had one audience: humans. Technical writers and other docs [stakeholders](https://www.altexsoft.com/blog/stakeholder-analysis) must now cater to [large language models](https://www.altexsoft.com/blog/language-models-gpt/) that crawl documentation, quote it, summarize it, and pull from it when answering developer questions inside chat interfaces and coding assistants.
+
+When a developer asks an AI coding assistant how to integrate your API, the answer it gives is only as good as the documentation it finds. This means you must now structure your docs so LLMs can parse them more easily.
+
+<YouTube id="B2MdKc2zO0E" caption="How AI Coding Changes the Tech Industry" />
+
+Will AI replace programmers? Maybe... maybe not
+
+It's still a new and evolving space, but these are some recommended ways to better tailor your content to serve LLMs.
+
+- **Use plain Markdown over complex formatting.** LLMs read content sequentially and can't interpret visual hierarchy the way humans do. PDFs, heavily styled HTML, and screenshot-heavy pages all create friction. Plain Markdown is easier to parse and reduces the chance of a model pulling incorrect or garbled information.
+- **Write precisely and avoid filler.** LLMs perform better with focused, specific content. Vague introductions and generic filler phrases could cause inaccurate answers.
+- **Keep pages focused on one topic.** When a page covers too much ground, [retrieval systems](https://www.altexsoft.com/blog/retrieval-augmented-generation-rag/) struggle to find the right chunk in response to a specific question. Short, self-contained pages with clear headings give models a cleaner target.
+- **Include concrete examples.** For every API, function, or process you document, include actual input and output examples. Models learn from patterns, and concrete examples give them something reliable to reason from.
+- **Add version and status metadata.** Tagging pages with version numbers and marking deprecated content helps models reason about what's current. Without this, a model might confidently cite an outdated method as the recommended approach.
+
+<YouTube id="2qlcY9LkFik" caption="Software Planning and Technical Documentation" />
+
+Software documentation and planning, explained
+
+Beyond these content-level practices, new standards are emerging to help models discover and navigate websites (and documentation) better, with [llms.txt](https://llmstxt.org/) being the most widely adopted. If you've worked with robots.txt before, the concept is familiar: a plain text file that sits at your domain root and tells a specific type of automated reader how to interact with your content. robots.txt does this for search engine crawlers; llms.txt does it for AI agents.
+
+llms.txt points language models toward your most important pages, with enough context about each one so that the model knows what it will find before it gets there. To use it, you create the file, write your content, and place it at your domain root so it's reachable at yourdomain.com/llms.txt. From there, [AI agents](https://www.altexsoft.com/blog/subagents/) that support the standard can find and read it automatically.
+
+Adoption has moved quickly. By October 2025, over 844,000 websites had implemented the standard, including Anthropic, Stripe, and Cloudflare. Many modern documentation platforms generate the file automatically, but if yours doesn't, it can be created manually in a couple of hours.
+
+## Best practices and examples for code documentation
+
+Here are some tips and best practices you can follow to create high-quality code documentation.
+
+### Understand your audience
+
+Before writing code documentation, it's crucial to understand who will be reading it. Consider your audience’s technical proficiency and familiarity with the codebase. This will determine the level of detail required for the documentation.
+
+For example, a novice developer will require more details and simpler terminology than an expert with decades of experience. The image below shows code documentation fit for an expert JavaScript developer.
+
+![Code documentation for an audience of expert JavaScript developers.](/portfolio/altexsoft/002-code-documentation-examples-tools-best-practices/image-19.png)
+
+Code documentation for an audience of expert JavaScript developers
+
+The image below shows code documentation fit for a beginner JavaScript developer. While it is longer, it will be easier for this audience to understand.
+
+![Code documentation for an audience of beginner JavaScript developers.](/portfolio/altexsoft/002-code-documentation-examples-tools-best-practices/image-20.png)
+
+Code documentation for an audience of beginner JavaScript developers
+
+### Document as you write the code
+
+Integrate documentation into your coding process, which can mean
+
+- writing function docstrings before or while implementing the function,
+- adding inline comments as you write complex logic, and
+- updating the README file with new features as you implement them.
+
+Writing documentation as you code ensures that it accurately reflects your thought process and implementation details.
+
+### Include prerequisite information
+
+Document any prerequisites or assumptions your code makes. This helps other developers understand what they need before they can use your code effectively.
+
+For example, the prerequisites for the project in the image below are Python version 3.7 or higher, [NumPy](https://www.altexsoft.com/blog/the-best-machine-learning-tools-experts-top-picks/) version 1.18 or higher, and OpenCV version 4.2 or higher. The developer responsible for the code also assumes that the input images are in RGB format and have been preprocessed to remove artifacts or noise.
+
+Python code includes details of prerequisite information.
+
+![Python code include details of prerequisite information.](/portfolio/altexsoft/002-code-documentation-examples-tools-best-practices/image-21.png)
+
+Prerequisite information
+
+### Use a consistent documentation style
+
+Consistency in formatting and style is key to creating professional code documentation.
+
+You can achieve uniform code documentation by creating a style guide for various elements like terminology, tone, structure,  indentation, line breaks, spacing, and docstring formats.
+
+### Avoid overdocumentation
+
+While comprehensive and thorough documentation is necessary, it's equally important to avoid too many comments. Overdocumentation occurs when you provide excessive, unnecessary, or redundant information that can clutter your code and make it harder to read.
+
+An example of overdocumenting code and adding unneeded comments is explaining what an array or variable is, as most developers are familiar with these concepts. The image below shows overdocumented code.
+
+![An overdocumented JavaScript code.](/portfolio/altexsoft/002-code-documentation-examples-tools-best-practices/image-22.png)
+
+An overdocumented JavaScript code
+
+The image below shows a concise code documentation that contains only the relevant information.
+
+![Concise JavaScript code documentation.](/portfolio/altexsoft/002-code-documentation-examples-tools-best-practices/image-23.png)
+
+Concise JavaScript code documentation
+
+### Review and update the documentation regularly
+
+Documentation should evolve along with your code. Regularly review and update your documentation to ensure it remains accurate and relevant. You can keep documentation updated by
+
+- including documentation review in your code review process,
+- setting up reminders to periodically review project-wide documentation, and
+- encouraging team members to flag outdated or unclear documentation.
+
+That said, manual reminders only go so far. Developers spend up to 60 percent of their time reading code rather than writing it, and when that code is undocumented, onboarding new team members takes two to three times longer than it should. Modern tools take the burden off you by monitoring your codebase for changes and opening pull requests with suggested documentation updates. This way, reviewing and approving the changes that come to you becomes the core responsibility.

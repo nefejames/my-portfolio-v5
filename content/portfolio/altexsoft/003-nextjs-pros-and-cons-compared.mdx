@@ -1,0 +1,343 @@
+---
+title: "Next.js Pros and Cons compared"
+client: "AltexSoft"
+clientSlug: "altexsoft"
+originalUrl: "https://www.altexsoft.com/blog/nextjs-pros-and-cons/"
+publishedAt: "2024-07-16"
+canonical: "https://www.altexsoft.com/blog/nextjs-pros-and-cons/"
+excerpt: "Discover the pros and cons of using Next.js for React apps. Learn its features, benefits, and how it can maximize your web development projects."
+coverImage: "/portfolio/altexsoft/003-nextjs-pros-and-cons-compared/cover.jpg"
+tags: []
+---
+Next.js has quickly become one of the most popular frameworks for building full-stack [React applications](https://www.altexsoft.com/blog/react-pros-and-cons/). Its powerful features that streamline how we build high-performance web applications, have helped it win the hearts of many developers and teams in the web development space.
+
+Whether you're building a simple blog, SaaS application, or a complex eCommerce platform, Next.js provides the tools you need to deliver a fast and seamless user experience.
+
+In this article, you will learn about Next.js in detail, including its key features and use cases. We'll also dive into the pros and cons of using Next.js, compare it with other frameworks, and guide you on how to get started with Next.js. Let's dive in!
+
+## What is Next.js?
+
+[Next.js](https://nextjs.org/) is a [full-stack](https://www.altexsoft.com/blog/mean-mern-javascript-full-stack/) [open-source](https://www.altexsoft.com/blog/how-to-use-open-source-software-features-main-software-types-and-selection-advice/) React framework. It was created by Vercel in 2016 and has since grown to become one of the top choices for building websites and applications.
+
+When we say Next.js is a full-stack React framework, it means that it provides the tools needed to handle the [front-end](https://www.altexsoft.com/blog/micro-frontend/) and [back-end](https://www.altexsoft.com/blog/web-application-architecture-how-the-web-works/) aspects of building web applications.
+
+Next.js has gained widespread adoption from the web development community and is used by everyone from small businesses and startups to large corporations and Fortune 500 companies like Stripe, The Washington Post, Nike, OpenAI, and Netflix.
+
+### What makes Next.js a full-stack framework?
+
+To understand why Next.js is called a full-stack framework, let's first paint a picture of how a full-stack [React](https://www.altexsoft.com/blog/the-good-and-the-bad-of-reactjs-and-react-native/) application would be structured. It would typically have two distinct parts:
+
+- **front end**: A React application residing in its own folder
+- **back end**: A separate server, often built with Express.js or [Node.js](https://www.altexsoft.com/blog/the-good-and-the-bad-of-node-js-web-app-development/), in another folder. This server would handle API requests, database interactions, and server-side logic
+
+In this setup, these two parts would communicate via APIs, with the front end making requests to the back end. Developers would need to manage these two separate codebases as well as separate deployments.
+
+Next.js changes this pattern by bringing both front-end and [back-end development](https://www.altexsoft.com/blog/javascript-ecosystem-38-tools-for-front-and-back-end-development/) under one roof. It allows you to write front-end and back-end code in the same project. You no longer need to switch between different codebases or environments. This unified approach simplifies development and deployment processes.
+
+Next.js also provides server-side rendering (SSR) out of the box. In a traditional React app, implementing SSR would require setting up a Node.js server, configuring it to render React components, and handling routing. Next.js provides SSR by default and uses the [Node.js runtime environment](https://nextjs.org/docs/app/building-your-application/rendering/edge-and-nodejs-runtimes) to run server-side code.
+
+It's important to note that while Next.js is considered a full-stack framework, it doesn't cover every aspect of back-end and full-stack development. For instance, it doesn't include a [database system](https://www.altexsoft.com/blog/comparing-database-management-systems-mysql-postgresql-mssql-server-mongodb-elasticsearch-and-others/). You'll still have to set up and connect with your preferred database provider.
+
+### Use cases of Next.js
+
+There’s no limit to the type of web-based product you can build with Next.js. But let’s explore some common use cases for this framework.
+
+**Blogs and news websites**. Next.js is a great fit for blogs and news websites because its support for static site generation (SSG) and server-side rendering (SSR) ensures that search engines can easily crawl and index articles. This means blogs and news websites built with Next.js can enjoy high search engine visibility and potentially rank at the top of search engine result pages (SERPs).
+
+The content on these websites also changes frequently, as marketing teams either update old posts or publish new ones. Next.js integrates smoothly with headless content management systems like [Prismic](https://prismic.io/) and [Strapi](https://strapi.io/), meaning content writers can publish new articles without developer assistance.
+
+**Marketing websites and landing pages**. Like blog posts, marketing websites and landing pages require high search engine visibility to rank at the top for their target keywords. Next.js’ SEO-friendly nature makes it the right tool for them.
+
+These websites also need fast loading times, and Next.js’ in-built image optimization capabilities ensure that these websites enjoy lightning-fast page loads, higher conversion rates, and reduced bounce rates.
+
+**eCommerce applications**. These applications are often full of multiple images showcasing what products look like. Tons of images can affect an application’s loading speed and performance. According to Web Almanac, images make up about [75 percent](https://almanac.httparchive.org/en/2019/page-weight#what-types-of-assets-does-the-http-archive-track-and-how-much-do-they-matter) of a webpage’s weight.
+
+This is where Next.js comes in. Its custom image component automatically optimizes images—no matter the number—to ensure the best performance. This simplifies the building process for developers and, in the long run, aids in SEO and revenue growth.
+
+Next.js is a versatile framework that you can apply to various use cases. It provides the tools and features needed to create modern, performant web applications.
+
+## Key Next.js features and concepts to know
+
+There are some core concepts and features you should know when becoming familiar with Next.js.
+
+### Next.js is a React meta-framework
+
+It is important to note that Next.js is a React meta-framework. This means that it builds on top of React and extends React’s functionalities to offer a more comprehensive development experience.
+
+Next.js inherits some of its core properties from React, like the virtual DOM, component-based architecture, and the use of JSX for defining UI elements. It then extends React’s capabilities and adds its own features and tools. It offers a more comprehensive and opinionated approach to building modern web applications.
+
+Other notable examples of meta-frameworks include Nuxt.js, which is built on Vue.js, Remix and Gatsby, which are built on React, and SvelteKit, which is built on Svelte.
+
+### Next.js has a file-based routing system
+
+Next.js is widely known for its embedded file-based routing system, in which a website’s routes are determined by its folder structure.
+
+![Next.js’s file-based routing system](/portfolio/altexsoft/003-nextjs-pros-and-cons-compared/image-1.png)
+
+Next.js’s file-based routing system. Source: [Next.js documentation](https://nextjs.org/docs/app/building-your-application/routing#route-segments)
+
+With this routing system, you can define routes by creating files and folders within a special “app” directory. Next.js then uses that file structure to generate routes for the respective pages. For example, the route “ **www.acme.com/about**” will have “ **app/acme/pages.jsx**” as its file structure. Once Next.js sees that file structure, it knows to create the route needed for that “about” page.
+
+![File structure and routes for a dummy website “www.acme.com/user/settings/notifications”](/portfolio/altexsoft/003-nextjs-pros-and-cons-compared/image-2.png)
+
+The routing system also allows you to create nested routes, which are common in most websites and applications. Nested routes work like the basic routes. The only difference is that you will need to nest folders inside each other. For example, the route “ **www.acme.com/user/settings/notifications**” will have “ **app/acme/user/settings/notifications/page.jsx**” as its file structure.
+
+The great thing about the built-in routing system is that it eliminates the need for manual configurations. You only need to create a file in the special “app” directory, and Next.js will handle everything else. You don’t have to battle with the various versions of third-party routing solutions or spend time defining routes for your website’s various pages. This built-in routing system saves time, enhances the developer experience, and helps you stay productive.
+
+### Next.js provides a custom Image component
+
+The Next.js team built a custom [image component](https://nextjs.org/docs/app/api-reference/components/image) that optimizes, resizes, and compresses images for faster page load times.
+
+The Next.js Image component automatically detects the best formats for the user's browsers and serves the images in modern formats like WebP and AVIF. This further improves performance and eliminates issues like Cumulative Layout Shift (CLS)—a metric between 0 and 1 that search engines use to measure how much a website's layout shifts during the loading process. The best part is that the component does all this without reducing the quality of the images.
+
+Consider the image below as a test to show the benefits of the Next.js Image component. This image was rendered in the browser with the native HTML img tag. Its size is 1.5MB and its resolution is 5339px x 3562px. No optimizations have occurred at this point.
+
+![1.5MB image rendered with native HTML image component](/portfolio/altexsoft/003-nextjs-pros-and-cons-compared/image-3.png)
+
+That same image was rendered with the Next.js Image component, shrinking its size to 115KB — a 92.51 percent decrease. The component also reduced its resolution to 1200px x 801px. Many online image compression tools don’t perform that well.
+
+![115kb image rendered with Next.js Image component](/portfolio/altexsoft/003-nextjs-pros-and-cons-compared/image-4.png)
+
+The Image component didn’t just compress the image. It also changed its format from JPG to WebP, which is more performant.
+
+### Next.js provides a custom Link component
+
+The main purpose of the custom link component is to support client-side navigation between different pages.
+
+Unlike the traditional HTML anchor tag () that would reload the entire page when clicked, the Link component allows users to navigate between pages without causing a full page refresh. The Link component avoids full-page refreshes by leveraging client-side routing and JavaScript-based navigation. When a user clicks on a link, instead of allowing the browser to perform its default navigation (which would trigger a full page reload), Next.js intercepts the click event. It then uses the browser's History API to update the URL without refreshing the page.
+
+The Next.js Link component offers additional features like prefetching. Prefetching involves preloading the data needed to display a page in the background before a user clicks on a link. This ensures that the page loads almost instantly when the user clicks on the link, resulting in faster page transitions and a smoother browsing experience for users.
+
+### Next.js supports multiple rendering strategies
+
+Next.js provides flexibility in rendering web pages. It supports various rendering strategies and allows you to choose the most suitable rendering method for different parts of your application. Here are the primary rendering strategies Next.js supports.
+
+- **Server-side rendering (SSR)**: It generates HTML files on each request, allowing for dynamic content generation. This method is suitable for applications like social media platforms and job portals where content changes frequently or requires personalization based on user interactions.
+- **Client-side rendering (CSR)**: It generates HTML on the client side after the initial page load. It is useful for highly interactive applications like content management systems  (CMSs) and real-time collaboration tools where the content is driven by user actions and doesn’t require pre-rendering.
+- **Static site generation (SSG)**: It generates HTML files at build time to create static pages that can be served quickly to users. This method is ideal for content that does not change frequently, like marketing pages, blogs, and documentation.
+- **Incremental static regeneration (ISR)**: It combines the SSG and SSR by allowing static pages to be regenerated in the background as new requests come in. It ensures that users receive fresh content without compromising on the speed of static pages.
+
+Next.js also allows you to combine these JavaScript rendering strategies according to your needs. For example, you can use SSR for static pages and CSR for dynamic components.
+
+![Next.js rendering methods](/portfolio/altexsoft/003-nextjs-pros-and-cons-compared/image-5.png)
+
+Next.js is a comprehensive framework that offers several capabilities. We’ll explore more of them below.
+
+## Pros of Next.js
+
+Next.js is widely used for several reasons. Let’s explore the advantages it provides that have made it a top choice in web development.
+
+### Built-in Script component to control and optimize script loading
+
+The Next.js [Script](https://nextjs.org/docs/pages/api-reference/components/script) component allows you to control the loading behavior of third-party scripts and ensure they are loaded optimally. It provides several strategies that specify when and how scripts should be loaded:
+
+1. **beforeInteractive**: It ensures scripts are loaded before any Next.js code and before the occurance of any page hydration, the process where the initial static HTML becomes interactive, allowing users to engage with the web page. beforeInteractive is ideal for critical scripts that need to be loaded early, like bot detectors and cookie consent managers.
+2. **afterInteractive**: It loads scripts after the initial critical page content is rendered. It is suitable for scripts that must be available shortly after the page is interactive, like tag managers and analytics.
+3. **lazyOnload**: It loads scripts after all other resources on the page have been fetched. It is optimal for noncritical scripts that don’t need to be loaded immediately, like chat support plugins and social media widgets.
+
+### Embedded Font module for optimizing fonts
+
+The [Next.js font module](https://nextjs.org/docs/pages/api-reference/components/font) comes with built-in automatic self-hosting and optimization features for Google Fonts and custom fonts. It eliminates the need for external network requests, boosts performance by ensuring that fonts are loaded efficiently, and improves privacy since the CSS files are self-hosted and downloaded at build time.
+
+By self-hosting fonts, the module prevents the user's browser from making network requests to third-party services, eliminating potential tracking or logging by those services. This ensures that no additional tracking scripts or cookies are embedded in the font files and safeguards the web visitor’s privacy.
+
+Besides improving the performance of Next.js apps, these integrated optimization features also improve the developer experience. Instead of manually optimizing every image, font, and third-party script, Next.js’s plug-and-play optimization workflow drastically reduces workload, streamlines the development process, and improves productivity.
+
+### Automatic code splitting
+
+Next.js uses automatic code splitting to break down an application’s code into smaller chunks. This way, instead of generating and loading a single JavaScript file containing all the required code and data for the application, Next.js only loads the code the browser needs to render a requested page or component.
+
+![Code splitting for a website with multiple pages](/portfolio/altexsoft/003-nextjs-pros-and-cons-compared/image-6.png)
+
+Automatic code splitting improves the initial page load time by reducing the amount of code an end user has to download. This, in turn, reduces bandwidth usage and enhances an application’s overall performance.
+
+### Component lazy loading
+
+Next.js uses component [lazy loading](https://nextjs.org/docs/app/building-your-application/optimizing/lazy-loading#nextdynamic) to optimize the rendering of components. You can use it to display components as needed instead of loading all of them simultaneously.
+
+This on-demand strategy can significantly improve the initial page load time and perceived performance by reducing the amount of code that needs to be executed.
+
+### TypeScript support
+
+Next.js provides out-of-the-box support for [TypeScript](https://www.altexsoft.com/blog/typescript-pros-and-cons/), a superset of JavaScript that offers features like static typing and type checking. This native support allows you to leverage these capabilities without additional configuration, streamlining the development process and improving code reliability.
+
+Every Next.js component and module has a corresponding type definition that can be imported into the project’s codebase.
+
+### Fast refresh
+
+[Fast refresh](https://nextjs.org/docs/architecture/fast-refresh) lets you see changes in real time without losing the application’s state when coding. This means that when you make edits to your React components, the updates appear almost instantly in the browser. You don’t have to wait for the entire application to reload.
+
+For instance, if you're working on a form and change the form component, you won't lose the data you've already entered when the component reloads. This makes it easier to debug and test applications.
+
+### Built-in caching
+
+Next.js offers [built-in caching](https://nextjs.org/docs/app/building-your-application/caching) features that enhance the performance and speed of your web applications. Caching helps store certain data so that when the same data is requested again, it can be delivered faster without needing to be fetched from the server repeatedly.
+
+Caching ensures that users experience fast load times when they visit your site because frequently accessed data is readily available. This improves the user experience, reduces the load on your server, and makes your application more scalable and efficient.
+
+### Better search-engine visibility
+
+Next.js is widely known as an SEO-friendly framework, and this is a major reason it's used for blogs and landing pages that require high search-engine visibility.
+
+We’ve already explored some of its SEO-friendly capabilities, like its built-in optimization features and support for SSR and SSG, which help search engine bots understand and properly rank the content of Next.js applications.
+
+Besides these, Next.js also allows you to manage and customize robots.txt files, schema markup, and metadata, like title tags, meta descriptions, and Open Graph tags, via its [Metadata API](https://nextjs.org/docs/app/building-your-application/optimizing/metadata) for better visibility in search results.
+
+### Large community
+
+Since its release, Next.js has experienced rapid growth. It has become one of the top front-end frameworks available and is currently used on about [1.5 million websites](https://trends.builtwith.com/framework/Next.js).
+
+This means that Next.js has a large and active community that spreads across various online platforms. It has over [123,000 GitHub stars](https://github.com/vercel/next.js), a [“r/nextjs” subreddit](https://www.reddit.com/r/nextjs/) with 85,000 subscribers, and a Discord community that’s 98,000 members strong.
+
+You can always count on the community to provide assistance on Stack Overflow and create content like blog posts, starter templates, YouTube videos, and free and paid courses.
+
+There’s also the core Next.js team members who are very active. You can find them releasing articles and videos or engaging with other developers on X (Twitter) and Reddit. These include figures like [Guillermo Rauch](https://twitter.com/rauchg) and [Lee Robinson](https://twitter.com/leeerob), Vercel’s CEO and VP of Product, respectively.
+
+### Thriving ecosystem
+
+Next.js has a robust ecosystem that integrates seamlessly with various tools and libraries. Whether you need state management solutions like Redux, styling options like CSS-in-JS, advanced data fetching with SWR, or a component library, Next.js supports all of them.
+
+You can leverage Next.js’s compatibility with popular technologies to streamline your development process by building on existing third-party solutions.
+
+### Comprehensive documentation
+
+The [Next.js documentation](https://nextjs.org/docs) follows a learn-by-doing approach that places an emphasis on practical learning. It ensures that you don’t just gain theoretical knowledge but also “get your hands dirty.” It provides step-by-step instructions for hands-on learning.
+
+The documentation is extensive and well-structured. It covers various aspects of the framework, including installation, usage, configuration, and deployment. It also includes examples, guides, and best practices to help you effectively utilize Next.js.
+
+The Next.js team also ensures that the documentation remains updated, is easy to understand, has intuitive navigation, and is filled with visuals to aid the learning experience. The documentation’s quality shows that the Next.js team pays attention to the developer experience.
+
+## Cons of Next.js
+
+As great as Next.js is, it has its disadvantages and limitations. Let’s explore them.
+
+### Frequent updates
+
+Next.js has undergone various updates over the past few years, with the release of versions 12 to 15, all replete with improvements, new features, and API changes. This rapid development can be a double-edged sword. While it ensures developers have access to the latest features and improvements, it also means they must frequently adapt and migrate their projects to the latest versions.
+
+This constant need for updates makes developers spend time learning the new features and changes in each version to ensure applications remain compatible. This learning curve can be hard, especially when updates involve significant changes or new paradigms—all of which require substantial time to learn.
+
+### Development and maintenance cost
+
+One notable drawback of Next.js is the high development and maintenance costs associated with React developers, particularly skilled ones required to fully exploit its capabilities.
+
+React developers often command higher salaries compared to developers specializing in frameworks like Vue.js or Angular. This higher cost is reflective of the strong demand for React skills in the industry.
+
+For example, the average salary for a Vue developer in the United States is around [$110,000 per year](https://www.ziprecruiter.com/Salaries/Vue-Developer-Salary), whereas React developers earn [$129,000 per year](https://www.ziprecruiter.com/Salaries/React-Developer-Salary) on average.​
+
+### Hard learning curve
+
+While Next.js is a great framework that simplifies many aspects of web development, it takes some effort to learn, particularly for developers who are new to the framework or web development in general. Besides its unique conventions and configurations, Next.js introduces concepts like SSG and SSR, which can be challenging to grasp.
+
+Also, while developers familiar with React might find Next.js easy to start with, mastering its advanced features would require further study and practice.
+
+## Next.js alternatives
+
+While Next.js is a top choice in web development, other great options exist, such as Remix, Nuxt.js, SvelteKit, and Astro. Let's explore how Next.js compares to its alternatives.
+
+### Next.js vs React
+
+Before we explore the differences between Next.js and [React](https://react.dev/), it’s important to note that, unlike the other frameworks in this section, these two don’t compete with each other. If anything, Next.js is built on top of React. Having said that, let’s explore how they differ.
+
+**Routing**. One of the main differences between these frameworks is that Next.js has an in-built routing system, which is the file-based router we covered earlier. React, unlike Next.js, does not come with a routing solution. Instead, you have to configure routing with third-party libraries like [React Router](https://reactrouter.com/en/main), [Reach Router](https://reach.tech/router/), and [Wouter](https://github.com/molefrog/wouter).
+
+**Image optimization**. Another stark difference is that Next.js’s built-in image component handles image compression and optimization for you. This saves time and lets you focus on other development tasks. React does not offer any in-built image optimization. Instead, it allows you to use your preferred open-source solutions like [react-image](https://github.com/mbrevda/react-image) and [react-lazy-load-image-component](https://github.com/Aljullu/react-lazy-load-image-component) to optimize images for the best performance.
+
+React is well suited for applications like chat apps, social media platforms, and internal dashboards that are highly interactive and don't need search engine visibility. Next.js is a great choice for eCommerce sites, blogs, and landing pages that need high SERP rankings and fast loading times.
+
+### Next.js vs Remix
+
+[Remix](https://remix.run/) is a newer web development framework that has gained traction in the developer community. It was developed by the creators of React Router and was open-sourced in 2021.
+
+**Routing**. A key difference between Next.js and Remix is their approach to routing. Next.js uses a file-system-based routing system where each page is represented by a file in a specific directory. Conversely, Remix uses a route-centric approach where routes and their corresponding components are defined in a configuration file.
+
+**Ecosystem and maturity**. Next.js has been around longer and has a more mature ecosystem with readily available third-party libraries, templates, and tutorials. You can also find various Next.js forums and communities to help solve problems and learn best practices. While Remix is newer, it is rapidly growing in popularity. Its industry awareness has jumped from [55 percent](https://2023.stateofjs.com/en-US/libraries/meta-frameworks/) in 2021 to 79 percent in 2023.
+
+Although Next.js and Remix have different approaches and APIs, they are both well-suited for building a wide range of websites and web applications. The choice between them ultimately depends on your preferences.
+
+### Next.js vs Nuxt
+
+Nuxt is to Vue what Next.js is to React. While Nuxt and Next.js are meta-frameworks of their “parent” frameworks, they have their differences.
+
+**Foundational framework**. The most significant difference between Next.js and [Nuxt](https://v2.nuxt.com/) lies in their foundational frameworks. Next.js is built on React, a JavaScript library developed by Facebook. In contrast, Nuxt is built on [Vue](https://www.altexsoft.com/blog/pros-and-cons-of-vue-js/), a progressive JavaScript framework developed by Evan You and the Vue team.
+
+**Auto imports**. Nuxt, being an extension of Vue, supports auto-importing components. Instead of manually importing components in every file in which you use them, Nuxt automatically makes components available globally. Unlike Nuxt, Next.js requires you to explicitly import components into the files that need them.
+
+Next.js is a great choice if you want to leverage the benefits of React’s large ecosystem and active community. However, Nuxt is a good fit if you have experience with Vue. Both tools support multiple rendering methods, making them versatile for building various websites and web applications.
+
+### Next.js vs SvelteKit
+
+**Base technology**. [SvelteKit](https://kit.svelte.dev/) is built on Svelte and was created by Rich Harris in 2020. Svelte is a modern framework that compiles components into highly efficient JavaScript code that updates the Document Object Model (DOM). This compilation approach eliminates the need for a virtual DOM. Next.js, on the other hand, uses [React’s virtual DOM](https://www.altexsoft.com/blog/the-good-and-the-bad-of-reactjs-and-react-native/) to render components and update applications.
+
+**Syntax**. Next.js creates components using React's JSX (JavaScript XML) syntax. In this syntax, a typical Next.js component exports a function, which returns some JSX code for rendering.
+
+SvelteKit uses Svelte’s HTML-like syntax. In this syntax, a Svelte component typically consists of three parts: a block containing JavaScript or TypeScript code, an HTML template where the component’s structure is defined, and a block where the component’s CSS styles are defined.
+
+&lt;
+
+The image below is a sample of the JSX syntax Next.js uses.
+
+![JSX syntax for a Next.js component](/portfolio/altexsoft/003-nextjs-pros-and-cons-compared/image-7.png)
+
+The image below is a sample of SvelteKit’s HTML-like syntax.
+
+![Svelte-based syntax for a SvelteKit component](/portfolio/altexsoft/003-nextjs-pros-and-cons-compared/image-8.png)
+
+SvelteKit offers a gentle learning curve and excels at creating lightweight, fast applications. It is a good fit for smaller to medium-sized projects where performance is crucial. It's also a great choice for developers who prefer a more straightforward, less opinionated framework. On the other hand, Next.js, well-suited for larger and more complex applications.
+
+### Next.js vs Node.js
+
+Technically speaking, Next.js and Node.js can’t be directly compared, as they serve different purposes. Having stated that, let’s explore some ways they differ.
+
+[Node.js](https://nodejs.org/en) is a JavaScript runtime environment that allows you to execute JavaScript code outside the web browser. It is a popular choice for building backend, [APIs](https://www.altexsoft.com/blog/what-is-api-definition-types-specifications-documentation/), and microservices. In contrast, Next.js is a framework for building server-side rendered React applications.
+
+## How to get started with Next.js
+
+With this comprehensive analysis of Next.js's background, let’s explore some resources that can help you get started.
+
+### Documentation and main resources
+
+A good starting point is the official [Get Started guide](https://nextjs.org/docs/getting-started/installation). This guide provides a step-by-step walkthrough of setting up Next.js and its components.
+
+There’s also the [Next.js documentation](https://nextjs.org/docs). It offers in-depth details of the framework's features, capabilities, ecosystem, and more.
+
+To further enhance your knowledge, check out the [Learn section](https://nextjs.org/learn). It includes lessons on Next.js basics, interactive tutorials, links to example projects on GitHub, quizzes, and comprehensive guides to help you master Next.js.
+
+You can also engage with the Next.js community on [GitHub](https://github.com/vercel/next.js/discussions) and [Discord](https://discord.com/invite/nextjs) to stay updated on the latest developments, share your experiences, contribute to Next.js, interact, and get assistance from fellow developers.
+
+There’s also the [Showcase page](https://nextjs.org/showcase), which features a collection of impressive projects built with Next.js. This can provide inspiration and ideas for your own projects.
+
+### Free and open-source Next.js templates
+
+You don’t need to build your Next.js projects from scratch. There are several free and open-source templates provided by the community that you can use to speed up development. Here are some templates tailored for various types of projects.
+
+**Blog templates**. For those looking to create a blog, Next.js offers several templates that simplify the process, providing features like markdown support and easy customization.
+
+1. [Next.js blog starter](https://github.com/vercel/next.js/tree/canary/examples/blog-starter): A minimalistic blog template featuring markdown support, easy configuration, and a clean design.
+2. [Nextacular template](https://jamstackthemes.dev/theme/nextjs-blog-wisp/): It combines the Wisp CMS with Next.js for a seamless blogging experience.
+3. [Prismic blog template](https://github.com/prismicio-community/nextjs-starter-prismic-blog): It combines the power of Prismic’s content management capabilities with Next.js.
+
+**Marketing and landing pages**. These templates are designed to help you create stunning marketing and landing pages.
+
+1. [Next.js landing page](https://vercel.com/templates/next.js/drupal-nextjs-marketing-site): A beautifully designed landing page template to showcase your product or service
+2. [Startup landing page](https://github.com/ixartz/Next-JS-Landing-Page-Starter-Template): Ideal for startups, featuring modern design and responsiveness
+3. [Creative agency landing page](https://github.com/themefisher/bigspring-light-nextjs): A well-designed template perfect for agencies
+
+**eCommerce apps**. Building an eCommerce app can be complex, but these templates are great starting points that come with essential features for online stores.
+
+1. [Next.js commerce](https://github.com/vercel/commerce): A comprehensive template for building an eCommerce store with Next.js
+2. [Shopify + Next.js](https://github.com/ndimatteo/HULL): Shopify integrated with Next.js for a powerful eCommerce solution
+3. [Headless WooCommerce + Next.js](https://github.com/w3bdesign/nextjs-woocommerce): A combination of WooCommerce and Next.js for a headless eCommerce setup
+
+**SaaS products**. Developing SaaS products requires templates that can handle complex functionalities and user management. These templates are designed to give you a solid foundation.
+
+1. [SaaS starter kit](https://solid.demo.nextjstemplates.com/): Kickstart your SaaS product with this feature-rich template.
+2. [Subscription service template](https://github.com/vercel/nextjs-subscription-payments): Build a subscription-based SaaS with ease.
+
+**Dashboards**. These dashboard templates are great solutions for projects that require data visualization and management. They balance usability and aesthetics.
+
+1. [Next.js admin dashboard](https://github.com/vercel/nextjs-postgres-nextauth-tailwindcss-template): An admin dashboard template for managing an application’s users
+2. [Analytics dashboard](https://github.com/creativetimofficial/nextjs-argon-dashboard): Data visualized with this analytics dashboard template
+3. [SaaS dashboard](https://github.com/ofekashery/react-dashboard-design): A clone of Vercel’s dashboard
+
+These templates cover a broad range of use cases and provide a solid foundation to build on, saving you time and effort while ensuring your Next.js project starts on the right foot.

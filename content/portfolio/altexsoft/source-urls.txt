@@ -1,0 +1,10 @@
+# AltexSoft — original source URLs for articles archived in this portfolio.
+# Kept in git as a permanent record of where each piece was originally
+# published, in case the source ever goes offline. Also used as the --batch
+# input for scripts/import-article.js (numbered lines are fine; # = comment).
+
+1. https://www.altexsoft.com/blog/how-to-write-code-documentation/
+2. https://www.altexsoft.com/blog/nextjs-pros-and-cons/
+3. https://www.altexsoft.com/blog/data-vault-architecture/
+4. https://www.altexsoft.com/blog/housekeeping-management-software/
+5. https://www.altexsoft.com/blog/hotel-groups-chains-brands/
