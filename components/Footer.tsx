@@ -7,7 +7,25 @@ export default function Footer() {
         <p className="text-sm text-[var(--muted)]">
           © {new Date().getFullYear()} Emadamerho-Atori Nefe. All rights reserved.
         </p>
-        <div className="flex items-center gap-6">
+        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+          <Link
+            href="/"
+            className="text-sm text-[var(--muted)] hover:text-[var(--accent-text)] transition-colors"
+          >
+            Home
+          </Link>
+          <Link
+            href="/blog"
+            className="text-sm text-[var(--muted)] hover:text-[var(--accent-text)] transition-colors"
+          >
+            Blog
+          </Link>
+          <Link
+            href="/portfolio"
+            className="text-sm text-[var(--muted)] hover:text-[var(--accent-text)] transition-colors"
+          >
+            Portfolio
+          </Link>
           <a
             href="mailto:nefejames1@gmail.com"
             className="text-sm text-[var(--muted)] hover:text-[var(--accent-text)] transition-colors"
@@ -22,12 +40,6 @@ export default function Footer() {
           >
             LinkedIn
           </a>
-          <Link
-            href="/blog"
-            className="text-sm text-[var(--muted)] hover:text-[var(--accent-text)] transition-colors"
-          >
-            Blog
-          </Link>
         </div>
       </div>
     </footer>
