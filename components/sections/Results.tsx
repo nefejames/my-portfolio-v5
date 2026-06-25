@@ -23,9 +23,9 @@ const metrics = [
 
 export default function Results() {
   return (
-    <section className="py-24 bg-[#111827]">
+    <section className="py-24 bg-[var(--text)]">
       <div className="max-w-5xl mx-auto px-6">
-        <p className="text-xs font-semibold tracking-widest uppercase text-[#4F46E5] mb-4">
+        <p className="text-xs font-semibold tracking-widest uppercase text-[var(--accent-text)] mb-4">
           Results
         </p>
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-16">
@@ -36,8 +36,8 @@ export default function Results() {
           {metrics.map((m) => (
             <div key={m.stat} className="flex flex-col gap-2">
               <span className="text-5xl font-bold text-white">{m.stat}</span>
-              <span className="text-sm font-semibold text-[#E5E7EB]">{m.label}</span>
-              <p className="text-xs text-[#6B7280] leading-relaxed mt-1">{m.context}</p>
+              <span className="text-sm font-semibold text-[var(--border)]">{m.label}</span>
+              <p className="text-xs text-[var(--muted)] leading-relaxed mt-1">{m.context}</p>
             </div>
           ))}
         </div>

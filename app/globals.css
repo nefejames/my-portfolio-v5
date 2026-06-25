@@ -2,14 +2,25 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  --background: #FAFAF7;
-  --foreground: #111827;
-  --accent: #4F46E5;
-  --accent-hover: #4338CA;
-  --accent-light: #EEF2FF;
-  --muted: #6B7280;
-  --border: #E5E7EB;
-  --surface: #F9FAFB;
+  color-scheme: dark;
+
+  /* Core dark palette — contrast-checked (WCAG AA) against --bg. */
+  --bg: #0F0F12;            /* page background */
+  --surface: #1A1A1F;      /* cards / raised surfaces (was white) */
+  --surface-2: #161619;    /* subtle section + placeholder bg */
+  --text: #F4F4F5;         /* primary text (~17:1 on --bg) */
+  --muted: #A1A1AA;        /* secondary text (~7:1 on --bg) */
+  --faint: #8B8D98;        /* hints (~5:1 on --bg) */
+  --border: #2A2A30;       /* hairline borders */
+  --accent: #4F46E5;       /* button bg — white text on it ~5.8:1 */
+  --accent-hover: #6366F1; /* button hover (lightens on dark) */
+  --accent-text: #818CF8;  /* accent text / links / icons (~7:1 on --bg) */
+  --accent-subtle: #1E1B4B;/* accent-tinted surface (tags, Contact) */
+
+  /* Aliases consumed by the @theme block and body below. */
+  --background: var(--bg);
+  --foreground: var(--text);
+  --accent-light: var(--accent-subtle);
 }
 
 @theme inline {

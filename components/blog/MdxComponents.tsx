@@ -20,17 +20,17 @@ async function Tweet({ id }: { id: string }) {
     )
   } catch {
     return (
-      <div className="my-8 p-5 border border-[#E5E7EB] rounded-xl bg-[#F9FAFB] flex items-center gap-3">
-        <svg className="w-5 h-5 text-[#6B7280] shrink-0" fill="currentColor" viewBox="0 0 24 24">
+      <div className="my-8 p-5 border border-[var(--border)] rounded-xl bg-[var(--surface-2)] flex items-center gap-3">
+        <svg className="w-5 h-5 text-[var(--muted)] shrink-0" fill="currentColor" viewBox="0 0 24 24">
           <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.736-8.84L1.254 2.25H8.08l4.253 5.622 5.91-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
         </svg>
-        <p className="text-sm text-[#6B7280]">
+        <p className="text-sm text-[var(--muted)]">
           Tweet preview unavailable.{' '}
           <a
             href={`https://x.com/i/status/${id}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#4F46E5] hover:underline font-medium"
+            className="text-[var(--accent-text)] hover:underline font-medium"
           >
             View on X →
           </a>
@@ -49,7 +49,7 @@ function YouTube({ id, caption }: { id: string; caption?: string }) {
         <YouTubeEmbed videoid={id} params="rel=0" />
       </div>
       {caption && (
-        <figcaption className="mt-3 text-center text-sm text-[#6B7280] italic">
+        <figcaption className="mt-3 text-center text-sm text-[var(--muted)] italic">
           {caption}
         </figcaption>
       )}
@@ -75,7 +75,7 @@ function LinkedIn({ url }: { url: string }) {
     <div className="my-8">
       <iframe
         src={embedUrl}
-        className="w-full rounded-xl border border-[#E5E7EB]"
+        className="w-full rounded-xl border border-[var(--border)]"
         height={570}
         allowFullScreen
         title="LinkedIn post"
@@ -102,7 +102,7 @@ function Figure({
 }) {
   return (
     <figure className="my-8">
-      <div className="relative w-full rounded-xl overflow-hidden bg-[#F3F4F6]">
+      <div className="relative w-full rounded-xl overflow-hidden bg-[var(--surface-2)]">
         <Image
           src={src}
           alt={alt}
@@ -115,7 +115,7 @@ function Figure({
         />
       </div>
       {caption && (
-        <figcaption className="mt-3 text-center text-sm text-[#6B7280] italic">
+        <figcaption className="mt-3 text-center text-sm text-[var(--muted)] italic">
           {caption}
         </figcaption>
       )}

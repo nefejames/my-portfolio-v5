@@ -91,7 +91,7 @@ export default async function PortfolioArticlePage({ params }: Props) {
       <div className="max-w-5xl mx-auto px-6 pt-32 pb-24">
         <Link
           href="/portfolio"
-          className="inline-flex items-center gap-1.5 text-sm text-[#6B7280] hover:text-[#4F46E5] transition-colors mb-12"
+          className="inline-flex items-center gap-1.5 text-sm text-[var(--muted)] hover:text-[var(--accent-text)] transition-colors mb-12"
         >
           ← Back to portfolio
         </Link>
@@ -104,31 +104,31 @@ export default async function PortfolioArticlePage({ params }: Props) {
                 {article.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="text-xs font-medium px-2.5 py-1 bg-[#EEF2FF] text-[#4F46E5] rounded-md"
+                    className="text-xs font-medium px-2.5 py-1 bg-[var(--accent-subtle)] text-[var(--accent-text)] rounded-md"
                   >
                     {tag}
                   </span>
                 ))}
               </div>
-              <h1 className="text-3xl md:text-4xl font-bold text-[#111827] leading-tight mb-4">
+              <h1 className="text-3xl md:text-4xl font-bold text-[var(--text)] leading-tight mb-4">
                 {article.title}
               </h1>
-              <time className="text-sm text-[#6B7280]">
+              <time className="text-sm text-[var(--muted)]">
                 {formatDate(article.publishedAt)}
               </time>
 
               {/* Attribution banner */}
-              <div className="mt-6 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 px-4 py-3 bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl">
-                <p className="text-sm text-[#6B7280]">
+              <div className="mt-6 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 px-4 py-3 bg-[var(--surface-2)] border border-[var(--border)] rounded-xl">
+                <p className="text-sm text-[var(--muted)]">
                   Originally published for{' '}
-                  <span className="font-medium text-[#111827]">{article.client}</span>{' '}
+                  <span className="font-medium text-[var(--text)]">{article.client}</span>{' '}
                   on {formatDate(article.publishedAt)}
                 </p>
                 <a
                   href={article.originalUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm font-medium text-[#4F46E5] hover:text-[#4338CA] transition-colors sm:ml-auto"
+                  className="text-sm font-medium text-[var(--accent-text)] hover:text-[var(--accent-text)] transition-colors sm:ml-auto"
                 >
                   View original article →
                 </a>
@@ -137,24 +137,24 @@ export default async function PortfolioArticlePage({ params }: Props) {
 
             <MobileTableOfContents items={toc} />
 
-            <article className="prose prose-slate prose-lg max-w-none prose-headings:font-bold prose-headings:text-[#111827] prose-headings:scroll-mt-24 prose-a:text-[#4F46E5] prose-a:no-underline hover:prose-a:underline prose-code:text-[#4F46E5] prose-code:bg-[#EEF2FF] prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none prose-img:rounded-xl">
+            <article className="prose prose-invert prose-lg max-w-none prose-headings:font-bold prose-headings:text-[var(--text)] prose-headings:scroll-mt-24 prose-a:text-[var(--accent-text)] prose-a:no-underline hover:prose-a:underline prose-code:text-[var(--accent-text)] prose-code:bg-[var(--accent-subtle)] prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none prose-img:rounded-xl">
               <MdxContent content={article.content} />
             </article>
 
-            <footer className="mt-16 pt-8 border-t border-[#E5E7EB]">
-              <p className="text-sm text-[#6B7280] mb-4">
+            <footer className="mt-16 pt-8 border-t border-[var(--border)]">
+              <p className="text-sm text-[var(--muted)] mb-4">
                 Written by Emadamerho-Atori Nefe for {article.client}
               </p>
               <div className="flex gap-4">
                 <a
                   href="mailto:nefejames1@gmail.com"
-                  className="text-sm font-medium text-[#4F46E5] hover:text-[#4338CA] transition-colors"
+                  className="text-sm font-medium text-[var(--accent-text)] hover:text-[var(--accent-text)] transition-colors"
                 >
                   Get in touch
                 </a>
                 <Link
                   href="/portfolio"
-                  className="text-sm font-medium text-[#6B7280] hover:text-[#111827] transition-colors"
+                  className="text-sm font-medium text-[var(--muted)] hover:text-[var(--text)] transition-colors"
                 >
                   More articles
                 </Link>

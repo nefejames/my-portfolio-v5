@@ -40,8 +40,8 @@ export default function PortfolioList({
               onClick={() => setActiveClient(client.slug)}
               className={`text-sm font-medium px-4 py-1.5 rounded-full border transition-colors ${
                 activeClient === client.slug
-                  ? 'bg-[#4F46E5] text-white border-[#4F46E5]'
-                  : 'border-[#E5E7EB] text-[#6B7280] hover:border-[#4F46E5] hover:text-[#4F46E5]'
+                  ? 'bg-[var(--accent)] text-white border-[var(--accent-text)]'
+                  : 'border-[var(--border)] text-[var(--muted)] hover:border-[var(--accent-text)] hover:text-[var(--accent-text)]'
               }`}
             >
               {client.name}
@@ -56,8 +56,8 @@ export default function PortfolioList({
               onClick={() => setSort(order)}
               className={`text-sm font-medium px-4 py-1.5 rounded-full border transition-colors ${
                 sort === order
-                  ? 'bg-[#4F46E5] text-white border-[#4F46E5]'
-                  : 'border-[#E5E7EB] text-[#6B7280] hover:border-[#4F46E5] hover:text-[#4F46E5]'
+                  ? 'bg-[var(--accent)] text-white border-[var(--accent-text)]'
+                  : 'border-[var(--border)] text-[var(--muted)] hover:border-[var(--accent-text)] hover:text-[var(--accent-text)]'
               }`}
             >
               {order === 'newest' ? 'Newest first' : 'Oldest first'}
@@ -69,11 +69,11 @@ export default function PortfolioList({
       {/* Results */}
       {filtered.length === 0 ? (
         <div className="text-center py-16">
-          <p className="text-[#6B7280] text-sm">No articles yet for this client.</p>
+          <p className="text-[var(--muted)] text-sm">No articles yet for this client.</p>
           {activeClient !== ALL && (
             <button
               onClick={() => setActiveClient(ALL)}
-              className="mt-4 text-sm text-[#4F46E5] hover:underline"
+              className="mt-4 text-sm text-[var(--accent-text)] hover:underline"
             >
               Show all clients
             </button>

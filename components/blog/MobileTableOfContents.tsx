@@ -17,13 +17,13 @@ export default function MobileTableOfContents({ items }: { items: TocItem[] }) {
   return (
     <nav
       aria-label="Table of contents"
-      className="lg:hidden mb-10 border border-[#E5E7EB] rounded-xl bg-[#F9FAFB] overflow-hidden"
+      className="lg:hidden mb-10 border border-[var(--border)] rounded-xl bg-[var(--surface-2)] overflow-hidden"
     >
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
-        className="w-full flex items-center justify-between px-4 py-3 text-xs font-semibold tracking-widest uppercase text-[#6B7280]"
+        className="w-full flex items-center justify-between px-4 py-3 text-xs font-semibold tracking-widest uppercase text-[var(--muted)]"
       >
         On this page
         <svg
@@ -46,8 +46,8 @@ export default function MobileTableOfContents({ items }: { items: TocItem[] }) {
                 onClick={() => setOpen(false)}
                 className={`block text-sm py-1 transition-colors leading-snug ${
                   activeId === item.id
-                    ? 'text-[#4F46E5] font-medium'
-                    : 'text-[#6B7280] hover:text-[#111827]'
+                    ? 'text-[var(--accent-text)] font-medium'
+                    : 'text-[var(--muted)] hover:text-[var(--text)]'
                 }`}
               >
                 {item.text}

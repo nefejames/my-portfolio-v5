@@ -34,7 +34,7 @@ export default function BlogList({ posts }: { posts: PostMeta[] }) {
       {/* Search */}
       <div className="relative mb-6">
         <svg
-          className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9CA3AF]"
+          className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--faint)]"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -46,7 +46,7 @@ export default function BlogList({ posts }: { posts: PostMeta[] }) {
           placeholder="Search posts…"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="w-full pl-10 pr-4 py-2.5 text-sm border border-[#E5E7EB] rounded-lg bg-white text-[#111827] placeholder-[#9CA3AF] focus:outline-none focus:border-[#4F46E5] focus:ring-1 focus:ring-[#4F46E5] transition-colors"
+          className="w-full pl-10 pr-4 py-2.5 text-sm border border-[var(--border)] rounded-lg bg-[var(--surface)] text-[var(--text)] placeholder-[var(--faint)] focus:outline-none focus:border-[var(--accent-text)] focus:ring-1 focus:ring-[var(--accent-text)] transition-colors"
         />
       </div>
 
@@ -58,8 +58,8 @@ export default function BlogList({ posts }: { posts: PostMeta[] }) {
             onClick={() => setActiveTag(tag)}
             className={`text-sm font-medium px-4 py-1.5 rounded-full border transition-colors ${
               activeTag === tag
-                ? 'bg-[#4F46E5] text-white border-[#4F46E5]'
-                : 'border-[#E5E7EB] text-[#6B7280] hover:border-[#4F46E5] hover:text-[#4F46E5]'
+                ? 'bg-[var(--accent)] text-white border-[var(--accent-text)]'
+                : 'border-[var(--border)] text-[var(--muted)] hover:border-[var(--accent-text)] hover:text-[var(--accent-text)]'
             }`}
           >
             {tag}
@@ -70,10 +70,10 @@ export default function BlogList({ posts }: { posts: PostMeta[] }) {
       {/* Results */}
       {filtered.length === 0 ? (
         <div className="text-center py-16">
-          <p className="text-[#6B7280] text-sm">No posts match your search.</p>
+          <p className="text-[var(--muted)] text-sm">No posts match your search.</p>
           <button
             onClick={() => { setQuery(''); setActiveTag(ALL) }}
-            className="mt-4 text-sm text-[#4F46E5] hover:underline"
+            className="mt-4 text-sm text-[var(--accent-text)] hover:underline"
           >
             Clear filters
           </button>

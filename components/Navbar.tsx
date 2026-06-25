@@ -17,7 +17,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#FAFAF7]/90 backdrop-blur-sm border-b border-[#E5E7EB]">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[var(--bg)]/90 backdrop-blur-sm border-b border-[var(--border)]">
       <nav className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
           <Image src="/logo.svg" alt="NEA" width={36} height={36} priority />
@@ -29,14 +29,14 @@ export default function Navbar() {
             <Link
               key={l.href}
               href={l.href}
-              className="text-sm text-[#6B7280] hover:text-[#111827] transition-colors"
+              className="text-sm text-[var(--muted)] hover:text-[var(--text)] transition-colors"
             >
               {l.label}
             </Link>
           ))}
           <a
             href="mailto:nefejames1@gmail.com"
-            className="text-sm font-medium px-4 py-2 bg-[#4F46E5] text-white rounded-lg hover:bg-[#4338CA] transition-colors"
+            className="text-sm font-medium px-4 py-2 bg-[var(--accent)] text-white rounded-lg hover:bg-[var(--accent-hover)] transition-colors"
           >
             Hire me
           </a>
@@ -44,7 +44,7 @@ export default function Navbar() {
 
         {/* Mobile toggle */}
         <button
-          className="md:hidden p-2 text-[#6B7280]"
+          className="md:hidden p-2 text-[var(--muted)]"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
         >
@@ -62,20 +62,20 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden border-t border-[#E5E7EB] bg-[#FAFAF7] px-6 py-4 flex flex-col gap-4">
+        <div className="md:hidden border-t border-[var(--border)] bg-[var(--bg)] px-6 py-4 flex flex-col gap-4">
           {links.map((l) => (
             <Link
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="text-sm text-[#6B7280] hover:text-[#111827] transition-colors"
+              className="text-sm text-[var(--muted)] hover:text-[var(--text)] transition-colors"
             >
               {l.label}
             </Link>
           ))}
           <a
             href="mailto:nefejames1@gmail.com"
-            className="text-sm font-medium px-4 py-2 bg-[#4F46E5] text-white rounded-lg hover:bg-[#4338CA] transition-colors text-center"
+            className="text-sm font-medium px-4 py-2 bg-[var(--accent)] text-white rounded-lg hover:bg-[var(--accent-hover)] transition-colors text-center"
           >
             Hire me
           </a>

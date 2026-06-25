@@ -17,15 +17,15 @@ export default function About() {
       <div className="max-w-5xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-16 items-start">
           <div>
-            <p className="text-xs font-semibold tracking-widest uppercase text-[#4F46E5] mb-4">
+            <p className="text-xs font-semibold tracking-widest uppercase text-[var(--accent-text)] mb-4">
               About
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#111827] mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-[var(--text)] mb-8">
               Developer by background.
               <br />
               Writer by craft.
             </h2>
-            <div className="flex flex-col gap-4 text-[#6B7280] text-base leading-relaxed">
+            <div className="flex flex-col gap-4 text-[var(--muted)] text-base leading-relaxed">
               <p>
                 I'm Nefe — a content marketer and SEO manager with over four years of experience
                 creating content that earns rankings, builds authority, and drives measurable
@@ -45,28 +45,28 @@ export default function About() {
           </div>
 
           <div>
-            <p className="text-xs font-semibold tracking-widest uppercase text-[#6B7280] mb-6">
+            <p className="text-xs font-semibold tracking-widest uppercase text-[var(--muted)] mb-6">
               Skills &amp; tools
             </p>
             <div className="flex flex-wrap gap-2">
               {skills.map((skill) => (
                 <span
                   key={skill}
-                  className="text-sm font-medium px-3 py-1.5 border border-[#E5E7EB] text-[#374151] rounded-lg"
+                  className="text-sm font-medium px-3 py-1.5 border border-[var(--border)] text-[var(--muted)] rounded-lg"
                 >
                   {skill}
                 </span>
               ))}
             </div>
 
-            <div className="mt-10 pt-10 border-t border-[#E5E7EB]">
-              <p className="text-xs font-semibold tracking-widest uppercase text-[#6B7280] mb-4">
+            <div className="mt-10 pt-10 border-t border-[var(--border)]">
+              <p className="text-xs font-semibold tracking-widest uppercase text-[var(--muted)] mb-4">
                 Certifications
               </p>
-              <p className="text-sm text-[#374151] font-medium">
+              <p className="text-sm text-[var(--muted)] font-medium">
                 Udacity Digital Marketing Nanodegree
               </p>
-              <p className="text-xs text-[#6B7280] mt-1">October 2023 – Present</p>
+              <p className="text-xs text-[var(--muted)] mt-1">October 2023 – Present</p>
             </div>
           </div>
         </div>

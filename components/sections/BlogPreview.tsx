@@ -12,16 +12,16 @@ export default async function BlogPreview() {
       <div className="max-w-5xl mx-auto px-6">
         <div className="flex items-end justify-between mb-16">
           <div>
-            <p className="text-xs font-semibold tracking-widest uppercase text-[#4F46E5] mb-4">
-              From the blog
+            <p className="text-xs font-semibold tracking-widest uppercase text-[var(--accent-text)] mb-4">
+              From my blog
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#111827]">
+            <h2 className="text-3xl md:text-4xl font-bold text-[var(--text)]">
               Writing for my own brand
             </h2>
           </div>
           <Link
             href="/blog"
-            className="hidden md:inline-flex text-sm font-medium text-[#4F46E5] hover:text-[#4338CA] transition-colors"
+            className="hidden md:inline-flex text-sm font-medium text-[var(--accent-text)] hover:text-[var(--accent-text)] transition-colors"
           >
             View all posts →
           </Link>
@@ -33,18 +33,18 @@ export default async function BlogPreview() {
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="group flex flex-col gap-3 p-6 border border-[#E5E7EB] rounded-xl hover:border-[#4F46E5] hover:shadow-sm transition-all"
+                className="group flex flex-col gap-3 p-6 border border-[var(--border)] rounded-xl hover:border-[var(--accent-text)] hover:shadow-sm transition-all"
               >
-                <time className="text-xs text-[#6B7280]">{formatDate(post.date)}</time>
-                <h3 className="text-base font-semibold text-[#111827] group-hover:text-[#4F46E5] transition-colors leading-snug">
+                <time className="text-xs text-[var(--muted)]">{formatDate(post.date)}</time>
+                <h3 className="text-base font-semibold text-[var(--text)] group-hover:text-[var(--accent-text)] transition-colors leading-snug">
                   {post.title}
                 </h3>
-                <p className="text-sm text-[#6B7280] leading-relaxed flex-1">{post.excerpt}</p>
+                <p className="text-sm text-[var(--muted)] leading-relaxed flex-1">{post.excerpt}</p>
                 <div className="flex flex-wrap gap-2 pt-2">
                   {post.tags.slice(0, 2).map((tag) => (
                     <span
                       key={tag}
-                      className="text-xs font-medium px-2.5 py-1 bg-[#F3F4F6] text-[#6B7280] rounded-md"
+                      className="text-xs font-medium px-2.5 py-1 bg-[var(--surface-2)] text-[var(--muted)] rounded-md"
                     >
                       {tag}
                     </span>
@@ -58,7 +58,7 @@ export default async function BlogPreview() {
         <div className="mt-8 md:hidden">
           <Link
             href="/blog"
-            className="text-sm font-medium text-[#4F46E5] hover:text-[#4338CA] transition-colors"
+            className="text-sm font-medium text-[var(--accent-text)] hover:text-[var(--accent-text)] transition-colors"
           >
             View all posts →
           </Link>

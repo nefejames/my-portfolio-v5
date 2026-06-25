@@ -10,7 +10,7 @@ export default function TableOfContents({ items }: { items: TocItem[] }) {
 
   return (
     <nav aria-label="Table of contents">
-      <p className="text-xs font-semibold tracking-widest uppercase text-[#6B7280] mb-4">
+      <p className="text-xs font-semibold tracking-widest uppercase text-[var(--muted)] mb-4">
         On this page
       </p>
       <ul className="flex flex-col gap-1">
@@ -20,8 +20,8 @@ export default function TableOfContents({ items }: { items: TocItem[] }) {
               href={`#${item.id}`}
               className={`block text-sm py-1 transition-colors leading-snug ${
                 activeId === item.id
-                  ? 'text-[#4F46E5] font-medium'
-                  : 'text-[#6B7280] hover:text-[#111827]'
+                  ? 'text-[var(--accent-text)] font-medium'
+                  : 'text-[var(--muted)] hover:text-[var(--text)]'
               }`}
             >
               {item.text}

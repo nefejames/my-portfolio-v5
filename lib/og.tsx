@@ -8,10 +8,11 @@ import { SITE } from './site'
 export const ogSize = { width: 1200, height: 630 }
 export const ogContentType = 'image/png'
 
-const INDIGO = '#4F46E5'
-const INK = '#111827'
-const MUTED = '#6B7280'
-const PAPER = '#FAFAF7'
+const INDIGO = '#4F46E5' // brand mark fill (white "N" sits on it)
+const ACCENT = '#818CF8' // brighter indigo for text/accents on the dark card
+const INK = '#F4F4F5'
+const MUTED = '#A1A1AA'
+const PAPER = '#0F0F12'
 
 export function renderOgImage({
   title,
@@ -64,8 +65,8 @@ export function renderOgImage({
               style={{
                 fontSize: '22px',
                 fontWeight: 600,
-                color: INDIGO,
-                background: '#EEF2FF',
+                color: '#C7D2FE',
+                background: '#1E1B4B',
                 padding: '10px 22px',
                 borderRadius: '9999px',
               }}
@@ -82,7 +83,7 @@ export function renderOgImage({
               fontSize: '24px',
               letterSpacing: '4px',
               textTransform: 'uppercase',
-              color: INDIGO,
+              color: ACCENT,
               fontWeight: 600,
               marginBottom: '24px',
             }}
@@ -104,7 +105,7 @@ export function renderOgImage({
 
         {/* Footer accent */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-          <div style={{ width: '56px', height: '6px', borderRadius: '3px', background: INDIGO }} />
+          <div style={{ width: '56px', height: '6px', borderRadius: '3px', background: ACCENT }} />
           <span style={{ fontSize: '22px', color: MUTED }}>{SITE.url.replace(/^https?:\/\//, '')}</span>
         </div>
       </div>

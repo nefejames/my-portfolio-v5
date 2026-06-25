@@ -10,9 +10,9 @@ import { mdxComponents } from './MdxComponents'
 // the shared component map (see MdxComponents.tsx).
 
 const prettyCodeOptions: PrettyCodeOptions = {
-  // Light theme to match the site's editorial, cream-background palette.
-  theme: 'github-light',
-  // We supply our own block styling in globals.css to match the design tokens.
+  // Dark theme to match the site's dark surfaces; block chrome is styled in
+  // globals.css from the design tokens.
+  theme: 'github-dark',
   keepBackground: false,
 }
 
