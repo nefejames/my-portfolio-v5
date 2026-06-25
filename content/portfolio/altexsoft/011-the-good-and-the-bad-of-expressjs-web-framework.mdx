@@ -1,0 +1,188 @@
+---
+title: "The Good and the Bad of Express.js Web Framework"
+client: "AltexSoft"
+clientSlug: "altexsoft"
+originalUrl: "https://www.altexsoft.com/blog/expressjs-pros-and-cons/"
+publishedAt: "2024-11-15"
+canonical: "https://www.altexsoft.com/blog/expressjs-pros-and-cons/"
+excerpt: "Is Express.js right for your app? Explore its pros, cons, and alternatives to make an informed decision on this Node.js framework."
+coverImage: "/portfolio/altexsoft/011-the-good-and-the-bad-of-expressjs-web-framework/cover.jpg"
+tags: []
+---
+Digital interactions like submitting online forms, creating accounts on social media platforms, and checking out items in your shopping cart are all powered by the back end, an app’s hidden side that handles everything from [data storage](https://www.altexsoft.com/blog/snowflake-redshift-bigquery-data-warehouse-tools/) to user [authentication](https://www.altexsoft.com/blog/oauth/).
+
+At the heart of many invisible processes is Express.js, a popular framework built on [Node.js](https://www.altexsoft.com/blog/the-good-and-the-bad-of-node-js-web-app-development/). In this article, we'll explore the pros and cons of Express.js and how it stacks up against other back end frameworks based on Node.js. Let’s dive in.
+
+## What is Express.js?
+
+Express.js, often simply called “Express,” is a Node.js web application framework that handles the back end aspects of building web and mobile applications. It is used by [over a million live websites](https://trends.builtwith.com/framework/Express) and is a core part of the MEAN and MERN stacks (MongoDB, Express.js, [Angular](https://www.altexsoft.com/blog/the-good-and-the-bad-of-angular-development/)/ [React](https://www.altexsoft.com/blog/the-good-and-the-bad-of-reactjs-and-react-native/), Node.js) for building [full-stack](https://www.altexsoft.com/blog/who-is-full-stack-developer-role-description-skillset-when-to-hire/) applications.
+
+_Learn more about the_ _[MEAN and MERN stacks](https://www.altexsoft.com/blog/mean-mern-javascript-full-stack/)_ _in our dedicated article._
+
+### What is Express.js used for?
+
+There are various things you can build with Express.js. Common use cases include the following.
+
+**RESTful APIs**. Express.js is widely used to design scalable, production-ready [RESTful APIs](https://www.altexsoft.com/blog/rest-api-design/). The framework's routing and middleware capabilities make it easy to define [API](https://www.altexsoft.com/blog/what-is-api-definition-types-specifications-documentation/) endpoints, handle HTTP methods (GET, POST, PUT, and DELETE), parse request bodies, and return JSON responses.
+
+**Real-time applications**. Express.js teams up particularly well with WebSocket libraries like Socket.IO to create real-time applications, such as [chat apps](https://www.altexsoft.com/blog/conversational-ai/), collaborative tools, [speech recognition systems](https://www.altexsoft.com/blog/speech-recognition/), and dynamic dashboards. Express.js handles the core HTTP server functionality, while Socket.IO manages the WebSocket protocol and real-time [event-driven](https://www.altexsoft.com/blog/event-driven-architecture-pub-sub/) communication.
+
+**Single-page applications (SPAs)**. You can pair Express.js with [front end](https://www.altexsoft.com/blog/micro-frontend/) frameworks like [React](https://www.altexsoft.com/blog/react-pros-and-cons/), [Next.js](https://www.altexsoft.com/blog/nextjs-pros-and-cons/), [Angular](https://www.altexsoft.com/blog/the-good-and-the-bad-of-angular-development/), or [Vue](https://www.altexsoft.com/blog/pros-and-cons-of-vue-js/) to create SPAs — web applications that load a single HTML page and dynamically update it as the user interacts with the app. Express.js serves as the back end for the SPA and provides API endpoints that the front end can consume.
+
+### How Express.js works: the request-response cycle explained
+
+To properly understand how the internals of Express.js work, let’s explore its features and concepts in detail.
+
+**Middleware**. These functions are reusable pieces of code that run in the _middle_ of the request-response cycle in an Express app—hence, the name. When a request is made to your server, it doesn’t go straight to its end goal (like fetching data or displaying a page). Instead, it first passes through a series of middleware functions.
+
+Every middleware function has a specific job. It could check if the user is logged in, log details about the request, or modify data before it’s sent back. After each middleware function does its job, it either calls the next function or ends the cycle and sends back a response.
+
+**Routing system**. Express.js’ routing system defines how an application responds to client requests for specific endpoints (URLs) and HTTP methods (like GET, POST, PUT, DELETE).
+
+At the core of Express.js’ routing system are route paths: specific addresses that tell the application where to direct different actions. Express.js allows you to create two types of paths:
+
+- static like **_/home_**, **_/about_**, and **_/contact_** that will always display their respective pages; and
+- dynamic that accepts parameters for creating flexible routes, like **_/blog/:id_** where **_:id_** represents the ID of a specific article.
+
+**Route handlers**. These are the functions that run when requests hit any of the routes defined in the routing system. They are responsible for processing incoming requests and sending back responses.
+
+Each handler has two primary objects: the request ( **_req_**) object containing details about the incoming request and the response ( **_res_**) object that contains the data sent back to the client.
+
+Route handlers define the logic for what happens when a specific route is accessed using a particular HTTP method. For example, if the client sends a request to the **_/contact_** route, the handler for that route receives that request, processes it, performs any logic, and sends a response.
+
+**A sample Express.js request-response cycle.** Having explored the features and concepts of Express.js, let's see how it all works together when a user interacts with a web app. We’ll use a login form (with username and password) scenario for this purpose.
+
+![The Express.js request and response cycle](/portfolio/altexsoft/011-the-good-and-the-bad-of-expressjs-web-framework/image-1.png)
+
+**Step 1: The user initiates a request.** The process begins when the user fills out and submits the form. This action triggers the browser to send an [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP) POST request to the server, targeting a specific endpoint (e.g., _/login_). The request contains all the information the user submitted.
+
+**Step 2: Express.js receives and parses the request.** Once the server receives the HTTP request, Express.js parses and notes details like the requested endpoint, the HTTP method (in this case, POST), and any data (the username and password) sent in the request body.
+
+**Step 3: Express.js routes the request to the appropriate endpoint.** At this step, Express.js findsa matching _route_ to process a request. In our case, Express.js directs the request to the **_/login_** endpoint, which extracts the username and password from the request body and converts it into a JavaScript object for further processing.
+
+**Step 4: The request passes through the middleware stack**. The type of middleware you have depends on your application and business needs. For this login example, we have two middleware functions that will run:
+
+- validation middleware that checks if the username and password fields are filled out; and
+- logging middleware that logs the login attempt and notes the IP address and timestamp for security and debugging purposes.
+
+**Step 5: The route handler processes the request**. Then the request reaches the route handler for the **_/login_** endpoint. This handler queries a database to check if the username and password match the stored credentials. If the username and password are valid, the handler fetches the user data.
+
+**Step 6: Express.js creates and sends the response.** Once the route handler has processed the request, Express.js constructs a response object to send it back to the client. This response includes
+
+- a status code indicating the result of the request (e.g., 200 OK for success, 404 Not Found for a missing resource);
+- headers that provide metadata about the response, like Content-Type (e.g., application/json for JSON data or text/html for HTML content); and
+- the body containing the actual data.
+
+This can be [structured data](https://www.altexsoft.com/blog/structured-unstructured-data/) like CSV files, [semi-structured data](https://www.altexsoft.com/blog/semi-structured-data/) like HTML, or [unstructured data](https://www.altexsoft.com/blog/unstructured-data/) like images and videos. In our case, it's a JSON object with a success message and an HTML page that redirects the user to their account.
+
+**Step 7: The client receives and renders the response.** Finally, Express.js sends the response back to the client. The browser processes this response and displays the relevant data for the user.
+
+## Pros of Express.js
+
+Express.js has become an industry standard for building Node.js web applications. Let’s explore the reasons why.
+
+### Widely adopted
+
+The 2024 Stack Overflow Developer survey shows that Express.js is the fifth most popular web framework and is used by [17 percent](https://survey.stackoverflow.co/2024/technology/#1-web-frameworks-and-technologies) of developers. Of the developers who already use Express.js, over 53 percent want to keep working with it.
+
+The above stats show that Express.js has fortified its space in web development. [Major companies](https://www.wappalyzer.com/technologies/web-frameworks/express/) like Twitter (X), CodeSandbox, and Substack use Express.js in their technology stacks, demonstrating its reliability and scalability in building real-world applications.
+
+### Large, supportive community
+
+Express.js’ popularity means that it enjoys the backing of a large and active community of developers, open-source contributors, and organizations that constantly improve the framework. In terms of numbers, Express.js has over [95,000](https://stackoverflow.com/questions/tagged/express) Stack Overflow questions, [65,700](https://github.com/expressjs/express) GitHub stars, and a Reddit community with over [4,000](https://www.reddit.com/r/expressjs/) members.
+
+You can contact the community if you encounter any issues. They provide many resources, tutorials, and courses that make it easier for you to learn and build applications with the framework.
+
+### Extensive documentation
+
+Express.js has clear, comprehensive [documentation](https://www.altexsoft.com/blog/technical-documentation-in-software-development-types-best-practices-and-tools/) that is well-organized and easy to navigate. It covers everything from basic setup and routing to advanced topics like middleware, error handling, security recommendations, and performance optimization tips. Each function, feature, and configuration option comes with examples and explanations.
+
+### Easy to learn
+
+Express.js is known for its simplicity, making it an excellent choice for beginners; In particular, those familiar with JavaScript will find it easy to grasp. With minimal setup, you can start building APIs, handling requests, and creating routes.
+
+### Simplified development
+
+Express.js simplifies Node.js development and reduces the amount of code you’d write if working with pure Node.js. The image below shows the comparison of a basic web server that responds with "Hello, World!" in Node.js and Express.js.
+
+![Express.js and Node.js code comparison](/portfolio/altexsoft/011-the-good-and-the-bad-of-expressjs-web-framework/image-2.png)
+
+Even a beginner who knows nothing about Node.js and Express.js can tell at first glance that the Express.js code looks simpler. This is because Express.js abstracts away some of the steps the Node.js code requires — namely, it eliminates the need to manually create an HTTP server and automatically sets Content-Type headers.
+
+### Compatible with popular databases
+
+Express.js works well with various SQL and NoSQL [database management systems](https://www.altexsoft.com/blog/comparing-database-management-systems-mysql-postgresql-mssql-server-mongodb-elasticsearch-and-others/) like MongoDB, MySQL, and PostgreSQL. This compatibility allows you to choose the database technology that best fits your project's needs. The documentation provides a [guide](https://expressjs.com/en/guide/database-integration.html) on how to integrate your Express.js with popular databases.
+
+### Easily extensible with a large middleware ecosystem
+
+Express.js has a large ecosystem of [official and third-party middleware](https://expressjs.com/en/resources/middleware.html) that you can easily integrate into applications. Thanks to the pre-built middleware functions, you can save time and effort since you don’t need to build every feature from scratch.
+
+## Cons of Express.js
+
+Express.js, like any technology, has its limitations. Let’s look under the hood.
+
+### Provides minimal structure
+
+Express.js’ lack of a predefined structure is a double-edged sword. While its unopinionated nature offers greater flexibility and fewer restrictions, it can make it harder to build applications, particularly large ones. Development teams can struggle with inconsistent codebases and challenges when onboarding new team members.
+
+To address this challenge, you’ll have to set up custom guidelines and structures for your project, preferably at the beginning of the development cycle. To keep your project organized, you could use the [Model-View-Controller (MVC) pattern](https://developer.mozilla.org/en-US/docs/Glossary/MVC) — one of the most adopted patterns that separates code into Model, View, and Controller components.
+
+### Fewer built-in features compared to other frameworks
+
+Express.js was intentionally designed to provide only the essential features needed for back end development. This means that it has limited built-in functionality. You’ll have to write custom code or work with third-party libraries to integrate features like authentication and form validation.
+
+However, managing multiple third-party packages and middleware adds complexity, as you’ll have to spend time setting up extra tools and configuring dependencies to fit your project.
+
+### Complexity managing middleware
+
+While Express.js’ middleware system allows you to extend its functionality, it can quickly become complex, particularly for large applications.
+
+Middleware functions are executed in a pre-defined order, and managing long queues can be challenging. The wrong order can break your application or specific features, and the chain of dependencies between middleware functions easily becomes unclear.
+
+## Comparing Express.js with other Node.js libraries
+
+Express.js is one of many Node.js frameworks available. Let’s see how it measures up to its alternatives and its parent library.
+
+![How Node.js, NestJS, Koa, and Fastify stack up against Express.js](/portfolio/altexsoft/011-the-good-and-the-bad-of-expressjs-web-framework/image-3.png)
+
+### Express.js vs Node.js
+
+A core difference between Express.js and [Node.js](https://nodejs.org/) is that the latter—is a runtime environment that allows you to execute JavaScript code on the server, while Express.js is a Node-based framework that extends Node.js’ capabilities and streamlines the development process.
+
+<YouTube id="2gQG4cFjahw" caption="What is Node.JS and its Pros and Cons" />
+
+Node.js and its pros and cons
+
+One way Express.js builds on Node.js is by adding a built-in routing system. In raw Node.js, setting up routes requires creating multiple if-else statements or switch cases and then manually defining what happens for each route. Express.js simplifies routing by providing a straightforward, built-in router that makes code cleaner, more readable, and easier to maintain.
+
+### Express.js vs NestJS
+
+[NestJS](https://nestjs.com/) is a Node.js framework that provides a more structured, opinionated approach to server-side development. It is heavily inspired by Angular and follows the Model-View-Controller (MVC) architecture.
+
+NestJS, due to Angular’s influence, has strong opinions about how components are organized, how they interact, and how they should be used. On the other hand, Express.js has fewer built-in conventions and allows you to define your code’s structure, organization, and architecture.
+
+### Express.js vs Koa
+
+[Koa](https://koajs.com/), created by the same team behind Express, was designed to be a more modern alternative, with advanced JavaScript features like async/await for handling asynchronous operations.
+
+A major improvement over Express.js is Koa’s lightweight nature. It weighs [41.3kb](https://bundlephobia.com/package/koa@2.15.3) compared to [231.4kb](https://bundlephobia.com/package/express@4.21.1) for Express.js. In addition, Koa provides a more flexible middleware system that operates as a chain of functions using async/await to allow more granular control over request handling. This is unlike Express.js, where middleware functions are stacked and processed in the order they were defined.
+
+However, Koa also has its cons, as it does not provide a built-in routing system. However, it has a [middleware](https://github.com/koajs/router) library for routing needs.
+
+### Express.js vs Fastify
+
+[Fastify](https://fastify.dev/) is a high-performance web framework for Node.js. Its focus on speed and low overhead makes it ideal for applications that require high throughput and scalability. Like Koa, it uses async/await to perform asynchronous operations.
+
+One of Fastify’s unique features is its schema-based validation system, which allows you to define JSON-based validation schemas for data inputs and outputs. With Express.js, you have to use third-party libraries like Joi, Yup, and express-validator to handle this.
+
+## Getting started: how to install and learn Express.js
+
+Below are a list of useful resources to help you start working with Express.js.
+
+**Official documentation**. [Express.js’ documentation](https://expressjs.com/en/guide/routing.html) covers details like [installation steps](https://expressjs.com/en/starter/installing.html), tutorials, API references, and advanced use cases. It is a great starting point for learning the essentials of Express.js.
+
+**GitHub repo**. Enjoy diving into the codebase of open-source projects to study their internal makeup? Then the Express.js GitHub repo is worth exploring. It’s a popular and active project with 65,000 stars and hundreds of pull requests and issues to check out.
+
+**Community**. The Express.js team leverages YouTube and GitHub for community engagements. The Express Technical Committee frequently meets to discuss issues related to the framework. Meeting talking points are announced in the [issues section](https://github.com/expressjs/discussions/issues) of their discussion repo, and the meetings are recorded and uploaded to the [Express.js YouTube channel](https://www.youtube.com/channel/UCYjxjAeH6TRik9Iwy5nXw7g). These engagements are open to all who are interested and are a great way to stay updated on the latest developments relating to Express.js.
+
+**Courses and learning materials**. Thanks to its popularity, there are tons of learning resources you can use to strengthen your knowledge of Express.js. There’s the [Awesome Express.js GitHub repo](https://github.com/rajikaimal/awesome-express) containing links to various educational materials. You can also learn more about Express.js via the free and paid online courses available on platforms like [Udemy](https://www.udemy.com/topic/express-framework/) and [Coursera](https://www.coursera.org/search?query=express.js&msockid=114b3cffa3f46fd9090f287aa23f6ee1&language=English).

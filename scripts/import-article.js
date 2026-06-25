@@ -281,38 +281,50 @@ function extractSchemaVideos(html) {
 // Article/BlogPosting JSON-LD — pull datePublished from there.
 const ARTICLE_TYPES = ['Article', 'BlogPosting', 'NewsArticle', 'TechArticle', 'ScholarlyArticle', 'Report']
 
-function collectArticleDates(node, acc) {
+// Collect a given property's values from every Article-type node in a JSON-LD tree.
+function collectArticleField(node, field, acc) {
   if (!node || typeof node !== 'object') return
   if (Array.isArray(node)) {
-    for (const item of node) collectArticleDates(item, acc)
+    for (const item of node) collectArticleField(item, field, acc)
     return
   }
   const type = node['@type']
   const isArticle =
     (typeof type === 'string' && ARTICLE_TYPES.includes(type)) ||
     (Array.isArray(type) && type.some((t) => ARTICLE_TYPES.includes(t)))
-  if (isArticle && node.datePublished) acc.push(node.datePublished)
+  if (isArticle && node[field]) acc.push(node[field])
   for (const key of Object.keys(node)) {
     if (key === '@type') continue
-    collectArticleDates(node[key], acc)
+    collectArticleField(node[key], field, acc)
   }
 }
 
-/** Extract the article's publish date (YYYY-MM-DD) from schema.org JSON-LD, or
- *  null if none is found. */
-function extractSchemaDate(html) {
-  if (!html) return null
-  const dates = []
+function collectSchemaField(html, field) {
+  const out = []
+  if (!html) return out
   const scriptRe = /<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi
   let m
   while ((m = scriptRe.exec(html)) !== null) {
     try {
-      collectArticleDates(JSON.parse(m[1].trim()), dates)
+      collectArticleField(JSON.parse(m[1].trim()), field, out)
     } catch {
       /* skip malformed JSON-LD blocks */
     }
   }
+  return out
+}
+
+/** Article publish date (YYYY-MM-DD) from schema.org JSON-LD, or null. */
+function extractSchemaDate(html) {
+  const dates = collectSchemaField(html, 'datePublished')
   return dates.length ? toIsoDate(dates[0]) : null
+}
+
+/** Full article title from schema.org headline — avoids the truncated SEO
+ *  <title>/og:title some publishers (AltexSoft) serve. Null if none. */
+function extractSchemaHeadline(html) {
+  const heads = collectSchemaField(html, 'headline')
+  return heads.length ? String(heads[0]).trim() : null
 }
 
 // ─── AltexSoft cleanup ────────────────────────────────────────────────────────
@@ -472,7 +484,14 @@ async function importDocument(doc, clientSlug, sourceUrl) {
     return
   }
 
-  const title = (meta.title || meta.ogTitle || 'Untitled').trim()
+  // Prefer the schema.org headline (the real, full article title) over the
+  // SEO <title>/og:title, which AltexSoft truncates to ~60 chars.
+  const title = (
+    extractSchemaHeadline(doc.rawHtml || doc.html || '') ||
+    meta.title ||
+    meta.ogTitle ||
+    'Untitled'
+  ).trim()
   const originalUrl = meta.sourceURL || meta.url || sourceUrl
   const publishedAt =
     toIsoDate(meta.publishedTime) ||
@@ -702,5 +721,6 @@ module.exports = {
   altexsoftCleanup,
   extractSchemaVideos,
   extractSchemaDate,
+  extractSchemaHeadline,
   sanitizeMdx,
 }

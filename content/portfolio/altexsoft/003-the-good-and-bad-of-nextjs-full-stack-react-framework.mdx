@@ -1,12 +1,12 @@
 ---
-title: "Next.js Pros and Cons compared"
+title: "The Good and Bad of Next.js Full-Stack React Framework"
 client: "AltexSoft"
 clientSlug: "altexsoft"
 originalUrl: "https://www.altexsoft.com/blog/nextjs-pros-and-cons/"
 publishedAt: "2024-07-16"
 canonical: "https://www.altexsoft.com/blog/nextjs-pros-and-cons/"
 excerpt: "Discover the pros and cons of using Next.js for React apps. Learn its features, benefits, and how it can maximize your web development projects."
-coverImage: "/portfolio/altexsoft/003-nextjs-pros-and-cons-compared/cover.jpg"
+coverImage: "/portfolio/altexsoft/003-the-good-and-bad-of-nextjs-full-stack-react-framework/cover.jpg"
 tags: []
 ---
 Next.js has quickly become one of the most popular frameworks for building full-stack [React applications](https://www.altexsoft.com/blog/react-pros-and-cons/). Its powerful features that streamline how we build high-performance web applications, have helped it win the hearts of many developers and teams in the web development space.
@@ -72,13 +72,13 @@ Other notable examples of meta-frameworks include Nuxt.js, which is built on Vue
 
 Next.js is widely known for its embedded file-based routing system, in which a website’s routes are determined by its folder structure.
 
-![Next.js’s file-based routing system](/portfolio/altexsoft/003-nextjs-pros-and-cons-compared/image-1.png)
+![Next.js’s file-based routing system](/portfolio/altexsoft/003-the-good-and-bad-of-nextjs-full-stack-react-framework/image-1.png)
 
 Next.js’s file-based routing system. Source: [Next.js documentation](https://nextjs.org/docs/app/building-your-application/routing#route-segments)
 
 With this routing system, you can define routes by creating files and folders within a special “app” directory. Next.js then uses that file structure to generate routes for the respective pages. For example, the route “ **www.acme.com/about**” will have “ **app/acme/pages.jsx**” as its file structure. Once Next.js sees that file structure, it knows to create the route needed for that “about” page.
 
-![File structure and routes for a dummy website “www.acme.com/user/settings/notifications”](/portfolio/altexsoft/003-nextjs-pros-and-cons-compared/image-2.png)
+![File structure and routes for a dummy website “www.acme.com/user/settings/notifications”](/portfolio/altexsoft/003-the-good-and-bad-of-nextjs-full-stack-react-framework/image-2.png)
 
 The routing system also allows you to create nested routes, which are common in most websites and applications. Nested routes work like the basic routes. The only difference is that you will need to nest folders inside each other. For example, the route “ **www.acme.com/user/settings/notifications**” will have “ **app/acme/user/settings/notifications/page.jsx**” as its file structure.
 
@@ -92,11 +92,11 @@ The Next.js Image component automatically detects the best formats for the user'
 
 Consider the image below as a test to show the benefits of the Next.js Image component. This image was rendered in the browser with the native HTML img tag. Its size is 1.5MB and its resolution is 5339px x 3562px. No optimizations have occurred at this point.
 
-![1.5MB image rendered with native HTML image component](/portfolio/altexsoft/003-nextjs-pros-and-cons-compared/image-3.png)
+![1.5MB image rendered with native HTML image component](/portfolio/altexsoft/003-the-good-and-bad-of-nextjs-full-stack-react-framework/image-3.png)
 
 That same image was rendered with the Next.js Image component, shrinking its size to 115KB — a 92.51 percent decrease. The component also reduced its resolution to 1200px x 801px. Many online image compression tools don’t perform that well.
 
-![115kb image rendered with Next.js Image component](/portfolio/altexsoft/003-nextjs-pros-and-cons-compared/image-4.png)
+![115kb image rendered with Next.js Image component](/portfolio/altexsoft/003-the-good-and-bad-of-nextjs-full-stack-react-framework/image-4.png)
 
 The Image component didn’t just compress the image. It also changed its format from JPG to WebP, which is more performant.
 
@@ -119,7 +119,7 @@ Next.js provides flexibility in rendering web pages. It supports various renderi
 
 Next.js also allows you to combine these JavaScript rendering strategies according to your needs. For example, you can use SSR for static pages and CSR for dynamic components.
 
-![Next.js rendering methods](/portfolio/altexsoft/003-nextjs-pros-and-cons-compared/image-5.png)
+![Next.js rendering methods](/portfolio/altexsoft/003-the-good-and-bad-of-nextjs-full-stack-react-framework/image-5.png)
 
 Next.js is a comprehensive framework that offers several capabilities. We’ll explore more of them below.
 
@@ -147,7 +147,7 @@ Besides improving the performance of Next.js apps, these integrated optimization
 
 Next.js uses automatic code splitting to break down an application’s code into smaller chunks. This way, instead of generating and loading a single JavaScript file containing all the required code and data for the application, Next.js only loads the code the browser needs to render a requested page or component.
 
-![Code splitting for a website with multiple pages](/portfolio/altexsoft/003-nextjs-pros-and-cons-compared/image-6.png)
+![Code splitting for a website with multiple pages](/portfolio/altexsoft/003-the-good-and-bad-of-nextjs-full-stack-react-framework/image-6.png)
 
 Automatic code splitting improves the initial page load time by reducing the amount of code an end user has to download. This, in turn, reduces bandwidth usage and enhances an application’s overall performance.
 
@@ -277,11 +277,11 @@ SvelteKit uses Svelte’s HTML-like syntax. In this syntax, a Svelte component t
 
 The image below is a sample of the JSX syntax Next.js uses.
 
-![JSX syntax for a Next.js component](/portfolio/altexsoft/003-nextjs-pros-and-cons-compared/image-7.png)
+![JSX syntax for a Next.js component](/portfolio/altexsoft/003-the-good-and-bad-of-nextjs-full-stack-react-framework/image-7.png)
 
 The image below is a sample of SvelteKit’s HTML-like syntax.
 
-![Svelte-based syntax for a SvelteKit component](/portfolio/altexsoft/003-nextjs-pros-and-cons-compared/image-8.png)
+![Svelte-based syntax for a SvelteKit component](/portfolio/altexsoft/003-the-good-and-bad-of-nextjs-full-stack-react-framework/image-8.png)
 
 SvelteKit offers a gentle learning curve and excels at creating lightweight, fast applications. It is a good fit for smaller to medium-sized projects where performance is crucial. It's also a great choice for developers who prefer a more straightforward, less opinionated framework. On the other hand, Next.js, well-suited for larger and more complex applications.
 

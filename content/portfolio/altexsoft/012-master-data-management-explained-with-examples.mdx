@@ -1,0 +1,239 @@
+---
+title: "Master Data Management Explained with Examples"
+client: "AltexSoft"
+clientSlug: "altexsoft"
+originalUrl: "https://www.altexsoft.com/blog/master-data-management-explained-with-examples/"
+publishedAt: "2024-11-29"
+canonical: "https://www.altexsoft.com/blog/master-data-management-explained-with-examples/"
+excerpt: "Understand master data management with examples. Explore MDM tools and the roles needed for success."
+coverImage: "/portfolio/altexsoft/012-master-data-management-explained-with-examples/cover.jpg"
+tags: []
+---
+Businesses gather vast amounts of data from many sources. However, when this data is stored in multiple places without any central organization, it leads to issues like duplicate records, inconsistencies, and errors, resulting in poor insights and decisions. This is where Master Data Management (MDM) comes in.
+
+MDM helps combine silos of data into a single, reliable source of truth. This article will cover how master data works, its characteristics, examples of MDM, and MDM tools. Let’s dive in.
+
+## What is master data?
+
+**Master data**—often called the _golden record_—is the critical, high-value information an organization depends on to run its day-to-day operations and make key decisions. It describes the core entities like customers, products, suppliers, employees, and locations that are essential to the business. This data is mission-critical because it connects and supports the organization's different systems, processes, and departments, ensuring everyone is working with a single source of truth.
+
+Let’s consider Nimbus Digital, a fictitious tech platform offering various services like email, cloud storage, and online productivity tools. Imagine a user, John Doe, who has three Nimbus accounts: one for work, one for personal use, and one for freelance projects. Each account employs different services and has unique preferences, storage usage, payment methods, and location data. These might appear as three separate customers in Nimbus’s [database](https://www.altexsoft.com/blog/comparing-database-management-systems-mysql-postgresql-mssql-server-mongodb-elasticsearch-and-others/). However, Nimbus recognizes that all three accounts belong to John by combining and organizing the scattered information into a unified profile—the master data.
+
+Organizations can have multiple subdomains of master data that represent a specific category of business-critical information:
+
+![Master data and its subdomains ](/portfolio/altexsoft/012-master-data-management-explained-with-examples/image-1.png)
+
+**Customer master data** is about individuals or organizations that interact with a business. It includes customer ID, full name, contact details, addresses, account preferences, purchase history, [loyalty program](https://www.altexsoft.com/blog/airline-loyalty-program/) details, etc.
+
+**Product master data** relates to goods or services a business sells or uses in its operations. It’s essential for [inventory management](https://www.altexsoft.com/blog/inventory-management-software/), sales, and [procurement](https://www.altexsoft.com/blog/procurement-analytics/). This data contains details like product names and descriptions, pricing info, and supplier information.
+
+**Supplier (vendor) master data** is a record of entities that provide goods or services to a business. This data supports procurement operations by covering supplier names and bank details, contact information, and terms of service agreements.
+
+**Employee master data** is crucial for payroll, compliance, and workforce planning. It includes details like employee IDs, names, job titles, departments, and salary.
+
+While some master data subdomains are common, the exact types depend on business needs, industry, and structure. Additional subdomains can be created to address unique data requirements.
+
+## What is master data management (MDM)?
+
+**Master data management** is the practice of creating a single, consistent view of master data that ensures businesses use only accurate, complete, and consistent versions of information in various departments and systems.
+
+Tracking back to our earlier example of Nimbus user profiles, master [data management](https://www.altexsoft.com/blog/data-management-strategy/) is the process and tools Nimbus applies to build the unified view, or master profile of John from data scattered across the various accounts he owns.
+
+Companies are [increasingly](https://www.grandviewresearch.com/industry-analysis/master-data-management-market-report) using MDM to drive their [business intelligence](https://www.altexsoft.com/blog/complete-guide-to-business-intelligence-and-analytics-strategy-steps-processes-and-tools/). For example, [Domino](https://profisee.com/case-study/dominos/), the world’s largest pizza delivery chain, relies on MDM to enrich the customer information coming from its [enterprise data warehouse](https://www.altexsoft.com/blog/enterprise-data-warehouse-concepts/). It helps provide a more personalized customer experience and run better-optimized marketing campaigns. Similarly, the [BMW Group](https://www.informatica.com/content/dam/informatica-com/en/collateral/customer-success-story/informatica-css-bmw_customer-story_3547.pdf), the world’s leading manufacturer of premium cars and motorcycles, uses MDM to harmonize its business-critical product data for more effective marketing across various channels.
+
+## How to set up MDM: implementation process
+
+If you’ve read up till this point, congrats — you have a general understanding of what MDM’s all about.Let’s explore key steps to take when implementing MDM.
+
+### Identify key data domains to master
+
+The first action in MDM is determining the essential data domains to include in the master data repository. At this stage, data [stakeholders](https://www.altexsoft.com/blog/stakeholder-analysis/), including IT teams and department heads, work to map critical data assets.
+
+In the case of Nimbus Digital, which we explored earlier, the following data categories will be mastered: customers, products, suppliers, orders, locations, and financials. The data sources for these entities could be [CRMs](https://www.altexsoft.com/blog/hotel-crm/), ERPs, vendor management systems, payroll tools, address databases, and accounting software.
+
+### Build a master data model
+
+Creating a [data model](https://www.altexsoft.com/blog/data-modeling/) is necessary to ensure consistency throughout your master data. The model should outline how data will be structured, related, and organized, including rules for hierarchies, relationships, and metadata definitions. This model forms the foundation for data governance and helps ensure data consistency as it flows through your system.
+
+![Master data model](/portfolio/altexsoft/012-master-data-management-explained-with-examples/image-2.png)
+
+### Choose an MDM architecture
+
+There are different architectural approaches to MDM implementation. The one you choose depends on several factors, including your organization’s specific needs, goals, and existing integration capabilities.
+
+![Master data architecture patterns](/portfolio/altexsoft/012-master-data-management-explained-with-examples/image-3.png)
+
+**Registry architecture.** Here, the master data stays in its original systems but is indexed for reference in a central hub. This hub links and matches records from different sources, providing a virtual view of master data. The registry approach causes minimal disruption to the existing infrastructure and is not complex to implement. However, it can lead to performance issues when querying multiple data sources. Also, the central hub doesn’t update information in the original systems, which makes it harder to maintain the organization's data quality and consistency.
+
+**Consolidation architecture.** In this implementation scenario, a central hub copies master data from multiple sources to clean it, identify duplicates, and merge them into golden records. The hub then may push updates to the original system.
+
+This style ensures [data integrity](https://www.altexsoft.com/blog/data-integrity/) and consistency, driving reliable analysis and reporting. However, managing changes can be resource-intensive and cause performance issues. Also, copying typically happens over certain periods of time (batching process), so master data doesn’t reflect real-time situations.
+
+**Centralized architecture.** Here, the central hub becomes the single master data provider and the main source of truth, ensuring all departments and applications access the same accurate golden records. Other systems can subscribe to the hub for updates.
+
+While this strategy simplifies data governance and auditing, it can create a single point of failure and requires significant investment and changes to the existing IT infrastructure.
+
+**Coexistence architecture.** This is where the master data resides both in the source systems and the centralized repository, while updates flow bidirectionally. This architecture excels at real-time data sharing but can be costly to implement and maintain since it involves two master data environments (the central hub and source systems) and complex synchronization processes between them.
+
+### Establish data governance
+
+No MDM initiative is complete without a comprehensive [data governance](https://www.altexsoft.com/blog/data-governance/) framework that defines the policies, roles, and processes for maintaining [data quality](https://www.altexsoft.com/blog/data-quality-management-and-tools/) and ensuring its integrity, security, and accountability.
+
+## MDM daily operations and technologies involved
+
+Let’s explore the daily MDM operations that occur in an organization and the technologies that support these activities.
+
+### Data integration
+
+Data integration involves using [ETL (Extract, Transform, Load)](https://www.altexsoft.com/blog/etl-vs-elt/) processes to pull the relevant data from various sources, put it into a staging area (temporary repository) for processing, and then deliver it to the final destination (for example, a centralized master data hub).
+
+![Extract, transform, load process](/portfolio/altexsoft/012-master-data-management-explained-with-examples/image-4.png)
+
+Once the data is in the staging area, it goes through a set of transformations.
+
+### Data profiling and cleaning
+
+**[Data profiling](https://www.altexsoft.com/blog/data-profiling/)** identifies inconsistencies and missing values in the data. For instance, it might reveal that 20 percent of customer records lack email addresses or that names are formatted inconsistently (e.g., "John Doe" vs. "Doe, John").
+
+**Data cleaning** resolves issues identified during profiling checks and transforms information into a unified format. Examples include converting a string of numbers like "1234" into an integer or converting a date stored as text ("12/31/2023") into a proper date format (YYYY-MM-DD).
+
+These operations can be performed with custom scripts written in Python libraries like [NumPy](https://www.altexsoft.com/blog/numpy-pros-and-cons/), [Pandas](https://www.altexsoft.com/blog/pandas-library/), and [Scikit-learn](https://www.altexsoft.com/blog/choosing-an-open-source-machine-learning-framework-tensorflow-theano-torch-scikit-learn-caffe/), or with ready-made tools like [Informatica’s data quality platform](https://www.informatica.com/products/data-quality.html), [OpenRefine](https://openrefine.org/), and other instruments for [data cleaning](https://www.altexsoft.com/blog/data-cleaning/) and transformations.
+
+### Data matching
+
+Data matching focuses on identifying duplicates within the dataset. The goal is to find records that represent the same entity but have slight variations, such as different spellings. The process involves matching techniques such as
+
+- exact matching, which finds records with identical values in specific fields. It's suitable when dealing with unique identifiers like Social Security numbers and email addresses; and
+- fuzzy matching, which uses specific algorithms (Levenshtein distance, Soundex, or Jaro-Winkler) to detect similarities in near-identical data, like "John Doe" and "Jon Doe."
+
+Platforms like OpenRefine, Dedupe.io, Data Ladder, and WinPure provide built-in data-matching capabilities.
+
+### Data merging
+
+Data merging involves resolving any duplicates that exist in the dataset into a single, unified record. This involves combining the best data from each duplicate to create the most accurate, complete, and up-to-date version of the entity.
+
+Merging uses survivorship rules to resolve conflicts by determining the "best version" of a data attribute to use when multiple sources provide opposing or duplicate information. These rules assign higher weights to certain data based on specific criteria.
+
+![Data merging based on survivorship rules](/portfolio/altexsoft/012-master-data-management-explained-with-examples/image-5.png)
+
+Examples of survivorship rules include the following.
+
+**Source-based rules** prioritize data from specific sources that are deemed more trustworthy or authoritative. For example, address data from a government institution takes precedence over data from a marketing firm. That’s also why, in the merging visual, we picked the company domain email address instead of the personal one, as the former is a more reliable source.
+
+**Recency-based rules** rank the most recently updated data as more relevant or accurate. If two systems provide a customer's phone number, the one updated last month is chosen over the other submitted two years ago.
+
+**Field length rules** prioritize the value with more characters when resolving conflicts. An example is selecting “Jonathan Doe” over “Jon Doe.” This approach assumes that longer fields contain more detailed or complete information.
+
+### Data enrichment
+
+Data enrichment may happen after loading data into the centralized hub. It involves enhancing existing golden records by adding new, relevant information from external or internal sources. Methods for acquiring new data include:
+
+- manual enrichment, where data is reviewed and updated by analysts or data stewards who cross-reference records with trusted sources; and
+- automated enrichment with third-party APIs from external providers like HubSpot’s [Breeze Intelligence](https://www.hubspot.com/products/artificial-intelligence/data-enrichment?hubs_content=www.hubspot.com/products/artificial-intelligence&hubs_content-cta=wf-link-to-content-card-text-link) (formerly Clearbit) and [Data Axle](https://www.data-axle.com/). They fetch additional data fields and append them to existing records.
+
+Enriching data leads to an actionable dataset that can improve marketing campaign targeting, support better decision-making, help with customer segmentation for [personalized](https://www.altexsoft.com/blog/personalization-hospitality/) services, and more.
+
+### Data publishing
+
+Publishing involves pushing fully processed, high-quality master data from the MDM hub to downstream systems like CRMs, ERPs, [BI tools](https://www.altexsoft.com/blog/best-bi-tools-comparison/), or other operational platforms.
+
+![The master data ready for use by other systems](/portfolio/altexsoft/012-master-data-management-explained-with-examples/image-6.png)
+
+There are several approaches to publishing master data.
+
+- Centralized hub pushing updates: The MDM platform pushes updates to connected systems once changes occur. This approach works well when real-time or near-real-time updates are critical.
+- Systems checking for updates: Applications subscribe to the MDM system for updates and fetch the latest data. For example, a [data warehouse](https://www.altexsoft.com/blog/data-warehouse-architecture/) may pull updated customer data on a weekly basis for generating BI reports. This approach is suitable for systems that don't need constant updates.
+- Bilateral synchronization: The MDM hub and consuming systems exchange data in a two-way sync process. Changes made in the hub are reflected in other systems, and vice versa.
+
+The publishing methods an organization uses depend on its MDM implementation, system architecture, and data needs.
+
+### Set up ongoing monitoring and maintenance
+
+Master data implementation is not a done-and-dusted deal. It's a continuous process that requires regular monitoring of data accuracy, consistency, and relevance over time. As business needs evolve, data sources change, and new tools emerge, the master data framework must be updated and maintained to remain effective.
+
+## Master data management platforms
+
+Organizations can implement various master data management platforms to store, organize, and manage essential business data in one central system. These solutions incorporate AI for data cleaning, matching, and analytics. They typically use a subscription-based pricing model, and costs will depend on factors like deployment options, requested add-ons, and data volumes.
+
+![Master data management platforms compared](/portfolio/altexsoft/012-master-data-management-explained-with-examples/image-7.png)
+
+### IBM Infosphere
+
+[IBM Infosphere](https://www.ibm.com/products/ibm-infosphere-master-data-management) is a robust MDM solution designed for large enterprises that need to manage complex, distributed data environments. It offers both physical (centralized) and virtual (federated) MDM deployment options. This flexibility allows organizations to manage data in ways that fit their needs.
+
+![IBM Infosphere information governance catalog](/portfolio/altexsoft/012-master-data-management-explained-with-examples/image-8.png)
+
+IBM Infosphere information governance catalog. Source: [DBMS Tools](https://dbmstools.com/tools/ibm-infosphere-information-governance)
+
+One standout feature is its ability to analyze relationships using graph databases, which is great for customer insights or fraud detection. InfoSphere integrates with various tools in its ecosystem and third-party tools. It is used in several industries, including healthcare, automotive, financial services, and defense.
+
+### Profisee
+
+[Profisee](https://profisee.com/platform/) is an MDM solution known for its ease of use and flexibility. It is popular with mid-sized businesses and organizations looking for a quick deployment. The platform serves the manufacturing, healthcare, retail, financial services, oil and gas, life sciences, insurance, customer goods, and professional services industries.
+
+![Profisee’s customer matching interface](/portfolio/altexsoft/012-master-data-management-explained-with-examples/image-9.png)
+
+Profisee’s customer matching interface. Source: [Profisee](https://profisee.com/platform/features/)
+
+Profisee comes with 20+ integrations, including its integration with [Azure OpenAI](https://profisee.com/solutions/microsoft-enterprise/azure-openai/), which powers its AI capabilities that allow users to build complex filters with natural language prompts and parse long strings of [unstructured data](https://www.altexsoft.com/blog/unstructured-data/) into master data entities and attributes.
+
+### Informatica MDM
+
+[Informatica’s MDM solution](https://www.informatica.com/products/master-data-management.html) is one of the offerings of its larger Intelligent Data Management Cloud (IDMC) platform. The MDM solution integrates data governance, data quality, and data enrichment functionalities that help businesses get a birds-eye view of their information.
+
+![Informatica’s customer 360 interface for mastering customer data](/portfolio/altexsoft/012-master-data-management-explained-with-examples/image-10.png)
+
+Informatica’s customer 360 interface for mastering customer data. Source: [Informatica](https://www.informatica.com/blogs/three-ways-informaticas-intelligent-data-management-cloud-improves-master-data-management.html)
+
+Informatica provides multidomain MDM capabilities that give organizations a 360-degree view of business entities amid various domains. It also offers AI-powered intelligence through [Claire GPT](https://www.informatica.com/about-us/claire.html), its AI product that assists with automating data management tasks and gathering insights through natural language prompts.
+
+Informatica comes with 40+ prebuilt integrations and is targeted at higher education, financial services, insurance, and manufacturing, among other industries.
+
+### Ataccama
+
+[Ataccama](https://www.ataccama.com/platform/master-data-management) makes data management easy for everyone, including those without a technical background. It combines data governance, data quality, and MDM into one user-friendly platform, enabling quick and accurate data processing. Ataccama targets the banking, healthcare, retail, government, life sciences, telecom, and transportation industries.
+
+![PII (Personally Identifiable Information)  data quality monitoring in Ataccama’s platform](/portfolio/altexsoft/012-master-data-management-explained-with-examples/image-11.png)
+
+PII (Personally Identifiable Information)  data quality monitoring in Ataccama’s platform. Source: [Ataccama](https://www.ataccama.com/blog/what-is-data-governance)
+
+Ataccama’s AI-powered data governance and quality management features automate processes like data profiling and cleansing and provides AI-driven insights. It also comes with 120+ embedded third-party integrations, a desktop app with Windows, macOS, and Linux support, and support for REST and [GraphQL](https://www.altexsoft.com/blog/graphql-core-features-architecture-pros-and-cons/) [APIs](https://www.altexsoft.com/blog/what-is-api-definition-types-specifications-documentation/).
+
+### SAP Master Data Governance (MDG)
+
+[SAP MDM solution](https://www.sap.com/products/technology-platform/master-data-governance.html) is an MDM tool that integrates with SAP applications and is a good fit for enterprises that are already using SAP systems for other business processes.
+
+![SAP master data consolidation process](/portfolio/altexsoft/012-master-data-management-explained-with-examples/image-12.png)
+
+SAP master data consolidation process. Source: [SAP](https://www.sap.com/products/technology-platform/master-data-governance.html)
+
+SAP offers prebuilt templates for data models and workflows, has 20+ integrations with external solutions, and is tailored to industries like aerospace, construction and real estate, mining, and telecommunications.
+
+## Master data management team and stakeholders
+
+Implementing MDM is a collaborative effort that involves people from an organization's various levels and departments. Let’s explore the key roles involved in an MDM initiative and how they contribute to its success.
+
+**Executive leadership and sponsors**. C-Suite executives like the [Chief Data Officer](https://www.altexsoft.com/blog/chief-digital-officer/) (CDO), Chief Information Officer (CIO), and [Chief Technology Officer](https://www.altexsoft.com/blog/chief-technology-officer/) (CTO) secure funding, drive organizational commitment to the MDM project and provide direction by defining how MDM aligns with a company’s broader business goals.
+
+The buy-in of senior executives is needed to successfully implement MDM because it's an ongoing program that affects multiple departments and systems. They ensure that MDM is prioritized even as the business focuses on other initiatives and projects.
+
+**MDM architect**. The MDM architect designs the overall architecture and technical strategy for master data management, including the data model and [metadata management](https://www.altexsoft.com/blog/metadata-management/) approaches used. They create the blueprint for how master data will be integrated, stored, and accessed in the organization.
+
+Most of the professionals in the roles we’ve explored may be brought in to work on MDM implementation. However, they likely already have an existing focus in the organization and are not hired solely for MDM-related tasks.
+
+**Data stewards**. These professionals are responsible for the day-to-day management, [quality](https://www.altexsoft.com/blog/data-quality-management-and-tools/), and [integrity](https://www.altexsoft.com/blog/data-integrity/) of master data across an organization. They establish and enforce data governance policies, ensuring that data is accurate, consistent, and standardized.
+
+It's common for businesses to have data stewards for specific domains—product data stewards, customer data stewards, etc. It allows the company to focus on the unique requirements and challenges of each domain.
+
+**Data owners**. Data owners are responsible for the overall management and accountability of a specific data domain in the organization. You can think of them as the “CEOs” of their departments. While data stewards handle the day-to-day operations to maintain data quality, data owners define [access controls and permissions](https://www.altexsoft.com/blog/access-control-matrix-acm/), ensure its security, and are ultimately accountable for ensuring that the data is accurate and meets the organization's needs.
+
+**Data and IT professionals**. Database administrators, [data engineers](https://www.altexsoft.com/blog/what-is-data-engineer-role-skills/), [ETL developers](https://www.altexsoft.com/blog/who-is-etl-developer-role-description-process-breakdown-responsibilities-and-skills/), and other experts provide the technical backbone needed to execute an MDM program. Their responsibilities cover but are not limited to:
+
+- implementing MDM technologies and tools,
+- managing [data integration](https://www.altexsoft.com/blog/data-integration/) processes,
+- developing and maintaining [data pipelines](https://www.altexsoft.com/blog/data-pipeline-components-and-types/),
+- ensuring that master data is securely stored and optimized for performance,
+- ensuring system performance and reliability, and
+- supporting technical infrastructure.
+
+Master Data Management succeeds when the technical team and stakeholders align their efforts and collaborate through all implementation phases.

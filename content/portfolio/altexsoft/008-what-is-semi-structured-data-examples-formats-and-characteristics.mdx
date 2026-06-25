@@ -1,0 +1,178 @@
+---
+title: "What is Semi-Structured Data? Examples, Formats, and Characteristics"
+client: "AltexSoft"
+clientSlug: "altexsoft"
+originalUrl: "https://www.altexsoft.com/blog/semi-structured-data/"
+publishedAt: "2024-09-27"
+canonical: "https://www.altexsoft.com/blog/semi-structured-data/"
+excerpt: "Explore the examples, formats, and characteristics of semi-structured data. See how it differs from structured and unstructured data."
+coverImage: "/portfolio/altexsoft/008-what-is-semi-structured-data-examples-formats-and-characteristics/cover.jpg"
+tags: []
+---
+In an ideal world, data would be neatly organized, perfectly structured, and ready for analysis. But reality, as we know, is far from ideal. Data in the real world is messy, scattered across various sources and formats, and often doesn’t fit into the rigid structures of traditional databases.
+
+On one end, we have [structured data](https://www.altexsoft.com/blog/structured-unstructured-data/) that’s well-organized, easily searchable, and predictable. On the other hand is [unstructured data](https://www.altexsoft.com/blog/unstructured-data/), which goes against typical database structures and is harder to analyze.
+
+Between these two forms of data lies a middle ground — **semi-structured data** — a flexible hybrid that’s not fully structured or unstructured. In this article, we’ll explore the characteristics of semi-structured data, its formats, sources, types, and methods for effective storage. Let’s dive in.
+
+## What is semi-structured data?
+
+Semi-structured data is a form of data that doesn’t adhere to a strict tabular format like structured data but, unlike unstructured data (e.g., images or texts), has some level of organization.
+
+The “structure” in semi-structured data comes from using tags, markers, [metadata](https://www.altexsoft.com/blog/metadata-management/), or hierarchies to separate and define elements within the data. This makes it more flexible, simpler to store, and easier to analyze than unstructured data.
+
+Take JSON, a popular data format.In this format, keys like " **name**," " **age**," and " **email**" provide a basic level of organization by clearly labeling each data element. This makes it easy to understand and access specific pieces of information. For instance, one record might look like this:
+
+![Example JSON data](/portfolio/altexsoft/008-what-is-semi-structured-data-examples-formats-and-characteristics/image-1.png)
+
+However, JSON also allows for flexibility. Not all records need to have the same fields, which means you can adapt the structure as needed without breaking the data format. For example, another record might include additional fields or omit some altogether:
+
+![Sample JSON data with different fields added](/portfolio/altexsoft/008-what-is-semi-structured-data-examples-formats-and-characteristics/image-2.png)
+
+In the above example, the " **age**" field is missing, and a new property, " **preferences**," has been added.
+
+The JSON example shows semi-structured data’s ability to handle diverse and evolving data sources while providing a balance between structure and flexibility.
+
+### Semi-structured vs structured vs unstructured data
+
+Structured, unstructured, and semi-structured data share a common similarity: they’re all data. However, these forms of data have some key differences you should know. Let’s explore them.
+
+![Structured vs unstructured vs semi-structured data](/portfolio/altexsoft/008-what-is-semi-structured-data-examples-formats-and-characteristics/image-3.png)
+
+**Structured data** is the most organized form of data. It adheres to a predefined data model and is typically stored in tables with rows and columns. Each data element is stored in a specific field, and all records follow the same format, making it ideal for [relational databases](https://www.altexsoft.com/blog/comparing-database-management-systems-mysql-postgresql-mssql-server-mongodb-elasticsearch-and-others/).
+
+![Structured data example: Excel spreadsheet with data on electric vehicles](/portfolio/altexsoft/008-what-is-semi-structured-data-examples-formats-and-characteristics/image-4.png)
+
+**Unstructured data** lacks a predefined format or schema, making it more challenging to store, search, and analyze. This type of data includes text documents, images, audio, and video, which do not fit neatly into traditional database systems. Social media posts, emails, and other digital content constitute this form of data.
+
+![Unstructured data example: A LinkedIn post](/portfolio/altexsoft/008-what-is-semi-structured-data-examples-formats-and-characteristics/image-5.png)
+
+**Semi-structured data** sits between structured and unstructured data, combining some of the characteristics of both. It doesn’t fit into a rigid schema but still retains some level of organization, often using tags or metadata to separate elements. Common formats for semi-structured data include XML, JSON, and YAML. Sources of semi-structured data include configuration files, log data, RSS feeds, [API](https://www.altexsoft.com/blog/what-is-api-definition-types-specifications-documentation/) responses, web pages, IoT devices, and [NoSQL databases](https://www.altexsoft.com/blog/databases-database-management-systems/).
+
+![Semi-structured data example: XML data representing a collection of books](/portfolio/altexsoft/008-what-is-semi-structured-data-examples-formats-and-characteristics/image-6.png)
+
+## Examples and formats of semi-structured data
+
+Let’s explore some widely used formats of semi-structured data and their use cases.
+
+### NoSQL database records
+
+[NoSQL](https://www.altexsoft.com/blog/nosql-pros-cons/) database records are self-contained units of semi-structured data stored within a NoSQL database. Each document encapsulates all relevant information about an entity — user, product, transaction, etc. — in a single data object. These records can vary in structure, with some fields present in one document but absent in another, allowing you to quickly adapt to changing data needs.
+
+![Database records via the MongoDB Compass GUI](/portfolio/altexsoft/008-what-is-semi-structured-data-examples-formats-and-characteristics/image-7.png)
+
+**Use case**: NoSQL documents are ideal for various scenarios, including content management systems, IoT devices, and social media platforms.
+
+### eXtensible Markup Language (XML)
+
+XML is a markup language for encoding documents in a format that is both human-readable and machine-readable. It uses nested tags to represent the structure of the data, making it ideal for representing hierarchical information.
+
+![Sample XML data of employees in a company](/portfolio/altexsoft/008-what-is-semi-structured-data-examples-formats-and-characteristics/image-8.png)
+
+**Use case**: XML is often used in configuration files, data interchange between applications, and in [SOAP](https://www.altexsoft.com/blog/what-is-soap-formats-protocols-message-structure-and-how-soap-is-different-from-rest/) web services.
+
+### JavaScript Object Notation (JSON)
+
+JSON is one of the most widely used formats for semi-structured data. It is lightweight, human-readable, and simple for machines to parse and generate. It organizes data in key-value pairs, making it easy to understand and manipulate.
+
+![Sample JSON data of different movies in a cinema](/portfolio/altexsoft/008-what-is-semi-structured-data-examples-formats-and-characteristics/image-9.png)
+
+**Use case**: JSON is widely used in [web development](https://www.altexsoft.com/blog/mean-mern-javascript-full-stack/) for [API](https://www.altexsoft.com/blog/rest-api-design/) responses and configuration files.
+
+### Yet Another Markup Language (YAML)
+
+YAML is a human-readable data serialization standard that uses indentation and a minimalist syntax to represent data structures.
+
+![Sample YAML configuration file for an application](/portfolio/altexsoft/008-what-is-semi-structured-data-examples-formats-and-characteristics/image-10.png)
+
+**Use case**: YAML is commonly used for configuration files in [DevOps tools](https://www.altexsoft.com/blog/devops-tools/) (e.g., [Docker](https://www.altexsoft.com/blog/docker-pros-and-cons/), [Kubernetes](https://www.altexsoft.com/blog/kubernetes-pros-cons/)), continuous integration/continuous deployment ( [CI/CD](https://www.altexsoft.com/blog/cicd-tools-comparison/)) pipelines, and software [project management](https://www.altexsoft.com/whitepapers/agile-project-management-best-practices-and-methodologies/). For example, a [DevOps](https://www.altexsoft.com/blog/devops-principles-practices-and-devops-engineer-role/) engineer might use a YAML file to define the configuration of a Docker container.
+
+### Hypertext Markup Language (HTML) code
+
+HTML is a standard markup language used for creating web pages. While primarily used to structure and display web content, it can be considered semi-structured because it uses tags to organize text, images, and multimedia elements.
+
+![Sample HTML markup for a company’s “About Us” page](/portfolio/altexsoft/008-what-is-semi-structured-data-examples-formats-and-characteristics/image-11.png)
+
+Sample HTML markup of a company’s “About Us” page
+
+**Use case**: HTML is used for structuring content for web pages and applications. An organization’s “About Us” page might use HTML to structure content, images, links, and other elements.
+
+## Characteristics of semi-structured data
+
+Let’s explore the characteristics of semi-structured data to understand it in more detail.
+
+### Flexible data model
+
+Unlike structured data, semi-structured data’s flexible nature allows you to add, remove, and modify elements without having to redesign the entire [data model](https://www.altexsoft.com/blog/data-modeling/). Semi-structured data is more adaptable and can evolve over time to match changing data requirements.
+
+For example, you have an online eCommerce platform that sells various products. The initial product entry might look like this:
+
+![JSON data for an ecommerce store’s smartphone product](/portfolio/altexsoft/008-what-is-semi-structured-data-examples-formats-and-characteristics/image-12.png)
+
+JSON data for an eCommerce store’s smartphone product
+
+As the business evolves, you can decide to add a new attribute, " **customerReviews**," to store customer feedback directly within the product records:
+
+![A "customerReviews" attribute added to the smartphone’s JSON data](/portfolio/altexsoft/008-what-is-semi-structured-data-examples-formats-and-characteristics/image-13.png)
+
+A " **customerReviews**" attribute added to the smartphone’s JSON data
+
+The flexibility of semi-structured data is particularly useful in dynamic environments where data models change frequently.
+
+### Self-describing nature
+
+Semi-structured data contain tags, markers, or metadata that describe its structure and content. This means that the data itself carries information about its structure, making it easier for humans and computers to interpret. For instance, in formats like JSON and XML, each piece of data is paired with a descriptor, like " **name**": " **John Doe**." These descriptors act as metadata, providing context about what the data represents. This characteristic allows each data element to be easily interpreted without requiring schema definitions.
+
+### Irregular and incomplete data
+
+Semi-structured data is designed to handle irregular and incomplete data sets, making it ideal for real-world scenarios where not all information is available or uniform.
+
+For instance, in a database of user profiles, some users might have extensive information, like address, phone number, DOB, and age:
+
+![User profile data (in JSON) with extensive information](/portfolio/altexsoft/008-what-is-semi-structured-data-examples-formats-and-characteristics/image-14.png)
+
+On the other hand, there will also be user profiles with minimal information:
+
+![User profile data (in JSON) with minimal information](/portfolio/altexsoft/008-what-is-semi-structured-data-examples-formats-and-characteristics/image-15.png)
+
+### Hierarchical or graph-based structure
+
+Semi-structured data organizes information in a nested format, like a tree or [graph structure](https://www.altexsoft.com/blog/knowledge-graph/). This helps represent complex relationships between data elements. For example, a “ **customer**” JSON object can have an “ **orders**” element containing an array of orders. Each order can further include details such as items purchased, dates, and amounts.
+
+## Challenges and solutions in storing and analyzing semi-structured data
+
+While semi-structured data’s flexible nature makes it a great choice for data that doesn’t fit predefined models, this behavior also comes with its challenges.
+
+### Inconsistent data structure
+
+The flexibility of semi-structured data can cause inconsistencies across records. Records may have different fields, nested structures, or missing elements, making it difficult to query and analyze data uniformly. This inconsistency can complicate data processing and integration efforts, as standard queries may not fit across all records.
+
+**Solution**. One way to manage the inconsistencies is to use a schema-on-read approach. This allows you to apply a schema only when the data is read or queried. Tools like [Apache Hive](https://hive.apache.org/), [Hadoop](https://www.altexsoft.com/blog/hadoop-vs-spark/), and [AWS Athena](https://aws.amazon.com/blogs/big-data/build-a-schema-on-read-analytics-pipeline-using-amazon-athena/) support schema-on-read.
+
+<YouTube id="zASIPr4FwGM" caption="Data Storage for Analytics and Machine Learning" />
+
+### Scalability issues
+
+The lack of a fixed schema can make indexing, partitioning, and scaling semi-structured data complex. This can impact query performance and data retrieval speeds, especially as the dataset grows.
+
+**Solution**. Modern software like [Snowflake](https://www.altexsoft.com/blog/snowflake-data-warehouse-pros-cons/), with its [data lake](https://www.altexsoft.com/blog/data-lake-architecture/) and [data warehouse](https://www.altexsoft.com/blog/enterprise-data-warehouse-concepts/) capabilities, provides scalable storage for large volumes of semi-structured data. It supports various data formats and allows for schema-on-read processing, making it ideal for handling diverse data sets.
+
+_Learn more about_ _[data lakes](https://www.altexsoft.com/blog/data-lake-architecture/)_ _and how they support schema-on-read._
+
+### Querying complexities
+
+Traditional SQL may not be sufficient or efficient for querying semi-structured data’s nested composition or dealing with its varying schemas. You may need to write complex query logic that may perform poorly as data grows.
+
+**Solution**. Effective solutions include using advanced tools designed for large-scale querying of semi-structured data:
+
+- [Apache](https://www.altexsoft.com/blog/apache-spark-pros-cons/) [Spark](https://www.altexsoft.com/blog/apache-spark-pros-cons/)’s DataFrame, RDD, and [Dataset](https://www.altexsoft.com/blog/best-public-machine-learning-datasets/) APIs allow for querying of nested data structures using SQL-like syntax
+- [Apache Drill](https://drill.apache.org/docs/querying-json-files/) offers SQL querying for various formats of semi-structured data.
+- Many NoSQL databases also offer their own powerful query languages, like [MongoDB's aggregation framework](https://www.mongodb.com/developer/products/mongodb/introduction-aggregation-framework/). MongoDB also provides different types of [indexes for optimal querying](https://www.mongodb.com/docs/manual/core/indexes/index-types/).
+
+### Data validation and integrity
+
+Inconsistent data formats and varying fields can lead to data quality issues and complicate validation processes. This makes it harder to enforce [data standards](https://www.altexsoft.com/blog/data-standards-healthcare/), especially when integrating data from multiple sources.
+
+**Solution**. Deploy specialized tools like [Validio](https://validio.io/blog/how-to-validate-semi-structured-data-with-validio) that assist with validating semi-structured data. These platforms allow you to define automated validation rules that monitor [data quality](https://www.altexsoft.com/blog/data-quality-management-and-tools/) metrics, catch anomalies, and ensure consistency across datasets.
+
+_Learn about proper_ _[data quality management](https://www.altexsoft.com/blog/data-quality-management-and-tools/)_ _via our dedicated articles on_ _[data cleaning](https://www.altexsoft.com/blog/data-cleaning/)_ _and_ _[data wrangling](https://www.altexsoft.com/blog/data-wrangling/)_ _._

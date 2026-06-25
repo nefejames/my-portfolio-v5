@@ -8,3 +8,13 @@
 3. https://www.altexsoft.com/blog/data-vault-architecture/
 4. https://www.altexsoft.com/blog/housekeeping-management-software/
 5. https://www.altexsoft.com/blog/hotel-groups-chains-brands/
+6. https://www.altexsoft.com/blog/data-warehouse-architecture/
+7. https://www.altexsoft.com/blog/semi-structured-data/
+8. https://www.altexsoft.com/blog/devops-engineer/
+9. https://www.altexsoft.com/blog/numpy-pros-and-cons/
+10. https://www.altexsoft.com/blog/expressjs-pros-and-cons/
+11. https://www.altexsoft.com/blog/master-data-management-explained-with-examples/
+12. https://www.altexsoft.com/blog/market-requirements-document/
+13. https://www.altexsoft.com/blog/websockets/
+14. https://www.altexsoft.com/blog/corporate-travel-cards/
+15. https://www.altexsoft.com/blog/redis-pros-and-cons/
