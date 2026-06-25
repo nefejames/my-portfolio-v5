@@ -41,12 +41,19 @@ async function Tweet({ id }: { id: string }) {
 }
 
 // ─── YouTube embed ───────────────────────────────────────────────────────────
-// Usage: <YouTube id="dQw4w9WgXcQ" />
-function YouTube({ id }: { id: string }) {
+// Usage: <YouTube id="dQw4w9WgXcQ" caption="Optional caption" />
+function YouTube({ id, caption }: { id: string; caption?: string }) {
   return (
-    <div className="my-8 rounded-xl overflow-hidden aspect-video">
-      <YouTubeEmbed videoid={id} params="rel=0" />
-    </div>
+    <figure className="my-8">
+      <div className="rounded-xl overflow-hidden aspect-video">
+        <YouTubeEmbed videoid={id} params="rel=0" />
+      </div>
+      {caption && (
+        <figcaption className="mt-3 text-center text-sm text-[#6B7280] italic">
+          {caption}
+        </figcaption>
+      )}
+    </figure>
   )
 }
 

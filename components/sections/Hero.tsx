@@ -24,7 +24,7 @@ export default function Hero() {
             href="/portfolio"
             className="px-6 py-3 bg-[#4F46E5] text-white text-sm font-medium rounded-lg hover:bg-[#4338CA] transition-colors"
           >
-            See my work
+            See my portfolio
           </Link>
           <Link
             href="/blog"

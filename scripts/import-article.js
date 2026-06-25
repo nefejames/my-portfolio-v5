@@ -341,7 +341,15 @@ function altexsoftCleanup(markdown, videos = []) {
       const video = videos.find(
         (v) => v.name && v.name.toLowerCase() === alt.toLowerCase(),
       )
-      if (video) out.push(`<YouTube id="${video.youtubeId}" />`)
+      if (video) {
+        // Use the video title as a caption (escape quotes for the JSX attribute).
+        const caption = (video.name || alt).replace(/"/g, '&quot;')
+        out.push(
+          caption
+            ? `<YouTube id="${video.youtubeId}" caption="${caption}" />`
+            : `<YouTube id="${video.youtubeId}" />`,
+        )
+      }
       // Remember the alt so the duplicate caption line that follows is dropped.
       pendingAlt = alt || null
       continue
