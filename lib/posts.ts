@@ -15,6 +15,8 @@ export interface Post {
   excerpt: string
   tags: string[]
   coverImage?: string
+  /** When true, this post is surfaced in the homepage "Writing for my own brand" section. */
+  featured: boolean
   content: string
 }
 
@@ -39,9 +41,17 @@ export async function getAllPosts(): Promise<PostMeta[]> {
         excerpt: data.excerpt as string,
         tags: (data.tags as string[]) ?? [],
         coverImage: data.coverImage as string | undefined,
+        featured: (data.featured as boolean) ?? false,
       }
     })
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+}
+
+/** Featured posts for the homepage "Writing for my own brand" section, newest
+ *  first, capped at `limit`. Returns [] when none are featured. */
+export async function getFeaturedPosts(limit = 6): Promise<PostMeta[]> {
+  const posts = await getAllPosts()
+  return posts.filter((p) => p.featured).slice(0, limit)
 }
 
 export async function getPostBySlug(slug: string): Promise<Post | null> {
@@ -58,6 +68,7 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
     excerpt: data.excerpt as string,
     tags: (data.tags as string[]) ?? [],
     coverImage: data.coverImage as string | undefined,
+    featured: (data.featured as boolean) ?? false,
     content,
   }
 }

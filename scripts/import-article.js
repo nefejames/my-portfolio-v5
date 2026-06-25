@@ -231,6 +231,144 @@ async function downloadImage(url, destDir, index, contentTypeHint) {
   return fileName
 }
 
+// ─── schema.org video extraction ─────────────────────────────────────────────
+// Sites like AltexSoft lazy-load YouTube as a thumbnail + play-button image, so
+// the scraped markdown has no youtube.com URL to convert — but the page's
+// schema.org JSON-LD carries the real embed URL. Parse it to recover
+// { name, youtubeId } pairs; altexsoftCleanup matches them back to the
+// thumbnails (by video name) and swaps in <YouTube> tags.
+function collectVideoObjects(node, acc) {
+  if (!node || typeof node !== 'object') return
+  if (Array.isArray(node)) {
+    for (const item of node) collectVideoObjects(item, acc)
+    return
+  }
+  const type = node['@type']
+  const isVideo =
+    type === 'VideoObject' || (Array.isArray(type) && type.includes('VideoObject'))
+  if (isVideo) {
+    const url = node.embedUrl || node.contentUrl || node.url || ''
+    const id = youTubeId(typeof url === 'string' ? url : '')
+    if (id) acc.push({ name: String(node.name || '').trim(), youtubeId: id })
+  }
+  // Recurse into nested containers (@graph, video, hasPart, …) and any values.
+  for (const key of Object.keys(node)) {
+    if (key === '@type' || key === 'name') continue
+    collectVideoObjects(node[key], acc)
+  }
+}
+
+function extractSchemaVideos(html) {
+  if (!html) return []
+  const videos = []
+  const scriptRe = /<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi
+  let m
+  while ((m = scriptRe.exec(html)) !== null) {
+    try {
+      collectVideoObjects(JSON.parse(m[1].trim()), videos)
+    } catch {
+      /* skip malformed JSON-LD blocks */
+    }
+  }
+  const seen = new Set()
+  return videos.filter((v) => v.youtubeId && !seen.has(v.youtubeId) && seen.add(v.youtubeId))
+}
+
+// ─── AltexSoft cleanup ────────────────────────────────────────────────────────
+// AltexSoft's pages wrap the article body in template chrome that FireCrawl's
+// onlyMainContent doesn't fully strip. This removes that chrome so an AltexSoft
+// import comes out clean automatically. It runs ONLY for `--client altexsoft`
+// (see importDocument). Each step is isolated and commented so steps can be
+// added or removed easily as their template changes.
+function altexsoftCleanup(markdown, videos = []) {
+  let lines = markdown.split('\n')
+
+  // Step 1 — Drop leading chrome (featured image, duplicate H1, author headshot,
+  // byline, "X min read / category / Published / No comments" bullets) by cutting
+  // everything up to and including the "Share" bar that precedes the body.
+  const shareIdx = lines.findIndex((l) => l.trim() === 'Share')
+  if (shareIdx !== -1) lines = lines.slice(shareIdx + 1)
+
+  // Step 2 — Drop trailing chrome (author bio, "become a contributor" CTA, and
+  // the "Good and the Bad" series footer). Cut from the earliest trailing marker:
+  // the author-bio image (alt contains "bio"), or either footer phrase.
+  const trailingMarkers = [
+    (l) => /!\[[^\]]*bio[^\]]*\]\(/i.test(l), // author bio image
+    (l) => /become a contributor/i.test(l),
+    (l) => /This post is a part of/i.test(l),
+  ]
+  let cutAt = -1
+  lines.forEach((l, i) => {
+    if (cutAt === -1 && trailingMarkers.some((test) => test(l))) cutAt = i
+  })
+  if (cutAt !== -1) lines = lines.slice(0, cutAt)
+
+  // Step 3 — Remove the "Related Articles" sidebar: the heading and everything
+  // until the next H2 (## ...).
+  const relStart = lines.findIndex((l) => /^##\s+Related Articles/i.test(l))
+  if (relStart !== -1) {
+    let relEnd = lines.findIndex((l, i) => i > relStart && /^##\s+/.test(l))
+    if (relEnd === -1) relEnd = lines.length
+    lines.splice(relStart, relEnd - relStart)
+  }
+
+  // Step 4 — Remove the redundant "See Also" link box: the heading plus the
+  // bullet-list/blank lines that immediately follow it.
+  const seeAlso = lines.findIndex((l) => /^###\s+See Also/i.test(l))
+  if (seeAlso !== -1) {
+    let end = seeAlso + 1
+    while (end < lines.length && (lines[end].trim() === '' || lines[end].trimStart().startsWith('- ['))) {
+      end++
+    }
+    lines.splice(seeAlso, end - seeAlso)
+  }
+
+  // Steps 5 & 6 — Remove embedded-video widgets and duplicate plain-text captions
+  // in one pass. AltexSoft repeats each image's caption as a standalone paragraph
+  // right after the image; the alt already renders as the <figcaption>, so the
+  // bare-text copy is dropped. Video widgets (a thumbnail followed by a
+  // "PlayButton" SVG on one line) are removed too — and since they also carry a
+  // duplicate caption, we track the thumbnail's alt so that caption is dropped.
+  const trailingImageAltRe = /!\[([^\]]+)\]\([^)]*\)\s*$/ // image at end of line
+  const firstImageAltRe = /!\[([^\]]*)\]\([^)]*\)/ // first image on a line
+  const out = []
+  let pendingAlt = null
+  for (const line of lines) {
+    if (/!\[PlayButton\]/i.test(line)) {
+      // Video widget. The first image's alt is the video title — match it to a
+      // schema.org video and swap in a <YouTube> tag; otherwise just drop it.
+      const alt = (line.match(firstImageAltRe) || [, ''])[1].trim()
+      const video = videos.find(
+        (v) => v.name && v.name.toLowerCase() === alt.toLowerCase(),
+      )
+      if (video) out.push(`<YouTube id="${video.youtubeId}" />`)
+      // Remember the alt so the duplicate caption line that follows is dropped.
+      pendingAlt = alt || null
+      continue
+    }
+    const m = line.match(trailingImageAltRe)
+    if (m) {
+      pendingAlt = m[1].trim()
+      out.push(line)
+      continue
+    }
+    if (line.trim() === '') {
+      out.push(line)
+      continue // keep blank lines between an image and its caption
+    }
+    if (pendingAlt && line.trim() === pendingAlt) {
+      pendingAlt = null
+      continue // drop the duplicate caption line
+    }
+    pendingAlt = null
+    out.push(line)
+  }
+  lines = out
+
+  // Step 7 — Collapse 3+ blank lines to a single blank line and trim.
+  return lines.join('\n').replace(/\n{3,}/g, '\n\n').trim()
+}
+
 // ─── Core: import one scraped document ────────────────────────────────────────
 async function importDocument(doc, clientSlug, sourceUrl) {
   const meta = doc.metadata || {}
@@ -271,9 +409,18 @@ async function importDocument(doc, clientSlug, sourceUrl) {
   const imageDestDir = path.join(PUBLIC_DIR, clientSlug, articleFolder)
   const publicBase = `/portfolio/${clientSlug}/${articleFolder}`
 
+  // Client-specific cleanup. AltexSoft pages carry template chrome that
+  // onlyMainContent leaves behind; strip it automatically and restore any
+  // YouTube embeds found in the page's schema.org data. Scoped to AltexSoft —
+  // other clients pass through untouched.
+  const cleanedMarkdown =
+    clientSlug === 'altexsoft'
+      ? altexsoftCleanup(markdown, extractSchemaVideos(doc.rawHtml || doc.html || ''))
+      : markdown
+
   // Convert standalone tweet/YouTube/LinkedIn links into component tags first,
   // so embed thumbnails aren't mistaken for downloadable article images.
-  const { content: contentWithEmbeds, count: embedCount } = convertEmbeds(markdown)
+  const { content: contentWithEmbeds, count: embedCount } = convertEmbeds(cleanedMarkdown)
 
   // Download images and rewrite the markdown to local absolute URLs.
   let content = contentWithEmbeds
@@ -344,7 +491,10 @@ async function scrapeAndImport(client, clientSlug, url) {
   console.log(`\n→ Scraping ${url}`)
   let doc
   try {
-    doc = await client.scrape(url, { formats: ['markdown'], onlyMainContent: true })
+    doc = await client.scrape(url, {
+      formats: ['markdown', 'rawHtml'],
+      onlyMainContent: true,
+    })
   } catch (err) {
     console.error(`  ✗ FireCrawl error: ${err.message} — skipping`)
     return
@@ -381,7 +531,7 @@ async function runCrawl(client, clientSlug, authorUrl) {
   try {
     job = await client.crawl(authorUrl, {
       limit: 100,
-      scrapeOptions: { formats: ['markdown'], onlyMainContent: true },
+      scrapeOptions: { formats: ['markdown', 'rawHtml'], onlyMainContent: true },
     })
   } catch (err) {
     console.error(`✗ Crawl failed: ${err.message}`)
@@ -441,4 +591,10 @@ if (require.main === module) {
   })
 }
 
-module.exports = { convertEmbeds, embedTagForUrl, standaloneUrl }
+module.exports = {
+  convertEmbeds,
+  embedTagForUrl,
+  standaloneUrl,
+  altexsoftCleanup,
+  extractSchemaVideos,
+}

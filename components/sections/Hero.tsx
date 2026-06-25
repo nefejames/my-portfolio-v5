@@ -20,12 +20,12 @@ export default function Hero() {
         </p>
 
         <div className="flex flex-wrap gap-4">
-          <a
-            href="#work"
+          <Link
+            href="/portfolio"
             className="px-6 py-3 bg-[#4F46E5] text-white text-sm font-medium rounded-lg hover:bg-[#4338CA] transition-colors"
           >
             See my work
-          </a>
+          </Link>
           <Link
             href="/blog"
             className="px-6 py-3 border border-[#E5E7EB] text-[#111827] text-sm font-medium rounded-lg hover:border-[#4F46E5] hover:text-[#4F46E5] transition-colors"

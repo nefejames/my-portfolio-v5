@@ -28,6 +28,8 @@ export interface PortfolioArticle {
   excerpt: string
   coverImage?: string
   tags: string[]
+  /** When true, this article is surfaced in the homepage "Selected work" section. */
+  featured: boolean
   content: string
 }
 
@@ -71,6 +73,7 @@ function readArticle(clientSlug: string, file: string): PortfolioArticle {
     excerpt: data.excerpt as string,
     coverImage: data.coverImage as string | undefined,
     tags: (data.tags as string[]) ?? [],
+    featured: (data.featured as boolean) ?? false,
     content,
   }
 }
@@ -96,6 +99,14 @@ export async function getAllPortfolioArticles(): Promise<PortfolioMeta[]> {
   return metas.sort(
     (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
   )
+}
+
+/** Featured articles for the homepage "Selected work" section, newest first,
+ *  capped at `limit`. Returns [] when nothing is featured — callers render
+ *  an empty section gracefully rather than filling with placeholders. */
+export async function getFeaturedPortfolioArticles(limit = 6): Promise<PortfolioMeta[]> {
+  const articles = await getAllPortfolioArticles()
+  return articles.filter((a) => a.featured).slice(0, limit)
 }
 
 /** Distinct clients present in the content folder, with display names. */

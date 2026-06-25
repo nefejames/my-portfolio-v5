@@ -1,10 +1,11 @@
 import Link from 'next/link'
-import { getAllPosts } from '@/lib/posts'
+import { getFeaturedPosts } from '@/lib/posts'
 import { formatDate } from '@/lib/utils'
 
 export default async function BlogPreview() {
-  const posts = await getAllPosts()
-  const recent = posts.slice(0, 3)
+  // Curated per-post: add `featured: true` to a blog post's frontmatter to show
+  // it here. Max 6; the grid is omitted entirely when nothing is featured yet.
+  const featured = await getFeaturedPosts(6)
 
   return (
     <section className="py-24">
@@ -26,11 +27,9 @@ export default async function BlogPreview() {
           </Link>
         </div>
 
-        {recent.length === 0 ? (
-          <p className="text-[#6B7280]">No posts yet — check back soon.</p>
-        ) : (
+        {featured.length > 0 && (
           <div className="grid md:grid-cols-3 gap-6">
-            {recent.map((post) => (
+            {featured.map((post) => (
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
