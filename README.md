@@ -95,9 +95,16 @@ restores YouTube embeds from schema.org video data).
 - [ ] **Per-client import cleanup.** Only `altexsoftCleanup()` exists. Other
       publishers add their own chrome (e.g. Prismic callouts, promos, related
       blocks) and need a dedicated `<client>Cleanup()` — don't reuse AltexSoft's.
-- [ ] **AltexSoft import dates.** AltexSoft pages expose no machine-readable
-      date, so imports default `publishedAt` to today and need a manual fix
-      (or parse the in-body "Published:" line).
+- [ ] **Further image optimization.** Article images already serve sized WebP
+      variants via `next/image` + a `sizes` hint. If pages still feel slow,
+      consider (in rough priority): (1) enable **AVIF** — add
+      `images: { formats: ['image/avif', 'image/webp'] }` to `next.config.ts`
+      (~20–30% smaller, no new dependency, slightly slower first-time encode);
+      (2) **blur placeholders** for nicer perceived loading — needs a build-time
+      step with `sharp`/`plaiceholder` (adds a dependency); (3) drop image
+      **quality** 75→65 (`quality={65}` on `next/image`) for smaller files.
+      Note: most first-scroll lag is Vercel's one-time on-demand optimization —
+      it's cached at the edge after the first view, so warm pages are fast.
 
 ## Deploy
 
