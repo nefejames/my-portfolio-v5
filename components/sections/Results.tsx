@@ -23,20 +23,20 @@ const metrics = [
 
 export default function Results() {
   return (
-    <section className="py-24 bg-[var(--text)]">
+    <section className="py-24 bg-[var(--bg)]">
       <div className="max-w-5xl mx-auto px-6">
         <p className="text-xs font-semibold tracking-widest uppercase text-[var(--accent-text)] mb-4">
           Results
         </p>
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-16">
+        <h2 className="text-3xl md:text-4xl font-bold text-[var(--text)] mb-16">
           Content that moves numbers
         </h2>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {metrics.map((m) => (
             <div key={m.stat} className="flex flex-col gap-2">
-              <span className="text-5xl font-bold text-white">{m.stat}</span>
-              <span className="text-sm font-semibold text-[var(--border)]">{m.label}</span>
+              <span className="text-5xl font-bold text-[var(--accent-text)]">{m.stat}</span>
+              <span className="text-sm font-semibold text-[var(--text)]">{m.label}</span>
               <p className="text-xs text-[var(--muted)] leading-relaxed mt-1">{m.context}</p>
             </div>
           ))}

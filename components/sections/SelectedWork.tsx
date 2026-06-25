@@ -7,7 +7,7 @@ export default async function SelectedWork() {
   const featured = await getFeaturedPortfolioArticles(6)
 
   return (
-    <section id="work" className="py-24 bg-[var(--surface-2)]">
+    <section id="work" className="py-24 bg-[var(--bg)]">
       <div className="max-w-5xl mx-auto px-6">
         <p className="text-xs font-semibold tracking-widest uppercase text-[var(--accent-text)] mb-4">
           Selected work

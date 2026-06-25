@@ -1,6 +1,6 @@
 export default function Contact() {
   return (
-    <section id="contact" className="py-24 bg-[var(--accent-subtle)]">
+    <section id="contact" className="py-24 bg-[var(--bg)]">
       <div className="max-w-5xl mx-auto px-6 text-center">
         <p className="text-xs font-semibold tracking-widest uppercase text-[var(--accent-text)] mb-4">
           Get in touch
