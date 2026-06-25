@@ -5,6 +5,7 @@ import { getAllPosts, getPostBySlug, formatDate } from '@/lib/posts'
 import { extractToc } from '@/lib/toc'
 import MdxContent from '@/components/blog/MdxContent'
 import TableOfContents from '@/components/blog/TableOfContents'
+import MobileTableOfContents from '@/components/blog/MobileTableOfContents'
 import ScrollProgress from '@/components/blog/ScrollProgress'
 
 type Props = { params: Promise<{ slug: string }> }
@@ -59,6 +60,8 @@ export default async function BlogPostPage({ params }: Props) {
               </h1>
               <time className="text-sm text-[#6B7280]">{formatDate(post.date)}</time>
             </header>
+
+            <MobileTableOfContents items={toc} />
 
             <article className="prose prose-slate prose-lg max-w-none prose-headings:font-bold prose-headings:text-[#111827] prose-headings:scroll-mt-24 prose-a:text-[#4F46E5] prose-a:no-underline hover:prose-a:underline prose-code:text-[#4F46E5] prose-code:bg-[#EEF2FF] prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none prose-img:rounded-xl">
               <MdxContent content={post.content} />

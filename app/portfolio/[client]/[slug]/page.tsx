@@ -9,6 +9,7 @@ import {
 import { extractToc } from '@/lib/toc'
 import MdxContent from '@/components/blog/MdxContent'
 import TableOfContents from '@/components/blog/TableOfContents'
+import MobileTableOfContents from '@/components/blog/MobileTableOfContents'
 import ScrollProgress from '@/components/blog/ScrollProgress'
 
 type Props = { params: Promise<{ client: string; slug: string }> }
@@ -88,6 +89,8 @@ export default async function PortfolioArticlePage({ params }: Props) {
                 </a>
               </div>
             </header>
+
+            <MobileTableOfContents items={toc} />
 
             <article className="prose prose-slate prose-lg max-w-none prose-headings:font-bold prose-headings:text-[#111827] prose-headings:scroll-mt-24 prose-a:text-[#4F46E5] prose-a:no-underline hover:prose-a:underline prose-code:text-[#4F46E5] prose-code:bg-[#EEF2FF] prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none prose-img:rounded-xl">
               <MdxContent content={article.content} />

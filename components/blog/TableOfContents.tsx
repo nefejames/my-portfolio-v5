@@ -1,32 +1,10 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import type { TocItem } from '@/lib/toc'
+import { useActiveHeading } from './useActiveHeading'
 
 export default function TableOfContents({ items }: { items: TocItem[] }) {
-  const [activeId, setActiveId] = useState<string>('')
-
-  useEffect(() => {
-    if (items.length === 0) return
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id)
-          }
-        }
-      },
-      { rootMargin: '-80px 0% -70% 0%' }
-    )
-
-    items.forEach(({ id }) => {
-      const el = document.getElementById(id)
-      if (el) observer.observe(el)
-    })
-
-    return () => observer.disconnect()
-  }, [items])
+  const activeId = useActiveHeading(items)
 
   if (items.length === 0) return null
 
