@@ -53,7 +53,7 @@ export default function PortfolioList({
                   <img
                     src={client.logo}
                     alt={client.name}
-                    className={`h-5 w-auto object-contain transition-opacity ${
+                    className={`h-5 w-auto object-contain brightness-0 invert transition-opacity ${
                       active ? 'opacity-100' : 'opacity-60'
                     }`}
                   />

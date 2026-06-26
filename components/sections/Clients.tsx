@@ -16,7 +16,8 @@ export default function Clients() {
                 key={slug}
                 src={logo}
                 alt={name}
-                className="h-7 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
+                // Force the wordmark to white for a uniform, legible logo wall on dark.
+                className="h-7 w-auto object-contain brightness-0 invert opacity-70 hover:opacity-100 transition-opacity"
               />
             ) : (
               <span
