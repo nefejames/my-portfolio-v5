@@ -7,7 +7,7 @@ import PortfolioCard from './PortfolioCard'
 const ALL = 'All'
 type SortOrder = 'newest' | 'oldest'
 
-type Client = { slug: string; name: string }
+type Client = { slug: string; name: string; logo?: string | null }
 
 export default function PortfolioList({
   articles,
@@ -33,20 +33,42 @@ export default function PortfolioList({
     <div>
       {/* Client filters + sort */}
       <div className="flex flex-wrap items-center justify-between gap-4 mb-10">
-        <div className="flex flex-wrap gap-2">
-          {[{ slug: ALL, name: ALL }, ...clients].map((client) => (
-            <button
-              key={client.slug}
-              onClick={() => setActiveClient(client.slug)}
-              className={`text-sm font-medium px-4 py-1.5 rounded-full border transition-colors ${
-                activeClient === client.slug
-                  ? 'bg-[var(--accent)] text-white border-[var(--accent-text)]'
-                  : 'border-[var(--border)] text-[var(--muted)] hover:border-[var(--accent-text)] hover:text-[var(--accent-text)]'
-              }`}
-            >
-              {client.name}
-            </button>
-          ))}
+        <div className="flex flex-wrap items-center gap-2">
+          {[{ slug: ALL, name: ALL, logo: null } as Client, ...clients].map((client) => {
+            const active = activeClient === client.slug
+            return (
+              <button
+                key={client.slug}
+                onClick={() => setActiveClient(client.slug)}
+                aria-pressed={active}
+                aria-label={client.name}
+                className={`flex items-center px-4 py-1.5 rounded-full border transition-all ${
+                  active
+                    ? 'border-[var(--accent-text)] bg-[var(--surface)]'
+                    : 'border-[var(--border)] hover:border-[var(--accent-text)]'
+                }`}
+              >
+                {client.logo ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={client.logo}
+                    alt={client.name}
+                    className={`h-5 w-auto object-contain transition-opacity ${
+                      active ? 'opacity-100' : 'opacity-60'
+                    }`}
+                  />
+                ) : (
+                  <span
+                    className={`text-sm font-medium ${
+                      active ? 'text-[var(--accent-text)]' : 'text-[var(--muted)]'
+                    }`}
+                  >
+                    {client.name}
+                  </span>
+                )}
+              </button>
+            )
+          })}
         </div>
 
         <div className="flex items-center gap-2">

@@ -2,6 +2,7 @@ import 'server-only'
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
+import { clientLogo } from './clients'
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 // Portfolio articles are client work imported from external publications. They
@@ -109,15 +110,18 @@ export async function getFeaturedPortfolioArticles(limit = 6): Promise<Portfolio
   return articles.filter((a) => a.featured).slice(0, limit)
 }
 
-/** Distinct clients present in the content folder, with display names. */
-export async function getPortfolioClients(): Promise<{ slug: string; name: string }[]> {
+/** Distinct clients present in the content folder, with display names and the
+ *  wordmark logo path when an asset exists (else null → UI falls back to text). */
+export async function getPortfolioClients(): Promise<
+  { slug: string; name: string; logo: string | null }[]
+> {
   const articles = await getAllPortfolioArticles()
   const map = new Map<string, string>()
   for (const a of articles) {
     if (!map.has(a.clientSlug)) map.set(a.clientSlug, a.client)
   }
-  return Array.from(map, ([slug, name]) => ({ slug, name })).sort((a, b) =>
-    a.name.localeCompare(b.name),
+  return Array.from(map, ([slug, name]) => ({ slug, name, logo: clientLogo(slug) })).sort(
+    (a, b) => a.name.localeCompare(b.name),
   )
 }
 
