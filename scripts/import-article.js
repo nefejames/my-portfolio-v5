@@ -31,6 +31,7 @@ const CLIENT_NAMES = {
   prismic: 'Prismic',
   logrocket: 'LogRocket',
   dojah: 'Dojah',
+  'smashing-magazine': 'Smashing Magazine',
 }
 
 // ─── .env.local loader (no extra dependency) ──────────────────────────────────
@@ -486,6 +487,52 @@ function sanitizeMdx(markdown) {
     .join('\n')
 }
 
+// ─── Smashing Magazine cleanup ────────────────────────────────────────────────
+// Smashing wraps the article in template chrome: a top block (skip links,
+// read-time, category, share, author bio, newsletter signup, promo ads) and a
+// footer ("Further Reading" to other Smashing posts, editorial credit,
+// newsletter/workshop/books promos). Strip both while preserving the author's
+// own content (including any "Resources" section, which sits above the footer).
+// Runs ONLY for `--client smashing-magazine`.
+function smashingCleanup(markdown) {
+  let lines = markdown.split('\n')
+
+  // Leading chrome: cut from the top through the newsletter + promo-ads block.
+  // The real article starts at the first prose paragraph after it.
+  const nl = lines.findIndex((l) => /^####\s+Email Newsletter/i.test(l))
+  if (nl !== -1) {
+    let i = nl + 1
+    const isLeadChrome = (l) => {
+      const t = l.trim()
+      return (
+        t === '' ||
+        t.startsWith('-') || // promo list items
+        t.startsWith('[') ||
+        t.startsWith('![') ||
+        t.startsWith('#') ||
+        t.startsWith('_') ||
+        /trusted by|your \(smashing\) email|weekly tips/i.test(t)
+      )
+    }
+    while (i < lines.length && isLeadChrome(lines[i])) i++
+    lines = lines.slice(i)
+  }
+
+  // Trailing chrome: cut from the earliest footer marker to the end.
+  const footerMarkers = [
+    (l) => /^###\s+Further Reading/i.test(l),
+    (l) => /!\[Smashing Editorial\]/i.test(l),
+    (l) => /!\[Smashing Newsletter\]/i.test(l),
+  ]
+  let cut = -1
+  lines.forEach((l, i) => {
+    if (cut === -1 && footerMarkers.some((m) => m(l))) cut = i
+  })
+  if (cut !== -1) lines = lines.slice(0, cut)
+
+  return lines.join('\n').replace(/\n{3,}/g, '\n\n').trim()
+}
+
 // ─── Core: import one scraped document ────────────────────────────────────────
 async function importDocument(doc, clientSlug, sourceUrl) {
   const meta = doc.metadata || {}
@@ -497,12 +544,16 @@ async function importDocument(doc, clientSlug, sourceUrl) {
 
   // Prefer the schema.org headline (the real, full article title) over the
   // SEO <title>/og:title, which AltexSoft truncates to ~60 chars.
-  const title = (
+  let title = (
     extractSchemaHeadline(doc.rawHtml || doc.html || '') ||
     meta.title ||
     meta.ogTitle ||
     'Untitled'
   ).trim()
+  // Smashing's <title>/og:title append " — Smashing Magazine"; drop the suffix.
+  if (clientSlug === 'smashing-magazine') {
+    title = title.replace(/\s+—\s+Smashing Magazine$/i, '').trim()
+  }
   const originalUrl = meta.sourceURL || meta.url || sourceUrl
   const publishedAt =
     toIsoDate(meta.publishedTime) ||
@@ -540,10 +591,12 @@ async function importDocument(doc, clientSlug, sourceUrl) {
   // onlyMainContent leaves behind; strip it automatically and restore any
   // YouTube embeds found in the page's schema.org data. Scoped to AltexSoft —
   // other clients pass through untouched.
-  const cleanedMarkdown =
-    clientSlug === 'altexsoft'
-      ? altexsoftCleanup(markdown, extractSchemaVideos(doc.rawHtml || doc.html || ''))
-      : markdown
+  let cleanedMarkdown = markdown
+  if (clientSlug === 'altexsoft') {
+    cleanedMarkdown = altexsoftCleanup(markdown, extractSchemaVideos(doc.rawHtml || doc.html || ''))
+  } else if (clientSlug === 'smashing-magazine') {
+    cleanedMarkdown = smashingCleanup(markdown)
+  }
 
   // Convert standalone tweet/YouTube/LinkedIn links into component tags first,
   // so embed thumbnails aren't mistaken for downloadable article images.
