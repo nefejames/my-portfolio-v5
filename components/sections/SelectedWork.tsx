@@ -17,7 +17,7 @@ export default async function SelectedWork() {
         </h2>
 
         {featured.length > 0 && (
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-3 gap-6">
             {featured.map((article) => (
               <PortfolioCard
                 key={`${article.clientSlug}/${article.slug}`}
