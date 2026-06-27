@@ -28,7 +28,6 @@ export default function PortfolioCard({ article }: { article: PortfolioMeta }) {
         <h2 className="text-base font-semibold text-[var(--text)] group-hover:text-[var(--accent-text)] transition-colors leading-snug">
           {article.title}
         </h2>
-        <p className="text-sm text-[var(--muted)] leading-relaxed">{article.excerpt}</p>
         <span className="text-xs font-medium text-[var(--accent-text)] mt-auto pt-2">Read article →</span>
       </div>
     </Link>

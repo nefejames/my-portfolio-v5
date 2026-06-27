@@ -39,8 +39,7 @@ export default async function BlogPreview() {
                 <h3 className="text-base font-semibold text-[var(--text)] group-hover:text-[var(--accent-text)] transition-colors leading-snug">
                   {post.title}
                 </h3>
-                <p className="text-sm text-[var(--muted)] leading-relaxed flex-1">{post.excerpt}</p>
-                <div className="flex flex-wrap gap-2 pt-2">
+                <div className="flex flex-wrap gap-2 pt-2 mt-auto">
                   {post.tags.slice(0, 2).map((tag) => (
                     <span
                       key={tag}
