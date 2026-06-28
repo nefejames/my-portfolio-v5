@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import WritingAnimation from '@/components/hero/WritingAnimation'
 
 export default function Hero() {
   return (
@@ -9,9 +10,7 @@ export default function Hero() {
         </span>
 
         <h1 className="text-5xl md:text-7xl font-bold text-[var(--text)] leading-[1.05] tracking-tight mb-8">
-          Emadamerho-
-          <br />
-          Atori Nefe
+          <WritingAnimation />
         </h1>
 
         <p className="text-xl md:text-2xl text-[var(--muted)] leading-relaxed max-w-2xl mb-12">
