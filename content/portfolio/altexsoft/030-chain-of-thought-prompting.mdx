@@ -1,0 +1,126 @@
+---
+title: "Chain-of-Thought (CoT): Prompting and LLM Reasoning Explained with Examples"
+client: "AltexSoft"
+clientSlug: "altexsoft"
+originalUrl: "https://www.altexsoft.com/blog/chain-of-thought-prompting/"
+publishedAt: "2025-09-17"
+canonical: "https://www.altexsoft.com/blog/chain-of-thought-prompting/"
+excerpt: "Chain of thought prompting helps AI reason step by step. Learn how it works and why it improves problem-solving."
+coverImage: "/portfolio/altexsoft/030-chain-of-thought-prompting/cover.jpg"
+tags: []
+---
+Think about a time you faced a tough problem, like a tricky math equation or a bug in your code. It may have felt overwhelming since you couldn’t figure out how to approach the issue. But once you broke it into smaller steps, each part became easier to handle, and the answer started coming together. That process of working step by step is what turns confusion into clarity—and it’s the same idea behind the chain-of-thought (CoT) process for [large language models (LLMs)](https://www.altexsoft.com/blog/language-models-gpt/).
+
+In this article, we will learn how CoT and its prompting works, explore some examples, and see how it helps [generative artificial intelligence (AI) models](https://www.altexsoft.com/blog/generative-ai/) reason through problems, leading to more accurate results.
+
+<YouTube id="ETMdk-b1Z94" caption="How Generative AI Works" />
+
+How generative AI works
+
+## What is chain-of-thought prompting?
+
+Chain-of-thought prompting is a [prompt engineering](https://www.altexsoft.com/blog/prompt-engineering/) technique that guides an AI model through a structured reasoning process before arriving at a final answer. This method breaks the problem down into a series of manageable steps, allowing the AI to work through them in the same way a person might write out their thoughts on paper.
+
+Here’s how it looks from the user’s end.
+
+- You tell the model to explain its steps or to "show your work."
+- The model generates a sequence of short reasoning steps that lead to the final answer.
+- Those steps make the model’s logic visible and often help it reach a more accurate result.
+
+![ChatGPT showing the reasoning steps it took to solve an arithmetic problem](/portfolio/altexsoft/030-chain-of-thought-prompting/image-1.png)
+
+Chain-of-thought prompting matters because it enhances a model’s accuracy and performance. It is particularly useful for tasks that require multistep reasoning, such as solving math word problems or logic puzzles. Additionally, it is applied in areas like planning, coding, and debugging, where breaking down intermediate steps enables the model to produce clearer and more reliable outcomes.
+
+![Claude showing its reasoning steps for a logic puzzle](/portfolio/altexsoft/030-chain-of-thought-prompting/image-2.png)
+
+How exactly do CoT prompts work and affect a model internally? Researchers have provided answers to the question of what happens when you trigger a reasoning process and why it leads to better outcomes.
+
+**Expanded working context.** By prompting the model for step-by-step reasoning, you give it more room to think. Instead of jumping directly from the question to a quick answer, the model generates intermediate steps along the way. Each step becomes part of the [context](https://www.altexsoft.com/blog/agentic-context-engineering/) for producing the next one. This creates a "chain" where each new thought builds logically on the last.
+
+**Strengthened self-attention.** The self-attention mechanism enables the model to weigh the importance of one token relative to others in the sequence. With intermediate reasoning steps, the model can capture dependencies and relationships between tokens better. It’s less likely to miss crucial details or make logical leaps that lead to incorrect conclusions.
+
+**Self-correcting abilities.** Working in stages gives the model opportunities to catch and fix mistakes along the way. This structured approach acts as an internal error-checking mechanism.
+
+**Allocating more resources to a problem.** CoT allocates more computation to a problem. Just as a person might need more time to think through a difficult question, a more complex prompt makes a model use more processing time. The prompt also acts as a guide that helps the model activate the relevant domain knowledge it already possesses.
+
+## Chain-of-thought prompting examples and types
+
+Not all chain-of-thought prompts look the same. Over time, researchers and [prompt engineers](https://www.altexsoft.com/blog/prompt-engineer/) have developed several styles depending on the task and the level of reasoning needed. Here are some of the main ones and their examples.
+
+**Few-shot chain-of-thought**. Rather than simply telling the model what to do, you provide examples that include both reasoning steps and answers. This "demonstration" of the desired approach is especially useful when you want the LLM to adopt a specific reasoning style or when the problem is complex and examples can lead to more reliable and accurate outputs.
+
+![An example of a few-shot CoT prompt in action](/portfolio/altexsoft/030-chain-of-thought-prompting/image-3.png)
+
+**Least-to-most chain-of-thought**. Here, you instruct the model to begin with the simplest version of the problem and then build up gradually to the full solution. This mirrors how people often learn and solve challenges—starting with basics before handling a complex case. It's excellent for big, layered problems where breaking them into smaller steps helps stay on track.
+
+![An example of a least-to-most CoT prompt in action](/portfolio/altexsoft/030-chain-of-thought-prompting/image-4.png)
+
+**Zero-shot chain-of-thought**. In this approach, you don’t provide examples; instead, you give a direct command like "Let’s think step by step." This method is best for relatively simple tasks, such as basic math problems or short logic puzzles, where the model can generate a reasoning process without needing prior examples.
+
+![An example of a zero-shot CoT prompt in action](/portfolio/altexsoft/030-chain-of-thought-prompting/image-5.png)
+
+**Self-consistency chain-of-thought**. This technique involves asking the model to solve the same problem multiple times using step-by-step reasoning, compare the answers, and select the most consistent output. The prompt reduces errors on problems with tricky steps and works especially well when having only one reasoning path might lead to mistakes.
+
+![An example of a self-consistency CoT prompt in action](/portfolio/altexsoft/030-chain-of-thought-prompting/image-6.png)
+
+## From prompting to reasoning models
+
+Chain-of-thought has evolved beyond a prompt technique to become a standard feature in many [LLMs](https://www.altexsoft.com/blog/llm-api-integration/). Some AI products expose their reasoning traces to end-users, while others run the CoT internally and only present the final, polished answer. Regardless of the approach, the goal is to deliver the most accurate and logically sound response.
+
+This is achieved through additional fine-tuning. Models are trained with [reinforcement learning](https://www.altexsoft.com/blog/reinforcement-learning-explained-overview-comparisons-and-applications-in-business/) systems that not only check if the final answer is correct but also assess the quality of the reasoning process itself. Some methods reward each reasoning step, others focus on rewarding correct outcomes, and some utilize simple rule-based checks to ensure accuracy.
+
+![Comparison of reasoning-first capabilities across LLM providers](/portfolio/altexsoft/030-chain-of-thought-prompting/image-7.png)
+
+To strengthen reasoning further, these models are trained to generate longer chains of thought, explore multiple solution paths, or use search-based methods to backtrack and refine their answers. The result is reasoning that feels intrinsic rather than externally prompted.
+
+Here are some popular LLM providers that offer reasoning models.
+
+### Anthropic
+
+Anthropic’s Claude [chatbot](https://www.altexsoft.com/blog/a-technological-guide-to-building-an-ai-chatbot/) UI features an [extended thinking mode](https://www.anthropic.com/news/visible-extended-thinking) available on the Sonnet (3.7 and 4) and Opus (4 and 4.1) models. A model can pause and work through intermediate steps to deliver more structured reasoning instead of rushing to a conclusion. The functionality is also accessible through the API, where developers may set a “thinking budget” that determines how much time Claude spends reasoning through a task.
+
+### DeepSeek
+
+The DeepSeek R1 model generates a CoT before delivering a final answer and incorporates a self-supervised mechanism to refine its reasoning steps, enhancing performance on tasks requiring deep logical analysis. This functionality can be activated by toggling the DeepThink R1 mode in the DeepSeek UI. The model is also available via [API](https://api-docs.deepseek.com/guides/reasoning_model) and has been [open-sourced](https://github.com/deepseek-ai/DeepSeek-R1) under the MIT License, making it accessible for research and development purposes.
+
+### Google Gemini
+
+[Gemini 2.5 Pro](https://deepmind.google/models/gemini/pro/) features an advanced reasoning mode called DeepThink, which enables the model to explore multiple hypotheses and reason in parallel. This approach allows it to evaluate several ideas simultaneously before arriving at a final answer. By extending the AI's inference time, DeepThink facilitates a more thorough exploration of possibilities. You can access this functionality through the Gemini chatbot.
+
+### OpenAI
+
+OpenAI has released [reasoning-first models](https://openai.com/index/learning-to-reason-with-llms/) in its o1 and the o3 series. They are trained to “spend more time thinking” before answering. Since these models aim to generate deeper internal chains of thought, they solve harder math, science, and coding tasks more reliably. Reasoning versions are available in ChatGPT and via the API.
+
+## CoT pitfalls and limitations
+
+While chain-of-thought prompting and reasoning can improve outcomes, it’s not without drawbacks.
+
+### Unnecessary verbose
+
+When prompted to “show its work,” a model may overexplain and generate exceedingly long reasoning steps. While the extra detail can be useful for transparency, it clutters the output and makes it harder to quickly spot the answer. This can be distracting in situations where the end result matters more than the process.
+
+### Not universal
+
+Chain-of-thought is not universally applicable. A recent [study](https://www.researchgate.net/publication/384115783_To_CoT_or_not_to_CoT_Chain-of-thought_helps_mainly_on_math_and_symbolic_reasoning) shows that while it delivers significant improvements on math tasks, the gains for many other types of problems are minimal or nonexistent. In fact, models can achieve the same accuracy without CoT, unless the question or response involves symbolic operations. This means that using CoT everywhere can result in wasted tokens and additional costs without adding substantial value.
+
+### Generating false confidence
+
+Just because a model presents reasoning step by step doesn't guarantee that it is correct. A chain of thought may appear logical but still contain errors, which can mislead users into overestimating the reliability of the answer. This is particularly risky in tasks where precision is crucial.
+
+### Escalating privacy risks
+
+Intermediate reasoning steps can sometimes expose more information than the final answer would. For example, when the model works with private or sensitive data, the chain of thought may inadvertently reveal details that should remain confidential. This makes careful use of CoT essential in enterprise settings and regulated environments.
+
+### Incurring higher costs
+
+Chain-of-thought responses tend to be longer, using more tokens and requiring greater computational power. Over time, this can lead to increased costs, particularly for businesses handling high-volume queries. Additionally, the need for detailed reasoning in every query can slow down response times.
+
+## Is chain-of-thought prompting still relevant today?
+
+Many [data scientists](https://www.altexsoft.com/blog/data-scientist-vs-data-engineer/) and AI practitioners have questioned whether chain-of-thought (CoT) prompting remains relevant or useful today.
+
+The effectiveness of CoT prompting depends on the type of model. For nonreasoning models, a CoT prompt can improve average performance by [4-13 percent](https://gail.wharton.upenn.edu/research-and-insights/tech-report-chain-of-thought/). However, it may also lead to errors on simpler questions that the model would typically answer correctly. Additionally, compared to direct questions, CoT can increase response times by 5-15 seconds.
+
+For reasoning models, CoT prompting results in only marginal improvements in accuracy (2-3 percent), while still consuming more tokens and increasing response times by 10-20 seconds.
+
+Interestingly, researchers at Zoom have proposed an alternative called [Chain of Draft (CoD)](https://arxiv.org/abs/2502.18600). Instead of generating long, wordy reasoning, CoD prompts the model to produce concise intermediate "drafts" that capture only the critical information. Early results suggest that CoD can match or even surpass CoT in accuracy, while using significantly fewer tokens—sometimes as little as 7.6 percent of the cost. This makes CoD faster, cheaper, and potentially more practical for real-world use.

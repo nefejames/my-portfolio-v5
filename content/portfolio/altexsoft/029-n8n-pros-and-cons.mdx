@@ -1,0 +1,294 @@
+---
+title: "The Good and Bad of n8n Workflow Automation Platform"
+client: "AltexSoft"
+clientSlug: "altexsoft"
+originalUrl: "https://www.altexsoft.com/blog/n8n-pros-and-cons/"
+publishedAt: "2025-09-09"
+canonical: "https://www.altexsoft.com/blog/n8n-pros-and-cons/"
+excerpt: "Discover the pros and cons of n8n workflow automation, an open-source tool for building and managing workflows."
+coverImage: "/portfolio/altexsoft/029-n8n-pros-and-cons/cover.jpg"
+tags: []
+---
+Businesses are all about being more efficient and doing more with less time and resources. One way they’re achieving this is by applying [workflow automation software](https://www.altexsoft.com/blog/workflow-automation-software-ai-agents/) to the repetitive, time-consuming tasks, from customer support to reporting.
+
+Among the many options available, n8n has gained attention for its flexibility, open-source nature, and ability to handle complex processes. But like any powerful instrument, it has both strengths and trade-offs. In this article, we’ll take a closer look at the pros and cons of using n8n, helping you decide if it’s the right fit for your automation needs.
+
+## What is n8n?
+
+[n8n](https://n8n.io/) (pronounced “n-eight-n”) is a low-code automation platform that helps you connect different apps and services via [APIs](https://www.altexsoft.com/blog/what-is-api-definition-types-specifications-documentation/) and streamline operations between them. It relies on a “trigger and action” model where a trigger starts a workflow, followed by a sequence of linked actions .
+
+Built with [Node.js](https://www.altexsoft.com/blog/the-good-and-the-bad-of-node-js-web-app-development/), n8n utilizes JSON as a core [data structure](https://www.altexsoft.com/blog/data-structure/). Yet, it also supports other formats, including XML, HTML, and text. Unlike [robotic process automation (RPA) tools](https://www.altexsoft.com/blog/rpa-tools-implementation/), which mainly mimic human interactions with user interfaces (like clicks, keystrokes, and screen scraping), n8n is designed for handling complex, multistep processes.
+
+Before diving into the pros and cons of n8n, it’s important to understand the core concepts that comprise n8n automation.
+
+### n8n workflow and nodes
+
+In n8n, a **workflow** is a sequence of steps carried out after a trigger is fired. It can be simple, like sending an email when a new form is submitted, or complex, involving multiple data sources, conditional logic, [RAG](https://www.altexsoft.com/blog/retrieval-augmented-generation-rag/) pipelines, etc.
+
+![An n8n workflow that automates the process of summarizing YouTube videos](/portfolio/altexsoft/029-n8n-pros-and-cons/image-1.png)
+
+An n8n workflow that automates the process of summarizing YouTube videos. It pulls a transcript from the provided URL and uses the content to generate a summary
+
+Each step in a workflow is handled by a **node**, a fundamental building block that performs a specific action, such as sending an email, updating a spreadsheet, making an API call, or fetching data from a [vector database](https://www.altexsoft.com/blog/vector-database/). Workflows are built by linking multiple nodes together so data can flow from one step to the next.
+
+![A n8n workflow made of various nodes: trigger, data transformation, code, conditional, and 3rd-party service nodes](/portfolio/altexsoft/029-n8n-pros-and-cons/image-2.png)
+
+You can think of nodes like bus stops along a route. At each stop, something happens: Passengers get off, new ones get on, or the driver decides where to go next. In the same way, each node in n8n is a decision point where you define what happens in the workflow at that stage.
+
+All nodes in n8n fall into two large types:
+
+- trigger nodes (marked with a bolt icon) start a workflow when an event happens—for example, a new email arrives or a [webhook](https://www.altexsoft.com/blog/webhook-vs-api/) is called; and
+- action nodes do something in an app, like sending a Slack message, creating a task in [Trello](https://www.altexsoft.com/blog/project-management-tools-trello-basecamp-jira/) for smoother [project management](https://www.altexsoft.com/blog/ai-for-project-management/), or updating a record in Airtable.
+
+Each node passes the items or data it receives to the next node in the workflow. For example, a trigger node might start when a new form submission comes in, while action nodes might clean up the form data and check whether the submission meets certain conditions, respectively.
+
+_C_ _luster nodes_ are groups of connected nodes that work together, usually with a root node that has _sub-nodes_ for extending their functionality. For example, an agent node can act as the root, while _sub-nodes_ define the AI model it should use, its memory, and the tools it can access.
+
+![A n8n’s cluster node with an agent node as the root](/portfolio/altexsoft/029-n8n-pros-and-cons/image-3.png)
+
+A n8n’s cluster node with an agent node as the root. Source: [n8n](https://docs.n8n.io/integrations/builtin/cluster-nodes/)
+
+The n8n development team maintains and updates a wide range of built-in trigger and action options known as _core nodes_. They support integrations with many popular services and provide basic functionality like data manipulation ( [cleaning](https://www.altexsoft.com/blog/data-cleaning/), formatting, etc.), scheduling, file operations, HTTP requests, etc. If built-in nodes are not sufficient for your needs, you can utilize _community nodes_ built and shared by the n8n community or design the required steps yourself using JavaScript or [TypeScript](https://www.altexsoft.com/blog/typescript-pros-and-cons/).
+
+### Use cases of n8n
+
+n8n can be used in various ways, depending on the tools you want to connect and the kind of workflows you’re trying to build. Here are some practical examples.
+
+**Automating everyday tasks**. You can connect apps like Gmail, Slack, and Google Sheets to handle routine work. For example, every time a new lead fills out a form, n8n can log the details in a spreadsheet and automatically notify your sales team.
+
+**Business process automation.** n8n is useful for automating multistep processes across tools—things like onboarding new employees, handling invoice approvals, or syncing data between a CRM and a [project management tool](https://www.altexsoft.com/blog/project-management-tools-trello-basecamp-jira/).
+
+**AI-powered workflows**: With cluster nodes and agent setups, you can create [AI agents](https://www.altexsoft.com/blog/ai-agents/) that go beyond simple automations.
+
+## Key features of n8n
+
+n8n has a plethora of features, more than we can cover in this article. However, the key ones include the following.
+
+### Visual workflow builder
+
+n8n comes with a visual editor that makes it easy to build and manage workflows. The editor is laid out on a grid system rather than being completely freeform. Each grid point serves as a place where you can position nodes, keeping workflows neat and structured. Once two nodes are connected, they stay linked with arrows, even as you reposition them.
+
+While adding new nodes is straightforward, it may take a little practice since the editor has many features and interactive elements.
+
+![n8n’s GUI with sticky notes explaining how different nodes in a workflow work](/portfolio/altexsoft/029-n8n-pros-and-cons/image-4.png)
+
+Another useful feature is the ability to add labels and sticky notes to nodes. Labels let you describe what each node does or what action to expect, which makes it easier to revisit workflows later. Sticky notes allow you to add extra context—such as what credentials are required or reminders for teammates—which is especially helpful when collaborating with others. Together, these features make the editor more than just a tool for building workflows; it’s also a space for documenting and communicating how an automation works.
+
+One thing to note is that the visual editor does not autosave, so you’ll need to click the “Save” button to store your changes. If you ever need to review or roll back edits, the Version History section keeps track of all saved workflows. The editor itself is user-friendly and supports common shortcuts like CTRL+C, CTRL+V, and CTRL+Z.
+
+### AI assistant
+
+The AI Assistant in n8n is designed to make building, fixing, and improving workflows much easier. It can guide you step by step, whether you’re trying to understand how something works, need help writing code, or want advice on setting up integrations.
+
+![n8n’s AI assistant providing guidance on how to fetch credentials for Telegram’s API](/portfolio/altexsoft/029-n8n-pros-and-cons/image-5.png)
+
+n8n’s AI assistant guiding how to fetch credentials for Telegram’s API
+
+The assistant comes with several helpful features, including
+
+- debugging support so you can spot and fix issues in your nodes;
+- answering questions about n8n’s features, tools, and best practices;
+- [code generation](https://www.altexsoft.com/blog/ai-coding-tools/) for writing and tweaking code, including SQL, [JavaScript](https://www.altexsoft.com/blog/mean-mern-javascript-full-stack/), and JSON;
+- step-by-step instructions on how to set up the API keys for third-party apps; and
+- securely connecting apps and services.
+
+The assistant can access elements shown in your n8n editor, but not private data, like customer details or workflow inputs and outputs. It uses a mix of specialized AI agents, knowledge pulled from n8n’s docs and community, and custom [prompts](https://www.altexsoft.com/blog/prompt-engineering/) to give you relevant answers in real time.
+
+**One important note**: The AI Assistant isn’t available if you’re self-hosting n8n. It’s only available to users on their cloud plans.
+
+### Data pinning
+
+Data pinning makes testing workflows faster and more efficient. When you’re working with nodes that fetch data from external systems, you don’t always want to trigger a fresh request every time you run a test, especially when dealing with costly API calls. With data pinning, you can freeze the output of a node after a run and reuse that same data across multiple tests.
+
+![n8n’s data pinning feature](/portfolio/altexsoft/029-n8n-pros-and-cons/image-6.png)
+
+This development-only helper saves you from hitting API rate limits, wasting tokens, or waiting on slow requests. It also ensures you’re testing your workflow with consistent, stable data, which makes debugging and refining logic much easier. To use it, you simply run the workflow once to get real data, then click the “ **Pin data**” icon in the node output. From that point on, any workflow tests will use the pinned data instead of making new calls.
+
+### Workflow debugging
+
+When a node fails, whether because of a misconfiguration, missing input data, or an external service being unavailable, n8n marks the workflow as failed and logs it in the execution history.
+
+![A failed n8n workflow execution](/portfolio/altexsoft/029-n8n-pros-and-cons/image-7.png)
+
+From there, you can inspect it on the canvas, replay the workflow with that exact data, reproduce errors, test changes, and verify fixes without sending new requests or re-triggering external services. In case your edits and debugging attempts lead to new errors, you can roll back those changes since n8n has a version history.
+
+### Error handling
+
+n8n has an **Error Trigger node** that you can use to build a dedicated error workflow to run whenever the main workflow fails. You can decide how you’d like to be notified about failures, whether by email, Slack, Discord, or another channel.
+
+![An n8n workflow consisting of the “Error Trigger” and “Stop and Error” nodes](/portfolio/altexsoft/029-n8n-pros-and-cons/image-8.png)
+
+Notifications can include details such as which workflow failed and the exact error message, so you have the full context of the issue. Once created, you must link this error workflow to each of your other workflows in the settings, so you’re always alerted when something breaks.
+
+There’s also the **Stop and Error node**, which lets you intentionally stop a workflow and raise an error if key data is missing or invalid, preventing bad data from flowing downstream. For example, if a customer record comes in without an email address, you can use the **Stop and Error node** to halt execution and flag the issue, instead of letting incomplete data move further into your process.
+
+## Pros of n8n
+
+There are many things people love about n8n. Let’s explore a few of them.
+
+### Multiple hosting options
+
+n8n gives you the freedom to choose how you want to run it. The self-hosted version is completely free, an outstanding benefit if you want full control and the ability to run it on your own infrastructure with [Docker](https://www.altexsoft.com/blog/docker-pros-and-cons/), [Kubernetes](https://www.altexsoft.com/blog/kubernetes-pros-cons/), or a private network for added security. Note that if you take this route, you have to handle all software updates yourself.
+
+If you’d rather not manage servers, n8n also offers a cloud version with three pricing plans. This option handles scaling, updates, and maintenance for you, allowing your team focus on building workflows. With both choices available, you can start small and adjust your setup as your needs grow.
+
+### Custom node creation
+
+With n8n, you’re not limited to the built-in nodes; it lets you create custom ones. This is especially useful when you have to connect to a tool or service not covered by existing integrations or when you want to design a step that matches your exact workflow requirements.
+
+n8n gives you two ways to build custom nodes.
+
+- Declarative nodes are the recommended option for most cases. They use a JSON-based syntax to connect with [REST APIs](https://www.altexsoft.com/blog/rest-api-design/).
+- Programmatic nodes are more verbose and ideal when you want to build trigger nodes, connect to non-REST APIs ( [GraphQL](https://www.altexsoft.com/blog/graphql-core-features-architecture-pros-and-cons/), [SOAP](https://www.altexsoft.com/blog/soap-vs-rest-vs-graphql-vs-rpc/), etc.), or handle data transformations.
+
+You can keep custom nodes private for your team or share them with the community by publishing them on npm. Either way, this feature lets you tailor n8n to your needs instead of waiting for official integrations.If you plan to create custom nodes, note that they are limited to self-hosted instances. n8n doesn’t support them in its cloud services due to security reasons.
+
+### External node support
+
+If you’re running n8n in a self-hosted setup, you can use external npm packages inside the **JavaScript Code** node. This means you’re not limited to the built-in functions. Instead, you can bring in extra libraries from the huge npm ecosystem to extend what your workflows can do.
+
+For example, you might
+
+- use a date library like `moment` to handle complex date formatting;
+- add a data validation package to clean and check inputs before passing them on; or
+- import a specialized API client that’s not yet available as a built-in integration.
+
+This flexibility means you can better tailor workflows to your needs. It makes n8n act less like a fixed automation tool and more like a customizable platform.
+
+### n8n templates
+
+n8n offers [5,000+ workflow templates](https://n8n.io/workflows/) across various use cases: AI, Sales, IT Ops, Marketing, and Document Ops. Instead of beginning from scratch, you can pick a template, customize it to your tools and processes, and be up and running much faster. This makes automation easier even for teams that don’t have a lot of technical experience.
+
+### Over 1100 integrations
+
+n8n connects with over [1,100 apps](https://n8n.io/integrations/), covering almost every major category of business tools. These include AI, analytics, communication, data storage, developer platforms, finance and accounting, sales, productivity, and more. Integrations fall into two types that can work in two ways:
+
+- regular integrations for connecting and automating between apps, and
+- trigger-based integrations that start workflows automatically when specific events happen in connected apps.
+
+This broad coverage means you don’t need to build custom connectors to fit n8n into your existing tool stack.
+
+### Helpful documentation with chat support
+
+n8n’s documentation is clear, easy to follow, and doesn’t just stop at the basics. It includes clear guides on getting started, setting up hosting, working with integrations, writing custom code, and even advanced AI use cases. You’ll also find details on using the public API and other advanced workflows, as well as a [glossary section](https://docs.n8n.io/glossary/) that explains key terms.
+
+In addition, there’s the **Chat with the docs** feature, an embedded [AI chatbot](https://www.altexsoft.com/blog/a-technological-guide-to-building-an-ai-chatbot/) that can help you quickly find the information you need without endlessly searching through lots of pages.
+
+### Large and active community
+
+One of n8n’s biggest strengths is its open-source nature, which has attracted a large [community](https://community.n8n.io/). The platform has earned over [134k GitHub stars](https://github.com/n8n-io/n8n), a [subreddit](https://www.reddit.com/r/n8n/) with more than 136k members, and a [Discord channel](https://discord.com/invite/n8n) with 48k members.
+
+Beyond numbers, the community is highly engaged—whether through the forum, where users can ask questions and get quick answers, or through many workflow templates that members have created and shared. This level of participation makes it easier to find support, learn best practices, and discover new ways to use the platform.
+
+## Cons of n8n
+
+Like every tool, n8n isn’t perfect. Here are some of the drawbacks you may experience when using it.
+
+### Hard learning curve
+
+n8n isn’t the easiest tool, especially for beginners who aren’t tech-savvy and know little about [APIs](https://www.altexsoft.com/blog/api-management/), JSON, or coding. While it’s designed for nontechnical people, getting started can be tricky if you’ve never used a visual workflow editor. Setting up integrations involves working with APIs and fetching API keys, which can feel overwhelming early on. The challenge is even greater if you choose the self-hosted version, since installing and managing requires extra technical steps. The cloud version is simpler to start with, but comes at a higher cost.
+
+### No workflow autosaves
+
+Another drawback is that there’s no workflow auto-save feature—you always have to manually click the “Save” button. If something unexpected happens—like a system crash or disruption—you could lose your work. It would be more convenient if the editor had auto-save functionality, similar to tools like Notion or Google Docs.
+
+### Not fully open-source
+
+n8n’s code is publicly available, but under the [Sustainable Use License](https://docs.n8n.io/sustainable-use-license/). This means you can view, modify, and self-host it freely, but there are restrictions on commercial use, especially if you want to offer it as a hosted service. In other words, while n8n is open-source in spirit, it isn’t fully open-source in the traditional sense.
+
+### Limited customer support
+
+n8n relies heavily on its forum and community for [support](https://n8n.io/support/). The forum is active, with engineers and experienced users answering questions, and nearly all posts get responses. However, direct email support is only available for Enterprise and Power plan users. Other cloud plans can only send emails about admin and billing issues, meaning if you run into technical issues, you’ll need to rely on the community rather than official support.
+
+## n8n vs alternatives
+
+n8n is one of many tools in the workflow automation space. Let’s explore how it compares with its main competitors — [Zapier](https://zapier.com/) and [Make](https://www.make.com/en).
+
+### Zapier
+
+An interesting thing about [Zapier](https://zapier.com/) is how AI-centric it is. The platform has done a solid job of weaving AI functionality into its systems. Instead of treating AI as an add-on, Zapier has built it directly into the core of the product. Let’s explore its key features.
+
+**AI agents**. Zapier lets you build custom [AI agents](https://www.altexsoft.com/blog/ai-travel-agent/) designed for specific tasks, such as qualifying leads, answering customer questions, or assisting with IT support. Each agent can be given its own set of instructions and [guardrails](https://www.altexsoft.com/blog/ai-guardrails/) so its behavior is consistent and it stays within the guidelines you set.
+
+![Various AI agents created in Zapier](/portfolio/altexsoft/029-n8n-pros-and-cons/image-9.png)
+
+Various AI agents created in Zapier. Source: [Zapier](https://zapier.com/blog/ai-agent/)
+
+A unique part of this feature is the [Zapier Agents Chrome extension](https://chromewebstore.google.com/detail/zapier-agents/jfcmjbboehfdmgbhheahjlnoimbgfdbn?pli=1), which allows agents to access the web. This means they can pull in real-time information, check sources, or complete online tasks. This makes them flexible and more powerful for use cases where updated or external data is needed.
+
+**AI copilot**. Zapier also provides a built-in [AI copilot](https://zapier.com/blog/zapier-copilot-guide/) that does more than answer questions. It can help you design entire workflows (called _Zaps_) from scratch. The copilot can also automatically create AI agents for you. Based on your [prompt](https://www.altexsoft.com/blog/prompt-engineer/), it will determine which triggers and apps the agent needs and set them up. This reduces the complexity of getting started and makes Zapier more accessible to people who don’t have technical experience.
+
+![Zapier’s AI copilot interface](/portfolio/altexsoft/029-n8n-pros-and-cons/image-10.png)
+
+n8n also has an AI assistant. However, it can only help you debug workflows, [generate code](https://www.altexsoft.com/blog/ai-coding-tools/), answer your questions, and set up credentials for third-party apps.
+
+![Zapier’s AI copilot generating a workflow based on a user’s prompts](/portfolio/altexsoft/029-n8n-pros-and-cons/image-11.png)
+
+Zapier’s AI copilot generating a workflow based on a user’s prompts. Source: [Zapier](https://zapier.com/blog/zapier-copilot-guide/)
+
+**Data collection**. Zapier’s [Interfaces](https://zapier.com/interfaces) let you build online forms that collect user data and send it directly to your workflows. In turn, n8n has a [Form node](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.form/) for capturing user data.
+
+**Custom code**. While Zapier is largely a no-code platform, you can still write lightweight scripts to customize workflows (Zaps) using JavaScript or Python with [Code by Zapier](https://help.zapier.com/hc/en-us/sections/38070755248141-Code). Also, Zapier introduced [Functions](https://zapier.com/functions) (currently, in beta version) that let you run Python to handle more complex logic and import standard Python libraries, like [Pandas](https://www.altexsoft.com/blog/pandas-library/) for data analysis, [NumPy](https://www.altexsoft.com/blog/numpy-pros-and-cons/) for scientific computing, or [PyTorch](https://www.altexsoft.com/blog/pytorch-library/) for [machine learning](https://www.altexsoft.com/blog/machine-learning-explained) and AI.
+
+![Zapier Functions’ interface](/portfolio/altexsoft/029-n8n-pros-and-cons/image-12.png)
+
+Zapier Functions’ interface. Source: [Zapier](https://help.zapier.com/hc/en-us/articles/32942766367885-Create-a-workflow-using-Python-with-Functions#h_01K2PJQ1SWDH9N4MEMPEZ8KEM0)
+
+Once defined, you can select the trigger(s) that causes the Functions to run and connect them directly into workflows as a step. You can also chat with the copilot to make changes to your Functions, which makes updating them easier.
+
+In n8n, you can use the [Code node](https://docs.n8n.io/code/code-node/) to write custom Python and JavaScript. The self-hosted version allows you to install virtually any external package, often via Docker. The cloud version, however, has restrictions on importing third-party modules.
+
+**Integrations**. Zapier is well ahead of n8n when it comes to integrations. As of now, there are [8,600+ apps](https://zapier.com/apps) you can connect with directly on the platform. You can also create your own custom Zapier app for your product using Zapier’s Workflow API, so it’s not just limited to the existing catalog. Having said that, keep in mind that some apps are marked as premium and are only available if you’re on a paid plan.
+
+**Community**. Zapier’s community is much smaller than n8n’s. Its [r/Zapier subreddit](https://www.reddit.com/r/zapier/) has 14k members, and its [forum](https://community.zapier.com/) consists of 63k+ members.
+
+**Pricing**. Zapier, like n8n, has a “free forever” plan with limited features. Its paid plan is $19 per month when billed annually, while n8n’s paid plan starts at $20 per month (annual billing). While Zapier is cheaper, n8n is more generous than Zapier in terms of the number of workflows you can execute. n8n lets you run 2.5k workflows, while Zapier gives you 750 tasks—any successful action your workflow performs, like sending a Slack message or updating a record. Naturally, any more workflows or tasks beyond the limit come with an extra charge, and this goes for both platforms.
+
+### Make
+
+[Make.com](https://www.make.com/en) is another workflow automation platform worth checking out. It has its own unique set of features and AI capabilities. Note that in Make, workflows are called _scenarios_ and individual nodes are _modules_.
+
+**AI Agents**. Make has its own AI Agents, and you can build custom ones. You decide the system prompts, the model the agent uses, and the tools it has access to. You can set global system prompts for consistency across agents, but also customize prompts for specific workflows or scenarios.
+
+![An AI agent being created on Make](/portfolio/altexsoft/029-n8n-pros-and-cons/image-13.png)
+
+These agents aren’t static. They have real-time AI reasoning, error handling, and memory recall. That means they can adapt to the context of the task, remember past inputs when needed, and make decisions on the fly as a workflow runs.
+
+**AI assistant**. If you don’t want to build a workflow or scenario from scratch, Make also gives you an AI Assistant. It works through a simple chat interface where you can describe the kind of scenario you need, and the Assistant will build it for you. Beyond setup, the AI Assistant can also review and analyze your existing scenarios, point out missing connections, troubleshoot errors, and answer questions about the platform.
+
+![A workflow generated by Make’s AI assistant](/portfolio/altexsoft/029-n8n-pros-and-cons/image-14.png)
+
+**Type coercion**. An interesting thing about Make is how it handles situations where it receives data in unexpected formats. When a workflow expects a certain type of data structure—and receives something else—Make will attempt to convert the input into the correct type (for example, a number to a Boolean or string to a number).
+
+This mechanism is in place because the platform does its best to ensure your workflows run successfully and doesn’t fail over small input mismatches. However, if the input can’t be reasonably converted—for example, if a number is expected but an array is received—Make will return a validation error instead.
+
+**Data stores**. Data stores in Make are like lightweight [databases](https://www.altexsoft.com/blog/databases-database-management-systems/) that you can use inside your automations. They let you save information from a workflow, move it between workflows, or keep it available for future runs.
+
+The **data** stores are handy for situations like keeping a running list of leads, storing product info, or caching responses from an external service so you don’t have to call the API every time.
+
+**Make Grid**. As your automations grow, they can get messy. That’s where Make Grid shines. It gives you a live, visual map of your entire automation setup. Instead of drawing diagrams or digging through workflows, you can see how everything connects at a glance.
+
+![Make Grid](/portfolio/altexsoft/029-n8n-pros-and-cons/image-15.png)
+
+Make Grid. Source: [Make](https://www.make.com/en/blog/introducing-make-grid)
+
+With Make Grid, you can
+
+- spot dependencies fast, like where a webhook or Google Sheet is being used;
+- make updates without worrying about breaking other workflows;
+- give your team one clear view so handovers are smoother; and
+- zoom in to troubleshoot or zoom out to see the big picture.
+
+Basically, it’s like having Google Maps for your automations. You always know what’s connected, where the risks are, and what you can improve.
+
+**Integrations**. Like Zapier, Make has more integrations than n8n. You can connect with over [2,800 apps](https://www.make.com/en/integrations). If the app you need isn’t available, Make lets you connect with any service that has an API.
+
+**Community**. Make has a much smaller community than n8n or Zapier. The [r/Make subreddit](https://www.reddit.com/r/Make/) has 2.7k members. There’s also a forum where you can interact with the team and other users.
+
+**Pricing**. Make is the most affordable option of the three. Their pricing starts at $9 per month. This gives you 10,000 credits, each of which you can use to perform a workflow action, like sending an email or updating a record in your CRM. Even the cheapest plan gives small teams or individuals enough room to build automations without a large upfront cost.
+
+## Getting started with n8n
+
+If you’re ready to explore n8n, here are some key resources to help you get started.
+
+**Documentation.** The official [n8n documentation](https://docs.n8n.io/) is the best starting point. It covers installation, workflow basics, available nodes, and advanced topics like error handling, custom nodes, and deployment.

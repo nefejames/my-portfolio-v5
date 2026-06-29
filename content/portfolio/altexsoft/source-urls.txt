@@ -28,3 +28,13 @@
 23. https://www.altexsoft.com/blog/cursor-pros-and-cons/
 24. https://www.altexsoft.com/blog/model-context-protocol/
 25. https://www.altexsoft.com/blog/ai-for-project-management/
+26. https://www.altexsoft.com/blog/a2a-protocol-explained/
+27. https://www.altexsoft.com/blog/workflow-automation-software-ai-agents/
+28. https://www.altexsoft.com/blog/n8n-pros-and-cons/
+29. https://www.altexsoft.com/blog/chain-of-thought-prompting/
+30. https://www.altexsoft.com/blog/technical-debt/
+31. https://www.altexsoft.com/blog/building-multi-agent-systems/
+32. https://www.altexsoft.com/blog/fractional-cto/
+33. https://www.altexsoft.com/blog/sentiment-analysis-methods/
+34. https://www.altexsoft.com/blog/data-lake-vs-data-warehouse/
+35. https://www.altexsoft.com/blog/stakeholder-matrix/
