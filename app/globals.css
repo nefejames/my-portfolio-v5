@@ -32,7 +32,8 @@
   --color-muted: var(--muted);
   --color-border: var(--border);
   --color-surface: var(--surface);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-hanken);
+  --font-serif: var(--font-fraunces);
   --font-mono: var(--font-geist-mono);
 }
 
@@ -41,6 +42,11 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Headings/display use the Fraunces serif; body/UI stay on Hanken Grotesk. */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif), Georgia, 'Times New Roman', serif;
 }
 
 html {

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Fraunces, Hanken_Grotesk, Geist_Mono } from 'next/font/google'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import JsonLd from '@/components/JsonLd'
@@ -7,8 +7,11 @@ import { SITE } from '@/lib/site'
 import 'react-tweet/theme.css'
 import './globals.css'
 
-const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] })
-const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'] })
+// Typography (matches sendbyte.africa): Fraunces serif for headings/display,
+// Hanken Grotesk sans for body/UI, Geist Mono for code.
+const fraunces = Fraunces({ variable: '--font-fraunces', subsets: ['latin'], display: 'swap' })
+const hanken = Hanken_Grotesk({ variable: '--font-hanken', subsets: ['latin'], display: 'swap' })
+const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'], display: 'swap' })
 
 export const metadata: Metadata = {
   // metadataBase lets every relative canonical / OG URL resolve to an absolute
@@ -82,7 +85,7 @@ const websiteSchema = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="en" className={`${hanken.variable} ${fraunces.variable} ${geistMono.variable}`}>
       <body className="min-h-screen flex flex-col">
         <JsonLd data={[personSchema, websiteSchema]} />
         <Navbar />
