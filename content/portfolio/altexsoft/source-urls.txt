@@ -38,3 +38,13 @@
 33. https://www.altexsoft.com/blog/sentiment-analysis-methods/
 34. https://www.altexsoft.com/blog/data-lake-vs-data-warehouse/
 35. https://www.altexsoft.com/blog/stakeholder-matrix/
+36. https://www.altexsoft.com/blog/aviation-data-analytics/
+37. https://www.altexsoft.com/blog/agentic-context-engineering/
+38. https://www.altexsoft.com/blog/mcp-servers-travel/
+39. https://www.altexsoft.com/blog/chroma-pros-and-cons/
+40. https://www.altexsoft.com/blog/test-evaluate-ai-models/
+41. https://www.altexsoft.com/blog/self-supervised-learning/
+42. https://www.altexsoft.com/blog/duty-of-care-travel/
+43. https://www.altexsoft.com/blog/universal-commerce-protocol/
+44. https://www.altexsoft.com/blog/graph-database/
+45. https://www.altexsoft.com/blog/mcp-servers-for-developers/

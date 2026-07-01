@@ -1,0 +1,433 @@
+---
+title: "MCP Servers for Developers: GitHub MCP, Playwright MCP"
+client: "AltexSoft"
+clientSlug: "altexsoft"
+originalUrl: "https://www.altexsoft.com/blog/mcp-servers-for-developers/"
+publishedAt: "2026-02-27"
+canonical: "https://www.altexsoft.com/blog/mcp-servers-for-developers/"
+excerpt: "A practical overview of MCP servers for developers, including GitHub MCP, Playwright MCP, and AWS MCPs."
+coverImage: "/portfolio/altexsoft/046-mcp-servers-for-developers/cover.jpg"
+tags: []
+---
+The [Model Context Protocol (MCP)](https://www.altexsoft.com/blog/model-context-protocol/), released by Anthropic in November 2024, standardizes how AI systems interact with external tools. Today, many platforms are creating servers to expose their functionalities and data to [AI agents](https://www.altexsoft.com/blog/ai-agents) using MCP instead of relying on custom one-to-one connections.
+
+In this article, we’ll look at the various MCP servers available for developers and their capabilities.
+
+![A list of MCP servers in the software developer ecosystem](/portfolio/altexsoft/046-mcp-servers-for-developers/image-1.png)
+
+## A quick refresher on the Model Context Protocol
+
+Before we dive into the different [MCP servers](https://www.altexsoft.com/blog/mcp-server-claude-code-cursor/) in the dev-tech ecosystem, let's review what MCP actually is and why it matters.
+
+[Large language models (LLMs)](https://www.altexsoft.com/blog/language-models-gpt/) are powerful, but on their own, they can’t take real actions. If you want an LLM-based AI agent to read from a repo, query a [database](https://www.altexsoft.com/blog/databases-database-management-systems/), run tests, or trigger a workflow, it needs a way to talk to those tools. Traditionally, this meant building custom integrations between every model and every external solution. Unfortunately, this does not scale and is hard to maintain.
+
+![How MCP improves agentic tool integration](/portfolio/altexsoft/046-mcp-servers-for-developers/image-2.jpg)
+
+MCP solves the integration problem by acting as a standardized layer between AI agents and third-party tools. Instead of building bespoke connections, tool providers implement MCP servers that expose their capabilities in a consistent way. AI clients—such as IDE agents or [chatbots](https://www.altexsoft.com/blog/a-technological-guide-to-building-an-ai-chatbot/)—can then reach out to those servers to discover and invoke available functionality through a common protocol.
+
+You can think of MCP as a shared “tool interface” for [AI agents](https://www.altexsoft.com/blog/subagents/). By using a common protocol, tools exposed through MCP servers become accessible to any MCP‑compatible client without requiring unique [API](https://www.altexsoft.com/blog/what-is-api-definition-types-specifications-documentation) integrations for each model. This makes it easier to connect real systems—like [GitHub](https://www.altexsoft.com/blog/github-gitlab-bitbucket/), testing tools, or internal services—into AI workflows and to swap out models or clients without rebuilding integrations from scratch.
+
+With that context in mind, let’s look at the main MCP servers that developers are using today and what each one is useful for.
+
+## Coding
+
+One area where [generative AI](https://www.altexsoft.com/blog/generative-ai/) has had a significant impact is helping developers write code faster and more efficiently. But for [AI coding tools](https://www.altexsoft.com/blog/ai-coding-tools/) like [Cursor](https://www.altexsoft.com/blog/cursor-pros-and-cons/) to be truly useful, they need access to the right context— [accurate documentation](https://www.altexsoft.com/blog/context7/), up-to-date API references, and project-specific data. MCP servers bridge that gap, connecting AI assistants directly to the tools developers already use, so they spend less time switching between tabs and more time shipping.
+
+### Augments MCP Server
+
+[Augments MCP server](https://augments.dev/) provides framework [documentation](https://www.altexsoft.com/blog/how-to-write-code-documentation/) for [Claude Code](https://www.altexsoft.com/blog/claude-code/). Instead of pulling up entire pages, it goes straight to the [TypeScript](https://www.altexsoft.com/blog/typescript-pros-and-cons/) definitions in npm packages and returns API context relevant to your query.
+
+The server supports over 90 popular frameworks such as [React](https://www.altexsoft.com/blog/react-pros-and-cons/), [Next.js](https://www.altexsoft.com/blog/react-pros-and-cons/), [Express.js](https://www.altexsoft.com/blog/expressjs-pros-and-cons/), [Flutter](https://www.altexsoft.com/blog/pros-and-cons-of-flutter-app-development/), and others, spread across 10 categories (web, mobile, testing, AI/ML, etc.). Besides extracting specific API signatures, its capabilities include:
+
+- an auto-discovering npm package that has TypeScript types, so you're not limited to a fixed list of supported frameworks;
+- analyzing the documentation of multiple frameworks simultaneously to provide compatibility suggestions;
+- fetching version-specific documentation and flagging breaking changes between versions; and
+- caching framework data to speed up repeated queries.
+
+### APIMatic Validator MCP Server
+
+[APIMatic](https://www.apimatic.io/) helps developers validate API specifications, generate SDKs and code, and create [API documentation](https://www.altexsoft.com/blog/api-documentation/). Its [Validator MCP server](https://github.com/apimatic/apimatic-validator-mcp) connects AI tools to APIMatic’s API so you can check OpenAPI files directly from your MCP-enabled editor. Instead of manually uploading specs to a web dashboard, it sends your OpenAPI definition to the platform and returns a structured validation summary within your workflow.
+
+The server focuses on specification checks rather than documentation lookup. Its capabilities include
+
+- validating OpenAPI 2.0 and 3.0 definitions against APIMatic's engine;
+- supporting both JSON and YAML OpenAPI formats; and
+- returning structured summaries that highlight errors, warnings, and compliance issues.
+
+### Archbee MCP server
+
+The [MCP server](https://www.npmjs.com/package/@archbee/mcp) for interactions with [Archbee](https://www.archbee.com/), a [knowledge base](https://www.altexsoft.com/blog/knowledge-base/) and documentation platform, lets you read, search, and list content from your Archbee space through Claude or Cursor, using [natural language](https://www.altexsoft.com/blog/natural-language-processing/).
+
+It provides four capabilities:
+
+- fetching a single document by its Archbee ID and returning the content as markdown;
+- retrieving all documents from a space in a structured response format;
+- searching documents by content using a text query; and
+- searching documents by title to quickly locate specific pages.
+
+<YouTube id="2qlcY9LkFik" caption="Software Planning and Technical Documentation" />
+
+Clear communication, elaborate planning, and documented expectations are key to successful software development
+
+### Buildable MCP server
+
+[Buildable](https://bldbl.dev/), an AI-driven [project management](https://www.altexsoft.com/blog/ai-for-project-management/) platform that helps dev teams plan, track, and ship software features in an organized way, runs an [MCP server](https://bldbl.dev/blog/all/claude-code-integration) for smooth collaboration with AI tools like Claude. As a result, your AI assistant can
+
+- see the entire task backlog;
+- understand task dependencies and priorities;
+- assess your tech stack and architecture decisions to offer relevant recommendations;
+- help implement features tied to specific task IDs;
+- update task statuses automatically (e.g., marking tasks ready for review);
+- create new tasks or break features into subtasks; and
+- provide [context-aware](https://www.altexsoft.com/blog/agentic-context-engineering/) debugging based on past project work.
+
+<YouTube id="SaCYkPD4_K0" caption="Software Development Life Cycle: Explained" />
+
+What goes on in the different phases of the SDLC
+
+### Codacy MCP server
+
+Code quality and security analysis are important parts of the [software development life cycle](https://www.altexsoft.com/blog/ai-driven-software-development/), and [Codacy](https://www.codacy.com/) helps you detect issues and track [technical debt](https://www.altexsoft.com/blog/technical-debt/) in your repositories. Its [MCP server](https://github.com/codacy/codacy-mcp-server/) exposes 23 tools covering
+
+- repository setup and management;
+- organization management (listing organizations you have access to);.
+- code quality and analysis (listing and filtering code quality issues by multiple criteria, including severity, category, and language);
+- file management and analysis;
+- security analysis, covering Static Application Security Testing (SAST), secrets scanning, dependency scanning, [IaC](https://www.altexsoft.com/blog/infrastructure-as-code/), [CI/CD](https://www.altexsoft.com/blog/cicd-tools-comparison/), Dynamic Application Security Testing (DAST), and penetration testing;
+- pull request analysis for new or fixed issues, diff coverage, and git diffs;
+- tool and pattern management; and
+- CLI analysis (running quality analysis locally using Codacy CLI to scan specific files or full directories and get immediate results).
+
+<YouTube id="oLc9gVM8FBM" caption="Software Testing Explained: How QA is Done Today" />
+
+Watch our video explaining the main concepts of software testing
+
+### Mintlify Docs MCP server
+
+[Mintlify](https://www.mintlify.com/) is an AI‑powered documentation platform that automatically generates and hosts an MCP server when you deploy with their service. This MCP server lets AI tools like Claude, Cursor, and VS Code connect directly to your [technical docs](https://www.altexsoft.com/blog/technical-documentation-in-software-development-types-best-practices-and-tools/) and query them in real time, rather than relying on a generic web search.
+
+The docs MCP can
+
+- provide AI tools direct access to all indexed pages in your documentation for accurate responses;
+- filter search results by documentation version or language to improve relevance; and
+- exclude certain files or pages from being indexed using a .mintignore file or noindex settings.
+
+## Repository management MCP servers
+
+Managing repositories, issues, pull requests, and code reviews is a constant part of a developer's workflow. The MCP servers in this section connect AI assistants directly to the platforms where that work happens, so you can query codebases and collaborate on code without leaving your editor.
+
+### AtomGit MCP server
+
+The [AtomGit MCP server](https://atomgit.com/atomgit-open-source-ecosystem/atomgit-mcp-server) is built for the [AtomGit](https://atomgit.com/) open-source collaboration platform, allowing AI agents to interact with repositories, issues, pull requests, branches, and labels.
+
+The MCP server’s 25 tools allow for
+
+- listing a single or all repositories for a user or organization;
+- creating, viewing, and managing issues and comments to them;
+- assigning users to issues, listing them, and checking their eligibility;
+- creating and viewing pull requests, commenting on them, and replying to comments;
+- listing branches and retrieving information on them;
+- retrieving all labels for a repository, or a single label by name; and
+- creating, retrieving, and deleting issue labels.
+
+### GitHub MCP server
+
+[GitHub](https://github.com/) is the world's largest code hosting and collaboration platform, where developers store, manage, and collaborate on code. The [GitHub MCP server](https://github.com/github/github-mcp-server) leverages a large toolset for
+
+- browsing repositories, reading code files, searching commits, and understanding project structure;
+- creating, updating, and managing issues and pull requests, including comments, labels, and assignments;
+- monitoring GitHub Actions workflow runs, analyzing [build](https://www.altexsoft.com/blog/build-automation/) failures, and managing releases;
+- reviewing code security findings, Dependabot alerts, and secret scanning results;
+- managing GitHub Discussions, notifications, and team activity; and
+- accessing Gists, organization data, projects, and stargazer information.
+
+The MCP server can be deployed as a remote hosted endpoint or run locally, depending on your environment and setup. You can configure which functionality the [LLM](https://www.altexsoft.com/blog/language-models-gpt/) can access  — otherwise,  the server will provide its default toolset.
+
+<YouTube id="B2MdKc2zO0E" caption="How AI Coding Changes the Tech Industry" />
+
+How AI coding changes the tech industry
+
+### GitLab MCP server
+
+[GitLab](https://about.gitlab.com/) is a web-based [DevOps](https://www.altexsoft.com/blog/devops-principles-practices-and-devops-engineer-role/) platform that provides a complete toolchain for software development, including source code management, CI/CD, issue tracking, and project collaboration. The [GitLab MCP server](https://docs.gitlab.com/user/gitlab_duo/model_context_protocol/mcp_server/) enables
+
+- creating and managing issues and assigning them to team members;
+- creating, updating, and reviewing merge requests, including analyzing commits and file changes;
+- creating, managing, and deleting [CI/CD pipelines](https://www.altexsoft.com/blog/ci-cd-pipeline-problems/);
+- adding comments and notes to work items and retrieving discussion history;
+- searching across projects, groups, issues, and merge requests for relevant content;
+- finding and managing labels in projects or groups;
+- performing semantic code searches using a [vector database](https://www.altexsoft.com/blog/vector-database/) to find relevant code snippets and functionality; and
+- [automating](https://www.altexsoft.com/blog/workflow-automation-software-ai-agents/) repetitive project tasks while keeping the full context of your workflows and development pipeline.
+
+## Testing and browser automation MCP servers
+
+Many developers have shipped something that passed all the tests and still broke in production. The gap between what works in a controlled environment and what survives real users, real browsers, and real edge cases is where most bugs live.
+
+Let's explore some MCP servers that help close that gap by giving AI assistants direct access to browser automation and testing tools, so that validating code becomes part of the development process, not a separate effort that happens after the fact.
+
+### Browserbase MCP server
+
+[Browserbase](https://www.browserbase.com/) is a browser automation platform that lets AI agents interact with web pages programmatically. Its [MCP server](https://www.browserbase.com/mcp) offers the following functionality:
+
+- controlling browsers using plain English commands ("click the button," "fill in the form");
+- extracting [structured data](https://www.altexsoft.com/blog/structured-unstructured-data/) and text content from web pages;
+- capturing and analyzing webpage screenshots; and
+- creating, managing, and closing browser sessions.
+
+### BrowserStack MCP server
+
+While with Browserbase you can automate web interactions, which is crucial for UI testing, [BrowserStack](https://www.browserstack.com/) provides a full testing infrastructure for websites and mobile apps for real devices and browsers.
+
+The dedicated [MCP server](https://github.com/browserstack/mcp-server) connects AI assistants and IDE tools directly to the BrowserStack Test Platform, enabling:
+
+- creating and managing test cases, test plans, and test runs using natural language;
+- launching web and mobile tests on real devices and browsers directly from AI prompts;
+- running automated tests built with Playwright, [Selenium](https://www.altexsoft.com/blog/selenium-ai/), and more through BrowserStack infrastructure;
+- capturing screenshots from live browser and app sessions;
+- catching [accessibility](https://www.altexsoft.com/blog/reach-your-audience-with-accessible-and-inclusive-design/) issues and getting AI feedback for WCAG-compliance improvements;
+- analyzing failures, providing root‑cause insights, and suggesting or applying fixes; and
+- generating tests from high‑level requirements and reducing maintenance with self‑healing automation.
+
+<YouTube id="MY8pQviEt6U" caption="What is User Acceptance Testing (UAT) and Why Your Product Needs It" />
+
+Learn how to conduct effective user acceptance testing
+
+### Playwright MCP server
+
+[Playwright](https://playwright.dev/), an open-source browser automation library developed by Microsoft, is widely used for end-to-end testing and web scraping on Chromium, Firefox, and WebKit browsers.
+
+The [Playwright MCP server](https://github.com/microsoft/playwright-mcp) is a Model Context Protocol implementation that exposes Playwright’s browser automation features to AI assistants and MCP‑aware clients. Its [MCP server](https://github.com/microsoft/playwright-mcp) allows for
+
+- navigating to URLs and controlling browser sessions;
+- interacting with web pages—clicking, hovering, dragging, typing, filling in forms, selecting dropdowns, and uploading files;
+- handling browser dialogs;
+- taking screenshots of the current page or saving it as a PDF; and
+- evaluating [JavaScript](https://www.altexsoft.com/blog/mean-mern-javascript-full-stack/) in the page context and returning structured data.
+
+## Database MCP servers
+
+Data is a core backbone of every application, and how it's structured, stored, and queried will impact the product you build. Whether you're working with relational databases, NoSQL stores, or cloud-native data warehouses, having direct access to your data layer—without jumping between tools—makes a real difference in how quickly you can build and iterate. Let's explore some MCP servers that bring that access directly into the AI development workflow.
+
+### AnalyticDB for MySQL MCP server
+
+[AnalyticDB for MySQ](https://www.alibabacloud.com/help/en/analyticdb/analyticdb-for-mysql/product-overview/what-is-analyticdb-for-mysql) L is Alibaba Cloud's cloud-native [data warehousing](https://www.altexsoft.com/blog/enterprise-data-warehouse-concepts/) service, built for running large-scale analytical queries on [MySQL](https://www.altexsoft.com/blog/comparing-database-management-systems-mysql-postgresql-mssql-server-mongodb-elasticsearch-and-others/)-compatible databases. Its [MCP server](https://github.com/aliyun/alibabacloud-adb-mysql-mcp-server) acts as a bridge between AI agents and your AnalyticDB clusters, and its capabilities include
+
+- listing all databases in the AnalyticDB for MySQL cluster and executing SQL queries directly on them;
+- retrieving query plans to understand how SQL statements will be executed;
+- fetching actual execution plans with runtime statistics for performance analysis;
+- retrieving all tables in a specific database using resource templates;
+- accessing table Data Definition (DDL) scripts—a type of SQL used to define and manage database structures—and cluster configuration values for deeper inspection and management; and
+-  accessing cluster configuration values via resource templates.
+
+<YouTube id="zASIPr4FwGM" caption="Data Storage for Analytics and Machine Learning" />
+
+How to store data for analytics and ML
+
+### Apache Doris MCP Server
+
+[Apache Doris](https://doris.apache.org/) is an open-source, [real-time analytical](https://www.altexsoft.com/blog/real-time-analytics/) database built for high-performance queries on large [datasets](https://www.altexsoft.com/blog/best-public-machine-learning-datasets/), commonly used for data warehousing, reporting, and [business intelligence](https://www.altexsoft.com/blog/complete-guide-to-business-intelligence-and-analytics-strategy-steps-processes-and-tools/) workloads.
+
+The [Doris MCP server](https://github.com/apache/doris-mcp-server), built with [Python](https://www.altexsoft.com/blog/python-pros-and-cons/) and FastAPI, connects AI tools to Apache Doris databases to perform analytical tasks. The documented capabilities include
+
+- executing SQL queries and returning results;
+- fetching table schemas, column comments, table comments, and index information;
+- retrieving execution plans and execution profiles;
+- retrieving audit logs;
+- monitoring metrics, real‑time and historical memory statistics; and
+- using advanced analytical tools for data quality, lineage, access patterns, slow query analysis, and resource growth forecasting.
+
+<YouTube id="ag9jlVxM_18" caption="Data Streaming, Explained" />
+
+The ins and outs of data streaming
+
+### Astra DB MCP server
+
+[Astra DB](https://docs.datastax.com/en/astra-db-serverless/index.html) is DataStax's cloud-native database built on Apache Cassandra specifically for AI applications that need to store and search both structured data and vector [embeddings](https://www.altexsoft.com/glossary/embedding/) at scale. An [MCP server](https://github.com/datastax/astra-db-mcp) for Astra DB workloads enables actions like
+
+- creating, updating, and deleting collections;
+- managing records in collections;
+- running bulk operations—creating, updating, and deleting multiple records in a collection;
+- performing vector similarity search on vector embeddings; and
+- running hybrid searches that combine vector similarity with text search.
+
+### Baserow MCP server
+
+[Baserow](https://baserow.io/) is a no-code, open-source database platform that allows teams to create and manage structured data in a spreadsheet-style interface. Its [MCP server](https://baserow.io/user-docs/mcp-server) supports operations via natural language [prompts](https://www.altexsoft.com/blog/prompt-engineering/). This covers
+
+- creating new records in tables;
+- querying and retrieving existing records;
+- modifying existing records, including bulk updates;
+- deleting records;
+- generating reports; and
+- automating data entry workflows.
+
+### ClickHouse MCP server
+
+[ClickHouse](https://clickhouse.com/) is an open-source, column-oriented database management system built for real-time analytics on large datasets. It’s highly optimized for [online analytical processing (OLAP)](https://www.altexsoft.com/blog/olap-online-analytical-processing/) workloads, making it well-suited for log analysis and [time series data](https://www.altexsoft.com/blog/time-series-analysis-and-forecasting-novel-business-perspectives/). Its [MCP server](https://github.com/ClickHouse/mcp-clickhouse) functionality can
+
+- execute SQL queries against your ClickHouse cluster, with read-only mode enabled by default and write access available when explicitly turned on;
+- list all databases available on the cluster;
+- enumerate tables within a specific database, with pagination support and optional filters for table names; and
+- run embedded SQL queries via chDB—a serverless ClickHouse engine for OLAP scenarios—directly on local files, URLs, and other data sources without spinning up a server or going through an [ETL](https://www.altexsoft.com/blog/etl-vs-elt/) pipeline.
+
+<YouTube id="qWru-b6m030" caption="How Data Engineering Works" />
+
+Overview of a complete data engineering process
+
+### Couchbase MCP server
+
+[Couchbase](https://www.couchbase.com/) is a distributed [NoSQL database](https://www.altexsoft.com/blog/nosql-databases/) built for high performance and scalability. It stores data as flexible JSON documents and supports key-value access and querying through its SQL++ query language. Its [MCP server](https://github.com/Couchbase-Ecosystem/mcp-server-couchbase) is set up for
+
+- checking server configuration status, testing cluster connections, and retrieving cluster health status;
+- listing all buckets, scopes, and collections in the cluster and retrieving schema information for specific collections;
+- fetching, inserting, replacing, and deleting documents by ID;
+- running SQL++ queries scoped to specific buckets and collections; and
+- analyzing query performance.
+
+## Cloud services MCP servers
+
+Modern applications don't run in isolation. Instead, they're built on layers of cloud infrastructure, from compute and storage to networking, security, and managed services. Doing all of that across providers like AWS, Google Cloud, and Azure has always required jumping between consoles, CLIs, and documentation.
+
+Let's explore some MCP servers that bring cloud infrastructure management into the AI workflow, making it easier to provision resources, monitor deployments, and navigate the complexity of modern cloud environments.
+
+### AWS MCP servers
+
+[Amazon Web Services (AWS)](https://aws.amazon.com/) is currently [the world’s largest](https://www.crn.com/news/cloud/2026/global-cloud-market-share-q4-2025-google-grows-aws-lead-narrows) cloud service provider by market share. Across its broad portfolio, AWS currently offers [66 MCP servers](https://awslabs.github.io/mcp/) that expose capabilities from different AWS platforms. Some of them include
+
+- Amazon Aurora MCP server for distributed SQL and database operations;
+- Amazon Bedrock MCP server for building and managing AI agents, importing custom models, automating data workflows, and querying enterprise knowledge bases with citations;
+- Amazon CloudWatch MCP server for monitoring applications, analyzing metrics, logs, alarms, and performance issues;
+- Amazon Data Processing MCP server for managing real-time and batch [data pipelines](https://www.altexsoft.com/blog/data-pipeline-components-and-types/) using AWS Glue and EMR-EC2;
+- Amazon DocumentDB & DynamoDB MCP server for full database operations on document-based and NoSQL databases;
+- Amazon ECS & EKS MCP server for container orchestration and [Kubernetes](https://www.altexsoft.com/blog/kubernetes-pros-cons/) deployments across AWS environments;
+- Amazon ElastiCache / MemoryDB MCP server for controlling caching operations and advanced in-memory data structures;
+- Amazon Kendra Index MCP server for enterprise search and [retrieval-augmented generation (RAG)](https://www.altexsoft.com/blog/retrieval-augmented-generation-rag/) workflows;
+- Amazon Neptune MCP server for executing [graph database](https://www.altexsoft.com/blog/graph-database/) queries using openCypher and Gremlin; and
+- Code Documentation Generation MCP server for automatically generating documentation through code analysis.
+
+### Alibaba Cloud DevOps MCP Server
+
+[Alibaba Cloud](https://www.alibabacloud.com/en?_p_lc=1) is one of the world's largest cloud computing platforms, offering infrastructure, data, AI, and developer services to businesses globally. Its [DevOps MCP server](https://github.com/aliyun/alibabacloud-devops-mcp-server)—which connects to Yunxiao, Alibaba Cloud's enterprise DevOps platform—boasts 70+ tools used for
+
+- creating and managing code repositories, branches, files, and merge requests;
+- managing projects, sprints, and work items, including creating work items, tracking comments, and logging estimated and actual time spent;
+- managing CI/CD pipelines;
+- managing application delivery workflows, including creating deployment orders, executing release stages, managing variable groups, and tracking deployment logs;
+- managing artifact repositories and retrieving artifact details; and
+- creating, searching, and managing test cases, test directories, and test plans, and updating test results.
+
+### Cloudflare MCP server
+
+Like any cloud service provider, [Cloudflare](https://www.cloudflare.com/) has its fingers in many pies, including web infrastructure, security, and AI capabilities. Today, it runs [15 MCP servers](https://github.com/cloudflare/mcp-server-cloudflare), each focused on a specific part of its platform. These are some of its features:
+
+- a Documentation server for pulling up-to-date reference information on Cloudflare's products and APIs;
+- an Observability server for debugging applications through logs and analytics;
+- a Radar server for accessing global internet traffic trends, URL scans, and network insights;
+- a Browser Rendering server for fetching web pages, converting them to markdown, and taking screenshots;
+- an AI Gateway server for searching logs and reviewing AI prompt and response history;
+- an Audit Logs server for querying account audit logs and generating reports;
+- a Cloudflare One CASB server for identifying security misconfigurations in SaaS applications; and
+- a [GraphQL](https://www.altexsoft.com/blog/graphql-core-features-architecture-pros-and-cons/) server for pulling analytics data through Cloudflare's GraphQL API.
+
+### Google Cloud MCP servers
+
+[Google Cloud](https://cloud.google.com/) is a suite of cloud computing services offered by Google, providing infrastructure, data analytics, machine learning, and application development tools to businesses and developers. Its MCP servers allow AI clients to access and interact with Google Cloud products in a standardized way, performing operations, retrieving data, and managing resources securely.
+
+Google Cloud currently [offers](https://github.com/Google/mcp) 7 remote MCP servers managed by Google and 15 open source MCP servers, which can be deployed locally or on Google Cloud.
+
+The remote suite integrates AI Agents with such resources useful for developers as BigQuery data warehouse, Google’s official developer documentation, and Google Kubernetes Engine. The last is also available via an open-source portfolio, which also provides connections to
+
+- Google GenAI tools for [image generation](https://www.altexsoft.com/blog/ai-image-generation/) (Gemini, Imegen), video creation (Veo), speech synthesis (Gemini TTS, Chirp 3 HD), [music generation](https://www.altexsoft.com/blog/sound-music-voice-generation/) (Lyria), and audio and video compositing and manipulation (AVTool);
+- a toolbox for databases such as BigQuery, Cloud SQL, AlloyDB, Spanner, Firestore, and more;
+- Google Cloud Storage;
+- tools to develop applications with Flutter/Dart, Go, Chrome, and Google Cloud;
+- and more.
+
+### Azure DevOps MCP server
+
+[Microsoft Azure](https://portal.azure.com/#home) is a cloud computing platform from Microsoft that provides services for computing, storage, databases, networking, AI, and DevOps. Its [DevOps MCP server](https://github.com/microsoft/azure-devops-mcp) has 80+ tools capable of
+
+- listing projects, teams and organization members, and retrieving identity information;
+- creating and managing CI/CD pipelines, triggering pipeline runs, retrieving build logs, and updating build stages;
+- searching code, wiki pages, and work items across the organization;
+- creating and managing [test plans](https://www.altexsoft.com/blog/test-plan-test-strategy/), test suites, and test cases, including updating test steps and retrieving build test results;
+- listing, creating, and updating wiki pages and retrieving their content; and
+- creating, updating, linking, and batch-managing work items, including adding comments, tracking revisions, and linking artifacts like commits and pull requests.
+
+## Authentication and identity management MCP servers
+
+Behind every login flow, user role, and access policy is a system that must be configured correctly and kept up to date as teams and applications grow. Managing all of that—across users, groups, applications, and security rules—is where identity platforms come in.
+
+### Auth0 MCP server
+
+[Auth0](https://auth0.com/) (now part of Okta) is an identity and access management (IAM) platform that enables developers to implement authentication, authorization, and user management without building those systems from scratch. Its [MCP server](https://github.com/auth0/auth0-mcp-server) exposes a set of tools that mirror Auth0’s Management API capabilities, enabling
+
+- listing, creating, and updating Auth0 applications, including retrieving details like callback URLs and client IDs;
+- listing, creating, and updating resource servers (APIs), including managing scopes, token lifetimes, and signing algorithms;
+- creating client grants that authorize applications to access specific APIs with defined scopes;
+- listing, creating, updating, and deploying Auth0 actions for customizing authentication flows;
+- querying authentication logs and retrieving specific log entries to investigate login activity and errors; and
+- listing, creating, updating, and publishing custom login/signup and password reset forms.
+
+### Okta MCP server
+
+Okta is another identity and access management platform that enables organizations to manage authentication, authorization, and access control throughout applications and systems. Its [MCP server](https://github.com/okta/okta-mcp-server) provides management tools for
+
+- listing, creating, updating, deactivating, and permanently deleting users, groups, and applications;
+- creating and managing security policies for passwords, MFA, and sign-on requirements;
+- creating, updating, activating, deactivating, and deleting policy rules, including setting exceptions and conditions for specific user groups; and
+- querying system logs to investigate failed authentication attempts and user login behavior.
+
+## Monitoring and observability tools MCP servers
+
+No matter how well an application is built, something will eventually behave unexpectedly in production. Response times creep up, errors start clustering around a specific endpoint, and memory usage climbs in ways that weren't visible during development. Having the right observability tools in place is what separates teams that catch those issues early from teams that find out from their users.
+
+### Amplitude MCP server
+
+[Amplitude](https://amplitude.com/) is a product analytics platform that helps teams understand user behavior, measure feature performance, and run experiments to inform product decisions. Its [MCP server](https://amplitude.com/docs/amplitude-ai/amplitude-mcp) has over 20 tools with capabilities such as
+
+- searching for charts, dashboards, notebooks, experiments, events, properties, and cohorts in the Amplitude workspace;
+- querying experiment results, including how each variant is performing and whether the results are statistically significant enough to make a decision;
+- retrieving session replays from the last 30 days, filtered by user properties or events; and
+- retrieving user data from a project and getting context about the current organization and accessible projects.
+
+<YouTube id="wtDFgx41Rho" caption="Product Metrics: How to measure product success" />
+
+Types of product metrics for measuring success
+
+### Axiom MCP server
+
+[Axiom](https://axiom.co/) is a cloud-native observability and event data platform built for high-scale engineering teams. It lets you collect, store, and query large volumes of log, trace, and event data. Its [MCP server](https://axiom.co/docs/console/intelligence/mcp-server) has 8 tools for
+
+- listing available datasets and retrieving their schemas to understand [data structure](https://www.altexsoft.com/blog/data-structure/);
+- executing Axiom Processing Language (APL) queries against your Axiom datasets;
+- listing dashboards and retrieving their full details;
+- listing monitoring configurations and checking their execution history; and
+- retrieving saved APL queries so they can be reused without rewriting them.
+
+The Axiom MCP server also offers built-in prompts, including ones for detecting anomalies across datasets and investigating [data quality](https://www.altexsoft.com/blog/data-quality-management-and-tools/) issues.
+
+### Scout APM MCP server
+
+[Scout](https://www.scoutapm.com/) is an application performance monitoring (APM) platform that helps engineering teams track response times, errors, slow queries, and other performance issues in their web applications. Its [MCP server](https://www.scoutapm.com/mcp) enables
+
+- retrieving application-level metrics like response time and throughput;
+- getting all endpoints for an application with aggregated performance data;
+- fetching time series metrics for specific endpoints;
+- retrieving recent traces for an application filtered to a specific endpoint; and
+- surfacing performance insights, including N+1 queries, slow queries, and memory bloat.
+
+## Best practices for working with MCP servers
+
+So far, we've explored a wide range of MCP servers in development, testing, databases, security, and more. It's one thing to know what's available and another to use it well; here are some best practices to help you get the most out of MCP servers.
+
+**Start small and expand gradually**. Pick one or two servers that address your most immediate pain points, get comfortable with them, and then expand from there. The goal is to have the integrations you actually need to get work done, not piling up connections. A poorly coordinated setup can introduce more overhead than it removes, so start with the tools your team already uses daily and only add more when there's a clear reason to.
+
+**Default to read-only access**. Before granting any server write access, ask yourself whether you'd be comfortable with the AI acting on that permission unsupervised. A good rule of thumb is to avoid giving a model write access to anything you wouldn't want to be accidentally deleted and read access to anything you wouldn't want to be leaked.
+
+**Keep** **humans in the loop** **for high-stakes actions**. MCP servers can take real, irreversible actions like pushing code, deleting records, and sending messages on your behalf. Especially when working with production systems or sensitive data, make it a habit to review what your AI assistant is about to do before it does it.
+
+**Stick to verified, official servers**. MCP opens up powerful workflows, but it also introduces security considerations. Where possible, use official servers from the platforms themselves rather than community-built alternatives, and treat any third-party server with the same scrutiny you'd apply to any external dependency.
+
+**_Note_** _: What we've covered here is far from an exhaustive list. The MCP ecosystem is growing rapidly, with new servers being added regularly in almost every category imaginable. To discover more, here are some of the best places to look:_ _[MCP.so](https://mcp.so/)_ _,_ _[Glama.ai](https://glama.ai/mcp/servers)_ _,_ _[Awesome MCP Servers](https://github.com/punkpeye/awesome-mcp-servers)_ _,_ _[Docker MCP Catalog](https://hub.docker.com/catalogs/mcp)_ _, and the official_ _[MCP GitHub repository](https://github.com/modelcontextprotocol/servers)_ _._

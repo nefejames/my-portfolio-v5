@@ -1,0 +1,195 @@
+---
+title: "The Good and Bad of ChromaDB for RAG: Based on Our Experience"
+client: "AltexSoft"
+clientSlug: "altexsoft"
+originalUrl: "https://www.altexsoft.com/blog/chroma-pros-and-cons/"
+publishedAt: "2026-01-19"
+canonical: "https://www.altexsoft.com/blog/chroma-pros-and-cons/"
+excerpt: "Learn how ChromaDB for RAG works, its strengths, weaknesses, and whether it’s the right vector store for your system."
+coverImage: "/portfolio/altexsoft/040-chroma-pros-and-cons/cover.jpg"
+tags: []
+---
+[Retrieval augmented generation (RAG)](https://www.altexsoft.com/blog/retrieval-augmented-generation-rag/) is a [context engineering](https://www.altexsoft.com/blog/agentic-context-engineering/) approach that improves the accuracy and reliability of AI-generated responses. [Large language models (LLMs)](https://www.altexsoft.com/blog/language-models-gpt/), powering AI apps, can provide outdated information, mix up concepts, or even generate facts that aren’t true. RAG addresses this by connecting the model to domain-specific knowledge.
+
+At the core of a RAG system is a [vector database](https://www.altexsoft.com/blog/vector-database/), which stores domain-specific information and retrieves it at query time. Among the available options, ChromaDB has gained a lot of attention. In this article, we explore its strengths, weaknesses, and how it compares to other vector repositories commonly used in RAG architectures.
+
+## What is ChromaDB?
+
+[ChromaDB](https://www.trychroma.com/) is an open source [vector database](https://www.altexsoft.com/admin/blog/articles/edit/38158/With%20a%20software%20engineering%20background,%20Nefe%20demystifies%20technology-specific%20topics%E2%80%94such%20as%20web%20development,%20cloud%20computing,%20and%20data%20science%E2%80%94for%20readers%20of%20all%20levels.) designed to store and retrieve dense embeddings (vectors)—high-dimensional numerical representations that capture the semantic meaning of data such as text, images, or audio. Alongside dense vectors, ChromaDB can store
+
+- sparse vectors (term-focused representations),
+- original documents, and
+- their associated [metadata](https://www.altexsoft.com/blog/metadata-management/).
+
+In a RAG pipeline, ChromaDB acts as the system’s long-term memory, so an [LLM](https://www.altexsoft.com/blog/llm-api-integration/) can access information it was not originally trained on, including private or domain-specific data.
+
+![How a RAG system works](/portfolio/altexsoft/040-chroma-pros-and-cons/image-1.png)
+
+How a RAG system typically works:
+
+- When a user asks a question, an embedding model converts the query into a dense embedding that captures semantic meaning to be compared against the data stored in ChromaDB.
+- Chroma retrieves the most relevant pieces of content based on semantic similarity—that is, how close the embeddings are in multidimensional space.
+- The closest matches are passed to the language model together with the user’s question.
+- The model generates an answer that is grounded in your domain-specific data rather than relying solely on its general training.
+
+Beyond semantic search, which is foundational to any [vector database](https://www.altexsoft.com/blog/vector-databases-compared/), ChromaDB supports additional retrieval mechanisms that allow more fine-grained control over how context is selected.
+
+### Sparse vector search
+
+While dense vectors enable searches for closely related or conceptually similar content, sparse vectors represent individual terms rather than overall meaning. In a sparse vector, most values are zero, and each non-zero value corresponds to the presence or importance of a specific term. ChromaDB natively supports sparse ranking functions such as BM25 and SPLADE.
+
+**BM25** is a classic lexical ranking algorithm that scores documents based on exact term matches, accounting for term frequency, term rarity across the corpus, and document length. **SPLADE**, by contrast, is a learned sparse retrieval model that expands queries and documents into weighted term representations, improving recall while preserving keyword-level precision.
+
+Sparse retrieval is especially useful when exact keywords matter—for example, technical terminology, product names, SKUs, or identifiers.
+
+### Hybrid search
+
+ChromaDB lets you use both dense and sparse vectors to capture conceptual relevance alongside exact term matches. To merge results, ChromaDB applies Reciprocal Rank Fusion (RRF)—a technique that consolidates multiple result lists into a single, more robust ranking. You can also adjust the relative weight of each retrieval signal, for example, prioritizing semantic similarity while still preserving the influence of exact keyword matches, resulting in more balanced and accurate search results.
+
+### Keyword (full-text) search
+
+Like sparse vectors, keyword search is useful in scenarios where exact words or phrases matter more than overall semantic meaning. It operates directly on the stored document text using lexical indexing (via the SQLite full-text search extension). This allows ChromaDB to match documents based on exact tokens or phrases.
+
+Keyword search is particularly effective when queries depend on specific formats, prefixes, or structural patterns—for example, finding documents that start with certain terms, match naming conventions, contain identifiers, or follow predefined textual structures. In RAG pipelines, keyword-based constraints and exact matching are often combined with sparse and dense vector retrieval, either to filter candidates or to provide complementary lexical signals.
+
+ChromaDB’s keyword search capabilities are designed to support retrieval workflows, not to replace a dedicated full-text search engine such as [Elasticsearch](https://www.altexsoft.com/blog/elasticsearch-pros-cons/), which offers more advanced features for large-scale text indexing and complex query syntax.
+
+### Metadata search
+
+Metadata-based search allows you to filter and narrow results using structured fields attached to your documents. Rather than relying solely on vector similarity, you can apply conditions based on categories, tags, timestamps, or any custom attributes stored alongside the raw text and embeddings.
+
+This approach is useful when you need finer control over retrieval. For example, you might restrict results to a specific document type, time range, data source, or user segment before or during a query. Metadata filters can be combined using simple comparison operators, making it easier to build faceted search experiences or enforce business logic vectors within RAG pipelines.
+
+## Pros of ChromaDB
+
+There are many things people love about ChromaDB when building RAG systems. Let’s explore a few of them.
+
+### Multiple language clients
+
+ChromaDB supports a wide array of language clients, making it easy for developers to integrate it into almost any tech stack. The Chroma team maintains three official client SDKs—for [Python](https://www.altexsoft.com/blog/python-pros-and-cons/), [JavaScript](https://www.altexsoft.com/blog/mean-mern-javascript-full-stack/), and [TypeScript](https://www.altexsoft.com/blog/typescript-pros-and-cons/)—while the open-source community has contributed over 10 clients for languages such as Rust, [Java](https://www.altexsoft.com/blog/pros-and-cons-of-java-programming/), PHP, and Dart. Altogether, this variety of clients speeds up development and makes ChromaDB a flexible choice for building AI applications across multiple platforms and ecosystems.
+
+### Easy to use and learn
+
+Many developers and [machine learning engineers](https://www.altexsoft.com/blog/machine-learning-engineer/) who use Chroma consider it a beginner-friendly tool and one of the simplest vector databases to start with, even for those new to vector DBs or RAG workflows.
+
+ChromaDB can run locally; it is lightweight and simple to install and set up. Olexander Hryhor, a Solutions Architect at AltexSoft, highlights its ease for prototyping: _“I mainly used ChromaDB for rapid prototyping because it’s easy to deploy on a local machine.”_ This makes it perfect for demos and [proofs-of-concept](https://www.altexsoft.com/blog/proof-of-concept/), while still supporting single-node and distributed deployments as your projects grow.
+
+### Unified search API for granular results
+
+ChromaDB provides a unified and flexible [Search API](https://docs.trychroma.com/cloud/search-api/overview), which is a core strength for building RAG systems. The API allows retrieval operations to be handled in one place, combining dense vector similarity search with metadata-based or keyword filtering and controlled result selection. For example, you can search for documents containing specific terms while prioritizing semantically similar content, or filter results by category or date while ranking them based on embedding similarity.
+
+It’s important to note, however, that the unified Search API is currently available only in Chroma Cloud, the managed, paid offering. If you’re using the self-hosted, open-source version of ChromaDB, retrieval is performed through lower-level query primitives (such as vector similarity queries with optional metadata or document filters). In that setup, combining dense, sparse, or keyword-based retrieval typically requires additional logic at the application layer rather than a single consolidated search interface.
+
+### Flexibility for experimentation and pipeline control
+
+ChromaDB gives you a lot of flexibility when building RAG pipelines. _“The main reason I chose ChromaDB was that it lets you play with the results. It gives you more room to work on your pipeline and experiments. For me, this makes ChromaDB better than other vector databases I’ve used,”_ said Ismail Aslan, a Machine Learning Engineer at AltexSoft.
+
+This flexibility comes from being able to structure embeddings, add metadata, and experiment with your query workflows in ways that some other vector databases don’t easily allow.
+
+### Various deployment options
+
+ChromaDB offers flexible deployment options that allow teams to start small and scale their setup as needed. It can run embedded directly inside an application for quick experiments, persist data locally on a single machine for development or small production workloads, or operate as a standalone server accessed over HTTP for multiprocess or remote use.
+
+For production use at a larger scale, ChromaDB also provides a managed cloud service (Chroma Cloud), which abstracts away infrastructure and storage management and scales automatically as data grows. While ChromaDB can be deployed in containerized environments such as [Kubernetes](https://www.altexsoft.com/blog/kubernetes-pros-cons/), it currently operates as a single-node database rather than a fully distributed, multi-node system.
+
+This range of deployment options makes ChromaDB flexible enough for experimentation, development, and production, while keeping setup simple and scalable.
+
+### Growing community
+
+ChromaDB has a growing [community on GitHub](https://github.com/chroma-core/chroma), where the project has 25.6k stars and is active with pull requests, issues, and discussions. You can also find updates and engage with other users on Twitter and Discord. While there isn’t a dedicated subreddit, there are various Reddit threads about it.
+
+Chroma’s active community means you can find help, examples, and guidance for implementing it in your projects.
+
+### Wide range of integrations
+
+ChromaDB makes it easy to connect your data and AI tooling through a growing ecosystem of integrations that are well-suited for building RAG systems. It works with embeddings generated by a wide range of providers—including OpenAI, Google Gemini, Cohere, Hugging Face, Jina AI, and Ollama—allowing teams to store and retrieve vector representations of text, images, and other data types within their applications.
+
+ChromaDB also integrates closely with popular RAG frameworks such as LangChain and LlamaIndex, which simplify data ingestion, retrieval logic, and embedding management without requiring teams to build these components from scratch.
+
+In addition, ChromaDB is commonly used alongside tooling such as DeepEval for RAG evaluation, Anthropic [MCP](https://www.altexsoft.com/blog/model-context-protocol/) for agent and tool orchestration, and Streamlit for application deployment, making it easier to test retrieval quality, orchestrate pipelines, and ship end-to-end AI applications.
+
+## Cons of ChromaDB
+
+ChromaDB, like every tool, isn’t one size fits all; it comes with its limitations. Let’s explore some of them.
+
+### Scalability constraints as workloads grow
+
+ChromaDB‘s simplicity can become a drawback as your projects grow. Because it operates in a single-node setup, performance can degrade as data volumes increase or query traffic rises. CPU, memory, and disk I/O can turn into bottlenecks when handling larger datasets or more frequent retrieval requests.
+
+Also, single-node architectures don’t provide built-in high availability or failover, meaning outages or hardware issues can temporarily disrupt the entire system. If you expect rapid growth, heavy traffic, or distributed workloads across regions, this can limit how far ChromaDB can scale without additional engineering effort.
+
+Chroma Cloud abstracts infrastructure management and scales beyond what a single self-hosted node can handle, allowing teams to work with larger datasets without managing their own servers. However, Chroma’s publicly available documentation does not currently detail customer-visible multi-node distributed features—such as explicit sharding or replication controls—in the same way as some fully distributed vector database services.
+
+### Limited tuning depth
+
+ChromaDB supports performance tuning, but its configuration options are more limited than those offered by other vector databases.
+
+Most tuning is centered around the HNSW (Hierarchical Navigable Small World) index—a graph-based indexing method used to speed up similarity search by organizing vectors so that nearby items can be found quickly. ChromaDB allows you to adjust a few HNSW settings to balance accuracy, speed, and memory usage, along with workload-related choices such as embedding size and resource allocation.
+
+Beyond that, many low-level decisions are handled internally. ChromaDB uses a single primary index type and exposes fewer tuning knobs, which limits how much teams can optimize things like advanced indexing strategies, complex filtering performance, or highly customized retrieval behavior.
+
+This design makes ChromaDB easier to use and reason about, but it can be a drawback for teams that need fine-grained control over every aspect of performance and query execution.
+
+### Partial support for advanced retrieval features
+
+As we said, ChromaDB provides first-class support for sparse [vector search](https://www.altexsoft.com/blog/semantic-search-vs-vector-search/), including BM25-style lexical retrieval. However, if your RAG workflow requires advanced functionality, such as neural reranking or an external full-text search engine, you may still benefit from integrating specialized tools alongside ChromaDB to achieve the desired scoring and ranking behavior.
+
+Ismail notes that, _“In ChromaDB, if you want to do reranking, you may need to use another library.”_ While the existing design keeps the core database simple and lightweight, it can be a limitation if you need an all-in-one solution for complex retrieval workflows.
+
+### Cloud deployment complexity
+
+Depending on your setup, you may experience some issues when deploying ChromaDB to the cloud. Olexander points out: _“Azure does not offer native support for ChromaDB. That means deployment becomes more complex, requiring a Docker container for the vector database. This, in turn, creates challenges for horizontal scaling in the cloud.”_
+
+Because of that, he decided to switch to Postgres with PGVector: _“This setup is a proven solution and also makes it easy to work with traditional relational data alongside vectors.”_ If you’re not using Chroma Cloud, extra setup and orchestration are needed to scale across multiple nodes.
+
+Ismail also recommends considering Azure-native alternatives in this scenario. According to him, _“If you’re working in Azure, tools like_ _[Azure AI Search](https://azure.microsoft.com/en-us/products/ai-services/ai-search)_ _or_ _[Cosmos DB](https://azure.microsoft.com/en-us/products/cosmos-db)_ _provide better integration, uptime guarantees, and scaling, which can reduce the operational overhead ChromaDB requires on this platform.”_
+
+### Sparse documentation
+
+ChromaDB provides [documentation](https://www.altexsoft.com/blog/technical-documentation-in-software-development-types-best-practices-and-tools/) that’s good enough as a starting point. However, some developers find it lacking in depth. Other users say that there are limited examples for connecting ChromaDB to different applications, which can make it harder to integrate with other tools they use.
+
+## ChromaDB vs other vector databases
+
+ChromaDB is one of the options that exist in the vector database market, but it’s not always the best choice for every scenario. Olexander mentions that _“ChromaDB is generally a decent option if you have strong hardware and need to build a prototype quickly. But if you’re planning to go into production, it makes sense to move to more mature solutions.”_
+
+Regarding the different alternatives, Ismail also shares his thoughts: _“There are many vector databases out there today. They offer the same core functionality and use similar algorithms. The differences usually come down to things like their APIs and any operational overhead you may have to deal with.”_
+
+![ChromaDB vs other vector databases](/portfolio/altexsoft/040-chroma-pros-and-cons/image-2.png)
+
+Now, let’s see how ChromaDB stacks up against the competition, specifically [pgvector](https://github.com/pgvector/pgvector), [Pinecone](https://www.pinecone.io/), and [Milvus](https://milvus.io/).
+
+Similar to ChromaDB, Pinecone and Milvus are purpose-built vector databases, while pgvector is a PostgreSQL extension that adds vector support to a general-purpose relational database.
+
+### ChromaDB vs pgvector
+
+Unlike ChromaDB, which is a dedicated vector database, pgvector is a PostgreSQL extension, which means it adds vector support directly into your existing [relational database](https://www.altexsoft.com/blog/comparing-database-management-systems-mysql-postgresql-mssql-server-mongodb-elasticsearch-and-others/). You can store embeddings alongside your structured data and query them with familiar SQL. This setup is great if you’re already using Postgres—you get SQL joins, ACID transactions, and all the relational features you’re used to, so there’s no need to manage a separate database.
+
+ChromaDB tends to be very fast for single queries. In [benchmark tests](https://www.newtuple.com/post/speed-and-scalability-in-vector-search), it returned results quickly when only one request was running at a time. This makes it feel responsive during development, demos, or low-traffic applications. However, when concurrency increases—for example, many users querying at once—performance can drop sharply. Response times become less consistent, and some queries take much longer than others.
+
+pgvector, on the other hand, starts off slower for individual queries, but it performs much better when handling many concurrent requests. In high-concurrency tests, pgvector showed lower average response times, tighter consistency, and higher requests-per-second. This makes it more reliable for applications where multiple users are accessing vector search at the same time.
+
+### ChromaDB vs Pinecone
+
+A major difference between ChromaDB and Pinecone is that ChromaDB is an open-source vector database that you can run anywhere, while Pinecone is a fully-managed cloud service. With Pinecone, you don’t have to worry about handling servers, replication, or infrastructure. However, the trade-off is that you have less control over the underlying system. Additionally, while ChromaDB is free for self-hosting, Pinecone tends to be more expensive, as it is a fully-managed service with pricing based on usage.
+
+Pinecone handles large-scale workloads very well. It supports horizontal scaling, so capacity can increase as demand grows. It is able to manage billions of vectors, high query volumes, and heavy concurrency while keeping latency low. Even at a large scale, it can support thousands of concurrent searches with stable response times, often staying under 50 milliseconds for high-percentile latency.
+
+### ChromaDB vs Milvus
+
+Milvus supports various index types—HNSW, IVF (Inverted File) variants, DiskANN (Disk-based Approximate Nearest Neighbor), and more—so you can tune performance for different use cases and data shapes. ChromaDB primarily uses HNSW for vector search, which works great in many scenarios but offers fewer ways to optimize search behavior.
+
+Because of its simpler architecture, ChromaDB is often easier to install, integrate, and use, especially for developers focused on rapid prototyping, RAG pipelines, or applications where you don’t need heavy distributed scalability. Milvus offers more advanced capabilities, but this also comes with added complexity. It requires more configuration, resources, and operational knowledge to run effectively.
+
+_For an in-depth review, explore our dedicated article on [vector databases compared](https://www.altexsoft.com/blog/vector-databases-compared/)._
+
+## Getting started with ChromaDB
+
+If you’re looking to get started with ChromaDB, there are several useful resources that can help you understand the tool and start building with it quickly.
+
+**Documentation.** [ChromaDB’s official documentation](https://docs.trychroma.com/docs/overview/introduction) is the best place to begin. It covers installation steps, core concepts, and how Chroma works as a vector database. The docs also include practical guides, supported integrations, and full API references for both [Python](https://www.altexsoft.com/blog/python-pros-and-cons/) and [JavaScript](https://www.altexsoft.com/blog/mean-mern-javascript-full-stack/)/ [TypeScript](https://www.altexsoft.com/blog/typescript-pros-and-cons/). This makes it easy to move from basic setup to more advanced RAG use cases.
+
+**GitHub repository**. ChromaDB is open source and its [GitHub](https://github.com/chroma-core/chroma) repository is an important learning resource. With over 25,000 stars, the repo gives insight into the project’s structure, ongoing development, and design decisions. You can explore the codebase, review issues and pull requests, and even contribute if you want to get involved.
+
+**Community**. ChromaDB boasts a 10,600+ strong, active community on [Discord](https://discord.com/invite/MMeYNTmh3x), where users and contributors discuss use cases, ask questions, and share updates. This is a good place to get help, learn from others building RAG systems, and stay informed about new features and changes.
+
+**Online resources**. Beyond the official channels, there is a growing ecosystem of third-party content around ChromaDB. You’ll find many blog posts, tutorials, and YouTube videos that walk through real-world examples, performance tips, integration patterns for RAG pipelines, and more.
