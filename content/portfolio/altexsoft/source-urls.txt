@@ -58,3 +58,6 @@
 53. https://www.altexsoft.com/blog/mcp-server-claude-code-cursor/
 54. https://www.altexsoft.com/blog/legacy-system-modernization-approaches/
 55. https://www.altexsoft.com/blog/subagents/
+56. https://www.altexsoft.com/blog/semantic-search-vs-vector-search/
+57. https://www.altexsoft.com/blog/claude-code/
+58. https://www.altexsoft.com/blog/context7/
