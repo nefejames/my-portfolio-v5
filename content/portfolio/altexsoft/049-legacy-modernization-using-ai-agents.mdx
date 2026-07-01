@@ -1,0 +1,162 @@
+---
+title: "Legacy Modernization Using AI Agents: Hands-On Experience"
+client: "AltexSoft"
+clientSlug: "altexsoft"
+originalUrl: "https://www.altexsoft.com/blog/legacy-modernization-using-ai-agents/"
+publishedAt: "2026-04-09"
+canonical: "https://www.altexsoft.com/blog/legacy-modernization-using-ai-agents/"
+excerpt: "Learn how AI agents help accelerate legacy modernization with insights from our experts."
+coverImage: "/portfolio/altexsoft/049-legacy-modernization-using-ai-agents/cover.jpg"
+tags: []
+---
+At AltexSoft, we've spent years helping companies navigate [legacy modernization](https://www.altexsoft.com/infographics/legacy-modernization-tools-compared/), working through codebases across industries. More recently, we’ve been using [AI agents](https://www.altexsoft.com/blog/ai-agents/) to accelerate the process and learning firsthand where these tools genuinely help and where they fall short.
+
+This article provides experience-based insights on what makes legacy systems so hard to modernize, where AI agents add real value, their current limitations, and how to keep human judgment in the right places.
+
+Legacy modernization is like fixing electricity in a 200-year-old house. You never know when issues will arise in your codebase causing everything to break.
+
+## What makes legacy modernization difficult
+
+Most legacy systems have been running for years, sometimes decades, with nobody fully understanding what’s going on under the hood, typically because the developers who built them have moved on and [documentation](https://www.altexsoft.com/blog/how-to-write-code-documentation/) was never written or has long gone stale. Also, during the life of the system, new people add another layer of logic to the code, further complicating things.
+
+[Modernization](https://www.altexsoft.com/whitepapers/legacy-system-modernization-how-to-transform-the-enterprise-for-digital-future/) then becomes more of an archaeological dig than an engineering exercise because, beyond refactoring code, you must also uncover
+
+- dependencies that were never written down,
+- business rules buried in logic nobody intended to be permanent,
+- tribal knowledge that left the building with the developers who built the system, and
+- assumptions baked into the code that no one on the current team even knows exist.
+
+![Elements and factors that make legacy modernization challenging](/portfolio/altexsoft/049-legacy-modernization-using-ai-agents/image-1.png)
+
+_“The real challenge with legacy systems is understanding how the code actually works. The moment you try to debug one module, something breaks in another. And there are no tests to catch it since many of such systems were typically built before test-driven development became standard practice,”_ says Ihor Pavlenko, Director of AI Practice at AltexSoft.
+
+In practice, this lack of visibility often comes down to hidden dependencies that only surface when something fails. For example, a currency conversion module may run every time a price is displayed. What’s less obvious is that the same component might also be used within the checkout flow—for instance, to normalize amounts before tax calculations. Modify it during modernization and suddenly your checkout produces incorrect order totals—a bug with no clear link to the change you just made.
+
+Oleksandr Hryhor, Solution Architect at AltexSoft, has run into such issues repeatedly. His team was brought in to analyze a five-year-old [Node.js](https://www.altexsoft.com/blog/the-good-and-the-bad-of-node-js-web-app-development/) monolith with a [React](https://www.altexsoft.com/blog/nextjs-pros-and-cons/) frontend, roughly 200,000 lines of code over 800 files. The goal was to extract a payment service as the first step toward a [microservices](https://www.altexsoft.com/blog/using-microservices-for-legacy-system-modernization/) architecture. Two of the three engineers who originally designed the core data model had already left the company and there was no formal [API documentation](https://www.altexsoft.com/blog/api-documentation/) to work from.
+
+_“The engineering team believed their planned payments service touched five entities, but the analysis revealed it affected eleven entities. Three of those entities were also heavily used by the user management and notification services, a web of hidden connections_ _the client’s team_ _had never formally mapped_ _and only discovered_ _after we analyzed their codebase.”_
+
+## AI tools in modernization and their limitations
+
+How can AI tools help with modernization? Reflecting on the engineering team’s experience, Ihor shares, _“AI doesn't get tired of reading code. You can point it at a codebase with half a million lines and, it will surface patterns that a human would have to spend weeks looking for, if they found them at all. That alone can cut the discovery phase of a modernization project from weeks or months to days.”_
+
+Beyond identifying patterns, AI can also uncover hidden dependencies, dead code paths, long-forgotten vulnerabilities, and performance bottlenecks buried within specific components.
+
+[AI coding tools](https://www.altexsoft.com/blog/ai-coding-tools/) like [Cursor](https://www.altexsoft.com/blog/cursor-pros-and-cons/) or Claude Code read files, reason about code, and generate or refactor output within a session do deliver impressive results. In one project, Glib Zhebrakov, Head of the Center of Engineering Excellence at AltexSoft, noted that the team was able to extract API contracts, generate [smoke tests](https://www.altexsoft.com/blog/smoke-testing/), and implement APIs on a new stack, with 60–70 percent of APIs correctly transferred from the legacy system. _“For a system of that complexity,”_ he says, _“that’s a solid baseline to build on.”_
+
+However, as useful as these tools are, their limitations become clear when applied to large, messy codebases. At the core is a simple constraint: AI coding tools cannot grasp the full picture of such systems at once—for two interconnected reasons.
+
+First, a [large language model (LLM)](https://www.altexsoft.com/blog/language-models-gpt/) can only operate on what fits inside its active memory at any given time. So even the much-celebrated [one-million-token context window](https://claude.com/blog/1m-context-ga), introduced by [Claude Code](https://www.altexsoft.com/blog/claude-code/) recently, isn't enough for the largest legacy codebases spanning hundreds of thousands of files. That means the model is always working with fragments of the system.
+
+Second, there are persistence issues arising from the fact that AI coding tools are largely file- and session-scoped. You ask a question, they analyze the files in context, produce an answer, and when the session ends, that understanding is gone. The next session starts from zero, with no system-wide picture carried over from conversations or shared across the team.
+
+What the model learned about module A yesterday has no bearing on the work it does on module B today, and this is a significant limitation in legacy modernization, where building a complete understanding of the system is often the hardest part.
+
+These two constraints mean the AI is always reasoning with an incomplete context. _“AI agents have no helicopter view over the whole system and only cover specific points related to a query,”_ Glib notes. _“That’s why they are usually unable to handle complex relationships. Any attempt to reconstruct the full picture in one go tends to produce messy, irrelevant output.”_
+
+Ihor’s team has learned first-hand what poor persistence can lead to. In one [legacy migration](https://www.altexsoft.com/blog/strangler-fig-legacy-system-migration/) project, a module was rewritten, and everything seemed fine until a month later. That's when engineers found that 17 [RESTful API](https://www.altexsoft.com/blog/rest-api-design/) endpoints had gone missing during the AI-assisted process.
+
+<YouTube id="odY0iTatFjM" caption="Legacy System Modernization" />
+
+How often legacy systems should be rewritten, and various approaches
+
+## Graph-based AI engineering platform: How we approached legacy modernization with Interlace
+
+To address the limitations of standard AI coding tools, our team built [Interlace](https://www.askinterlace.com/)—a code knowledge graph platform that unifies fragmented code, documentation, and product artifacts into a live system map, giving teams a shared source of truth. While other solutions treat systems as collections of files to read on demand, Interlace understands them as interconnected structures—building a persistent, queryable [knowledge graph](https://www.altexsoft.com/blog/knowledge-graph/) that captures both implementation and business logic.
+
+Ihor explains the motivation behind Interlace: _“With large legacy systems, you can’t just dump the whole codebase into a context window—and that’s where hallucinations start. RAG doesn’t fix it either, because it retrieves fragments based on text similarity rather than logical relevance, missing the relationships that define how a system actually works. So we built a knowledge layer that captures key components and their dependencies to ground LLMs in a real system context.”_
+
+![How Interlace improves legacy modernization ](/portfolio/altexsoft/049-legacy-modernization-using-ai-agents/image-2.png)
+
+### What Interlace does differently
+
+Unlike coding assistants that read selected files, generate output, and reset with each session, the Interlace code knowledge graph platform builds a persistent, system-wide model of the codebase that remains accessible to both engineers and AI tools.
+
+Within this model, every function is placed in context—showing which user flow it belongs to, what services it depends on, and what might break if it changes.
+
+This is possible because Interlace goes beyond code structure to represent business logic and user flows. These flows are stored as connected sequences of nodes, each linked to the exact file responsible for that step.
+
+So when a developer or [AI agent](https://www.altexsoft.com/blog/subagents/) queries the system—for example, about a login flow—they get a structured chain of steps rather than abstract descriptions. A typical login flow might include the input form, the sign-in action, and the authentication trigger, each pointing directly to the relevant code.
+
+_“Our goal with Interlace is to give tools like Cursor a structural skeleton to work from, rather than forcing them to infer relationships from raw code,”_ says Glib.
+
+<YouTube id="B2MdKc2zO0E" caption="How AI Coding Changes the Tech Industry" />
+
+Will AI replace programmers?
+
+### How Interlace works
+
+Interlace processes a [codebase](https://www.altexsoft.com/blog/agentic-ai-codebase-mapping/) through a structured pipeline, moving it from code to business-level understanding. It does so through the following sequence of steps.
+
+**Structural discovery** goes through the codebase and maps file types, language distribution, directory structure, and git history. This step is purely about deterministic fact-gathering to understand the scale of what you're dealing with.
+
+**Smart file sampling** uses AI to identify architecturally significant files such as entry points, configuration, models, and service boundaries. Rather than feeding everything—like boilerplate config and lockfiles—into subsequent phases, it picks the files that reveal the most about how the system is organized.
+
+**Technology and endpoint detection** identify the tech stack the system is built on, including frameworks, ORM patterns, and authentication mechanisms, and extracts HTTP endpoints, request/response shapes, and routing logic.
+
+**Entity and dependency mapping** traces which endpoints interact with which data and builds a dependency graph. This is where surprises tend to show up, with entities that teams assumed were self-contained turning out to be shared across multiple parts of the system.
+
+**User flow reconstruction** assembles user journeys throughout the codebase. A checkout flow, for instance, might touch card validation, inventory, [payment processing](https://www.altexsoft.com/blog/online-payment-processing/), and order confirmation—with nothing in the code explicitly linking them together. It's important to confirm—via [human-in-the-loop](https://www.altexsoft.com/blog/human-in-the-loop/) systems—that the generated flow accurately matches actual business processes.
+
+**Documentation generation** takes everything found and produces human-readable output that includes architecture overviews, endpoint catalogs, entity relationship descriptions, and user flow narratives.
+
+At the end, everything is exported to a [graph](https://www.altexsoft.com/blog/graph-database/) that’s stored in [FalkorDB](https://www.falkordb.com/) and exposed via the [Model Context Protocol (MCP)](https://www.altexsoft.com/blog/model-context-protocol/), so AI agents can query it directly (via an [MCP server](https://www.altexsoft.com/blog/mcp-server-claude-code-cursor/)) during a session rather than searching through raw files.
+
+According to Ihor, the graph output is _“Like a mini-map of a video game. You always have the full picture in view, and when you need to dive into a specific area, you zoom in without losing your sense of where everything else sits.”_
+
+### How Interlace performs in real projects
+
+Take a question like “What would break if I change the User entity?” Without a system-wide knowledge layer, answering that requires tracing through the codebase manually, which in a large [legacy system](https://www.altexsoft.com/blog/legacy-system-modernization-approaches/) can take days. With Interlace, you get reliable, full-scope answers faster.
+
+The same applies to planning a microservices extraction. Beyond showing which services are connected, the graph reveals how they're related, through what data, and in which direction. That gives teams an extraction sequence grounded in how the system actually works, rather than assumptions.
+
+We’ve found that feeding Interlace's graph-grounded [context](https://www.altexsoft.com/blog/context7/) to AI agents reduced hallucination rates on modernization tasks by 40 to 50 percent compared to running the same tasks without it. The graph also proved useful beyond AI workflows—the entity catalog produced during analysis helped onboard new [engineers](https://www.altexsoft.com/blog/software-engineer-qualification-levels-junior-middle-and-senior/) who had been struggling to build a working mental model of the system's [data structure](https://www.altexsoft.com/blog/data-structure/) and connections.
+
+## Where human engineering judgment cannot be delegated to AI
+
+When pitching AI-driven modernization, many teams assume the model does most of the work while the engineer simply approves the outcome. Ihor challenges this view, arguing that these tools are instruments—not decision-makers: _“You still need to understand modules, user flows, and the business logic behind the code. You can't just say 'modernize my application' and walk away. Cursor and Claude Code can help engineers move faster, but the thinking still has to come from the engineer.”_
+
+The moment you hand over decision-making to AI, you're no longer functioning as an engineer or architect but simply reviewing outputs and pressing buttons. A human should always own the thinking.
+
+He draws a clear line between AI offering perspectives and AI making calls. A [solution architect](https://www.altexsoft.com/blog/solution-architect-role/) may approach a problem from one angle and use AI to surface how a security or [QA engineer](https://www.altexsoft.com/blog/qa-engineering-roles-skills-tools-and-responsibilities-within-a-testing-team/) might evaluate it—but the final decision remains with a human.
+
+Glib elaborates on what human involvement should look like in practice: _“The most important part is verifying the results. There should also be a step where the LLM presents a plan and a human reviews, approves, or adjusts it. But this shouldn’t be a single, system-wide plan—it should be step by step and focused on specific modules.”_
+
+Other areas where judgment and decision-making should remain with engineers, [CTOs](https://www.altexsoft.com/blog/fractional-cto/), and other [stakeholders](https://www.altexsoft.com/blog/stakeholder-analysis/) include the following.
+
+**Preparation phase.** Modernization requires significant preparation—cleaning up the codebase, updating documentation, and defining rules, prompts, and skills, along with at least minimal tests to ensure changes don’t introduce new issues.
+
+As Glib Zhebrakov, Head of the Center of Engineering Excellence at AltexSoft, puts it, “ _The modernization process shouldn't look like a single prompt or a series of prompts. It should be a full pipeline of agents, rules, and commands that the LLM actually executes. That pipeline must include running smoke tests, reviewing the results, and applying fixes accordingly.”_ Most teams skip this groundwork and jump straight into the implementation.
+
+**Documentation.** As we said, AI helps address outdated or missing [technical documentation](https://www.altexsoft.com/blog/technical-documentation-in-software-development-types-best-practices-and-tools/). By analyzing the code directly, AI can generate up-to-date, human-readable descriptions of
+
+- existing modules and services,
+- API endpoints and their behavior,
+- relationships between entities, and
+- parts of the system that change most frequently.
+
+Tools like Google's [Code Wiki](https://codewiki.google/) can even build a full wiki from a repository automatically, giving teams a current reference point that would otherwise take weeks to compile manually.
+
+At the same time, this output has clear limits. As Ihor notes, _“LLMs work well in this regard, but they only describe what the code does.”_ They don’t capture business logic, user journeys, or the intent behind decisions—which means AI-generated insights still need human interpretation.
+
+<YouTube id="2qlcY9LkFik" caption="Software Planning and Technical Documentation" />
+
+How software planning and technical documentation help developers stay on course
+
+**Service boundary decisions.** When breaking a monolith into smaller services, someone has to decide where one service ends and another begins. AI can make suggestions based on how tightly the code is connected, but the final call has to factor in team structure, ownership, and business priorities, none of which live in the code.
+
+**Model selection and configuration.** Since not all models handle complex, underdocumented code equally well, defaulting to whatever ships with your IDE can lead to poor results—especially in the analysis-heavy early stages of modernization, where reasoning quality matters most.
+
+_“From what we’ve seen, Claude models consistently perform best for development work. OpenAI models and Gemini aren’t as strong for this kind of task, though a lot depends on configuration,”_ Ihor notes. _“For understanding complex applications, thinking models that reason through a problem step by step are the way to go. Both Claude and Cursor offer them, but not all of Cursor’s models are at the same level—so we typically recommend Claude.”_
+
+So choosing the right model—and configuring it correctly—remains an engineering decision.
+
+**Risk tolerance and sequencing**. Analysis can highlight that a particular extraction is risky, but it can’t determine whether the business is willing to accept that risk or whether delivery pressure justifies moving faster. That judgment belongs to people.
+
+**Validation against production reality**. A dependency graph can show that an endpoint exists and could theoretically receive traffic. It can't tell you whether anyone is actually using it, or whether it's a leftover endpoint being kept alive for a small group of users on a deprecated mobile app. That kind of context only comes from production data.
+
+Ihor illustrates what a human–AI decision balance might look like in practice. _“There are people who've been using Claude Code heavily and haven't written code themselves in months,”_ he says, _“but they're constantly reviewing, approving, suggesting, and changing what Claude creates. The decision is always on them.”_
+
+Failures tend to occur when critical judgment is delegated either to AI itself or to people with insufficient experience. Amazon, for example, reportedly [restricted](https://www.fintechweekly.com/news/amazon-ai-coding-outage-review) junior and mid-level developers from pushing AI-generated code to production without senior approval after multiple outages in a single year, each traced back to insufficient review.
+
+_“One_ _overstated claim is that AI can do anything and we no longer need technical engineers, or their salaries are too high. However, legacy modernization projects will always require skilled expertise,”_ admits Ihor.

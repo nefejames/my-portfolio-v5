@@ -48,3 +48,13 @@
 43. https://www.altexsoft.com/blog/universal-commerce-protocol/
 44. https://www.altexsoft.com/blog/graph-database/
 45. https://www.altexsoft.com/blog/mcp-servers-for-developers/
+46. https://www.altexsoft.com/blog/altexsoft-ai-transformation/
+47. https://www.altexsoft.com/blog/agent-to-human-a2h-protocol/
+48. https://www.altexsoft.com/blog/legacy-modernization-using-ai-agents/
+49. https://www.altexsoft.com/blog/vector-database/
+50. https://www.altexsoft.com/blog/ai-coding-tools/
+51. https://www.altexsoft.com/blog/agentic-ai-codebase-mapping/
+52. https://www.altexsoft.com/infographics/legacy-modernization-tools-compared/
+53. https://www.altexsoft.com/blog/mcp-server-claude-code-cursor/
+54. https://www.altexsoft.com/blog/legacy-system-modernization-approaches/
+55. https://www.altexsoft.com/blog/subagents/
