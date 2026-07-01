@@ -1,0 +1,123 @@
+---
+title: "What Are Subagents? When to Use Them and Why"
+client: "AltexSoft"
+clientSlug: "altexsoft"
+originalUrl: "https://www.altexsoft.com/blog/subagents/"
+publishedAt: "2026-05-12"
+canonical: "https://www.altexsoft.com/blog/subagents/"
+excerpt: "Understand subagents in multi-agent systems and when they add value versus unnecessary complexity."
+coverImage: "/portfolio/altexsoft/056-subagents/cover.jpg"
+tags: []
+---
+As AI agents take on more complex tasks, a single one may break down and produce poor results if handling large workloads. One way to prevent this is to split tasks and assign different parts to various systems, called _subagents_.
+
+But does adding more agents actually help, or does it only create increased complexity and coordination overhead? This article breaks down what subagents are, how they work, and when they're worth the added complexity.
+
+![How subagents work: orchestrator-subagent pattern ](/portfolio/altexsoft/056-subagents/image-1.png)
+
+## What are subagents?
+
+**What are they?** Subagentsare an [AI agent](https://www.altexsoft.com/blog/ai-agents/) that operates under the direction of another agent—typically an orchestrator—to handle a specific part of a larger task. Rather than having a single agent handle everything, the orchestrator breaks the work down and delegates parts to subagents.
+
+**What are their characteristics?** Each subagent has its own [context](https://www.altexsoft.com/blog/agentic-context-engineering/) window, instructions, memory, and tools, and does not inherit the main agent's accumulated context. This keeps subagents lightweight while doing heavy, focused work without bloating the main conversation.
+
+**What are their benefits?** Subagents can run in parallel, making them useful for tasks with independent subtasks that would otherwise run sequentially. Bringing several subagents together is what creates a [multi-agent system](https://www.altexsoft.com/blog/building-multi-agent-systems/).
+
+**What are the tradeoffs?** Subagents consume significantly more tokens than single-agent setups, are harder to debug, and introduce coordination complexity that grows with every agent you add.
+
+**How are they created?** Subagents can be predefined and reusable or dynamically spun up by the orchestrator based on the tasks at hand. A subagent can itself spawn further subagents if needed, creating a hierarchy of agents working toward a shared objective.
+
+**What subagent patterns exist?** Common coordination patterns include orchestrator-subagent, agent swarms, capability-based systems, and message bus architectures.
+
+**When should you use them?** Not every complex task calls for subagents. In many cases, a well-prompted single agent with the right tools is sufficient. Subagents earn their place when tasks outgrow a single [context window](https://www.altexsoft.com/glossary/context-window/), require parallel execution, or span multiple specialized domains.
+
+<YouTube id="xgi4wodklLw" caption="AI Agents Can Operate Internet as Humans: Should You Be Scared?" />
+
+Are AI agents a step closer to taking over the world?
+
+## When do you need subagents?
+
+The honest answer is that you won’t need to spin up subagents often because single agents, when properly [prompted](https://www.altexsoft.com/blog/prompt-engineering/) and equipped with the right tools and sufficient [context](https://www.altexsoft.com/blog/agentic-context-engineering/), can handle far more than you might think. It's always best to push your single-agent setup to its limits before reaching for subagents.
+
+That said, subagents may be required under the following conditions.
+
+- You have tasks that tend to outgrow an agent’s context window, such as processing large [legacy codebases](https://www.altexsoft.com/blog/legacy-modernization-using-ai-agents/). Subagents can break the work into smaller, isolated chunks, each running in its own context.
+- Parts of a task don't rely on each other, and time is of the essence. In such cases, running subagents in parallel speeds up execution instead of running tasks sequentially.
+- An agent must navigate different domains. As the domains increase, the agent is more likely to pick the wrong tool or underperform in areas that need deeper focus. Specialized subagents, each with a focused toolset and tailored instructions, tend to produce more reliable results.
+- You want to avoid a single point of failure. In a single-agent setup, one bad tool call or unexpected output can derail the entire task. Distributing work across subagents prevents total collapse; if one worker fails, the rest of the workflow keeps running while the system retries, reroutes, or flags the issue.
+- Different teams manage distinct knowledge areas, so giving each team its own agent lets them develop and deploy independently, all while allowing the agents to interact as needed.
+- Certain workflows require checks and balances. In regulated industries, having one agent prepare an action and another validate it is often a compliance requirement.
+
+Knowing when to use subagents is one thing. Knowing how to structure them is another, and the pattern you choose has a significant impact on how well the system performs.
+
+## Subagent coordination patterns
+
+There are different ways to coordinate subagents depending on the nature of the task and how work must flow between them. While you can always design a custom architecture to fit your needs, established patterns exist.
+
+### Orchestrator-subagent pattern
+
+A lead agent (also called an _orchestrator_) receives a task and breaks it down into steps that are then assigned to specific subagents. Subagents execute their assigned work and report back; they have no knowledge of each other and no say in how the work is divided.
+
+**Pros.** Easy to debug since there's a single control flow to trace. The orchestrator maintains a clear picture of progress and can handle errors or retries without the whole system falling apart.
+
+**Cons.** The orchestrator becomes a bottleneck as the system grows. If it splits the task incorrectly or assigns work to the wrong subagent, the downstream output suffers.
+
+**Best used when.** The steps in a [workflow](https://www.altexsoft.com/blog/workflow-automation-software-ai-agents/) are known in advance and follow a predictable sequence, like a content pipeline or a data processing job.
+
+### Agent swarms
+
+Rather than one agent directing others, a swarm is a group of agents that communicate and collaborate as peers. Agents share findings, hand off work, and adjust their approach based on what others are doing. There is no central coordinator; agents self-organize around the task at hand.
+
+**Pros.** More resilient than centralized patterns. If one agent fails, others pick up the work. Swarms also allow model routing, where simpler tasks go to cheaper models and more demanding ones go to more capable ones.
+
+**Cons.** Much harder to debug and predict than orchestrator-based patterns. The handoff loops, through which agents pass tasks to each other, are a potential failure point.
+
+**Best used when.** Tasks are complex, span multiple disciplines, and benefit from multiple agents working in parallel without waiting for a central coordinator to approve each step.
+
+### Capability-based systems
+
+A routing agent sits at the front of the workflow, analyzes each incoming request, and forwards it to the specialist agent that is uniquely capable of handling it. Unlike an orchestrator, the router doesn't plan or sequence. It just classifies the request and sends it to the right place. The specialist agents then work independently.
+
+**Pros.** Flexible and extensible. Adding a new capability means adding a new agent without restructuring the rest of the system. Also, agents stay focused on a narrow, well-defined function.
+
+**Cons.** The routing logic can get complicated quickly, especially when a task requires multiple capabilities. If the router misclassifies a request, the wrong agent picks it up, affecting the output.
+
+**Best used when.** The system needs to handle various types of requests, and you want to add or update individual capabilities without touching the broader architecture.
+
+### Message bus architecture
+
+Instead of agents calling each other directly, all communication flows through a shared message bus. Agents publish events to the bus and subscribe to the events they can act on. Agents only respond to messages that match their function and don’t need to know which other agents exist.
+
+**Pros.** Loosely coupled by design, which makes the system easier to extend. New agents can be added by subscribing to existing event types without changing anything else in the system.
+
+**Cons.** Harder to trace a specific workflow since there's no single control flow to follow. Debugging requires thorough logging at the bus level, which adds its own overhead.
+
+**Best used when.** Workflows are [event-driven](https://www.altexsoft.com/blog/event-driven-architecture-pub-sub/) and unpredictable. A good example is a security operations system that needs to respond to different types of alerts and severity levels as they come in.
+
+<YouTube id="6oHHdddh4_I" caption="Multi-Agentic AI: Stop AI Coding, Start Building" />
+
+Do more AI capabilities equal faster results?
+
+## Tradeoffs that come with subagents
+
+Subagents solve real problems, but they introduce new ones that you should know before committing to a multi-agent setup.
+
+**More agents means more tokens.** Every subagent needs its own context, and coordination messages between agents add up fast. [Anthropic's](https://www.anthropic.com/engineering/multi-agent-research-system) own data shows that agents typically use about 4x more tokens than standard [chat](https://www.altexsoft.com/blog/a-technological-guide-to-building-an-ai-chatbot/) interactions, and multi-agent systems use about 15x more. That cost has to be justified by the task's value.
+
+**Debugging gets harder.** In a single-agent setup, there is one control flow to trace. With subagents, failures can occur anywhere in the pipeline and tracing them back to the source takes more effort.
+
+**Coordination overhead grows quickly.** Three agents coordinate three relationships. Ten agents need forty-five. This N-squared complexity must be accounted for.
+
+**Prompts multiply.** Each subagent has its own system prompt that you must write, maintain, and debug. As the number of agents grows, so does the maintenance burden.
+
+## Providers that offer subagents: Claude subagents, Cursor subagents, and more
+
+Subagents are not specific to any one platform. Both major AI labs and [developer tool](https://www.altexsoft.com/blog/ai-coding-tools/) providers have built subagent support directly into their products.
+
+**[Claude Code](https://www.altexsoft.com/blog/claude-code/) (Anthropic)** ships with three built-in subagents: Explore, Plan, and a general-purpose agent. Each runs in its own context window with its own system prompt, tool access, and permissions.
+
+[**Codex (OpenAI)**](https://developers.openai.com/codex/concepts/subagents) can spawn specialized agents in parallel to handle exploration, execution, or analysis concurrently. Subagents don't trigger automatically, and you have to explicitly request parallel or delegated work in your prompt.
+
+[**Gemini CLI (Google)**](https://developers.googleblog.com/subagents-have-arrived-in-gemini-cli/) ships with four built-in subagents: Codebase Investigator, CLI Help Agent, and a Generalist Agent.
+
+[**Salesforce Agentforce’s**](https://developer.salesforce.com/docs/ai/agentforce/guide/get-started.html) Agent Builder lets users build agents using pre-built subagents and connect them to knowledge bases and existing business logic through a low-code interface.

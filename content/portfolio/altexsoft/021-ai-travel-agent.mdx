@@ -1,0 +1,131 @@
+---
+title: "Developing AI Travel Agents: Hands-On Experience"
+client: "AltexSoft"
+clientSlug: "altexsoft"
+originalUrl: "https://www.altexsoft.com/blog/ai-travel-agent/"
+publishedAt: "2025-05-19"
+canonical: "https://www.altexsoft.com/blog/ai-travel-agent/"
+excerpt: "Breaking down the key components and integrations of AI travel agents and sharing insights from AltexSoft engineers’ hands-on experience."
+coverImage: "/portfolio/altexsoft/021-ai-travel-agent/cover.jpg"
+tags: []
+---
+Almost [one in five millennials](https://www2.deloitte.com/content/dam/insights/articles/us187281_cic_summer-travel/DI_2024-summer-travel.pdf) use [generative AI](https://www.altexsoft.com/blog/generative-ai/) to plan their trips, and many of them make bookings based on the machine’s suggestions. The increased adoption of artificial intelligence in travel pushed our engineers to the idea of building an LLM-fueled [travel assistant](https://www.altexsoft.com/case-studies/travel/ai-travel-assistant-altexsoft/) during an internal GenAI hackathon. The [proof of concept](https://www.altexsoft.com/blog/proof-of-concept/) took a week and the efforts of four experts. This article shares our hands-on experience and lessons learned from designing an agentic AI system.
+
+<YouTube id="ETMdk-b1Z94" caption="How Generative AI Works" />
+
+How generative AI works
+
+## What is an AI travel agent?
+
+An **AI travel agent** is a digital assistant that uses artificial intelligence to help people plan and manage their trips through natural conversation. Instead of browsing dozens of web pages, you talk to a single [chatbot](https://www.altexsoft.com/blog/a-technological-guide-to-building-an-ai-chatbot/) interface that mimics the work of a live trip advisor.
+
+If you’re not sure about a particular location, you can drop questions like _“Where should I go for a beach holiday in July?”_ The assistant would suggest destinations. Once a place is defined, you go on with requesting a hotel—for example, _“Find me a room for 2 in Paris under $150 a night.”_ In turn, the tool generates a list of available options that meet your requirements. That’s how the most basic flow looks from a user’s perspective. Now, let’s look at what happens under the hood.
+
+![AI travel agent flow chart](/portfolio/altexsoft/021-ai-travel-agent/image-1.png)
+
+**The agent adds instructions to the user’s request.** Each time a user communicates with the tool, the agent passes the request to the large [language model](https://www.altexsoft.com/blog/language-models-gpt/) together with instructions dictating the next steps along with tools and systems to use.
+
+**The** **LLM follows the instructions.** If needed, it triggers relevant tools and reaches out to external sources of information. For example, in case the user asks about destinations ( _“Where should I go for a beach holiday in July?”)_, the LLM accesses a retrieval augment generation ( [RAG](https://www.altexsoft.com/blog/retrieval-augmented-generation-rag/)) system (we’ll explain what it is later), that handles location descriptions. If it’s about an accommodation search in a particular city, a [hotel API](https://www.altexsoft.com/blog/hotel-api/) is called.
+
+**The user context layer saves the interaction outputs.** The results of each interaction are stored in the user context layer until the session ends, allowing the agent to support continuous conversations.
+
+**LLM generates a complete, helpful answer**. The LLM uses data from external sources and user context to create a response.
+
+As you can see, an [AI agent](https://www.altexsoft.com/blog/ai-agents/) combines a range of tools and technologies. Below, we’ll describe key components of our assistant, but they’re essential for any similar software.
+
+## Chat interface
+
+Our agent is implemented as a [React](https://www.altexsoft.com/blog/react-pros-and-cons/)-based, single-page application with a chat interface that lets users type natural language requests. To enable real-time communication, we used the [WebSocket](https://www.altexsoft.com/blog/websockets/) protocol, which allows the assistant to stream responses as they’re generated.
+
+![Basic chat interface created for the AI travel agent prototype](/portfolio/altexsoft/021-ai-travel-agent/image-2.png)
+
+A basic chat interface created for the AI travel agent prototype
+
+## Large language model
+
+A core part of any AI agent is a large language model that powers reasoning, decision-making, and responses. For our AI travel assistant, we needed an [LLM API](https://www.altexsoft.com/blog/llm-api-integration/) that supports **function calling**.
+
+Function calling allows the LLM to interact with external tools and content sources during a conversation. When a user says, _“Find me a hotel in Barcelona for next weekend,”_ the model recognizes the intent and connects to the travel API.
+
+We chose **GPT-4o** from OpenAI as the model behind our assistant. Our team had previous experience [implementing GPT models](https://www.altexsoft.com/blog/chatgpt-integration-in-travel/) in travel projects, and its latest version offered high-quality output, strong performance, and built-in support for function calling.
+
+## Retrieval augmented generation (RAG)
+
+In traditional LLM setups, the model answers questions based only on the knowledge it was trained on. That can be limiting when up-to-date or domain-focused information is needed. RAG helps solve this by letting the model retrieve relevant data from an external source during a conversation.
+
+![How RAG works](/portfolio/altexsoft/021-ai-travel-agent/image-3.png)
+
+As a source of domain information, we use a document containing detailed descriptions of destinations, activities, and travel tips. But instead of feeding the entire document to the model, which would be inefficient and costly, we break it into smaller parts using a process called **chunking**. It involves splitting large sections of text into smaller, manageable pieces. There are different strategies, but we used **semantic chunking**—implemented using LangChain’s built-in tools—for this project. This method organizes content based on meaning.
+
+Each chunk is then converted into a vector embedding (numerical representation) using an embedding model and stored in a **vector database** (in our case, [Elasticsearch](https://www.altexsoft.com/blog/elasticsearch-pros-cons/)). When a user submits a [prompt](https://www.altexsoft.com/blog/prompt-engineering/) like _“recommend a warm place with hiking and good food,”_ the system transforms the query into a vector by applying the same embedding model and compares it against the stored chunks to retrieve the most relevant matches.
+
+The chosen chunks are passed to the LLM so that it can generate responses based on the travel data we provide.
+
+This setup lets the assistant answer user questions with domain-specific information without having to retrain the model.
+
+_Read our dedicated articles about_ _[retrieval augmented generation](https://www.altexsoft.com/blog/retrieval-augmented-generation-rag/)_ _and_ _[vector databases](https://www.altexsoft.com/blog/vector-database/)_ _to learn more about these topics._
+
+## Hotel search and booking API
+
+To support hotel search and booking, an AI travel assistant needs access to a [travel API](https://www.altexsoft.com/blog/travel-and-booking-apis-for-online-travel-and-tourism-service-providers/) provided by a [bed bank](https://www.altexsoft.com/blog/bed-banks/), a big [OTA](https://www.altexsoft.com/blog/ota-platform/), a [chain hotel,](https://www.altexsoft.com/glossary/chain-hotel/) or another content supplier. In our case, we took advantage of AltexSoft’s [internal travel booking engine](https://www.altexsoft.com/travel-booking-engine/) framework, which comes pre-integrated with a [bed bank](https://www.altexsoft.com/blog/bed-banks-hotelbeds-travco-bonotel-hotelspro/). The assistant uses the API to fetch and filter options based on user preferences—destination, travel dates, guest details, etc.
+
+## Tools
+
+We equipped the assistant with a set of tools to make it act more like an agent than a basic [chatbot](https://www.altexsoft.com/blog/a-technological-guide-to-building-an-ai-chatbot/). In LLM-based systems, a tool is a function that allows the model to go beyond static responses and interact with real-world systems or data sources.
+
+As we already mentioned, at the start of each session, the system sends instructions to the LLM that describe the available tools and how to use them.
+
+These are some custom tools we employed to coordinate the work of all elements—the RAG, hotel API, and LLM.
+
+- **The location validator** verifies the locations, preventing the LLM from referencing unsupported cities.
+- **The location finder** takes user preferences (like “beach and shopping”) and performs a similarity search in the vector database to spot cities that match those preferences.
+- **The location recommender** filters and ranks the list of cities found. It selects the top three best matches and prepares them for further use by other tools.
+- **The search parameters updater** collects and updates key trip details, such as check-in/checkout dates, number of travelers, and children's ages. It ensures that the system receives the most current user input.
+- **The hotel search tool** calls the hotel API to fetch accommodations based on user-defined parameters. To improve the processing speed and response time, we limited the results to twenty options.
+- **The hotel recommender** selects the top three offers that best match the user’s criteria. These options are then sent to the user.
+- **The booking tool** records the user's hotel selection. While no real reservations are made, we simulated a part of a booking flow for future expansion.
+- **The activities planner** generates a personalized activity plan based on the chosen city, duration of stay, and user preferences.
+
+These tools allow the assistant to guide the conversation and help the user plan their trip. When working with tools, its important to add [AI guardrails](https://www.altexsoft.com/blog/ai-guardrails/) that define safe tool usage.
+
+_The [Model Context Protocol (MCP)](https://www.altexsoft.com/blog/model-context-protocol/) makes it easier for agents to use tools in a structured and secure way. Learn more in our dedicated article. There's also the [Agent2Agent (A2A) protocol](https://www.altexsoft.com/blog/a2a-protocol-explained/), which standardizes how AI agents communicate and collaborate on tasks._
+
+## User context layer
+
+Since each interaction with the LLM is a separate request, the model doesn’t retain memory across turns by default. Without a context mechanism, the assistant would risk losing essential details.
+
+The user context layer solves this by continuously capturing the results of tool executions and user inputs and injecting that context into every new prompt. This component stores key pieces of information as the dialogue progresses, including selected destinations, trip dates, number of travelers, tool outputs, and other dynamic data. It is updated every time a message is sent by the user or the assistant, capturing chat history details.
+
+This allows the LLM to respond more accurately without losing track of earlier decisions.
+
+<YouTube id="Kwx_t12U1aE" caption="The Real AI in Travel Startups" />
+
+The real AI in travel startups
+
+## Next steps for enhancing the AI travel agent
+
+The team built this product in just one week during an internal AI hackathon, so understandably, the assistant needs further development and improvements to make it fully production-ready.
+
+### Voice capabilities
+
+The assistant was originally planned to be fully voice-based. However, we encountered problems with managing context. When [streaming](https://www.altexsoft.com/blog/real-time-analytics/) live speech to the OpenAI API, we needed a way to enrich this data with information like past messages or tool outputs. Solving the task during the project’s one-week timeframe wasn't [technically feasible](https://www.altexsoft.com/blog/technical-feasibility/).
+
+### Hotel booking functionality
+
+Right now, the assistant simulates hotel bookings but doesn’t process real reservations. To enable actual bookings, the next step is deciding on the business model: agency or merchant.
+
+<YouTube id="xr5bIOu4370" caption="Agency vs Merchant Model Two Ways to Handle Payments in Travel" />
+
+Agency vs merchant model in travel
+
+The model dictates a [payment flow](https://www.altexsoft.com/blog/travel-payments-integration-otas/) and tools to be implemented. If you operate under the [merchant model](https://www.altexsoft.com/glossary/merchant-model/), where you collect money directly from users, you’ll need to integrate a [payment gateway](https://www.altexsoft.com/blog/payment-gateway-integration/) to handle transactions within the assistant’s system.
+
+If you're working on the [agency model](https://www.altexsoft.com/blog/agency-model/), where a reseller captures card details and sells them to a supplier who charges the customer, you have to integrate with a tokenization service to store and pass sensitive data securely.
+
+### Expanded destination database
+
+The current system works with 10 locations. Expanding the vector database with more destinations, activities, and updated travel content will make the assistant more useful to a broader audience.
+
+### MCP Compatibility
+
+Making the assistant MCP compatible will enable it to connect to multiple [MCP servers](https://www.altexsoft.com/blog/mcp-servers-travel/), giving it access to real-time data and tools from various travel services. This means we won’t need to build custom integrations for every new provider, making it easier to scale the assistant and expand its capabilities at any point in time.

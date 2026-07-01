@@ -1,0 +1,9 @@
+# Smashing Magazine — original source URLs for articles archived in this portfolio.
+# Author page: https://www.smashingmagazine.com/author/nefe-emadamerho-atori/
+# Kept in git as a permanent record; also the --batch input for import-article.js.
+
+1. https://www.smashingmagazine.com/2020/10/introduction-to-framer-motion/
+2. https://www.smashingmagazine.com/2020/10/react-validation-formik-yup/
+3. https://www.smashingmagazine.com/2020/11/authenticating-react-apps-auth0/
+4. https://www.smashingmagazine.com/2020/11/data-visualization-apexcharts/
+5. https://www.smashingmagazine.com/2023/02/comparing-react-form-libraries/

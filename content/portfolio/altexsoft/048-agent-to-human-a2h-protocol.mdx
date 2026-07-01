@@ -1,0 +1,126 @@
+---
+title: "Agent-to-Human (A2H) Protocol Explained"
+client: "AltexSoft"
+clientSlug: "altexsoft"
+originalUrl: "https://www.altexsoft.com/blog/agent-to-human-a2h-protocol/"
+publishedAt: "2026-03-13"
+canonical: "https://www.altexsoft.com/blog/agent-to-human-a2h-protocol/"
+excerpt: "Agent-to-Human (A2H) explained: how AI agents securely notify, collect data, request approval, and escalate to humans across channels."
+coverImage: "/portfolio/altexsoft/048-agent-to-human-a2h-protocol/cover.jpg"
+tags: []
+---
+One area that's seen a lot of activity lately is agentic communication protocols. We’ve seen several of these emerge in a short time, including the [Model Context Protocol (MCP)](https://www.altexsoft.com/blog/model-context-protocol/), [Agent2Agent Protocol (A2A)](https://www.altexsoft.com/blog/a2a-protocol-explained/), and the [Universal Commerce Protocol (UCP)](https://www.altexsoft.com/blog/universal-commerce-protocol/), with each defining a standard way for AI agents to interact with different parts of the world around them. The Agent-to-Human (A2H) protocol is the latest addition to that list.
+
+![The Agent-to-Human (A2H) protocol](/portfolio/altexsoft/048-agent-to-human-a2h-protocol/image-1.png)
+
+## What is the Agent-to-Human (A2H) protocol? TL;DR
+
+**What is it?** A2H is an open-source protocol by Twilio that defines a standard way for [AI agents](https://www.altexsoft.com/blog/ai-agents/) to communicate with and keep [humans in the loop](https://www.altexsoft.com/blog/human-in-the-loop/) during autonomous tasks.
+
+**How does it work?** It works by having the agent declare its intent—what it is trying to do—to an A2H Gateway, which handles delivery over the user's preferred channel (SMS, email, WhatsApp, voice) and returns a cryptographically signed response.
+
+**How does it help communicate with humans?** Every agent interaction is built around one of five intents.
+
+- INFORM – a one-way notification; no response needed.
+- COLLECT – gets input from the user so the agent can proceed.
+- AUTHORIZE – requests approval before taking an action.
+- ESCALATE – hands the task off to a human operator when the agent can't resolve it alone.
+- RESULT – report the outcome of a completed task.
+
+**Why does it matter?** With A2H, developers won’t have to set up and maintain different [API](https://www.altexsoft.com/blog/what-is-api-definition-types-specifications-documentation/) connections to enable custom communication channels for AI agents. A2H is great for sensitive actions like payments, bookings, and enterprise approvals, since every interaction produces a signed, tamper-evident audit trail.
+
+## How the Agent-to-Human (A2H) protocol works
+
+Here's a breakdown of the internal components that make that possible.
+
+### The five core intents
+
+Every interaction in A2H is built around these intents.
+
+- INFORM is a one-way notification and is used when the agent is just passing information along, and no response is needed. For example, letting a user know that their order has shipped.
+- COLLECT is used when the agent needs [structured information](https://www.altexsoft.com/blog/structured-unstructured-data/) from the human, such as asking for a shipping address before completing a purchase. In this case, the agent waits for the response before moving forward.
+- AUTHORIZE is for situations where the agent needs explicit approval before acting, like endorsing a $500 transaction before the agent [books a flight](https://www.altexsoft.com/blog/flight-booking-process-structure-steps-and-key-systems/). It comes with an authentication step, so the person approving can verify their identity.
+- ESCALATE hands the task off to a human entirely. When the agent hits a wall—something it can't resolve on its own—it uses this intent to bring a human operator into the conversation.
+- RESULT closes the loop. Once a task is done, the agent uses this intent to report the outcome back to the human. For example, confirming that a refund has been processed or a transaction has been completed.
+
+These intents are designed to be atomic, meaning each one has a specific purpose. They are also composable, so an agent can chain them together to handle more complex workflows.
+
+<YouTube id="xgi4wodklLw" caption="AI Agents Can Operate Internet as Humans: Should You Be Scared?" />
+
+How close are AI agents to taking over the world? Find out
+
+### The A2H gateway model
+
+The A2H gateway model is the layer between the agent and the human. When an agent needs to communicate with a user, it sends its request to an A2H Gateway instead of handling delivery itself. The gateway, which then takes over, selects the right channel, sends the message, manages retries if delivery fails, and generates a record of the interaction.
+
+Whether the message reaches the user via SMS, email, WhatsApp, or voice call is the gateway's concern, not the agent's.
+
+![A2H protocol's AUTHORIZE intent](/portfolio/altexsoft/048-agent-to-human-a2h-protocol/image-2.png)
+
+The agent’s request, which is a JSON object, contains the following properties.
+
+- `a2h_version`: the version of the protocol being used.
+- `interaction_id`: a unique identifier for the interaction for easy tracking.
+- `type`: the intent being declared, for example, AUTHORIZE or COLLECT.
+- `agent_id`: identifies the agent sending the request.
+- `principal_id`: identifies the human the request is being sent to.
+- `channel`: an object that specifies the channel the gateway is using to deliver the message. It includes the channel’s type and the recipient's address.
+- Intent-specific fields: an object containing additional properties that vary depending on the intent.
+
+At the end of the interaction, the gateway returns a signed response back to the agent. What that response contains depends on the intent. The response for an AUTHORIZE request would include the human's decision along with cryptographic evidence proving they authenticated and approved the action.
+
+### Security and auditability
+
+Security is built into how A2H works.
+
+Every interaction through the gateway produces a signed artifact, which is a cryptographic evidence bundle that ties together the
+
+- agent’s intent,
+- human's response, and
+- proof of authentication.
+
+The whole package is digitally signed, meaning it can be verified at any point after the fact and can't be tampered with without that tampering being detectable. This kind of verifiable paper trail matters for sensitive operations like payments or bookings.
+
+A2H also supports multiple authentication methods. Passkeys and WebAuthn are supported out of the box in the current version, but the framework is extensible, meaning you can add OTP, push notifications, voice IVR, and email.
+
+On top of that, the protocol has built-in replay protection. This means that once a human approves an action, that approval can't be reused to trigger a different or future action. Each interaction is tied to a unique identifier, a specific timestamp, and a one-time approval link that expires after use.
+
+## Potential use cases of the Agent-to-Human (A2H) protocol
+
+Since A2H is newly released, real-world adoption is still scarce. However, these are some areas where it's likely to show up.
+
+**Travel booking approvals**. An agent handling [travel planning](https://www.altexsoft.com/blog/ai-travel-agent/) can use A2H to send the user a booking summary and wait for their sign-off before completing the purchase. The approval is logged with cryptographic evidence, so there's a clear record of who approved what.
+
+**Ecommerce checkout confirmation**. Before an agent finalizes a high-value order on a user's behalf, it can use A2H to request confirmation—over SMS, email, or whatever channel the user prefers—without the developer having to wire up each of those channels separately.
+
+**Refund processing**. A customer service agent can use A2H to notify a user that their refund has been initiated or to collect additional details if something is missing before the refund can go through.
+
+**Support escalation**. When an AI support agent hits a problem it can't resolve, A2H gives it a structured way to hand the conversation off to a human agent—with the full interaction history intact.
+
+**Enterprise policy enforcement**. For organizations where certain actions require human sign-off before an agent can proceed, A2H provides a built-in approval mechanism that's both secure and auditable.
+
+<YouTube id="vW9fIro6N6g" caption="Generative AI in Business: 5 Use Cases" />
+
+How businesses are using AI today
+
+## What’s next for the Agent-to-Human (A2H) protocol?
+
+A2H is still in its early days, and while the current version, which Twilio calls Layer 1, is a solid foundation, it leaves some questions unanswered regarding agent autonomy.
+
+- What if you want to pre-approve certain actions so the agent doesn't have to ask every time?
+- What if you change your mind after approving something?
+- What if you want to delegate approval authority to another agent or person?
+
+These are questions that Layer 2 of the A2H protocol aims to address. Twilio released a roadmap showing the features and capabilities they plan to add. These include
+
+- native bindings for [OpenTelemetry](https://opentelemetry.io/) and [CloudEvents](https://cloudevents.io/), which will allow developers to plug A2H interactions directly into their existing observability and event-driven infrastructure;
+- integrations with popular AI agent frameworks like LangGraph and CrewAI, so developers building on those platforms can use A2H without having to wire things up from scratch;
+- a POLICY primitive, which will allow users to set standing approvals for certain actions, so an agent can carry out recurring or low-risk tasks without having to ask for permission every single time;
+- a REVOKE primitive, which will allow users to cancel a standing or pending approval at any point, giving them a way to pull back access if their preferences change or something goes wrong;
+- a DELEGATE primitive, which will make it possible to transfer approval authority to another person or agent—useful in scenarios where someone wants their assistant to handle approvals on their behalf;
+- a SCOPE primitive that defines the boundaries of what an agent is permitted to do, so users and developers can set clear limits and [guardrails](https://www.altexsoft.com/blog/ai-guardrails/) on an agent's authority rather than granting blanket access; and
+- support for multi-party approvals, where more than one person must sign off before an agent can proceed with a sensitive or high-stakes action.
+
+Twilio also plans to submit the A2H spec to standards bodies, including W3C, the AAIF, and the OpenID Foundation, which would make the protocol an industry standard rather than a Twilio project.
+
+For now, the A2H spec is [open source](https://github.com/twilio-labs/Agent2Human) and open for contribution, and Twilio is inviting developers to explore it, build on it, and shape what Layer 2 looks like.

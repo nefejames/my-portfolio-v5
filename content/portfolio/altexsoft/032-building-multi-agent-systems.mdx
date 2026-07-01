@@ -1,0 +1,169 @@
+---
+title: "Building Multi-Agent Systems: Hands-On Experience"
+client: "AltexSoft"
+clientSlug: "altexsoft"
+originalUrl: "https://www.altexsoft.com/blog/building-multi-agent-systems/"
+publishedAt: "2025-10-17"
+canonical: "https://www.altexsoft.com/blog/building-multi-agent-systems/"
+excerpt: "A guide to multi-agent systems: how to build them, use cases, and the tools that make agent coordination possible."
+coverImage: "/portfolio/altexsoft/032-building-multi-agent-systems/cover.jpg"
+tags: []
+---
+It’s now possible to achieve a lot with a single [AI agent](https://www.altexsoft.com/blog/ai-agents), from automating workflows to analyzing data. But bringing many agents together multiplies the impact. Connected, they can share information, divide work, and coordinate actions, significantly increasing productivity and output.
+
+However, building and managing multi-agent systems (MASs) isn’t easy. Coordinating independent agents, maintaining shared [context](https://www.altexsoft.com/blog/agentic-context-engineering/), and ensuring reliable communication introduce new layers of technical and operational complexity.
+
+In this article, we’ll share our experience creating multi-agent systems—the challenges we faced, what we learned, and best practices for getting the most out of MASs.
+
+<YouTube id="ETMdk-b1Z94" caption="How Generative AI Works" />
+
+You use generative AI technology daily. Now, it's time to learn how it works
+
+## What is a multi-agent system (MAS)?
+
+A multi-agent system is a setup in which several independent AI agents work together in the same environment, each bringing its distinct capabilities, knowledge, roles, and goals. Their real strength lies in collaboration. Instead of one agent handling everything, multiple “workers” can interact, share context, and sync their actions. This makes it possible to tackle complex problems, whether by splitting tasks into smaller parts or processing them in parallel.
+
+![Single vs multi-agent system](/portfolio/altexsoft/032-building-multi-agent-systems/image-1.png)
+
+The downside is that multi-agent systems are complex and involve coordination, debugging, and maintenance. So our AI team recommends pushing your single-agent setup to its limit with better [prompt engineering](https://www.altexsoft.com/blog/prompt-engineering/), clearer task definitions, and integrating tools to extend its functionality. If, after that, it still struggles with instructions or consistently picks the wrong instrument, introducing a MAS may help. Here are scenarios where having several agents would be beneficial.
+
+- You have complex problems with many moving parts.
+- Speed is a major factor. Running subtasks in parallel can reduce the latency caused by handling everything in sequence.
+- High fault tolerance is required. MAS will prevent full system failure if one agent goes down.
+- The project involves multiple domains or requires data from diverse sources: Specialized agents can focus on each area for better results.
+- Scalability and long-term growth are priorities. A modular multi-agent setup allows new tools to be added later without breaking the system.
+
+Now, let’s take a look at the MAS building blocks.
+
+## Building blocks of multi-agent systems
+
+Here’s a breakdown of the key components and features that make multi-agent systems (MASs) work effectively.
+
+![Building blocks of multi-agent systems](/portfolio/altexsoft/032-building-multi-agent-systems/image-2.png)
+
+**Agents**. Agents are the core of any multi-agent system. Their properties include:
+
+- Autonomy: Agents operate independently without human intervention. They make decisions, manage their internal state, and respond to changes in real time.
+- Local views: Agents only see the part of the environment relevant to their role, which keeps them lightweight and avoids context overload from consuming irrelevant data.
+- Specialization and roles: Each agent is designed for a specific function, such as planning, execution, or analysis, which helps the system stay organized.
+
+In some cases, roles are predefined during system design through prompts or JSON/YAML configuration files. In more dynamic systems, roles are assigned or adjusted automatically based on real-time conditions, workload, or system priorities.
+
+**Environment**. The environment is the shared space where agents operate. It provides the context—data, tasks, and resources—that agents interact with. Depending on the system, it can be a digital environment that may consist of [APIs](https://www.altexsoft.com/blog/what-is-api-definition-types-specifications-documentation/) and [databases](https://www.altexsoft.com/blog/databases-database-management-systems/), a hybrid environment where digital agents interact with real-world sensors or IoT devices, or a physical environment, like robotics systems, where agents act on physical objects and spaces.
+
+**Memory**. Memory allows agents to retain and recall information from past interactions. It helps them build context, learn from past actions, and make better decisions over time.
+
+**Tools**. Agents can be equipped with pre-built or custom tools, such as a web search engine, APIs, [databases](https://www.altexsoft.com/blog/databases-database-management-systems/), or task-specific utilities. [Model Context Protocol (MCP)](https://www.altexsoft.com/blog/model-context-protocol/) makes this easier by acting as a common language that simplifies integration.
+
+**Communication protocols**. Agents must exchange information to work together. This is handled through communication protocols that define how messages are formatted and transmitted. Established patterns include [agent-to-agent (A2A)](https://www.altexsoft.com/blog/a2a-protocol-explained/) and agent communication protocol (ACP).
+
+**Orchestration layer**. This layer acts like a [project manager](https://www.altexsoft.com/blog/product-managers-vs-project-managers-difference-responsibilities-and-kpis/), coordinating how different agents work together to complete a complex task. Instead of agents acting randomly, the orchestrator organizes them into a structured workflow. It decides the order in which agents are activated, how information passes between them, and how each step contributes to the final objective.
+
+## How to create multi-agent systems: major steps
+
+Our AI team is constantly developing MASs for both internal use and external clients. While the development process may vary across projects, there are several key steps in most cases.
+
+### 1\. Define the problem and goals
+
+Every multi-agent system starts with a clear understanding of the problem it’s meant to solve. Begin by outlining the system’s overall purpose and the specific outcomes it should deliver.
+
+Next, translate those outcomes into concrete objectives—what success looks like for the system. For example, define what kind of tasks agents will perform, what data they will exchange, and what decisions they must make independently or collaboratively.
+
+### 2\. Choose an architecture
+
+The architecture you choose determines how agents interact and make decisions. It also has a big impact on scalability, reliability, and performance. Regarding this, Glib Zhebrakov, Head of the Center of Engineering Excellence at AltexSoft, notes, _"The design of the agent workflow depends on what needs to be accomplished in each case. We create flexible schemas based on specific needs, adapting the execution flow to meet the requirements of the task at hand."_
+
+![Multi-agent system architectures](/portfolio/altexsoft/032-building-multi-agent-systems/image-3.png)
+
+Common architectures for MAS include
+
+- Centralized architecture: A single agent manages the coordination and decision-making for the entire system. All other agents report to this central unit.
+- Decentralized architecture: Agents are equals and make decisions independently based on their local knowledge and interactions with nearby agents.
+- Hierarchical architecture: Agents are organized into multiple levels. The higher-level agents are responsible for strategic decisions, and the lower-level ones focus on task execution.
+- Sequential architecture: Tasks are processed one after another in a predefined order. Each agent receives the output of the previous agent, performs its designated function, and passes the result to the next agent. Unlike in other setups, agents do not work at the same time but in a specific sequence.
+- Hybrid architectures: This involves combining elements from other MAS designs or creating entirely new structures tailored to specific system needs.
+
+We chose the sequential architecture for several MASs because it allows us to refine information progressively, as each agent adds more details to the data received from the previous one. Insight keeps passing between agents until the final agent in the chain generates the finished output, which could be a business analyst's deliverables, such as user stories or project estimates.
+
+There were scenarios where we needed a MAS to simultaneously produce multiple potential outputs and select the most accurate one. _“To handle that, we can split the user input across parallel agents, collect their outputs, and then compare results to decide which is best,”_ Glib explained. He noted that this approach _“introduces a slightly more complex schema, where agents can operate in both sequential and parallel modes depending on the task at hand.”_ It’s particularly useful for research, validation, or creative problem-solving, where evaluating multiple perspectives leads to stronger outcomes.
+
+### 3\. Choose tools and frameworks
+
+There are different ways to build multi-agent systems. One approach is to use frameworks that provide **templates and pre-built components** for creating agents. Popular solutions along these lines include [JADE (Java Agent DEvelopment Framework)](https://jade.tilab.com/), [SPADE (Smart Python Agent Development Environment)](https://spadeagents.eu/), [AutoGen](https://microsoft.github.io/autogen/stable//index.html), [LangGraph](https://www.langchain.com/langgraph), and [Crew AI](https://www.crewai.com/).
+
+Alternatively, you can rely on [workflow automation platforms](https://www.altexsoft.com/blog/workflow-automation-software-ai-agents/) like Zapier, Make, and [n8n](https://www.altexsoft.com/blog/n8n-pros-and-cons/) to integrate AI agents into connected workflows. These platforms provide tools for defining AI agents, connecting them via visual workflows, adding external tools or APIs, and automating task execution without heavy coding.
+
+We took the programmatic approach when building our MASs and chose [AutoGen](https://microsoft.github.io/autogen/stable//index.html). It allows us to plug in custom agents and tools, supports various coordination architectures, and includes built-in memory that stores conversation history and maintains context across agent interactions. It also comes with tools for monitoring agent interactions, tracing communications, debugging workflow, and setting up [human-in-the-loop controls](https://www.altexsoft.com/blog/human-in-the-loop/).
+
+### 4\. Assign roles
+
+The next step is designing each agent and defining its role, specific purpose, and set of capabilities that directly align with the system’s goals. For example, in a [corporate travel management](https://www.altexsoft.com/glossary/corporate-travel-management-ctm/) MAS, you may have a search agent to find accommodations, a [travel policy](https://www.altexsoft.com/glossary/travel-policy/) agent to ensure that the chosen option complies with the corporate travel program, and a booking agent to finalize the reservation and push transaction details to downstream systems for payment, reporting, and [expense management](https://www.altexsoft.com/blog/how-to-choose-and-integrate-travel-and-expense-management-software/).
+
+According to Glib, _“After defining each agent’s role and how they’ll connect, you write prompts that guide their behavior and decision-making. These prompts are refined over time to improve performance and resolve issues that appear during collaboration.”_
+
+### 5\. Plan communication
+
+With agents and their roles defined, the next step is figuring out how they will talk to each other.
+
+AutoGen provides several out-of-the-box concepts to set up communication. One of these is a Chat, which is essentially a Python class. You create a Chat instance, add your agents to it, and configure how they interact. You then send a message to this Chat, and the agents start communicating with each other.
+
+Setting clear communication rules is key. Regarding this, Glib notes, " _Agents shouldn’t all talk to each other freely, as it can create chaos. Instead, define rules about how and when they can communicate.”_
+
+### 6\. Define
+
+Once communication is planned, it’s time to set the workflow—or the sequence of actions and data transmissions.
+
+- Triggers: Identify what starts each agent’s process. This could be a user request, a system event, or another agent’s output.
+- Data handoffs: Define how information passes between agents. Proper data flow reduces delays, prevents duplication, and ensures every agent has the right context to work efficiently.
+- Monitoring: Sets up ways to track each step in the workflow. Regular monitoring helps detect issues early, measure performance, and make quick adjustments when something fails or slows down.
+
+A well-structured workflow keeps the system predictable, reliable, and easy to scale as new agents are added.
+
+### 7\. Test the system
+
+Before deploying a multi-agent system, it’s important to test all components to ensure they work as intended. Manual testing can help identify logic gaps or unexpected behaviors early on. For more complex setups, automated tests can check the reliability and correctness of outputs at scale.
+
+Glib mentions that it’s possible to introduce an additional agent to review and compare outputs against inputs. However, he’s cautious about this approach. _“Since_ _[LLMs](https://www.altexsoft.com/blog/language-models-gpt/)_ _can hallucinate, I’m not really a fan of using them to validate each other. It often ends up being a waste of time.”_
+
+In cases where the MAS produces code or other structured outputs, he suggests that automated testing could be a better option: _“If you know the specific results you expect, you can write automated tests just like in regular software development_. _That way, you can test the system’s output in a more objective way.”_
+
+## Major drawbacks and challenges with multi-agent systems and how to overcome them
+
+Multi-agent systems have their own set of hurdles, which can show up during the building stages or later on. Some challenges occur because of how the agents are built and coordinated, while others appear as the system grows more complex over time.
+
+### Output validation
+
+Output validation is one of the main challenges our AI team faces when building and running multi-agent systems. That’s where [AI guardrails](https://www.altexsoft.com/blog/ai-guardrails/) come in. _“Guardrails help check that your model’s responses are correct, relevant, and don’t drift into unrelated or inappropriate topics,”_ Glib explains. _“For example, if you’re building an AI travel agent, it should never start answering questions about accounting software.”_
+
+While AI guardrails can help enforce quality and consistency, Glib points out that they also come with trade-offs. _“The issue is that many validation methods are powered by other LLM agents, which means you’re still relying on the same underlying models you’re trying to control.”_
+
+To address these challenges, you can include human-in-the-loop reviews for high-stakes or business-critical tasks to catch subtle hallucinations that automated systems may miss. You can also track and log model outputs over time to identify recurring failure patterns. This allows for continuous prompt and model fine-tuning.
+
+_PS: Read our article on_ _[AI guardrails](https://www.altexsoft.com/blog/ai-guardrails/)_ _to learn how to build safe and reliable AI agentic systems._
+
+### MCP server security
+
+Glib notes that as organizations build their own [MCP servers](https://www.altexsoft.com/blog/mcp-servers-for-developers/) to connect various tools and agents, they may overlook key security considerations. _“In complex systems where many MCP servers interact, you start to get a cumulative probability of security breaches,”_ he says. _“It becomes difficult to properly monitor or handle every interaction, especially since MCP is fundamentally about function calling within the model.”_
+
+He points out that while MCP frameworks can log and report function calls—such as which function was triggered and with what input— _”you only get the statistics once the call has happened. So real-time monitoring and prevention are still major gaps.”_
+
+Developers can introduce layered [access controls](https://www.altexsoft.com/blog/access-control-matrix-acm/) and authentication at the MCP level to restrict which agents or users can trigger certain functions. Also, sandboxing or isolating high-risk MCP functions can limit the potential damage from compromised agents or misconfigurations.
+
+### Memory management complexity
+
+There are two main types of memory that agents use to recall context, past actions, or results.
+
+- Short-term memory: holds immediate context and allows agents to maintain awareness within an active session. Glib notes that this can be a shared runtime or a temporary key-value storage like [Redis](https://www.altexsoft.com/blog/redis-pros-and-cons/) or Memcached.
+- Long-term memory: preserves knowledge accumulated over time, like previous interactions and decisions. According to Glib, _“Memory can be stored externally for long-term use and in more complex systems. In such cases, you can use tools like_ _[Elasticsearch](https://www.altexsoft.com/blog/elasticsearch-pros-cons/)_ _, PostgreSQL, or a_ _[NoSQL database](https://www.altexsoft.com/blog/nosql-databases/)_ _(e.g, MongoDB). Alternatively, this can be a_ _[vector database](https://www.altexsoft.com/blog/vector-database/)_ _(e.g., [ChromaDB](https://www.altexsoft.com/blog/chroma-pros-and-cons/)) and_ _[retrieval augmented generation (RAG)](https://www.altexsoft.com/blog/retrieval-augmented-generation-rag/)_ _system.”_
+
+Not all agents should have access to the same data, especially when some of it is sensitive. Systems need precise access controls so agents can collaborate effectively without exposing private or restricted information. The challenge lies in balancing openness for effective interactions with security restrictions. You can address this by setting granular access controls that define what each agent can read or write based on its role and task. Sensitive information can be isolated in secure storage or encrypted, ensuring it’s available to certain agents only.
+
+Additionally, agents should be capable of learning from past interactions. This requires defining what to remember, how long to retain data, and when to discard outdated or irrelevant information to avoid overload. Retention policies or decay mechanisms can help manage this process by automatically removing expired or low-value data. Another approach is episodic memory filtering, where only key insights or outcomes from each interaction are retained.
+
+_Read our article on [agentic context engineering (ACE)](https://www.altexsoft.com/blog/agentic-context-engineering/) to learn about this new approach that aims to improve how context is managed in AI systems._
+
+### Handling hallucinations
+
+Dealing with hallucinations becomes more challenging as the number of agents and the level of communication between them increase. To reduce inconsistencies, for example, in multi-agent [code generation](https://www.altexsoft.com/blog/ai-coding-tools/), we establish a single source of truth that governs how the generated system behaves and how components interact.
+
+At the center of this setup is a graph-based model representing entities and their relationships. This graph defines how every part of the system connects—including inputs, outputs, and data flows—helping ensure that multi-step processes are generated accurately and consistently.

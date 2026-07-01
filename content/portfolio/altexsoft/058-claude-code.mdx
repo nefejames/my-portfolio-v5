@@ -1,0 +1,298 @@
+---
+title: "The Good and the Bad of Claude Code and How It Compares to Cursor"
+client: "AltexSoft"
+clientSlug: "altexsoft"
+originalUrl: "https://www.altexsoft.com/blog/claude-code/"
+publishedAt: "2026-06-05"
+canonical: "https://www.altexsoft.com/blog/claude-code/"
+excerpt: "Learn about the pros and cons of Claude Code, Anthropic's terminal-based AI coding agent, and how it stacks up against Cursor."
+coverImage: "/portfolio/altexsoft/058-claude-code/cover.png"
+tags: []
+---
+It's officially impossible to talk about [vibe coding](https://www.altexsoft.com/blog/technical-debt/), AI-assisted engineering, or agentic coding—the terms keep multiplying—without mentioning Claude Code. It's one of the solutions that software engineers and nontechnical people are using to make (and break) all kinds of software.
+
+In this piece, we'll dive into the features, pros, and cons of Claude Code and compare it with Cursor, another popular AI coding platform.
+
+## What is Claude Code?
+
+Boris Cherny, one-time Principal Engineer at Meta, built [Claude Code](https://www.anthropic.com/product/claude-code), a terminal-based, AI-powered software engineering solution.
+
+![New coding session in Claude Code via the Claude desktop app](/portfolio/altexsoft/058-claude-code/image-1.png)
+
+One major thing to know about working with Claude Code is that it's an [agentic tool](https://www.altexsoft.com/blog/agentic-ai-codebase-mapping/). It doesn't sit in a sidebar waiting to autocomplete your next line. You give it a task in [natural language](https://www.altexsoft.com/blog/natural-language-processing/), and it works across multiple files, running commands, checking results, and iterating until the job is done.
+
+### Where Claude Code runs
+
+Below are the different touchpoints you can use to access Claude Code.
+
+![Todo app created with Claude Code via the desktop app](/portfolio/altexsoft/058-claude-code/image-2.png)
+
+- **Terminal CLI**: The primary way people interact with Claude Code. It is a full-featured command-line interface that runs locally in your terminal, allowing you to navigate to a project directory.
+- **Code editors**: Claude Code integrates with VS Code and JetBrains IDEs through official extensions and plugins, allowing developers to work with the agent directly from their IDE, similar to other [AI coding tools](https://www.altexsoft.com/blog/ai-coding-tools/).
+- **Web app**: A browser-based option that requires no local setup. Just connect your [GitHub](https://www.altexsoft.com/blog/github-gitlab-bitbucket/) repos and run Claude Code sessions on Anthropic-managed cloud infrastructure.
+- **Desktop app**: Provides access to Claude Code and other Claude capabilities from a local application. Depending on the workflow, sessions can interact with local projects and development tools directly from the user's machine.
+
+Whatever option you choose, the interaction model remains largely the same: You describe a task in natural language. Then Claude Code analyzes the codebase and solves the problem for you.
+
+### How does Claude Code work?
+
+When brought into a project directory, Claude Code reads the codebase and builds an understanding of how different parts of the system relate to one another—which components depend on which, where functions are defined versus where they're called, and how a change in one area may affect others.
+
+That understanding is what enables multifile editing. When you describe a task, Claude traces relevant dependencies, plans and implements changes across however many files are involved, runs commands and [tests](https://www.altexsoft.com/blog/the-good-and-the-bad-of-selenium-test-automation-tool/), evaluates the results, and iterates until the goal is achieved or requires human input.
+
+## Features of Claude Code
+
+[Claude Code](https://www.altexsoft.com/blog/mcp-server-claude-code-cursor/) has a plethora of features. Let’s review the main ones.
+
+### Commands
+
+[Commands](https://code.claude.com/docs/en/commands#commands) are reusable instructions that enable you to control Claude Code from inside a session. Instead of typing out a full request, you invoke a command by typing “/” followed by its name and Claude Code performs the corresponding action.
+
+![The /usage command gives you a real-time breakdown of your plan limits and session token consumption.](/portfolio/altexsoft/058-claude-code/image-3.png)
+
+The **/usage** command gives you a real-time breakdown of your plan limits and session token consumption
+
+While workflows differ, below are some commands developers use daily.
+
+- **/clear**: Clears the current conversation history and starts a fresh session while keeping the project files unchanged.
+- **/compact**: Summarizes the conversation to reduce context usage and help Claude retain the most relevant information during long sessions.
+- **/model**: Switches the AI model mid-session without restarting.
+- **/plan**: Switches Claude into planning mode, allowing it to outline a proposed approach before making any changes.
+- **/diff**: Displays the changes Claude has made, allowing you to review modifications before committing them.
+- **/usage**: Shows current usage information, including plan limits and token consumption.
+
+In addition to the built-in commands, Claude Code lets you create custom ones that can be scoped to a specific repository or shared with all your projects.
+
+Not all commands are available through every Claude Code interface. The terminal experience typically provides access to the most complete command set.
+
+### Subagents
+
+[Subagents](https://code.claude.com/docs/en/agents) are specialized AI workers that handle specific tasks separately from your main conversation. Instead of performing everything within a single [context window](https://www.altexsoft.com/glossary/context-window/), Claude can delegate work to a [subagent](https://www.altexsoft.com/blog/subagents/), which operates in its own context and returns a summarized result.
+
+Subagents are useful when a task would otherwise clutter your main session with extra files, logs, or search results that you don’t need to keep.
+
+![How subagents work: orchestrator-subagent pattern](/portfolio/altexsoft/058-claude-code/image-4.jpg)
+
+You can create custom subagents tailored to your own workflows, but Claude has several built-in ones including
+
+- Explore—for read-only search and codebase scanning,
+- Plan—for planning steps to gather [context](https://www.altexsoft.com/blog/context7/), and
+- General-purpose—for more complex tasks that need both reading and editing.
+
+Claude automatically hands off matching tasks to specialized subagents.
+
+### Agent skills
+
+[Agent skills](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) are reusable workflows that can be applied throughout a Claude Code session. Instead of repeatedly explaining the same multistep process, you define it once and apply whenever needed.
+
+A good candidate for a skill is any workflow you find yourself repeating—for example, a code review checklist that you run before every pull request.
+
+You create a skill by defining it in a SKILL.md file and placing it in the appropriate directory. Skills can be personal (available across all your projects), project-scoped (limited to a repository), or organization-wide.
+
+You don't always have to invoke a skill explicitly. Claude reads each skill's description and can automatically apply the appropriate one when your request matches its purpose.
+
+### Routines
+
+[Routines](https://code.claude.com/docs/en/routines#automate-work-with-routines) are automated Claude Code sessions that run on a set schedule, be triggered by an [API](https://www.altexsoft.com/blog/what-is-api-definition-types-specifications-documentation/) call, respond to GitHub events, or combine several trigger types.
+
+![Claude Code’s Routines view showing pre-made routines](/portfolio/altexsoft/058-claude-code/image-5.png)
+
+A routine configuration typically includes the following elements.
+
+- Name: a descriptive label for the routine
+- Instructions: a [prompt](https://www.altexsoft.com/blog/chain-of-thought-prompting/) describing what Claude should do during each run
+- Repository: the GitHub repo Claude works with
+- Model: the Claude model used for execution
+- Environment: the cloud environment where the routine runs
+- Trigger: the event or schedule that starts the routine
+- Connectors: MCP integrations available during execution
+- Behavior: additional runtime settings
+- Permissions: access and authorization rules
+
+![Claude Code’s Routines view showing pre-made routines](/portfolio/altexsoft/058-claude-code/image-6.png)
+
+Claude Code comes with premade routines you can use out of the box, and you can also create custom ones tailored to your specific workflow and repositories.
+
+### Hooks
+
+[Hooks](https://code.claude.com/docs/en/hooks) are automated actions that run at specific points in Claude Code’s lifecycle. They allow you to execute shell commands, trigger workflows, enforce policies, or inject context automatically whenever certain events occur during a session.
+
+Unlike [prompts](https://www.altexsoft.com/blog/prompt-engineering/) or agent decisions, hooks do not rely on Claude's reasoning to determine when to run. Instead, they execute automatically when a predefined condition is met. For example, a hook can run immediately after Claude edits a file or triggers when a session starts or ends.
+
+Here are some of the lifecycle events for hooks that Claude Code supports.
+
+- PreToolUse: Fires before a tool call executes
+- PostToolUse: Fires after a tool call completes
+- Stop: Fires when Claude finishes responding
+- SessionStart: Fires when a session begins
+- Notification: fires when Claude needs your attention
+
+Hooks and routines are both automation features, but they serve different purposes. Routines automate entire tasks or workflows, while hooks react to specific events within an active Claude Code session.
+
+### Agent SDK
+
+The [Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview) lets you build AI agents that can perform real-world tasks such as reading files, running commands, editing code, searching the web, and interacting with external systems. It provides access to the same agentic foundations that power Claude Code, but as a library that can be embedded into [Python](https://www.altexsoft.com/blog/python-pros-and-cons/) or [TypeScript](https://www.altexsoft.com/blog/typescript-pros-and-cons/) applications.
+
+Instead of building the entire agent loop from scratch, developers can rely on the SDK to manage it. You provide a [prompt](https://www.altexsoft.com/blog/prompt-engineer/), and the agent determines which tools to use, how to break down the work, and when the task is complete.
+
+The Agent SDK also supports advanced capabilities such as subagents and [MCP integrations](https://www.altexsoft.com/blog/model-context-protocol/), enabling agents to interact with external systems, APIs, browsers, [databases](https://www.altexsoft.com/blog/databases-database-management-systems/), and other tools.
+
+## Pros of Claude Code
+
+Here are some other reasons people love Claude Code.
+
+### Ability to switch between models
+
+Claude Code gives you three model families to work with: Opus, Sonnet, and Haiku.
+
+- Opus 4.7 is the most capable model, designed for complex reasoning, long-running tasks, and agentic coding workflows.
+- Sonnet 4.6 is a sweet spot between speed, cost, and intelligence, making it a good choice for day-to-day development work.
+- Haiku 4.5 is the fastest and most cost-efficient option, best suited for simpler or latency-sensitive tasks.
+
+By default, Claude Code picks a model based on your plan and configuration, but you can switch models at any time during a session. Not every AI coding tool gives you this flexibility. For example, [Lovable](https://lovable.dev/) and [Bolt.new](https://bolt.new/) don't let you select a model directly—you pick an agent mode, and the platform decides which model to use under the hood.
+
+### Large and active community
+
+Claude Code has built one of the most active developer communities around any AI coding tool. The [r/claudeCode](https://www.reddit.com/r/ClaudeCode/) subreddit has 933k weekly visitors, more than [r/cursor](https://www.reddit.com/r/cursor/) and [r/codex](https://www.reddit.com/r/codex/) numbers combined.
+
+Even though Claude Code is not open source, its [GitHub repo](https://github.com/anthropics/claude-code) is public and has 127k stars. The members of the community have created various GitHub repositories that you can explore, such as [awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code) and [awesome-claude-skills](https://github.com/ComposioHQ/awesome-claude-skills), which contain different useful resources.
+
+There's no shortage of resources, shared configurations, and community knowledge to draw from, which is especially great for new users. The community has done a lot of the hard work of figuring out best practices, so you don't have to start from scratch.
+
+### Stellar documentation
+
+For a tool with this many features, the documentation really matters, and Claude Code gets it right. Its [docs](https://code.claude.com/docs/en/overview) are detailed, well-organized, and cover everything from basic setup to advanced topics like MCP integrations, hooks, the Agent SDK, and [CI/CD pipelines](https://www.altexsoft.com/blog/cicd-tools-comparison/).
+
+My favorite part is the built-in AI assistant [chatbot](https://www.altexsoft.com/blog/a-technological-guide-to-building-an-ai-chatbot/). Instead of digging through pages, I can just ask _“How do I set up a CLAUDE.md file?”_ and get a direct answer with links to the relevant docs if I want to go deeper.
+
+### Advantages for fast idea validation
+
+Claude Code can dramatically accelerate early-stage product development. What previously required days or weeks of engineering effort can often be turned into a [proof of concept](https://www.altexsoft.com/blog/proof-of-concept/), [prototype](https://www.altexsoft.com/blog/prototyping/), or lightweight [MVP](https://www.altexsoft.com/blog/minimum-viable-product-types-methods-and-building-stages/) in a fraction of the time, allowing teams to validate both technical and business assumptions sooner.
+
+<YouTube id="2RX_8Xff9Ro" caption="Prototypes in Product Discovery" />
+
+Prototyping explained
+
+This makes Claude Code particularly valuable for founders, solo developers, lean product teams, and nontechnical [stakeholders](https://www.altexsoft.com/blog/stakeholder-analysis/) who need to explore concepts without a large engineering team behind them. The tool can handle much of the repetitive work—such as routing, data models, API integrations, and test setup—allowing teams to focus on product vision and business strategy.
+
+That said, code generated by Claude Code should never be treated as production-ready by default. It still requires human review, testing, and validation, especially before being deployed to live environments.
+
+## Cons of Claude Code
+
+Claude Code, like every tool, has its disadvantages.
+
+### Multiple touchpoints
+
+Yes, the fact that you can use Claude Code across different surfaces means more flexibility. However, it can also lead to an inconsistent user experience.
+
+You have to learn what works where, and that's not always obvious—this is one thing that caught me off guard as a first-time user. Here are some examples.
+
+- Application previews are only available when on the desktop and _only if_ you're working on a local project. Move to a cloud-based session or work on a remote repo, and they're gone.
+- You only get all the commands if you’re using Claude Code in a terminal.
+- You can only use Claude Code’s **fast mode**—which runs Claude Opus 2.5x faster by prioritizing speed over cost efficiency—for local sessions on the desktop app.
+
+Compare that to something like Cursor, where you open the app, and everything is just there. Claude Code's approach gives it a lot of range, but it comes with a learning tax that a single-interface tool doesn't.
+
+### Hard learning curve due to the large number of features
+
+Claude Code is packed with features, and while that's mostly a good thing, it does make the tool harder to pick up. This is especially true if you're a beginner or if you're coming from a code editor like Cursor.
+
+With Claude Code, there's a lot going on. The terminal-first interface (if you want to get the full experience), commands, CLAUDE.md, hooks, skills, and MCP integrations. I had to get my head around all of this before I could work with it comfortably. It's not something you install and figure out in an afternoon; it will take some time.
+
+### Limited to Claude models
+
+Unlike tools like Cursor, which let you use models from any provider, Claude Code only works with Claude’s [LLMs](https://www.altexsoft.com/blog/language-models-gpt/). The platform allows you to route Claude through third-party infrastructure like [Amazon Bedrock](https://aws.amazon.com/bedrock/), [Gemini Enterprise Agent Platform](https://cloud.google.com/products/gemini-enterprise-agent-platform) (formerly Vertex AI), or [Microsoft Foundry](https://azure.microsoft.com/en-us/products/ai-foundry), but you’re still using Claude’s models.
+
+For most developers, this isn’t a dealbreaker because Claude has proven over time to have some of the best models for coding tasks. However, it's still worth mentioning.
+
+### Not optimized for legacy and enterprise codebases
+
+Claude Code performs well on small and medium-sized projects. However, very large [legacy systems](https://www.altexsoft.com/blog/legacy-system-modernization-approaches/) expose two related limitations: context capacity and persistence.
+
+Within a session, Claude's context window gradually fills with conversation history, files it has read, command outputs, CLAUDE.md instructions, loaded skills, memory, and system prompts. As context grows, Claude may lose track of earlier instructions, overlook details, or make more mistakes.
+
+These challenges have been observed by users in practice. In April 2026, AMD's Director of AI, Stella Laurenzo, published a [GitHub issue](https://github.com/anthropics/claude-code/issues/42796) based on telemetry from 6,852 Claude Code sessions, arguing that Claude Code had regressed on complex engineering tasks.
+
+Separate [community reports](https://www.reddit.com/r/ClaudeCode/) also described performance degradation as context usage increased, with circular reasoning appearing around 20 percent context utilization, context compression becoming noticeable around 40 percent, and the model sometimes recommending a fresh session near 48 percent.
+
+Another problem is that Claude Code is fundamentally session-scoped. Once a session ends, the understanding it built of the system disappears, and future sessions must reconstruct that knowledge from scratch.
+
+While this may be manageable for day-to-day development, it can become a major obstacle during [legacy modernization](https://www.altexsoft.com/blog/legacy-modernization-using-ai-agents/) initiatives, where building and maintaining a consistent understanding of architecture, dependencies, and business logic across thousands of files is critical.
+
+<YouTube id="odY0iTatFjM" caption="Legacy System Modernization" />
+
+How often legacy systems should be rewritten, and various approaches
+
+Rather than relying solely on Claude Code, teams can connect it to software intelligence platforms such as AltexSoft’s [Interlace](https://www.askinterlace.com/). It builds a persistent [knowledge graph](https://www.altexsoft.com/blog/knowledge-graph/) of the application, allowing AI agents to retrieve architectural, business, and implementation knowledge on demand via MCP.
+
+## Claude Code vs Cursor: What are the core differences?
+
+Claude Code and [Cursor](https://www.altexsoft.com/blog/cursor-pros-and-cons/) have a lot in common. Both support multi-file editing, integrate with GitHub, offer MCP support and subagent capabilities, and are widely used by developers and engineering teams for [AI-driven software development](https://www.altexsoft.com/blog/ai-driven-software-development/). Both also offer plans starting at $20 per month.
+
+That said, their approaches and target use cases differ in several important ways. Let's explore the main differences.
+
+![Claude Code vs Cursor ](/portfolio/altexsoft/058-claude-code/image-7.png)
+
+### User experience
+
+The workflow model is one of the biggest differences between Cursor and Claude Code.
+
+Cursor, as a VS Code–based editor, feels familiar to developers who already spend most of their day in an IDE. It combines traditional coding workflows with AI-assisted features such as
+
+- tab completions that predict entire logical blocks of code;
+- inline edits with visual review before changes are accepted;
+- a chat interface for asking questions, generating code, or requesting explanations; and
+- agent mode for handling more complex, multi-file tasks.
+
+Cursor's mental model remains largely editor-centric: You write code, collaborate with the AI, and stay closely involved in the implementation process.
+
+Claude Code takes a more agent-centric approach. Rather than working primarily through an editor interface, you describe an objective in natural language and let the agent determine how to accomplish it. Claude Code can analyze the project, plan changes, edit files, run commands and tests, and iterate when issues arise.
+
+In practice, Cursor tends to keep developers closer to the code, while Claude Code encourages a more delegated style of work where the AI agent takes greater responsibility for execution.
+
+### Model flexibility
+
+Cursor currently supports [37 LLMs](https://cursor.com/docs/models-and-pricing) and is among the top AI coding tools in terms of model variety. The lineup includes models from OpenAI, Google (Gemini), Anthropic (Claude), and Cursor's own proprietary LLMs. One of its standout features is the Auto toggle in the chat, which automatically selects the best model for your task.
+
+Claude Code only works with Claude models. You can switch between Opus, Sonnet, and Haiku, and select specific versions if you want to pin to a particular release. There’s an **opusplan mode** that automatically uses Opus during planning and switches to Sonnet for execution, giving you a cost-performance balance without managing it manually.
+
+### Content window
+
+Cursor's default context window is 200,000 tokens. As the limit is reached, the system summarizes earlier interactions into a more compact form, allowing the agent to continue working without carrying the full conversation history forward.
+
+In [Max Mode](https://cursor.com/help/ai-features/max-mode), the context window can extend beyond 200,000 tokens, up to the maximum supported by the selected model. The trade-off is cost: Because Max Mode uses token-based pricing, large requests can consume significantly more usage credits than regular interactions.
+
+Claude Code's standard context window is [200K tokens](https://support.claude.com/en/articles/14552983-models-usage-and-limits-in-claude-code)—the same as Cursor. However, when using Claude Code on Pro, Max, Team, or Enterprise plans, Opus 4.7 supports a one-million-token context window. Sonnet 4.6 also allows for a one-million-token context window in Claude Code, although most plans require usage credits (extra usage) to access it. Enterprise customers on usage-based contracts may have different pricing arrangements.
+
+### Privacy and security
+
+Cursor may collect prompts, code snippets, and usage data to improve its products and services. However, you can prevent this by enabling [Privacy Mode](https://cursor.com/help/security-and-privacy/privacy). The activation enforces zero-data-retention agreements with all model providers, meaning your code is never stored or used to [train models](https://www.altexsoft.com/glossary/model-training/).
+
+How Claude Code handles your code depends on how you use it. When running Claude Code through the terminal CLI or desktop app, the tool operates locally on your machine. Files remain on your device. The prompts, relevant file contents, and outputs required for inference are transmitted to Anthropic's API over encrypted connections.
+
+When you use [Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web), sessions run in isolated Anthropic-managed virtual machines. Your repository is cloned into that VM, and your code and session data are subject to Anthropic's retention and usage policies for your account type.
+
+### Large codebase navigation and management
+
+Cursor uses codebase indexing to handle large systems. When you open a project, Cursor scans and creates [vector embeddings](https://www.altexsoft.com/blog/vector-database/) of your files, enabling [semantic search](https://www.altexsoft.com/blog/semantic-search-vs-vector-search/). If you know which elements matter for a task, you can pull them in explicitly using the **@ system** to reference specific files, folders, and docs. If you're not sure what's relevant, the built-in Explore subagent searches autonomously and returns a summary without bloating the main conversation.
+
+For very large or complex projects, Max Mode extends the context window to the maximum a model supports, though it uses token-based pricing and will consume your usage budget faster.
+
+Claude Code approaches large codebase work through scoping. Instead of loading everything upfront, it pulls in only what's relevant to the task at hand. There are different configurations you can use to control exactly what Claude sees at any given point.
+
+- Per-directory CLAUDE.md files ensure that Claude only loads the instructions, coding standards, architectural rules, and development practices relevant to the area of the system it's working on.
+- The claudeMdExcludes setting blocks CLAUDE.md files from packages you never touch from loading.
+- Project-specific skills can also be scoped to particular repositories or areas of a system and are only loaded when relevant.
+- Read deny rules stop Claude from opening files it doesn't need to reason about—things like auto-generated code 8520/or third-party libraries—so they don't eat into your context window.
+
+Cursor's indexing model works well for interactive navigation and feels immediately familiar to anyone used to an IDE. Claude Code's scoping model requires more upfront configuration but gives you precise control over what Claude sees at any given point. That level of control matters when a large codebase would otherwise fill the context window with irrelevant content before the task has even started.
+
+## Getting started with Claude Code
+
+**Official documentation.** The [Claude Code documentation](https://code.claude.com/docs) is the best starting point. It covers installation, quickstart guides, common workflows, memory context management, and more.
+
+**GitHub repository.** The [Claude Code GitHub repository](https://github.com/anthropics/claude-code) lets you explore the codebase, track issues, and follow the development journey.
+
+**Community.** The [r/ClaudeCode subreddit](https://www.reddit.com/r/ClaudeCode) is a great place to interact with other members of the Claude Code community. There you can find configuration tips, ask questions, and see how other developers are structuring their workflows.
+
+**Courses and learning materials.** There are various [Anthropic courses](https://anthropic.skilljar.com/) you can explore, including ones focused on Claude Code. This is besides community-created resources like YouTube tutorials, Coursera courses, and blog guides covering everything from basic setup to advanced agentic workflows.

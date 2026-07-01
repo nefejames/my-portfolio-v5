@@ -1,0 +1,153 @@
+---
+title: "Google's Universal Commerce Protocol Explained"
+client: "AltexSoft"
+clientSlug: "altexsoft"
+originalUrl: "https://www.altexsoft.com/blog/universal-commerce-protocol/"
+publishedAt: "2026-02-10"
+canonical: "https://www.altexsoft.com/blog/universal-commerce-protocol/"
+excerpt: "Learn how Google Universal Commerce Protocol works and what it means for the future of search, shopping, and online sales."
+coverImage: "/portfolio/altexsoft/044-universal-commerce-protocol/cover.jpg"
+tags: []
+---
+Google released the [Universal Commerce Protocol (UCP)](https://ucp.dev/latest/) in January 2026. Its purpose is to create a shared, open standard that lets [AI agents](https://www.altexsoft.com/blog/ai-agents/) and commerce systems work together throughout the entire shopping journey—from discovery and buying to post-purchase support—without custom links for every tool or partner.
+
+This article covers what you need to know about this new protocol, how it works, and why it matters for retailers and customers. We’ll look at what UCP means for agent-driven shopping experiences today, how it fits with existing AI protocols, and what it could mean for the future of the commerce industry. Let’s dive in.
+
+## What is the Universal Commerce Protocol?
+
+The **Universal Commerce Protocol (UCP)** is an open, shared standard designed for the next phase of online shopping—where AI agents not only recommend products but also initiate and coordinate actions like payments and checkout on behalf of users. It was developed by Google in collaboration with major commerce platforms and retailers such as Shopify, Etsy, Wayfair, Target, and Walmart, and backed by numerous partners in payments and retail.
+
+At its core, UCP provides a common framework that enables AI systems, retailers, and payment providers to seamlessly communicate with one another. Rather than requiring custom integrations for each store or payment service, UCP defines a unified language and set of rules that can be followed across the entire shopping journey—from product discovery to post-purchase operations.
+
+![The Universal Commerce Protocol](/portfolio/altexsoft/044-universal-commerce-protocol/image-1.png)
+
+## Components of the Universal Commerce Protocol
+
+The Universal Commerce Protocol (UCP) is built around three main constructs—Capabilities, Extensions, and Services, which together form the foundation for how businesses, platforms, and payment systems communicate.
+
+### Capabilities
+
+Capabilities are the core functions a business exposes through UCP. They represent actions an agent can perform with a commerce system. The main capabilities available in the UCP include:
+
+- Identity Linking: allows an agent to be authorized via [OAuth 2.0](https://www.altexsoft.com/blog/oauth/) to perform actions on a business site on a user’s behalf.
+- Checkout: enables the entire purchase process, including session creation, adding or removing line items, calculating totals, choosing payment and shipping options, and completing transactions.
+- Order Management: lets agents interact with order data to help users track fulfillment, initiate returns, and update shipment statuses.
+
+Each capability is clearly specified and versioned, so both business platforms (merchants) and agents know exactly what to expect. Merchants publish their supported capabilities and endpoints through a standardized discovery profile, and responses are structured in a machine‑readable format (typically JSON), including [metadata](https://www.altexsoft.com/blog/metadata-management/) like session IDs, order totals, statuses, and other relevant indicators.
+
+### Extensions
+
+Extensions add optional functionality to a core capability. For example, an extension to the checkout capability might introduce discounts, allowing agents to apply promotions, coupons, or loyalty adjustments. While the base checkout process remains unchanged, the totals are recalculated according to the discount rules.
+
+Extensions are versioned and follow clear schemas, ensuring that agents can easily check whether a particular extension is available before using it.
+
+### Services
+
+Services are the communication channels that enable data exchange between UCP participants. They determine how capabilities and extensions are executed and how information flows between platforms, businesses, credential providers, and payment systems.
+
+UCP is designed to support multiple protocols, offering flexibility in how systems interact. At the same time, it provides standard bindings that simplify integration across different systems.
+
+- [REST APIs](https://www.altexsoft.com/blog/rest-api-design/) are the main way UCP systems talk to each other. They specify endpoints, request and response schemas, and methods for creating sessions, checking capabilities, and processing transactions.
+- The [Model Context Protocol (MCP)](https://www.altexsoft.com/blog/model-context-protocol/) allows agents to maintain and share context throughout multistep interactions, like tracking items or managing sessions over time.
+- The [Agent2Agent (A2A) Protocol](https://www.altexsoft.com/blog/a2a-protocol-explained/) enables direct communication between a facilitating delegation or complex workflows without sharing sensitive user data.
+- The [Agent Payments Protocol (AP2)](https://ap2-protocol.org/) enables secure agent-initiated payments over multiple payment types, including credit/debit cards and stablecoins.
+
+Services also provide metadata in discoverable formats, typically through JSON manifests, which list available endpoints and versions and describe how to interact with them.
+
+<YouTube id="yBZO5Rb4ibo" caption="What is an API? Connections and principles explained" />
+
+Watch our explainer on the technology of APIs
+
+## Why you should care about the Universal Commerce Protocol
+
+UCP promises to revolutionize various players in the eCommerce value chain and transform how consumers shop. Here's why different groups should pay attention.
+
+![How UCP impacts the eCommerce value chain](/portfolio/altexsoft/044-universal-commerce-protocol/image-2.png)
+
+**Retailers and brands** should care because product discovery is no longer confined to traditional search engines. It now extends to "AI visibility," meaning UCP structures product information in a "ready-to-buy" format for AI systems, thereby enhancing its availability amid various AI environments and [conversational interfaces](https://www.altexsoft.com/blog/conversational-ai/). Additionally, UCP ensures that the retailer remains the [merchant of record (MoR)](https://www.altexsoft.com/glossary/merchant-of-record/), maintaining full control over your customer data, pricing rules, and business logic.
+
+**AI product and platform builders** can build agent-driven shopping flows without creating custom integrations for every platform. They can plug into a shared standard for discovery, checkout, payments, and post-purchase actions, making it faster to ship using clear APIs rather than one-off merchant setups.
+
+**Developers** receive a shared standard to connect with multiple merchants and payment providers. This reduces development time, accelerates product launches, and makes scaling more efficient.
+
+<YouTube id="6oHHdddh4_I" caption="Multi-Agentic AI: Stop AI Coding, Start Building" />
+
+Do AI tools really help deliver faster results?
+
+**Payment** **providers** benefit from UCP because it offers a single standard way to plug into AI shopping flows. Instead of building separate integrations for every platform, they can connect once and work across a wide range of AI-powered platforms. UCP also ensures payment security.
+
+**Consumers** can discover products, compare options, and complete purchases more easily through conversational AI tools. UCP ensures a simplified and consistent checkout experience in varied platforms. Moreover, it incorporates an identity capability that securely links a shopper’s store account to their AI experience, allowing features like saved addresses, payment preferences, order history, and loyalty benefits to be automatically used during checkout, eliminating the need to re-enter details.
+
+## How to get started with the UCP
+
+Before AI agents can transact on behalf of customers, businesses must prepare their commerce systems to work with the Universal Commerce Protocol. The following steps outline how merchants typically get started with UCP.
+
+### 1\. Prepare your commerce backend for UCP
+
+The first step for a business is to make its products and services available for interaction through the UCP. This typically involves either exposing an existing e-commerce backend or building a dedicated service to handle core commerce logic.
+
+This backend is responsible for
+
+- managing product data, pricing, and availability;
+- applying business rules such as taxes, discounts, and fulfillment constraints;
+- handling checkout sessions and order creation; and
+- exposing APIs that AI agents can interact with.
+
+In most cases, UCP sits on top of existing commerce infrastructure rather than replacing it.
+
+### 2\. Expose capabilities
+
+Once the backend is ready, it must expose its commerce capabilities in a standardized, machine-readable way so that AI agents can understand how to interact with it. In practice, this capability description can be implemented as a JSON-based manifest or a similar structured format, depending on the specific UCP implementation and platform requirements.
+
+Through this capability description, the business indicates
+
+- which operations are supported (for example, checkout, refunds, fulfillment, or promotions);
+- how agents can invoke each operation via API endpoints;
+- versioning information and the expected request and response formats; and
+- supported payment methods or payment handling requirements, where applicable.
+
+This capability discovery mechanism allows AI agents to dynamically learn what a business supports and adapt as capabilities evolve, without requiring custom, one-off integrations for each update.
+
+### 3\. Invoke checkout capacity
+
+After a business has exposed its supported commerce capabilities through its UCP-compatible interface, an AI agent can initiate a checkout session on behalf of a customer.
+
+The agent sends a request containing the selected items and the buyer's details. The merchant's backend system responds with a checkout session identifier and current pricing information.
+
+Using this session identifier, the AI agent can manage and update the checkout over time—such as modifying the cart, confirming buyer details, or recalculating totals. If the merchant has discount or promotion capabilities enabled, the agent can apply discount codes or loyalty benefits as part of the same checkout session.
+
+The backend system then validates these inputs, recalculates the totals, and confirms which adjustments were applied before the transaction is finalized.
+
+## How to enable UCP via Google interfaces
+
+So far, we’ve covered how businesses enable UCP at a general level—exposing commerce capabilities and supporting agent-driven checkout flows. While UCP itself is vendor-neutral and can be used outside any single platform, additional steps are required when enabling it on Google surfaces, such as AI Mode in Search or the Gemini app.
+
+To connect their UCP-compatible backend to Google’s ecosystem, businesses must perform the following steps.
+
+### Set up a Merchant Center account
+
+To transact via UCP on Google surfaces, a business must have a Merchant Center account. It acts as Google’s verification and policy layer, storing key information such as product feeds, shipping and return policies, and tax settings. It ensures the business is eligible to appear and transact within Google’s AI-driven commerce experiences.
+
+Merchant Center approval confirms that the business is allowed to sell on Google surfaces in general. This step is a prerequisite for enabling any UCP-based transactions, but it does not, by itself, enable AI agent–driven commerce.
+
+### Obtain UCP approval from Google
+
+UCP access in Google’s ecosystem is separately approval-based. After a business is verified through Merchant Center, Google must additionally approve the business’s UCP integration before agent-initiated transactions can go live on Google surfaces.
+
+This approval focuses specifically on how the business supports AI-driven commerce, including requirements related to payments, security, consumer protection, and agent-initiated checkout flows. Only after this step can AI agents initiate and complete transactions on the business’s behalf within Google’s AI experiences.
+
+### Make commerce capabilities discoverable
+
+Once approved, the business makes its supported commerce capabilities discoverable to AI agents. This step is part of the core Universal Commerce Protocol flow and applies regardless of platform. When UCP is used on Google surfaces, the same capabilities are discovered and invoked by Google’s AI agents under Google’s approval and policy framework.
+
+## How viable is the Universal Commerce Protocol today?
+
+Is the Universal Commerce Protocol just another part of the AI hype train or does it have the potential to become a standard that reshapes how people discover and buy goods in agentic systems?
+
+While it's still early to tell, as the protocol was recently released and adoption is still in its early stages, the development backing and endorsement it has gotten from major retailers—such as Shopify, Etsy, Wayfair, Target, and Walmart—as well as payment providers, is a positive signal of the potential it holds in shaping agentic commerce.
+
+At this stage, UCP is primarily being utilized by these early adopters to power AI-driven shopping experiences through Google’s surfaces, including AI Mode in Search and the Gemini app. More usage across the broader commerce ecosystem will surely make UCP more appealing.
+
+Also, given that UCP is still in its infancy, the platform is continuously evolving. Features, integration methods, and supported capabilities may change as more businesses and platforms implement UCP. It’s important to stay updated on new developments, as full ecosystem support has not yet been achieved. Google provides a [UCP roadmap](https://ucp.dev/documentation/roadmap/) outlining upcoming changes and features.
+
+Despite being in the early stages, the backing from major retailers and payment providers indicates that UCP has the potential to become a foundational standard for AI-enabled commerce, ultimately shaping how products are discovered, purchased, and managed across digital platforms in the future.

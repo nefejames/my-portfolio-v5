@@ -1,0 +1,183 @@
+---
+title: "Agent2Agent (A2A) Protocol Explained: Improving Multi-Agent Interactions"
+client: "AltexSoft"
+clientSlug: "altexsoft"
+originalUrl: "https://www.altexsoft.com/blog/a2a-protocol-explained/"
+publishedAt: "2025-08-07"
+canonical: "https://www.altexsoft.com/blog/a2a-protocol-explained/"
+excerpt: "Agent2Agent Protocol lets AI agents communicate and coordinate actions. Learn how it works and why it matters."
+coverImage: "/portfolio/altexsoft/027-a2a-protocol-explained/cover.jpg"
+tags: []
+---
+[AI agents](https://www.altexsoft.com/blog/ai-agents/) are increasingly becoming integral in complex task automation, but communication between them remains a challenge. The Agent2Agent (A2A) protocol aims to bridge the collaboration gap. In this article, we’ll break down how A2A works, why it matters, where it’s already being tested in the real world, and what it means for the future of [multi-agent AI systems](https://www.altexsoft.com/blog/building-multi-agent-systems/).
+
+## What is the Agent2Agent (A2A) protocol?
+
+The **Agent2Agent (A2A) protocol** is a communication standard designed to help [AI agents](https://www.altexsoft.com/blog/ai-travel-agent/) work together no matter what their vendor or underlying model is. [Developed by Google](https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/) in 2025, A2A lays out a clear structure for how agents should coordinate actions without relying on custom code for each interaction.
+
+At the core of how it works is the concept of agent cards, which are structured summaries that describe what an agent can do, what it's working on, and what it needs. These cards help agents understand each other and decide how to approach tasks.
+
+Instead of treating each agent like a separate black box, A2A turns them into team players. Whether it’s planning a project, solving a problem, or managing a task, agents can now split up the work, report progress, and adjust based on what others are doing—all in a standardized way.
+
+In short, A2A is about moving from isolated to shared, coordinated intelligence.
+
+_Another important protocol that was recently launched is Google's [Universal Commerce protocol](https://www.altexsoft.com/blog/universal-commerce-protocol/). Read our dedicated article to learn how it aims to assist agentic commerce. Also, learn about the [Agent-to-Human (A2H) protocol](https://www.altexsoft.com/blog/agent-to-human-a2h-protocol/) by Twilio._
+
+### What problems does the Agent2Agent protocol solve?
+
+The Agent2Agent protocol is designed to solve a few core problems that arise when agents try to communicate across different systems.
+
+**No standard communication format**. Without a unified format, agents struggle to understand each other, coordinate timelines, or delegate work. They often act on incomplete information because they don’t know what others are doing. A2A introduces a structured message schema allowing them to hand off tasks, ask for help, or update one another on progress. The ability to share context leads to smarter decisions.
+
+**Scalability issues**. As AI systems grow, managing multiple agents with custom integrations becomes messy and expensive. A2A creates a plug-and-play model where agents follow the same rules, making it easier to scale [multi-agent systems](https://www.altexsoft.com/blog/building-multi-agent-systems/).
+
+**Lack of boundaries between agents**. In many setups, agents must expose internal logic, memory, or tool access to work together effectively. This raises security concerns and risks disclosing proprietary methods. A2A allows agents to collaborate without revealing their internals, keeping systems secure and protecting intellectual property.
+
+### The Agent2agent protocol (A2A) vs the model context protocol (MCP)
+
+**A2A** is all about communication between agents. It’s meant to help them collaborate like teammates in a group project, each one handling a part of the task while staying in sync.
+
+The [model context protocol (MCP)](https://www.altexsoft.com/blog/model-context-protocol/), on the other hand, focuses on how agents interact with external and internal tools and resources. It standardizes the way agents access things like file systems, [databases](https://www.altexsoft.com/blog/databases-database-management-systems/), [APIs](https://www.altexsoft.com/blog/what-is-api-definition-types-specifications-documentation/), or applications on a machine or across a network. Instead of custom integrations for each tool, MCP offers a consistent method for connecting and exchanging data.
+
+![The Agent2Agent Protocol vs the Model Context Protocol](/portfolio/altexsoft/027-a2a-protocol-explained/image-1.png)
+
+Even with A2A, agents still need to contact [MCP servers](https://www.altexsoft.com/blog/mcp-servers-travel/) to extend their functionality, interact with different tools, and get things done. In fact, the Google team explicitly stated that A2A was built to complement MCP. So A2A and MCP aren’t competing. They’re meant to work side by side: A2A handles collaboration while MCP is responsible for execution.
+
+## Architecture and key components of the Agent2Agent protocol
+
+Here’s an overview of the components and building blocks powering the A2A protocol.
+
+![Architecture and components of the A2A protocol ](/portfolio/altexsoft/027-a2a-protocol-explained/image-2.png)
+
+### A2A agents: clients, servers, or both
+
+In the A2A protocol, any agent can act as a client, a server, or both, depending on the situation. The client agent—which the end user interacts with via UI—is the one that initiates a task. It defines the goal and passes it along to a remote agent that can help achieve it.
+
+The server exposes an HTTP endpoint that supports the A2A protocol and listens for incoming messages from client agents. It operates as an opaque system, meaning that clients know nothing about its internal state, memory, or tools. At the same time, all information necessary for successful collaboration is present on the agent card.
+
+### Agent card
+
+Each server publishes an agent card, which is a JSON-like document that describes what the agent can do, how to interact with it, and what kind of inputs and outputs it handles. This card acts like a résumé or profile and includes the following fields:
+
+- agent name and description,
+- supported tasks or skills,
+- required inputs and expected outputs,
+- API endpoint for submitting tasks,
+- version info,
+- supported extensions, and
+- authentication details.
+
+The agent card is central to agent discovery. When a client wants to delegate a task, it first looks for cards with the necessary capabilities. This can happen in a few ways: by accessing a well-known URI on the remote agent’s domain, querying a central registry or catalog of available agents, or using direct configuration, where the agent card URL or content is preloaded into the client.
+
+### Task
+
+A task is an object representing a specific client request. Created and maintained by the remote agent, it serves as the container for all related communication and state updates.
+
+Tasks include the following fields.
+
+- Task ID: a server-generated identifier used to track and reference the task
+- State: a current status of the task, such as submitted, working, input-required, completed, or failed
+- Input: content needed to perform the task (e.g., parameters, constraints, user preferences)
+- Metadata: optional information related to the task, like trace\_id to track the request across agents or parent\_id to link to a larger process
+- History: a list of messages exchanged between the client and server within the scope of this task
+- Artifacts: results or intermediate outputs of the task
+
+By structuring operations as tasks, A2A allows agents to reliably manage complex, long-lasting interactions. Client agents can poll or subscribe to updates, fetch partial results, and take actions based on a task’s progress (e.g., retrying, reassigning, or requesting clarification).
+
+### Message
+
+A message is the communication unit that relies on the JSON-RPC (remote procedure call) format to exchange information between client and server agents during a task session. It carries different kinds of details, including
+
+- user input: instructions, requests, or contextual details sent by the client;
+- agent thinking: reasoning steps or updates shared by the server as it works through the task;
+- status updates: notifications about task progress or state changes;
+- instructions: prompts from the server asking for more information or telling the client what to do next; and
+- error information: details about any issues encountered during execution.
+
+Each message follows a consistent schema and includes three main components: role (“user” if it’s sent by the client or “agent” if it’s from the server), parts (content units), and optional metadata (tags, timestamps, routing details, etc.).
+
+### Part
+
+A part is the basic content element in the A2A protocol. It can convey not only plain text but also structured JSON data and files (including documents and media). This multimodality makes A2A  suitable for audio and video [streaming](https://www.altexsoft.com/blog/real-time-analytics/).
+
+Each message consists of one or more parts, representing a distinct subtask or chunk of information that can be handled independently. This structure allows agents to break down larger tasks into smaller, focused steps that can be processed in parallel or delegated to specialized agents.
+
+For example, in a task like booking a round-trip flight and hotel, one part might be “search for flights,” while another part could be “find hotel rooms.” Each of these parts can be sent to different agents that specialize in those services.
+
+### Artifact
+
+Artifacts are the immutable results or outputs generated by a server agent after completing a task. A single task can produce multiple artifacts, each having a unique ID, name, short description, and actual content. Like messages, artifacts are composed of one or more parts, which allows them to be multimodal and include a mix of formats (plain text, code blocks, tables, media files, etc.).
+
+For example, if an agent is asked to prepare a travel itinerary, it might return an artifact that includes a PDF summary, JSON data with booking details, and a map image. Other client applications can process these parts individually or together.
+
+When the client requests a revision, like changing the departure date, the server generates a new artifact with a new ID to reflect the update. However, the name is usually kept the same to indicate continuity. This versioning system helps agents and users track changes and refer back to earlier outputs when needed.
+
+### Communication mechanisms
+
+Agents in the A2A protocol communicate over standard web technologies. Messages are sent using HTTP, with data typically structured in JSON for easy parsing. Responses can be delivered in different ways depending on the use case:
+
+- streaming via Server-Sent Events (SSE) for real-time updates,
+- polling for periodic status checks by clients in long-running tasks, or
+- push notifications via [webhooks](https://www.altexsoft.com/blog/webhook-vs-api/) for long-running tasks or scenarios when clients can’t maintain a persistent connection.
+
+This flexible setup allows client agents to choose the most efficient interaction pattern, whether they want constant updates, on-demand responses, or background alerts.
+
+## How does the Agent2Agent protocol work? A sample flow
+
+Let’s say a user is chatting with an [AI travel agent](https://www.altexsoft.com/blog/ai-travel-agent/) and says, _“Help me find and book flights and hotels for a trip from Lagos to London for October 15.”_ This assistant—A2A client—handles general travel planning but doesn’t directly search booking systems. Instead, it decides to delegate parts of the task to specialized agents that can perform flight and hotel searches.
+
+![A sample flow with the Agent2Agent protocol](/portfolio/altexsoft/027-a2a-protocol-explained/image-3.png)
+
+Here’s how the Agent2Agent protocol enables that.
+
+### Step 1: A2A client breaks down the task
+
+The AI travel agent (client agent) receives the user's request and decides it needs help. It separates the job into two tasks: (1) book a round-trip flight to Nairobi and (2) reserve a hotel stay for the same dates. These become distinct subtasks with their own goals and constraints.
+
+### Step 2: A2A client discovers and selects capable agents
+
+Next, the client agent uses the A2A protocol to find agents that can handle each subtask. It looks for one agent with access to [flight booking APIs](https://www.altexsoft.com/blog/airline-flight-booking-apis-gdss-specialized-data-providers-otas-and-metasearch-engines/) and another that connects to [hotel search and booking APIs](https://www.altexsoft.com/blog/hotel-api/).
+
+![Simplified version of the agent card for a flight booking server agent](/portfolio/altexsoft/027-a2a-protocol-explained/image-4.png)
+
+The agents share metadata via agent cards, which advertise their capabilities, like “flight-search-book” or “search\_hotels”—and outline the kinds of inputs they accept.
+
+### Step 3: Tasks are delegated through structured messages
+
+The client agent sends task request messages to both agents.
+
+![2. An A2A task with a message and part, where a client agent requests a direct flight](/portfolio/altexsoft/027-a2a-protocol-explained/image-5.png)
+
+An A2A task with a message and part, where a client agent requests a direct flight
+
+These messages include goals (e.g., find the cheapest direct flight), context (e.g., departure city, dates), and constraints (e.g., only 4-star hotels or higher). The protocol ensures that both agents understand the task format, even if they’re built on different frameworks.
+
+### Step 4: Agents acknowledge the task, act, and respond
+
+In the process of fulfilling the task, the flight agent will call its [MCP server](https://www.altexsoft.com/blog/mcp-servers-for-developers/) to check airline APIs for real-time pricing and seat availability. The hotel agent, in turn, will use another MCP server to query hotel booking systems. Each sends back a response message with results and useful metadata.
+
+### Step 5: A2A client monitors the task’s progress
+
+As the flight and hotel agents work on their tasks, the client agent monitors their progress. This can happen in two ways: either in real-time, where each agent streams updates like “search in progress” or “waiting for API response,” or in a request-response mode, where the client checks in periodically for updates.
+
+If something goes wrong, like a long delay or an error, the client agent can step in. It might retry the task, tweak the original request, or reassign it to another agent. This ongoing monitoring keeps things moving and ensures tasks don’t stall unnoticed.
+
+### Step 6: The client agent aggregates and evaluates results
+
+The client agent gets back two artifacts. Each one contains the result of that task: a flight itinerary and a hotel reservation.
+
+![A2A artifact containing the response for a task](/portfolio/altexsoft/027-a2a-protocol-explained/image-6.png)
+
+Then the client agent reviews the results to make sure they match the user’s original request. If something is missing or doesn’t meet the user’s preferences, it can loop back and ask the server agents for alternatives or more refined options using follow-up messages. These updates come back as new artifacts, and the agent can repeat this loop until it’s happy with the final [itinerary](https://www.altexsoft.com/glossary/itinerary/).
+
+### Step 7: Final actions and updates
+
+Once the user confirms the itinerary, the travel agent instructs the respective agents to go ahead with bookings. The flight and hotel agents perform the transactions and return confirmation details. Throughout, they continue to use the A2A schema to report status updates or errors, keeping the workflow in sync.
+
+## The future of the A2A protocol
+
+The A2A protocol is still in its early days. One of the main hurdles ahead is adoption. That said, it’s already showing signs of momentum. So far, sixty companies have implemented the protocol, which is a strong start. But there’s still a long road to widespread acceptance.
+
+Another thing to keep in mind is that A2A is an active work in progress. The internal structure, code, and APIs may still change as things evolve. Builders should be ready for that.
+
+The good news is that A2A was designed to work alongside MCP, not compete with it. That makes adoption easier. It's not about replacing existing systems but about extending them. Instead of fighting for attention, A2A fits naturally into the current ecosystem, which makes it more likely to gain long-term support.
