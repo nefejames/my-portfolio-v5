@@ -533,6 +533,143 @@ function smashingCleanup(markdown) {
   return lines.join('\n').replace(/\n{3,}/g, '\n\n').trim()
 }
 
+// ─── Prismic cleanup ──────────────────────────────────────────────────────────
+// Prismic wraps the article in site chrome: a header (webinar banner, category
+// nav, "Search", sometimes a series table-of-contents), a mid-article newsletter
+// signup, and a footer (a related-articles block, "Hit your website goals", the
+// "Websites success stories from the Prismic Community" case studies, and the
+// "Prismic Toolbar iFrame"). Strip all of it. Runs ONLY for `--client prismic`.
+function prismicCleanup(markdown) {
+  let lines = markdown.split('\n')
+
+  // 1. Leading header — cut through "Search", then skip a series table-of-contents
+  //    (a run of standalone link-only lines) before the real intro.
+  const searchIdx = lines.findIndex((l, i) => i < 40 && l.trim() === 'Search')
+  if (searchIdx !== -1) lines = lines.slice(searchIdx + 1)
+  const linkOnly = (t) => t === '' || /^(\[[^\]]*\]\([^)]*\)[\s.,]*)+$/.test(t)
+  let s = 0
+  while (s < lines.length && linkOnly(lines[s].trim())) s++
+  lines = lines.slice(s)
+
+  // 2. Trailing footer — cut from the earliest footer marker to the end. Covers
+  //    the "Hit your website goals" CTA, the "Websites success stories" case
+  //    studies, the "Prismic Toolbar iFrame", and the "PreviousNext" pager.
+  const footer = [
+    /^Hit your website goals/i,
+    /^##\s+Websites success stories/i,
+    /Prismic Toolbar iFrame/i,
+    /^PreviousNext$/,
+  ]
+  const cut = lines.findIndex((l) => footer.some((re) => re.test(l.trim())))
+  if (cut !== -1) lines = lines.slice(0, cut)
+
+  // 3. Newsletter widget(s) — remove every block around a standalone "Subscribe".
+  for (let guard = 0; guard < 6; guard++) {
+    const subIdx = lines.findIndex((l) => l.trim() === 'Subscribe')
+    if (subIdx === -1) break
+    let start = subIdx
+    for (let i = subIdx - 1; i >= 0 && subIdx - i <= 10; i--) {
+      if (
+        /^#{2,4}\s/.test(lines[i]) ||
+        /stay on top|newsletter|subscribe to get|optimized dev|join other developers/i.test(lines[i])
+      ) {
+        start = i
+      }
+    }
+    let end = subIdx + 1
+    while (
+      end < lines.length &&
+      (lines[end].trim() === '' || /^!?\[/.test(lines[end].trim()) || /^Email/i.test(lines[end].trim()))
+    )
+      end++
+    lines.splice(start, end - start)
+  }
+
+  // 4. Related-article widgets — Prismic injects "recommended reading" boxes: a
+  //    heading label, a decorative (empty-alt) image, then [Category]/[**Title**]
+  //    card pairs. A real heading is followed by prose; a widget heading is
+  //    followed immediately by that decorative image or a /blog/category/ link.
+  //    Remove the heading and the whole card run up to the next real heading/prose.
+  const isWidgetLine = (t) =>
+    t === '' ||
+    /^!\[[^\]]*\]\(/.test(t) ||
+    /\/blog\/category\//.test(t) ||
+    /^\[.*\]\(https?:[^)]*\)\s*$/.test(t) ||
+    /min read/i.test(t)
+  const introducesWidget = (i) => {
+    let j = i + 1
+    while (j < lines.length && lines[j].trim() === '') j++
+    if (j >= lines.length) return false
+    const t = lines[j].trim()
+    return /^!\[\]\(/.test(t) || /\/blog\/category\//.test(t)
+  }
+  const out = []
+  let k = 0
+  while (k < lines.length) {
+    const t = lines[k].trim()
+    if (/^#{2,4}\s/.test(lines[k]) && introducesWidget(k)) {
+      k++ // drop the widget's heading label
+      while (k < lines.length && !/^#{2,4}\s/.test(lines[k]) && isWidgetLine(lines[k].trim())) k++
+      continue
+    }
+    // A stray card run with no heading: a decorative image that leads into a
+    // category tag + link. Drop the contiguous widget block.
+    if (/^!\[\]\(/.test(t) && introducesWidget(k)) {
+      while (k < lines.length && !/^#{2,4}\s/.test(lines[k]) && isWidgetLine(lines[k].trim())) k++
+      continue
+    }
+    // A stray category tag + its following standalone link.
+    if (/\/blog\/category\//.test(t)) {
+      k++
+      if (k < lines.length && lines[k].trim() === '') k++
+      if (k < lines.length && /^\[.*\]\(https?:[^)]*\)\s*$/.test(lines[k].trim())) k++
+      continue
+    }
+    out.push(lines[k])
+    k++
+  }
+  lines = out
+
+  // 5. Fix FAQ headings scraped as "### \#\#\# Question" (escaped literal hashes).
+  lines = lines.map((l) => l.replace(/^(#{1,6})\s+\\#\\#\\#\s*/, '$1 '))
+
+  // 6. Prismic product CTA — the "Try editing a page with Prismic" page-builder
+  //    promo (heading + blurb + screenshot + "Try the Page Builder"). Remove the
+  //    section up to the next heading.
+  const promoIdx = lines.findIndex((l) => /^#{2,4}\s+Try editing a page with Prismic/i.test(l))
+  if (promoIdx !== -1) {
+    let end = promoIdx + 1
+    while (end < lines.length && !/^#{2,4}\s/.test(lines[end])) end++
+    lines.splice(promoIdx, end - promoIdx)
+  }
+
+  // 7. Drop empty headings left behind after widget/accordion content was stripped
+  //    (e.g. "## Related Posts", answerless FAQ questions). A heading is "empty"
+  //    when the next non-blank line is EOF or a heading at the same-or-shallower
+  //    level (so section headings with real subsections are preserved). Iterate,
+  //    since removing one empty heading can expose another above it.
+  for (let changed = true; changed; ) {
+    changed = false
+    const res = []
+    for (let i = 0; i < lines.length; i++) {
+      const hm = lines[i].match(/^(#{1,6})\s/)
+      if (hm) {
+        let j = i + 1
+        while (j < lines.length && lines[j].trim() === '') j++
+        const next = j < lines.length ? lines[j].match(/^(#{1,6})\s/) : null
+        if (j >= lines.length || (next && next[1].length <= hm[1].length)) {
+          changed = true
+          continue
+        }
+      }
+      res.push(lines[i])
+    }
+    lines = res
+  }
+
+  return lines.join('\n').replace(/\n{3,}/g, '\n\n').trim()
+}
+
 // ─── Core: import one scraped document ────────────────────────────────────────
 async function importDocument(doc, clientSlug, sourceUrl) {
   const meta = doc.metadata || {}
@@ -596,6 +733,8 @@ async function importDocument(doc, clientSlug, sourceUrl) {
     cleanedMarkdown = altexsoftCleanup(markdown, extractSchemaVideos(doc.rawHtml || doc.html || ''))
   } else if (clientSlug === 'smashing-magazine') {
     cleanedMarkdown = smashingCleanup(markdown)
+  } else if (clientSlug === 'prismic') {
+    cleanedMarkdown = prismicCleanup(markdown)
   }
 
   // Convert standalone tweet/YouTube/LinkedIn links into component tags first,
@@ -789,4 +928,5 @@ module.exports = {
   extractSchemaHeadline,
   sanitizeMdx,
   slugFromUrl,
+  prismicCleanup,
 }

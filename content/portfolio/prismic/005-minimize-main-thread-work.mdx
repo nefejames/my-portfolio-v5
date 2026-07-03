@@ -1,0 +1,188 @@
+---
+title: "8 Ways to Minimize Main Thread Work to Improve Core Web Vitals"
+client: "Prismic"
+clientSlug: "prismic"
+originalUrl: "https://prismic.io/blog/minimize-main-thread-work"
+publishedAt: "2023-04-12"
+canonical: "https://prismic.io/blog/minimize-main-thread-work"
+excerpt: "We will learn what the main thread is, what it does, the website elements that block it, and how to minimize main thread work to improve website performance and load times."
+coverImage: "/portfolio/prismic/005-minimize-main-thread-work/cover.png"
+tags: []
+---
+
+A clogged tap can cause the water flowing from it to slow to a trickle. That can be frustrating to deal with. Similarly, the browser’s main thread, which works in the background to render website pages, can get blocked, leading to slow-loading websites and a terrible user experience. That’s why it’s so important to minimize main thread work.
+
+How can we unclog the “browser’s pipe,” i.e. the main thread? That’s what we will learn in this article. We will learn what the main thread is, what it does, the website elements that block it, and how to minimize its workload to improve website performance and load times.
+
+## What is the main thread?
+
+The main thread is part of the browser responsible for handling user events, rendering the user interface, and executing JavaScript code. It is a critical part of the browser and can be thought of as a central processing unit.
+
+The browser functions with a single main thread by default, meaning that it cannot handle multiple tasks simultaneously. The main thread has a lot of work to do during the initial page load process, including building the DOM tree, fetching the necessary CSS styles and applying them, analyzing and executing the JavaScript code, and generating the page layout. Collectively these tasks allow the browser to [render the page](https://prismic.io/blog/javascript-rendering-methods).
+
+The main thread can only perform these tasks consecutively, which means that the website’s loading time will be negatively affected by any files that are time-consuming to process and slow down the queue. We’ll see what some of these kinds of files are below, but you’ll often hear them referred to as “render-blocking resources” because they slow the browser’s ability to render the page.
+
+Ultimately any blockers that occur on the main thread will affect the loading times of websites and lead to unresponsive pages.
+
+It is important to reduce the workload on the main thread to avoid unresponsive pages and negative effects on [Core Web Vitals](https://prismic.io/blog/how-to-improve-core-web-vitals) like [Time to Interactive (TTI)](https://developer.chrome.com/en/docs/lighthouse/performance/interactive/), which measures the time it takes before a user can interact with a webpage and get a response back.
+
+## The best ways to evaluate main thread work in a project
+
+There are free and reliable tools that we can use to evaluate the load our websites place on the main thread and gain insights into Core Web Vitals and how our websites are performing.
+
+These tools analyze websites and identify render-blocking resources. They also provide recommendations on how to resolve these render-blocking issues and improve the speed and overall performance of websites.
+
+### GTmetrix
+
+[GTmetrix](https://gtmetrix.com/) is a tool for testing the performance of websites. It uses Google’s Lighthouse to generate scores for web pages and points out how we can make improvements on the site’s performance and more.
+
+GTmetrix gives us access to web vitals and other metrics available on Lighthouse, lets us see how a page loads with its speed visualization functionality, and gives a breakdown of a page’s composition in terms of requests and total byte size.
+
+![With GTmetrix' speed visualization functionality, you can see a timeline with snapshots of the user interface with critical metrics mapped along the timeline. In this image, First Contentful Paint is mapped at 241 ms; Time to First Byte is mapped at 28ms; Largest Contentful Paint is mapped at 5.4s; Time to Interactive is mapped at 6.1s; and Onload time is mapped at 6.7s. Other tabs available include performance, structure, waterfall, and more (not pictured).](/portfolio/prismic/005-minimize-main-thread-work/image-1.png)
+
+### Google’s PageSpeed Insights (PSI)
+
+[PageSpeed Insights (PSI)](https://pagespeed.web.dev/) is a website performance testing tool created by Google. We can use it to diagnose performance issues and gain insight into the experience users get when using our websites on mobile and desktop devices.
+
+PSI provides data on website responsiveness, load time, and the visual stability of a page when it loads. It also tracks Core Web Vitals and provides opportunities on how to improve the website’s performance.
+
+### Google’s Lighthouse
+
+[Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/) is another tool created by Google for analyzing a website’s performance.
+
+A major difference between Lighthouse and PSI is how we access them. We can easily access PSI via its website, while we can run Lighthouse via a CLI, Chrome DevTools, or a Chrome extension.
+
+The other major difference to note is that PSI uses a combination of lab and real-world user data to create its results, while Lighthouse only uses lab data.
+
+Lighthouse is tailored to developers and a technical audience, while PSI is built for non-developers, though developers can also use it.
+
+## 4 common pitfalls that affect the main thread
+
+The render-blocking resources below can affect the main thread’s ability to parse HTML effectively, build the DOM, apply CSS styles, and execute JavaScript code. In this section, we’ll focus on identifying the problems, and then in the next one we’ll take a look at potential solutions.
+
+### Poorly optimized CSS files
+
+CSS files are render-blocking resources because the browser can't render a page until it has downloaded the files. Large CSS stylesheets take longer to process into a CSS Object Model (CSSOM), which is a necessary part of the website rendering process. It allows the browser to render CSS styles on a web page properly.
+
+Any page that depends on large CSS files will experience slow loading times. It is important to ensure CSS stylesheets are as small as possible, even though they are often smaller than other website files the browser has to download.
+
+### Bloated third-party resources
+
+Third-party resources and scripts are a great way to easily access and integrate functionalities that other developers have created into our applications. However, the number of resources and scripts required can affect the main thread’s performance because it would need to load all these resources before it can render the page.
+
+These third-party resources include scripts like those for Google Maps, plugins, and themes. The more resources there are, the more workload the main thread has to deal with.
+
+### Expensive JavaScript Operations
+
+JavaScript files can be major render-blocking resources for the main thread. Besides loading many third-party scripts, how we structure and write our JavaScript code can also affect the main thread.
+
+Expensive operations like complex mathematical calculations, recursive functions, and nested loops can increase the work the main thread has to perform. Heavy DOM manipulation and inefficient algorithms can also slow down the main thread.
+
+### Client-side rendering
+
+Websites that are rendered on the client often suffer from slow load times. The browser fetches the necessary JavaScript code and empty HTML shell first, before it can begin rendering the page. This loading process makes the initial rendering time slow. Besides how [client-side rendering (CSR)](https://prismic.io/blog/javascript-rendering-methods)  can affect the main thread, another demerit is its poor [SEO](https://prismic.io/blog/how-does-nextjs-help-with-seo) performance and security vulnerabilities.
+
+## 8 best strategies for minimizing main thread work
+
+The less overworked the main thread is, the quicker it can process events, render the user interface, and execute code. Below are some strategies we can utilize to minimize main thread work.
+
+### Code splitting
+
+It is easier for the browser to process and execute small portions of JavaScript code than huge chunks. This is where code spitting comes in. Splitting code into smaller modules makes it easier for the browser to parse and compile the code for rendering.
+
+Code splitting also cuts down on loading unnecessary JavaScript when rendering pages. Instead, pages can load only the JavaScript they need to render properly. For example, with code splitting, a `/user` route and `/blog` route will load only their required code and nothing else.
+
+For React applications, we can achieve code splitting using compilers like Webpack, or using [React’s Lazy and Suspense features](https://www.copycat.dev/blog/react-lazy/). Or, if it makes sense for your project overall, you can upgrade to Next.js, because it provides [built-in support for code splitting](https://nextjs.org/learn/foundations/how-nextjs-works/code-splitting).
+
+We can significantly improve web performance and minimize load times by delivering smaller chunks of JavaScript.
+
+### Minifying CSS and JavaScript
+
+The browser has to download CSS and JavaScript files before rendering the web page. However, if these files are large, they would block the main thread and make it harder for the page to load.
+
+Redundant code and unnecessary characters like comments, tabs, or whitespaces make the files bloated, and removing them can drastically reduce their file size.
+
+Minifying, compressing, and removing unused CSS and JavaScript code reduces the size of their files, making the process of fetching and executing these resources faster.
+
+[Toptal’s CSS Minifier and Compressor](https://www.toptal.com/developers/cssminifier), [CSS Minify](https://www.cleancss.com/css-minify/), [CSS Redundancy Checker](https://courses.cs.washington.edu/courses/cse154/20su/resources/assets/css-redundancy-checker/index.html), and [CSS Nano](https://cssnano.co/) are great tools for minifying CSS files. A benefit of Next.js is that it [automatically minifies CSS and JavaScript](https://nextjs.org/learn/foundations/how-nextjs-works/minifying) files.
+
+### Optimize JavaScript code
+
+We can improve the performance of JavaScript code and speed up its execution on the main thread by using asynchronous programming techniques like callbacks, async/await, and promises. Also, avoiding CPU-intensive algorithms and calculations minimizes the main thread work.
+
+[Here’s a great resource](https://www.upwork.com/resources/javascript-optimization-tips) on other optimization techniques we can use to improve the performance of our JavaScript code.
+
+### Lazy loading non-critical resources
+
+Lazy loading allows us to defer the loading of non-critical resources, which reduces the workload on the main thread. Images and third-party scripts for ads, chatbots, and widgets are some of the resources that we can lazy load to reduce the workload on the main thread and improve performance.
+
+Next.js supports lazy-loading third-party scripts via its [dynamic import](https://nextjs.org/docs/advanced-features/dynamic-import) feature. It also provides a [custom image component](https://nextjs.org/docs/api-reference/next/image#loading) that comes with lazy loading built-in. For other types of applications and websites, we can leverage plugins like [a3 Lazy Load](https://wordpress.org/plugins/a3-lazy-load/) for lazy loading on WordPress websites.
+
+### Optimize fonts
+
+Fonts are part of the critical rendering path of a website, and they can affect the load times of websites. Poorly optimized fonts can affect Core Web Vitals like Cumulative Layout Shift (CLS) and Largest Contentful Paint (LCP).
+
+We can [fix render-blocking fonts](https://prismic.io/blog/understanding-how-to-minimize-web-fonts-negative-impacts) by preloading them and providing fallbacks.
+
+Here’s a short snippet on how we can manually preload fonts.
+
+Copy
+
+```
+<!-- Add the link tag with a preload attribute to the head of your HTML -->
+<head>
+  <link
+    rel="preload"
+    href="https://fonts.googleapis.com/css2?family=Nunito&display=swap"
+    rel="stylesheet"
+  />
+</head>
+```
+
+Copy
+
+```
+/* then add the font declaration in the external stylesheet */
+@font-face {
+  font-family: "Nunito", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-display: optional;
+}
+```
+
+Also, [Next.js automatically optimizes fonts](https://nextjs.org/docs/basic-features/font-optimization) for us with its `next/font` package, giving us one less thing to worry about.
+
+### Utilize web workers
+
+The more complex a website or web application is, the more operations the main thread has to perform. Web workers allow us to execute code off the main thread, which improves the response to user interactions and prevents it from getting overworked.
+
+We can use web workers to execute CPU-intensive tasks that would otherwise block the user interface if performed on the main thread. Examples of these tasks include fetching large data sets from servers, running heavy and time-consuming computations, and implementing autosave functionality. [Here's a resource](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers) to get you started with web workers.
+
+### Using better rendering methods
+
+[Server-side rendering (SSR)](https://prismic.io/blog/nextjs-ssr-vs-ssg) and static site generation (SSG) address the shortcomings of client-side rendering (which we mentioned earlier) by handling the rendering on the server instead of in the browser.
+
+Instead of loading the necessary files on the browser, these rendering methods generate the completed HTML file on the server before sending it to the browser. Shifting the rendering process away from the browser frees up the main thread and reduces its workload.
+
+If you're facing main thread work issues with React (or other JavaScript framework) applications, you can use [frameworks like Next.js](https://prismic.io/blog/static-site-generators-2023) that provide server-side rendering either out of the box or as one of the rendering options available.
+
+### Switching From WordPress to the Jamstack
+
+[Migrating from WordPress to the Jamstack](https://prismic.io/blog/jamstack-vs-wordpress) comes with benefits like better SEO, cost savings, and greater security.
+
+Beyond these, the Jamstack also provides better website performance. With WordPress, we are restricted to server-side rendering, which can be time-consuming and resource-intensive. And many WordPress sites require bloated themes and plugins that impact performance. On the other hand, the Jamstack allows us to have a fully custom website with a technology like Next.js paired with a headless CMS. This allows us to choose the most appropriate rendering method for every scenario and benefit from the power of APIs.
+
+Another great reason for going headless with the Jamstack is the flexibility it provides. Not only does it allow us to build websites with our preferred tools and technologies, but it also allows us to create a custom front-end to fit our needs. The Jamstack gives us granular control over what we build, how we build it, and the channels through which we deliver content.
+
+## Final thoughts
+
+Minimizing the main thread work is critical for developing performant websites and delivering the best user experience. We can optimize main thread tasks by using more performant rendering methods, utilizing web workers, optimizing fonts, lazy loading resources, minifying CSS and JavaScript, and splitting code into smaller chunks for faster processing.
+
+Deploying these strategies will significantly improve performance by reducing time to interactivity (TTI) and creating a better user experience.
+
+## Frequently asked questions about main thread work
+
+### How do you minimize main thread work in React?
+
+Many strategies for minimizing main thread work, such as image optimization and lazy loading apply to React applications. However, if your Core Web Vitals metrics are a top priority for your site, you should consider using a framework like Next.js, which allows you to utilize more optimal rendering methods than client-side rendering.

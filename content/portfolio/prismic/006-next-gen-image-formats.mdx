@@ -1,0 +1,261 @@
+---
+title: "Serving Images in Next-Gen Formats"
+client: "Prismic"
+clientSlug: "prismic"
+originalUrl: "https://prismic.io/blog/next-gen-image-formats"
+publishedAt: "2023-05-04"
+canonical: "https://prismic.io/blog/next-gen-image-formats"
+excerpt: "Discover the benefits of next-gen image formats. We explain how to serve images in WebP, AVIF, and other modern formats."
+coverImage: "/portfolio/prismic/006-next-gen-image-formats/cover.png"
+tags: []
+---
+
+A picture is worth a thousand words, and this holds true even on the world wide web. Next-gen images go a long way to enhance our browsing experience, particularly when used correctly.
+
+As great as images are, they can lead to an unpleasant experience if they are not handled properly, as heavy images can cause websites to load slowly.
+
+Research shows that 1 in 2 visitors abandon a website that takes more than 6 seconds to load. Imagine losing half of your web traffic because of poorly optimized images. Not only will this impact your business goals, growth, and revenue, but the high and frequent abandonment also gives search engines the wrong impression and can negatively affect your ranking on SERPs.
+
+In this article, we will explore how next-gen image formats can help improve website performance, the types of formats we can use, image optimization techniques, best practices to follow when working with images, and how to serve images in next-gen formats.
+
+## What are next-gen image formats?
+
+Next-gen image formats are file formats that are optimized for the web. They offer first-rate image compression and quality compared to other formats, making them perfect for websites.
+
+Next-gen image formats retain their image quality even when compressed. They consume less data than their alternatives, leading to faster website load times.
+
+With next-gen image formats, we can provide stellar website performance while serving our users crisp and high-quality images.
+
+## Types of next-gen image formats
+
+### **JPEG 2000**
+
+JPEG 2000 is a modern next-gen image format that was developed by the Joint Photographic Experts Group; they also developed the JPEG format. It supports lossy and lossless compression, meaning it can be compressed without losing its image quality.
+
+JPEG 2000 comes with progressive decoding, which means that when the page is loading, it shows the user a lower-quality image first until the download is complete.
+
+JPEG 2000’s file extensions are **.jp2**, or **.jpx**, and its MIME types are **image/jp2**, **image/jpx, image/jpm**, and **video/m2**.
+
+**Pros**
+
+- Provides superior image quality and resolution compared to JPEGs.
+- Supports progressive decoding, which allows users to see a lower quality of an image before it fully downloads.
+- It can handle up to 200% more image compression compared to JPEGs.
+
+**Cons**
+
+- It consumes more RAM than JPEGs.
+- Only works with Safari desktop and mobile browsers. This is because JPEG 2000 is not a universally accepted format.
+- Has a slower and more complicated encoding process than JPEGs.
+- There is little adoption and support for JPEG 2000s with most image processing applications.
+
+### **WebP**
+
+WebP, or Web Picture format, is a modern image format that was developed by Google. They developed WebP to help reduce the size of digital images, provide a better user experience, and make websites load faster.
+
+Like the JPEG 2000 format, WebP also supports lossy and lossless image compression. [According to Google’s developers](https://developers.google.com/speed/webp/docs/webp_study), lossy WebP images can be 25-35% smaller than JPEGs. [KeyCDN estimates](https://www.keycdn.com/support/png-to-webp) that WebP images can be 22-50% smaller than PNGs.
+
+WebP’s file extension is **.webp**, and its MIME type is **image/webp**.
+
+**Pros**
+
+- Enjoys wide range support from most modern browsers.
+- Improves SEO; Google recommends WebP for SEO improvements and even uses it as Chrome’s default image format.
+- Supports the animation capabilities of GIFs and the transparent backgrounds of PNGs.
+- Offers faster loading times due to its smaller file size.
+
+**Cons**
+
+- It is not backwards compatible, as older browsers do not support WebPs.
+- Unlike formats like JPEGs and PNGs which we can view on phones, WebPs can only be viewed on browsers or with specific media applications because they were designed for the web.
+- Very few image editing software applications support WebPs.
+
+### **AVIF**
+
+AVIF, or AV1 Image File Format, was developed in 2019 by the Alliance for Open Media (AOM), whose members include brands like Google, Microsoft, Mozilla, Amazon, and Huawei.
+
+Similar to JPEG 200 and WebPs, AVIFs support lossy and lossless compression. An AVIF image offers greater file size reduction than JPEG, PNG, and WebP.
+
+AVIF’s file extension is **.avif**, and its MIME type is **image/avif**.
+
+**Pros**
+
+- Offers greater file size reduction than JPEG, PNG, and WebP.
+- Improves website SEO and loading times by offering lightweight image files.
+- Supports High Dynamic Range (HDR), which produces visually appealing images. This makes AVIF a great fit for websites like ecommerce platforms that rely on high-quality images.
+- They are 25% smaller than JPEGs on average.
+- Supports alpha transparency and animations.
+
+**Cons**
+
+- Does not support progressive image decoding.
+- It takes longer to create and encode AVIF images than other image formats.
+- Not all browsers support it, and it has limited support from image editing software.
+
+### **SVG**
+
+SVGs, or Scalable Vector Graphics, are different from the other next-gen image formats we have considered. First, SVGs are older than JPEG 2000, WebP and AVIF, as SVGs were created in 1998. Also, while these other formats are raster files, SVGs store images as vectors.
+
+SVG files are written in Extensible Markup Language (XML), and they use math equations and specific rules to generate shapes, lines, and graphics. We can use SVGs to create illustrations and complex animations, among other applications.
+
+SVG’s file extension is **.svg**, and its MIME type is **image/svg+xml**.
+
+**Pros**
+
+- They can easily be manipulated programmatically with CSS and JavaScript.
+- Enjoys wide range support from major browsers and image progressing software.
+- They do not lose quality when resized or zoomed because they are scalable.
+- Can be animated with CSS, JavaScript, and other animation libraries.
+- They can be printed at any resolution without suffering any loss in image quality.
+- They can be indexed by search engines, making them great for SEO.
+- Takes up less space compared to raster images.
+
+**Cons**
+
+- SVG files can quickly grow in size the more complex they become.
+- Working with SVGs comes with a steep learning curve because we need the knowledge of XML, HTML, CSS, and JavaScript to properly utilize them.
+- SVGs are a great fit for 2D graphics like icons, illustrations, and logos, but they cannot work with images with many details the way raster image formats do.
+
+## Image optimization techniques
+
+### Converting images to modern formats
+
+As we’ve seen, using the right image dimension dramatically impacts performance. While PNGs and JPEGs are good formats to work with, they don't offer the best performance optimizations.
+
+We can drastically improve website performance by converting PNG and JPEG images to more modern formats like AVIFs and WebPs.
+
+### Image compression
+
+Compressing images helps reduce their size and shorten website load times. Next-gen image formats already weigh less than traditional formats. However, we can take it a step further and make them more performant by compressing them. Additionally, next-gen image formats offer both lossy and lossless compression, meaning that we can choose the type of compression that meets our needs.
+
+Lossy compression reduces the sizes of images by removing some less important or less noticeable information from the original file, which results in a smaller size, but also causes a loss in quality. The data removed during the compression is lost forever because it is irreversible.
+
+The algorithm that lossless compression uses compress image file sizes without reading to a loss in quality. Unlike lossy compression, this is a reversible process, and the compressed data can be recovered.
+
+### Use the appropriate image dimensions
+
+Cropping images down to their right size is an important strategy to use when working with images, and it can drastically reduce an image’s size. This is because the larger an image’s dimension is, the heavier its size.
+
+For example, [this image of a vinyl record on Pexels](https://www.pexels.com/photo/close-up-shot-of-a-person-holding-a-vinyl-record-6875732/) weighs 2.3MB at 4160x6240 and 89.1KB at its smallest dimension of 640x960. Even though we could use CSS to reduce the size of the larger image to 640px, the browser would still need to download an image weighing 2.3MB, leading to slow load times.
+
+We can fix this by using online tools like [PicResize](https://picresize.com/) and [iLoveIMG](https://www.iloveimg.com/resize-image) to define custom image dimensions. However, the manual process makes it difficult to scale with these tools. This is where image manipulation solutions like [Cloudinary](https://cloudinary.com/documentation/resizing_and_cropping) and [imgix](https://imgix.com/solutions/resizing-and-cropping) come in. We use them to automate image resizing operations and save valuable time.
+
+With these solutions, we can configure specific dimensions for every image we have, and they will serve the images in those dimensions. They also automatically detect which browser is requesting the images, and they select the most efficient image format to deliver, which helps reduce image size without losing quality.
+
+### Lazy loading images
+
+The browser loads all images present on a page by default, and this can drastically affect [Core Web Vitals (CWV)](https://prismic.io/blog/how-to-improve-core-web-vitals) like Largest Contentful Paint (LCP).
+
+We can minimize the impact the images have by lazy loading them. This way, the images only load when they come into the viewport, which reduces the workload on the browser’s [main thread](https://prismic.io/blog/minimize-main-thread-work).
+
+One disadvantage with lazy loading is that if a user quickly scrolls down a page, the lazy-loaded image would not have been rendered yet, because lazy loading only works for incremental page scrolls, not sudden ones.
+
+## Best practices for using images on a website
+
+### Optimize the images for SEO
+
+We can optimize images for SEO by using target keywords in their filenames and adding captions and alt texts that match our content. Doing so helps search engines understand what the images are about and increases their chances of ranking high for image searches.
+
+### Avoid overcompressing images
+
+We must not only compress images but do so in the right way. Overcompressing an image can cause some of its fine details to get blurry and affect its final quality.
+
+With lossy compression, the smaller the size of the image, the poorer its quality. On the other hand, lossless compression doesn't affect the image’s quality. It’s important to pay attention to the final quality of the image and ensure it is not overcompressed.
+
+### Make images responsive
+
+Users visit the web from various devices, including laptops and smartphones. We must ensure that they can properly view the images on our website. One way to set up responsive images is with [CSS](https://www.freecodecamp.org/news/css-responsive-image-tutorial/). We can also use [the img element’s srcset and sizes attribute](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images#resolution_switching_different_sizes) or [the picture element](https://web.dev/learn/design/picture-element/) to ensure our images are responsive.
+
+Using responsive images on our website positively affects our SEO, user experience, and brand reputation.
+
+## Ensure images are accessible
+
+Adding relevant and descriptive alt texts is a necessary step for accessibility, regardless of the image format we use. This gives users context on what an image is about if it fails to load. It also helps screen readers understand better understand the image.
+
+We can take it a step further by using the \[ [figcaption](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figcaption)\] component to provide captions and descriptions for images.
+
+### Use a CMS with built-in image optimization functionality
+
+Manually comprising images, cropping them, and choosing the right format can quickly get tedious, particularly for cases like marketing and B2B websites with many images.
+
+We can eliminate the manual workload involved by using Content Management Systems (CMSs) with built-in image optimization functionalities. These CMSs automatically serve images in their appropriate formats and come with image editors that allow for further image manipulation, like cropping, resizing, and adding alt texts and metadata.
+
+Beyond optimizing images, some CMSs also come with [custom image components](https://prismic.io/docs/template-content-nextjs#images) that provide features like lazy loading and image blurring.
+
+## How to serve images in next-gen formats
+
+### Online conversion tools
+
+Using free online tools like [convertio](https://convertio.co/image-converter/) and [img2go](https://www.img2go.com/convert-image-to-image) to convert images in traditional formats to next-gen formats is probably one of the quickest ways to work with images in next-gen formats. This is because no programming or technical knowledge is needed to work with these tools. The drawback is that this method only works for one-off conversions and is difficult to scale with when working with hundreds or thousands of images.
+
+### Use Next.js image component
+
+When working with React applications, we can serve images in next-gen formats by taking advantage of Next.js. The React framework provides a custom [image component](https://nextjs.org/docs/api-reference/next/image) that automatically converts images to WebP for us.
+
+Besides converting images to next-gen formats, the component also lazy loads images by default, allows us to add blurred placeholders, and avoids Cumulative Layout Shift (CLS) while rendering the images. We can also serve responsive images by using the component’s \[ [sizes prop](https://nextjs.org/docs/api-reference/next/image#sizes)\] to define custom breakpoints.
+
+The component makes the image optimization process seamless for developers, fastens website load times, and helps provide users with a pleasant experience.
+
+The code snippet below is a sample of the Next.js image component.
+
+Next.js Image Component
+
+Copy
+
+```
+import Image from 'next/image'
+import profileImg from '../public/profile.png'
+
+const Profile = () => {
+ return (
+  <>
+    <h1> User Profile </h1>
+       <Image
+          src={profileImg}
+          alt='user profile image'
+          width={300}
+          height={300}
+	  loading='lazy'
+	  placeholder="blur"
+	  sizes="(min-width: 60em) 24vw,
+	  (min-width: 28em) 45vw, 100vw"
+       />
+    </>
+  )
+}
+```
+
+### Use an image CDN
+
+Image CDNs reduce the tasks and automate the processes involved in serving images in next-gen formats. This allows us to optimize for scale while saving time and manpower.
+
+Not only do image CDNs automatically serve images in the appropriate format, but they also handle caching and image manipulation like cropping, resizing, and more.
+
+Some content management solutions like [Prismic, offer direct integration with image CDNs like Imgix](https://prismic.io/blog/prismic-image-optimization-imgix), allowing us to easily compress and optimize images.
+
+### Use the picture HTML element
+
+We can use [the picture element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture) to define multiple formats for our images and allow the browser to pick the format it supports. The element also allows us to define media queries and make images responsive.
+
+Note that we have to provide a fallback image to the img element in case the browser does not support the modern image formats.
+
+Copy
+
+```
+<picture>
+  <source srcset="image.avif" type="image/avif" media="(min-width: 600px)">
+  <source srcset="image.webp" type="image/webp" media="(min-width: 400px)">
+  <img src="image.jpg" alt="optimize this for SEO with relevant keywords"
+    width="400" height="400" loading="lazy" decoding="async">
+</picture>
+```
+
+## **Performance impact of serving images in next-gen formats**
+
+Next-gen image formats offer superior compression than older formats like JPEG or PNG, and they do this without sacrificing quality. This reduced file size means that websites load faster, which leads to better SEO ranking.
+
+Next-gen formats consume less cellular data and bandwidth than traditional alternatives because of their smaller sizes, which is an advantage for users with slower internet connections and mobile devices.
+
+It is also easier to store and process images served in next-gen formats because they take up less storage space. This can help improve server performance and reduce database and hosting costs.
+
+Overall, serving images in next-gen formats can reduce their file size by 25-50%, which leads to better user experience, reduced processing costs, higher quality images, faster load times m and better SERP ranking.

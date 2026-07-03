@@ -1,0 +1,14 @@
+# Prismic — original source URLs for articles archived in this portfolio.
+# Kept in git as a permanent record; also the --batch input for import-article.js.
+
+1. https://prismic.io/blog/ux-tips-for-developers
+2. https://prismic.io/blog/understanding-how-to-minimize-web-fonts-negative-impacts
+3. https://prismic.io/blog/static-site-generators
+4. https://prismic.io/blog/how-does-nextjs-help-with-seo
+5. https://prismic.io/blog/minimize-main-thread-work
+6. https://prismic.io/blog/next-gen-image-formats
+7. https://prismic.io/blog/headless-cms-architecture
+8. https://prismic.io/blog/headless-cms-seo
+9. https://prismic.io/blog/sdk-vs-api
+10. https://prismic.io/blog/nextjs-image-component-optimization
+11. https://prismic.io/blog/vercel-vs-netlify

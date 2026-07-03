@@ -1,0 +1,135 @@
+---
+title: "How Next.js Helps with SEO"
+client: "Prismic"
+clientSlug: "prismic"
+originalUrl: "https://prismic.io/blog/how-does-nextjs-help-with-seo"
+publishedAt: "2023-03-23"
+canonical: "https://prismic.io/blog/how-does-nextjs-help-with-seo"
+excerpt: "While it is a React-based framework, Next.js provides SEO advantages that React does not and solves the shortcomings and challenges that come with using React. Here's everything you need to understand how Next.js does that."
+coverImage: "/portfolio/prismic/004-how-does-nextjs-help-with-seo/cover.png"
+tags: []
+---
+
+If content is king, then SEO is the kingmaker. It won’t matter how great a content marketing team is or the quality and number of articles and resources they have developed if our target audience can’t find us on search engine results pages (SERPs).
+
+SEO doesn’t just begin with using the right keywords, having a killer content strategy, or setting up pillar content. As important as those are, there is also [the technical side of SEO](https://www.forbes.com/sites/forbesagencycouncil/2020/05/01/the-importance-of-technical-optimization-for-seo/?sh=4e01de1bd3eb). How we build our website greatly affects its SEO performance and lays the foundations for successful content.
+
+Just as marketers and content writers use tools like SEMRush, HubSpot, and Ahrefs to manage their SEO efforts, there are also tools that we developers can use to develop SEO-friendly websites. One such tool is Next.js.
+
+In this article, we will explore what Next.js is, the features it provides to help us improve SEO, the best Next.js rendering method to choose for high SEO performance, and how pairing it with a headless solution can help us develop SEO-optimized websites.
+
+## What is Next.js?
+
+[Next.js is an open-source, React-based framework](https://nextjs.org/) for developing websites and web applications. It was created by the Vercel team and is a very popular framework, with [over 3.3 million weekly downloads on NPM](https://www.npmjs.com/package/next) at the time of this writing. It allows us to create performant and scalable websites quickly and easily.
+
+Next.js has great features like file-based routing, TypeScript support, serverless functions, multiple rendering methods, automatic code splitting, API routes, font, image optimization, and more. Notably, it allows you to [utilize different rendering methods](https://prismic.io/blog/javascript-rendering-methods) within your application so that you can always choose the right one for the job.
+
+We can use Next.js to build e-commerce websites, dashboards, blogs, marketing websites, documentation, and more. It can also function as a [static site generator](https://prismic.io/blog/static-site-generators-2023).
+
+## How Next.js can improve your SEO
+
+While it is a React-based framework, Next.js provides SEO advantages [that React does not](https://prismic.io/blog/react-seo-solutions) and solves the shortcomings and challenges that come with using React.
+
+The problem with React lies in its client-side rendering methodology. Rendering websites on the client means that initially a relatively empty HTML file is sent to the browser, along with JavaScript files to execute. By executing those JavaScript files, the browser renders the page’s content.
+
+Search engines cannot properly index websites because all the bots see in the first pass is an empty app shell with no content. The bots only see the actual content when the page fully renders. This delay affects SEO, particularly for websites with hundreds or thousands of pages that need indexing.
+
+Additionally, client-side rendering also leads to slower load times and poor site performance because fetching, parsing, and executing the JavaScript takes time.
+
+The great thing is that by using Next.js, we don’t have to bother about these [React-based SEO challenges](https://prismic.io/blog/react-seo-solutions).
+
+Next.js provides better SEO performance by rendering web pages on the server (server-side) instead of rendering in the browser (client-side). Server-side rendering allows search engine crawlers and bots to scan and index web pages, detect metadata, and properly understand the information a website contains.
+
+By handling the rendering on the server instead of the client, Next.js gives websites faster loading speeds, which improves the First Contentful Paint (FCP) and other important [Core Web Vitals](https://prismic.io/blog/how-to-improve-core-web-vitals) that affect SEO.
+
+Next.js improves the Total Blocking Time (TBT) of websites by splitting the JavaScript code the browser needs to download into smaller bundles. This makes it easier for the browser to parse, compile, execute, and download only the necessary code.
+
+### Other Next.js features that help improve SEO
+
+Next.js has several great features that developers love and that we could spend a while talking about, but let’s take a closer look at the features that help enhance the SEO performance of websites.
+
+#### Font optimization
+
+Fonts are an integral part of the modern web. However, failure to adequately optimize them will negatively affect SEO. Next.js 13 provides a `next/font` module that solves the issues of font optimization. It automatically optimizes fonts and removes external network requests for improved privacy and performance.
+
+The module also generates fallback fonts for [web fonts](https://prismic.io/blog/understanding-how-to-minimize-web-fonts-negative-impacts), which helps eliminate [layout shifts](https://prismic.io/blog/improve-cumulative-layout-shift-issues) or reduce their impact using the `font-display` and `size-adjust` properties.
+
+#### Image optimization
+
+Next.js offers a custom image component that helps with optimizing images. It is an extension of the native HTML `img` component. The component handles optimization by automatically compressing images and serving them in the format that works best with a user’s device.
+
+Added to that, it uses the browser’s native lazy loading capabilities to resize the width and height of images, which further improves image optimization.
+
+#### Custom head component
+
+Getting the metadata in the head tag right is crucial for SEO, and Next.js provides a custom head component for setting up head metadata. We can use the head component to dynamically or statically configure metadata. We can include elements like titles, descriptions, meta tags, charset, and viewport settings.
+
+#### Custom script component
+
+Next.js provides a custom script component that we can use to load third-party scripts. The SEO benefit of the component lies in how it loads these third-party resources. It provides a `strategy` attribute that allows us to define the priority at which the browser loads the resources, thereby improving the loading performance of websites. We can set scripts to load with web workers, before or after a page becomes interactive, or using lazy loading.
+
+#### Custom link component
+
+Next.js’ custom link component pre-fetches all links that appear on a page before a user clicks the link. Loading pages in the background not only makes the navigation feel faster and instantaneous but also makes the website more performant and responsive.
+
+## What Next.js rendering method is best for SEO?
+
+Next.js provides four rendering methods: [Server-Side Rendering (SSR), Static Site Generation (SSG)](https://prismic.io/blog/nextjs-ssr-vs-ssg), [Incremental Static Regeneration (ISR)](https://prismic.io/blog/nextjs-sites-on-demand-isr), and Client-Side Rendering (CSR).
+
+Of these four [rendering strategies](https://prismic.io/blog/javascript-rendering-methods), CSR is bad for SEO, and the Next.js team does not recommend it for projects where SEO is an important factor. Instead, it is more suitable for the part of a website that doesn’t need to be crawled, like dashboards, internal applications, admin panels, or other website sections that are usually hidden behind a layer of authentication.
+
+When it comes to rendering methods, [SSR and SSG](https://prismic.io/blog/nextjs-ssr-vs-ssg) are popular and highly adopted by developers, partly because of the SEO benefits they bring.
+
+SSG pre-renders pages on the server at build time, which allows search engine bots to crawl the pages and access information like the metadata, title, description, and page content. This, coupled with the fact that it leads to faster load times, makes it the best choice for developing SEO-optimized websites.
+
+As great as it is for SEO, a major disadvantage of SSG is that we have to rebuild websites built with SSG whenever the content gets updated. Rebuilding here means that we would have to regenerate the static content in order to get the latest data. This can become problematic for websites with a large amount of content that get updated frequently.
+
+SSR and ISR are also great for SEO, and they both pre-render content like SSG. However, SSR pre-renders content at request time instead of build time, making it a great fix for the stale content problems that come with SSG. SSR is a perfect fit for cases where we need to frequently update the content on a website. [ISR](https://prismic.io/blog/nextjs-sites-on-demand-isr) is more of an extension of SSG that allows us to rebuild pages at specified time intervals, ensuring that the content remains fresh and updated.
+
+## Pairing Next.js with a headless solution
+
+Remember that the technical foundation we lay is only one part of the equation for great SEO. As we optimize our websites for SEO, it is also important to give our content teams the right tools to complete their part of the SEO equation.
+
+Content teams need a way to manage the content on our websites; this is where [headless content management solutions](https://prismic.io/blog/headless-cms-intro) come in. We picked Next.js because we want to reap the SEO benefits it provides. The last thing we want is to get stuck using a traditional CMS that tries to control our website's frontend. Headless solutions fix the bottleneck issues that come with traditional CMSs. They allow us to provide content teams with a seamless interface for managing website content and give us the freedom to display the content on our custom Next.js frontend via an API connection.
+
+While headless content solutions are not needed in every case, there are some scenarios where they are beneficial. For example, an organization with a cross-functional team of marketers, content writers, developers, etc., who manage content across e-commerce apps or SaaS marketing websites would benefit from using a headless product like Prismic.
+
+We can easily fetch content from the CMS’ API into our Next.js application by using `getStaticProps` or `getServerSideProps`, and then display the content appropriately. The rendering method we use will depend on the type of content and application we are building.
+
+By pairing Next.js with a headless content management solution, we get highly performant websites and independence for marketing and content teams without sacrificing the developer experience.
+
+### Benefits of using Prismic as a headless page builder
+
+There are many great [headless solutions we can combine with Next.js](https://prismic.io/docs/nextjs), and Prismic is one of them. An advantage Prismic has is that it’s a [headless page builder](https://prismic.io/page-builder) that allows you to provide a custom page builder interface to your content team.
+
+This custom page builder is possible because of Prismic’s [Slices](https://prismic.io/slice-machine). Think of Slices as the different sections of a webpage that can be reused many times over. In the page builder, they work similarly to how we would apply reusable components in our codebases. In your code, you guessed it, they’re actually just components abstracted at a level that’s easy for marketing teams to think about and use. Altogether, they enable a modular way of creating websites.
+
+Slices bring the component-based workflow to the content editor, making it easier for content teams to create, edit, and publish content.
+
+## Scaling SEO content with Prismic's Landing Page Builder
+
+While Next.js provides the technical foundation for excellent SEO performance, modern search behavior has created a new challenge: the exponential growth in content variations needed to maintain visibility.
+
+As some experts suggest, [search queries have evolved from simple six-word Google searches to conversational, 25-word AI-powered prompts](https://graphite.io/five-percent/the-ultimate-guide-to-aeo-on-lennys-podcast). This creates a fundamental problem: how do you create enough high-quality content to capture these long-tail queries without overwhelming your team?
+
+[Prismic's SEO and GEO landing page builder](https://prismic.io/seo-landing-page-builder) addresses this challenge head-on by automating the creation of hundreds of optimized landing pages from a single approved base template and a CSV file containing your keyword list.
+
+What traditionally takes months can now happen in a matter of hours through a simple three-step process:
+
+**1\. Create your blueprint**
+
+Start by designing your base landing page layout using repeatable sections in the landing page builder. This template becomes your source of truth for brand voice, messaging, tone, and design consistency.
+
+**2\. Upload your keywords**
+
+Create and upload a CSV file with your target keywords, whether they're single keywords, long-tail queries, or specific search intents. With the help of AI, you can generate hundreds of optimized landing pages.
+
+**3\. Review, publish, and track**
+
+Your generated pages appear grouped on the releases screen, where you can review, approve, and publish each optimized landing page while maintaining full control over URLs and content quality.
+
+This approach allows you to scale your organic visibility without sacrificing brand quality or requiring additional developer resources!
+
+## Final thoughts
+
+The best way to get the greatest search performance is by ensuring harmony between our technical and non-technical search efforts. We can get the best of both worlds by combining the brilliance of Next.js with the freedom and functionalities of a headless CMS and landing page builder like Prismic.
