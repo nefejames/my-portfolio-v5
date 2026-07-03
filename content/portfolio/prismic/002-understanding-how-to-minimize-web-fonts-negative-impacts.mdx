@@ -1,0 +1,193 @@
+---
+title: "Minimizing Web Fonts for Better Core Web Vitals"
+client: "Prismic"
+clientSlug: "prismic"
+originalUrl: "https://prismic.io/blog/understanding-how-to-minimize-web-fonts-negative-impacts"
+publishedAt: "2023-03-02"
+canonical: "https://prismic.io/blog/understanding-how-to-minimize-web-fonts-negative-impacts"
+excerpt: "Web fonts can negatively impact Core Web Vitals (CWV). This article explores how web fonts affect CWV and provides optimization strategies to minimize that impact."
+coverImage: "/portfolio/prismic/002-understanding-how-to-minimize-web-fonts-negative-impacts/cover.png"
+tags: []
+---
+
+[Core Web Vitals (CWV)](https://prismic.io/blog/how-to-improve-core-web-vitals) are web performance measurements that affect a website's rank in Search Engine Results Pages (SERPs). These metrics help search engines understand what the [user experience](https://prismic.io/blog/ux-tips-for-developers) will be like on any given website so that they can provide high-quality results to their users.
+
+Monitoring and improving the CWVs of websites has never been more important. Web visitors expect a delightful experience and will not settle for less. Not only are CWVs critical to keeping users engaged and reducing bounce rates, but they are also important for SEO because websites with poor CWV scores will rank low on SERPs.
+
+One aspect of a website that can affect its CWV rating is how fonts — web fonts in particular — are set up. In this article, we will learn about web fonts and how they can negatively affect CWV. We will also explore some strategies, tips, and tricks that can help reduce the negative impact of web fonts on CWVs.
+
+## What are web fonts?
+
+These are fonts that are not pre-installed on the user’s system. Rather, we download them from a server via the CSS `@font-face` declaration and display them as a web page loads on the browser. With web fonts, we are no longer restricted to web-safe fonts like Georgia, Arial, or Times New Roman, and we can use custom fonts instead.
+
+We can add creative and attention-grabbing fonts to websites with web fonts, and they are also zoomable, scalable, and high-DPI friendly. You can include web font files directly on your website, or you can use a source like [Google Fonts](https://fonts.google.com/) to load them from a CDN.
+
+There are four main fonts used on the web today:
+
+- TrueType Font (TTF)
+- Web Open Font Format (WOFF)
+- Web Open Font Format (WOFF2)
+- Embedded Open Type (EOT)
+
+Although, it’s important to note that, as we’ll see later, while some of these formats are highly optimized, they may not be fully compatible across browsers.
+
+## Core Web Vitals terms you should understand
+
+Here are the three CWV metrics and the aspects of a user’s experience they measure:
+
+- [Largest Contentful Paint (LCP)](https://prismic.io/blog/fix-lcp-issues) measures the visual experience of website loading speed
+- [Cumulative Layout Shift (CLS)](https://prismic.io/blog/improve-cumulative-layout-shift-issues) measures visual stability
+- [First Input Delay (FID)](https://prismic.io/blog/how-to-improve-core-web-vitals) measures page interactivity
+
+These metrics reveal the elements that impact how users engage and interact with a website. There are other web vitals beyond these core ones, like First Contentful Paint (FCP) and Time to First Byte (TTFB), that act as proxy measures or secondary metrics but are not used to determine SERP rankings.
+
+In particular, web fonts can impact LCP and CLS, so let’s take a closer look at what each of those metrics measures.
+
+### Largest Contentful Paint (LCP)
+
+[LCP](https://web.dev/lcp/) is a measure of the time it takes to see most of the content on-screen after a page starts loading. LCP only measures how quickly the content that’s visible within the initial viewport loads.
+
+Images, video poster images, background images, and block-level text elements like paragraph tags are typical elements that LCP measures. Google classifies an LCP load time of 2.5 seconds or less as good, but generally speaking, the faster it loads, the better.
+
+### Cumulative Layout Shift (CLS)
+
+[CLS](https://web.dev/cls/) is a measurement of the degree to which elements on a website shift while a page loads. It is the unexpected movement of webpage content that is within the viewport from its starting position. This metric encompasses the size of the content and the distance it moves. The more stable the layouts and elements of a webpage are while loading, the better the user experience.
+
+According to Google’s standard, a website should have a CLS measurement of 0.1 or less.
+
+Some reasons why CLS happens are:
+
+- Dynamically injected content
+- Ads, embeds, iframes, images, and videos without dimensions
+- Web Fonts causing [Flash of Invisible Text (FOIT)](https://fonts.google.com/knowledge/glossary/fout#:~:text=A%20%E2%80%9Cflash%20of%20unstyled%20text,downloaded%20to%20the%20user's%20device.) or Flash of Unstyled Text (FOUT)
+
+## How web fonts can negatively impact Largest Contentful Paint
+
+If the LCP of the web page contains major text elements, poorly optimized web fonts can cause delays and negatively impact the LCP. Large font files lead to [Total Blocking Time (TBT)](https://web.dev/tbt/) issues, slow down the rendering process, and increase the web page paint time. Essentially, they keep the page from visibly loading as fast as possible for the user.
+
+Optimizing fonts is vital, particularly in cases where web fonts are integral to branding and the user experience (more on this later). Failure to do so will lead to a bad user experience and increased bounce rates.
+
+## How web fonts can negatively impact Cumulative Layout Shift
+
+Web fonts negatively impact CLS because they take more time to load and differ in size and appearance from system fonts. Most web fonts load slowly without being optimized, meaning websites initially render with system fonts. However, when the web font finally downloads, the browser swaps that in place of the system font, and the difference in size causes the page layout to shift. This shifting and swapping effect between fonts is called Flash of Invisible Text (FOIT) or Flash of Unstyled Text (FOUT), and it leads to unexpected layout shifts.
+
+When working with fonts, the goal is to ensure they load as fast as possible and to avoid the swapping effect with the key strategies covered below.
+
+## Strategies to reduce the negative impact of web fonts on Core Web Vitals scores
+
+We can eliminate the negative impact fonts have on Core Web Vitals by using system fonts, as this ensures that there will be no changes or delays that will make elements shift since there is nothing to load. However, this is not always a viable workaround, as there are times when custom web fonts are needed to align with our brand's identity or improve the website's overall look and feel.
+
+Here are some strategies we can implement to properly optimize web fonts and reduce their negative impact on Core Web Vitals.
+
+### Optional displays and preloading web fonts
+
+A better way is to increase the download speed of custom web fonts by preloading them using the [`rel=”preload”` attribute](https://www.w3schools.com/tags/att_preload.asp#:~:text=The%20preload%20attribute%20specifies%20if,be%20ignored%20in%20some%20instances.) on a `link` tag in the `head` of your website, and using `font-display: optional` in your CSS file.
+
+The `preload` attribute ensures that the fonts are loaded as early as possible, and the optional display gives the font some window of time to load. If the font doesn’t load on time, the page will be rendered with that default font. The web font will then be cached and used on future page loads.
+
+Copy
+
+```
+<!-- Add the link tag with a preload attribute to the head of your HTML -->
+<head>
+  <link
+    rel="preload"
+    href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+    rel="stylesheet"
+  />
+</head>
+```
+
+Copy
+
+```
+/* then add the font declaration in the external stylesheet */
+@font-face {
+	font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-display: optional;
+}
+```
+
+### Using size-adjust
+
+Including [the size-adjust CSS descriptor](https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/size-adjust) in the font-face rule will lead to minimal visual change and make the font swap appear seamless.
+
+## Additional tips for working with web fonts
+
+This section will cover a list of small tips and tricks developers can deploy to reduce the impact of web fonts on their website performance, SEO, and user experience.
+
+### Use the correct font format for each browser
+
+We saw earlier that the four major font formats used on the web are TTF, WOFF, WOFF2, and EOT. WOFF and WOFF2 were developed by Google and are the newest formats. WOFF2 fonts are heavily compressed and are 30-60% lighter than their counterparts. Not all browsers support WOFF2, so we need to include other formats as fallbacks to ensure cross-browser compatibility. You can learn more about what browsers support or don't support [with tools like this one.](https://caniuse.com/)
+
+### Pre-connect to third-party resources
+
+We can improve font loading speeds by using `<link rel=”preconnect”>`. [The `preconnect` keyword](https://www.splunk.com/en_us/blog/learn/preconnect-resource-hints.html#:~:text=A%20preconnect%20is%20a%20resource,Negotiating%20a%20secure%20TLS%20connection.) informs browsers that we want to fetch a resource from a third-party domain, and it should start the process as soon as possible. Doing this ensures that the fonts load quickly and reduces the chances of delays.
+
+A benefit of Google Fonts is that it adds the `preconnect` keyword to the HTML snippet they create for us.
+
+Copy
+
+```
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+```
+
+### Subset your fonts
+
+We usually only need a limited number of characters when working with web fonts. An exception is cases where we need to translate the text on a website into different languages. Apart from such a scenario, we can reduce the number of characters embedded in fonts, thereby reducing their size. A font subset could reduce the initial font size by more than 50%.
+
+We can use the following tools to subset web fonts:
+
+- [Font tools](https://github.com/fonttools/fonttools)
+- [Unicode-range descriptor](https://www.w3.org/TR/css-fonts-3/#descdef-unicode-range)
+- [Google Web Fonts API](https://developers.google.com/fonts/docs/getting_started#specifying_script_subsets)
+
+### Apply inline web fonts
+
+Inlining web fonts in the `head` of an HTML document makes them available to the browser early on. It also prevents the browser from making multiple download requests to the server where the fonts reside. This reduces the amount of data that needs to be transferred and causes the font to render faster. However, we must use font inlining with care, as it can cause page load delays in cases where the font files are large.
+
+Copy
+
+```
+<head>
+  <link
+    rel="preload"
+    href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    @font-face {
+      font-family: "Roboto", sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-disaply: optional;
+    }
+  </style>
+</head>
+```
+
+### Caching
+
+Fonts are static resources that don’t often change, meaning we can cache them in the browser and reduce the number of download requests the browser has to make to the server. So, when people return to the website after their first visit, the font will be available already, without necessitating an additional download. The browser’s HTTP cache is the most robust and effective means for delivering font resources.
+
+### Limit the number of fonts
+
+Web pages will load slowly if the browser has to download multiple font files. For example, a page with six web fonts and variants for bold, italic, and medium styles will add an excessive burden to the browser and load slower than a page with fewer web fonts.
+
+Some general advice when working with web fonts is to:
+
+- Use a primary font for the general body text.
+- Have bold and italic variants for the font, if needed.
+- Add another font for headings. This is for cases where we want the paragraphs and headings to have different fonts.
+
+## Final thoughts
+
+[Web Almanac](https://almanac.httparchive.org/en/2020/fonts#introduction:~:text=Web%20font%20usage%20has%20been%20growing%20steadily%20over%20time%20(it%20was%20near%20zero%20as%20late%20as%202011)%2C%20with%2082%25%20of%20web%20pages%20for%20desktop%20using%20web%20fonts%2C%20and%20mobile%20at%2080%25.) states that the adoption of web fonts has been growing steadily over time. It went from near zero in 2011 to 82% of desktop web pages using web fonts in 2020. As great as the increased adoption of web fonts is, we must also understand how they affect Core Web Vitals and our users’ experiences.
+
+By applying the best practices, tips, and strategies shared in this article, we can develop faster and more-responsive web pages while pleasing Google (and other search engines) and getting high CWV metric scores.

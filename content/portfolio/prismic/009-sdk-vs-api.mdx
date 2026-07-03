@@ -1,0 +1,134 @@
+---
+title: "SDK vs API: A Developer's Simplified, Explained Guide with Examples"
+client: "Prismic"
+clientSlug: "prismic"
+originalUrl: "https://prismic.io/blog/sdk-vs-api"
+publishedAt: "2023-07-13"
+canonical: "https://prismic.io/blog/sdk-vs-api"
+excerpt: "Learn the difference and similarities between SDKs and APIs and how to use them to build better applications."
+coverImage: "/portfolio/prismic/009-sdk-vs-api/cover.png"
+tags: []
+---
+
+Developers build websites and applications while chefs make food. While this may seem like an odd comparison, they have something in common: they usually don’t create every single thing they need from scratch.
+
+Chefs commonly go to the market to buy the ingredients they need for specific recipes; they don’t create all these ingredients from scratch. Likewise, as developers, there are various features that we need to add to the website and applications we build, such as:
+
+- Authentication
+- Identity verification
+- Search functionality
+- Real-time messaging
+- Social media sharing
+- Maps
+
+Imagine how hectic it would be to build one or all these features from scratch every time we need them! Luckily, we don’t have to.
+
+Instead of building every feature from the ground up, we can leverage tools that allow us to extract the functionality that other developers or companies have built and add them to our projects. This way, we don’t have to spend valuable time creating that complex animation or setting up our own customer authenticating flow. Instead, with the help of APIs and SDKs, we can get these functionalities from others.
+
+In this article, we will learn what APIs and SDKs are and their differences and similarities. We will also explore some use cases and applications of APIs and SDKs as well as how to know which one and when. Let’s dive in.
+
+## What is an API?
+
+An [Application Programming Interface](https://prismic.io/blog/api-response-times), or API for short, is a technology that enables interaction between different applications, systems, and programs. They are the mechanism that acts as a bridge of communication between different components of an application. APIs are an important aspect of the web, and it would be very difficult to build software applications without them.
+
+Let’s use an everyday analogy to [better understand what APIs are](https://prismic.io/blog/how-do-apis-work). A restaurant has two important aspects: the customers and the kitchen where the cooks prepare the food. The customers don’t go to the kitchen to place their order; neither do they select the food themselves from the kitchen. Instead, there is a waiter that talks to the customers, finds out what they want ( **the customer’s request**), and then relays that request to the kitchen. Once the order is ready, the waiter takes the food ( **the response**) and gives it to the customer.
+
+In this analogy, the waiter is **the API**, the customer is **the client** that makes the request, and the kitchen is the **backend, server, or database** that returns the response.
+
+![Graphic illustration explaining the API relationship between the client and database](/portfolio/prismic/009-sdk-vs-api/image-1.png)
+
+## What is an SDK?
+
+A Software Development Kit, or SDK for short, is a toolbox that comprises different software development tools such as libraries, APIs, compilers, debuggers, code samples, and documentation. It is a collection of software tools and resources for building, testing, and deploying applications.
+
+Continuing with the analogy of the API we used earlier, an SDK will be the waiter, the kitchen, the chefs, the cooking equipment, the menu, the restaurant floor plan, and any other assets necessary to give customers the best restaurant experience.
+
+SDKs are often tailored to specific programming languages, platforms, or frameworks. For example, an authentication platform may produce framework SDKs for [Next.js](https://prismic.io/blog/how-does-nextjs-help-with-seo) and Nuxt.js, as well as those for programming languages such as Flutter, Java, and Python.
+
+An SDK can greatly simplify the development process by providing pre-built components and functionalities. Instead of building every feature from scratch, we can leverage the existing code and resources the SDK provides.
+
+## Differences between APIs and SDKs
+
+While APIs and SDKs are important tools for building software applications, they differ in terms of their purpose and function.
+
+APIs deal with facilitating communication and the transfer of data between one or more software systems, while SDKs are a complete package of tools and resources — APIs included — for developing applications on a specific platform. In essence, SDKs are a superset of APIs, which means that APIs are one of the many tools that SDKs provide. Basically, APIs are data transfer gateways, while SDKs are focused on providing all the necessary tools we need to integrate third-party functionalities into our applications.
+
+Also, while the same set of APIs can be used for web development and mobile development, SDKs are tailored toward specific platforms or frameworks. This means that where APIs are general purpose and can integrate with any platform, SDKs are tailor-made to specific platforms such as iOS development, Android development, and frameworks or languages such as Python, Flutter, and Next.js.
+
+## Similarities between APIs and SDKs
+
+While there are different ways in which APIs and SDKs differ, they also share some similarities.
+
+They help simplify the development process and enhance the capabilities of software applications. They provide us with easy access to third-party solutions and resources that we can use to extend the functionalities of our applications.
+
+Also, APIs and SDKs improve efficiency and make it easier to build robust and feature-packed applications. Without them, we would have to build every feature from scratch, which is not only ineffective and slow but also expensive, as it would require tons of expert knowledge.
+
+## Use cases and applications of APIs and SDKs
+
+There are different ways we can use APIs and SDKs in our applications, and the first is feature integration. There is no limit to the number of features we can add to our applications with SDKs and APIs. We can add features such as payment gateways, identity verification, social sharing, authentication, maps, real-time chats, and more. As long as there are APIs and SDKs that provide these and other functionalities, we can leverage them.
+
+We can also use APIs and SDKs to fetch data from third-party providers. We can use them to access different kinds of information on the weather, currency values, dummy info, data from NASA, and more. As long as there are third-party services that provide these pieces of information through APIs and SDKs, then we can access them.
+
+We can use APIs and SDKs to build different kinds of applications, including weather apps, e-commerce platforms, ride-sharing apps, mobile games, and chat apps.
+
+## API and SDK implementations: real-world examples
+
+Here are some examples that show how we can work with APIs and SDKs and integrate them into our applications.
+
+### API Examples
+
+**Mailchimp list API**
+
+Say we want to give web visitors the option of subscribing to our mailing list or newsletter on Mailchimp. We can use [Mailchimp’s List API](https://mailchimp.com/developer/marketing/api/list-members/add-member-to-list/) to make this happen. First, we create an input form where the visitor enters their email and submits. Upon submission, we pass that email address to the API, which adds it to our mailing list.
+
+**Coinlayer exchange rate API**
+
+If we needed to display the latest data on crypto exchange rates in our application, we can fetch data from [Coinlayer’s API](https://coinlayer.com/documentation#live), and filter the cryptocurrency rates we need to display that information.
+
+**Twilio messaging API**
+
+We can use [Twilio’s Messaging API](https://www.twilio.com/docs/sms) to integrate messaging capabilities into our applications. It allows us to send and receive SMS messages, make voice calls, and implement chat functionality. We can integrate this API into customer support systems, notification services, and communication platforms.
+
+**OpenWeatherMap API**
+
+We can use the [OpenWeatherMap API](https://openweathermap.org/api) to access weather data such as weather conditions, forecasts, historical data, and other weather-related information worldwide. Weather APIs are commonly used in mobile apps, websites, and IoT devices to provide users with accurate and up-to-date weather information.
+
+**Shopify e-commerce APIs**
+
+[Shopify’s e-commerce APIs](https://shopify.dev/docs/api) allow us to build custom integrations and extensions for online stores. We can use them to integrate functionalities such as product management, inventory management, cart, and more.
+
+### Real-world examples of SDKs
+
+**Dojah identity verification SDK**
+
+A common use case for SDKs is scenarios where we must implement KYC and identity verification functionality. In such cases, we can use [Dojah's SDK libraries](https://api-docs.dojah.io/docs/libraries) from KYC providers to add verification widgets to our applications, whether on iOS, Android, or the web. With SDKs, we don’t need to bother ourselves with the technical details of how they work. We only need to pass in some specific parameters for proper integration.
+
+**Stripe SDK Libraries**
+
+Another example is with integrating payment processors. We can add a payment gateway to our application by leveraging Stripe’s SDK libraries. It provides [web and mobile SDKs](https://stripe.com/docs/libraries) that support a range of platforms.
+
+**Facebook SDK**
+
+[Facebook’s SDKs](https://developers.facebook.com/docs/javascript/) are a powerful tool for integrating Facebook functionalities into their applications. They provide a range of features, including social login, sharing capabilities, analytics, and advertising tools.
+
+**Apple iOS SDK**
+
+[Apple’s iOS SDK](https://developer.apple.com/ios/) is a comprehensive toolkit for developing applications for Apple's iOS platform. It includes tools, frameworks, and APIs that we can use to create immersive and feature-rich iOS applications. The SDK provides access to device hardware, user interface components, and integration with Apple's ecosystem, making it essential for iOS app development.
+
+## API vs SDK: What is the right choice?
+
+As with many technical questions, there are no right or wrong answers to this question. Neither is there a one-size-fits-all approach. Instead, there are factors we have to consider.
+
+One of these factors is the feature we want to add to our application. For example, APIs are the right tool for the job in cases where we only want to fetch and display some live data, such as the recent cryptocurrency rates, in our application. However, if we need to set up some authentication functionality where people can use their Facebook, GitHub, or Google profiles to create accounts, then SDKs are a better option.
+
+Another important factor to consider is the platform we are building for. SDKs are platform-specific, and this is great for development teams that work with specific frameworks and languages because it speeds up development. SDKs also abstract a lot of the implementation details and hide a lot of the technical details, allowing us to focus on core development activities.
+
+There are also scenarios where we use both and not one or the other. For example, we can display the current cryptocurrency rates and add the social login feature to our application. In that case, we’ll use the API and the SDK where appropriate.
+
+The important thing is that we choose the option that is most compatible with our development process and application needs.
+
+## Conclusion
+
+APIs and SDKs are indispensable tools in the digital world we live in today. From seamless integration of third-party services to the development of web and mobile applications, APIs and SDKs drive innovation and enable developers and businesses to innovate, streamline processes, and enhance user experiences.
+
+As technology advances, more APIs and SDKs will be released that will change how and what we can build. Rapid API has a [collection of APIs for developers](https://rapidapi.com/collections), and this is a great resource to explore. Also, check out this great list of [13 fun and powerful APIs](https://prismic.io/blog/13-best-api-project-ideas) and applications we can build with them.
