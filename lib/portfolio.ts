@@ -1,4 +1,5 @@
 import 'server-only'
+import { cache } from 'react'
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
@@ -35,6 +36,24 @@ export interface PortfolioArticle {
 }
 
 export type PortfolioMeta = Omit<PortfolioArticle, 'content'>
+
+/** The subset a card/list actually renders. Passing only this to the client
+ *  list keeps excerpts, canonical URLs, etc. out of the serialized payload. */
+export type PortfolioCardData = Pick<
+  PortfolioMeta,
+  'slug' | 'clientSlug' | 'client' | 'title' | 'publishedAt' | 'coverImage'
+>
+
+export function toCardData(a: PortfolioMeta): PortfolioCardData {
+  return {
+    slug: a.slug,
+    clientSlug: a.clientSlug,
+    client: a.client,
+    title: a.title,
+    publishedAt: a.publishedAt,
+    coverImage: a.coverImage,
+  }
+}
 
 // ─── File-system implementation (swap for a CMS client later) ─────────────────
 
@@ -85,8 +104,10 @@ function listArticleFiles(clientSlug: string): string[] {
   return fs.readdirSync(dir).filter((f) => f.endsWith('.mdx'))
 }
 
-/** All articles across every client, sorted newest first. */
-export async function getAllPortfolioArticles(): Promise<PortfolioMeta[]> {
+/** All articles across every client, sorted newest first.
+ *  cache(): several callers per render (list page, featured, clients, sitemap)
+ *  would otherwise each re-read and re-parse every MDX file. */
+export const getAllPortfolioArticles = cache(async (): Promise<PortfolioMeta[]> => {
   const metas: PortfolioMeta[] = []
 
   for (const clientSlug of listClientSlugs()) {
@@ -100,7 +121,7 @@ export async function getAllPortfolioArticles(): Promise<PortfolioMeta[]> {
   return metas.sort(
     (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
   )
-}
+})
 
 /** Featured articles for the homepage "Selected work" section, newest first,
  *  capped at `limit`. Returns [] when nothing is featured — callers render
@@ -125,17 +146,17 @@ export async function getPortfolioClients(): Promise<
   )
 }
 
-/** Resolve a single article by client + slug (slug = title-based, no number). */
-export async function getPortfolioArticle(
-  clientSlug: string,
-  slug: string,
-): Promise<PortfolioArticle | null> {
-  for (const file of listArticleFiles(clientSlug)) {
-    if (parseFileName(file).slug === slug) {
-      return readArticle(clientSlug, file)
+/** Resolve a single article by client + slug (slug = title-based, no number).
+ *  cache(): generateMetadata and the page component both call this. */
+export const getPortfolioArticle = cache(
+  async (clientSlug: string, slug: string): Promise<PortfolioArticle | null> => {
+    for (const file of listArticleFiles(clientSlug)) {
+      if (parseFileName(file).slug === slug) {
+        return readArticle(clientSlug, file)
+      }
     }
-  }
-  return null
-}
+    return null
+  },
+)
 
 export { formatDate } from './utils'

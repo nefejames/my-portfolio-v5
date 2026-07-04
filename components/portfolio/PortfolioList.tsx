@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import type { PortfolioMeta } from '@/lib/portfolio'
+import type { PortfolioCardData } from '@/lib/portfolio'
 import PortfolioCard from './PortfolioCard'
 
 const ALL = 'All'
@@ -13,7 +13,7 @@ export default function PortfolioList({
   articles,
   clients,
 }: {
-  articles: PortfolioMeta[]
+  articles: PortfolioCardData[]
   clients: Client[]
 }) {
   const [activeClient, setActiveClient] = useState(ALL)

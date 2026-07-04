@@ -1,6 +1,9 @@
 import Image from 'next/image'
 import { getTweet } from 'react-tweet/api'
 import { EmbeddedTweet, TweetNotFound } from 'react-tweet'
+// Tweet styling ships only with routes that render MDX (blog + portfolio
+// articles) instead of globally from the root layout.
+import 'react-tweet/theme.css'
 import { YouTubeEmbed } from '@next/third-parties/google'
 import { slugify } from '@/lib/toc'
 import CodeBlock from './CodeBlock'
