@@ -4,7 +4,6 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import JsonLd from '@/components/JsonLd'
 import { SITE } from '@/lib/site'
-import 'react-tweet/theme.css'
 import './globals.css'
 
 // Typography (matches sendbyte.africa): Fraunces serif for headings/display,

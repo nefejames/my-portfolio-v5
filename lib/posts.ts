@@ -1,4 +1,5 @@
 import 'server-only'
+import { cache } from 'react'
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
@@ -26,7 +27,9 @@ export type PostMeta = Omit<Post, 'content'>
 
 const POSTS_DIR = path.join(process.cwd(), 'content', 'posts')
 
-export async function getAllPosts(): Promise<PostMeta[]> {
+// cache(): deduped across callers within one render pass (blog index, featured
+// section, sitemap) instead of re-reading the posts directory each time.
+export const getAllPosts = cache(async (): Promise<PostMeta[]> => {
   const files = fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith('.mdx'))
 
   return files
@@ -45,7 +48,7 @@ export async function getAllPosts(): Promise<PostMeta[]> {
       }
     })
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-}
+})
 
 /** Featured posts for the homepage "Writing for my own brand" section, newest
  *  first, capped at `limit`. Returns [] when none are featured. */
@@ -54,7 +57,8 @@ export async function getFeaturedPosts(limit = 6): Promise<PostMeta[]> {
   return posts.filter((p) => p.featured).slice(0, limit)
 }
 
-export async function getPostBySlug(slug: string): Promise<Post | null> {
+// cache(): generateMetadata and the page component both call this per request.
+export const getPostBySlug = cache(async (slug: string): Promise<Post | null> => {
   const filePath = path.join(POSTS_DIR, `${slug}.mdx`)
   if (!fs.existsSync(filePath)) return null
 
@@ -71,6 +75,6 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
     featured: (data.featured as boolean) ?? false,
     content,
   }
-}
+})
 
 export { formatDate } from './utils'

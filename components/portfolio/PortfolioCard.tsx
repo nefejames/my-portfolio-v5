@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import type { PortfolioMeta } from '@/lib/portfolio'
+import type { PortfolioCardData } from '@/lib/portfolio'
 import { formatDate } from '@/lib/utils'
 
-export default function PortfolioCard({ article }: { article: PortfolioMeta }) {
+export default function PortfolioCard({ article }: { article: PortfolioCardData }) {
   return (
     <Link
       href={`/portfolio/${article.clientSlug}/${article.slug}`}
@@ -15,7 +15,9 @@ export default function PortfolioCard({ article }: { article: PortfolioMeta }) {
             src={article.coverImage}
             alt=""
             fill
-            sizes="(min-width: 768px) 50vw, 100vw"
+            // Grids are 3-up at lg inside a max-w-5xl container (~310px/card),
+            // 2-up at sm. Keep the hint honest so browsers don't fetch 2x files.
+            sizes="(min-width: 1024px) 330px, (min-width: 640px) 50vw, 100vw"
             className="object-cover"
           />
         </div>

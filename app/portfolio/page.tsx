@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { getAllPortfolioArticles, getPortfolioClients } from '@/lib/portfolio'
+import { getAllPortfolioArticles, getPortfolioClients, toCardData } from '@/lib/portfolio'
 import PortfolioList from '@/components/portfolio/PortfolioList'
 
 const description =
@@ -38,7 +38,8 @@ export default async function PortfolioPage() {
         </p>
       </div>
 
-      <PortfolioList articles={articles} clients={clients} />
+      {/* Trimmed to card fields — excerpts/URLs/tags stay out of the payload. */}
+      <PortfolioList articles={articles.map(toCardData)} clients={clients} />
     </div>
   )
 }
