@@ -1,3 +1,5 @@
+import { SITE } from '@/lib/site'
+
 export default function Contact() {
   return (
     <section id="contact" className="py-24 bg-[var(--bg)]">
@@ -14,13 +16,13 @@ export default function Contact() {
         </p>
         <div className="flex flex-wrap justify-center gap-4">
           <a
-            href="mailto:nefejames1@gmail.com"
+            href={`mailto:${SITE.email}`}
             className="px-8 py-3 bg-[var(--accent)] text-white text-sm font-medium rounded-lg hover:bg-[var(--accent-hover)] transition-colors"
           >
-            nefejames1@gmail.com
+            {SITE.email}
           </a>
           <a
-            href="https://linkedin.com/in/nefe-emadamerho-atori"
+            href={SITE.social.linkedin}
             target="_blank"
             rel="noopener noreferrer"
             className="px-8 py-3 border border-[var(--accent-text)] text-[var(--accent-text)] text-sm font-medium rounded-lg hover:bg-[var(--surface)] transition-colors"
