@@ -161,6 +161,34 @@ figure[data-rehype-pretty-code-figure] code [data-line] {
   }
 }
 
+/* ─── Splash screen (components/SplashScreen.tsx) ─────────────────────────────
+   Curtain over the site while the signature draws, once per session. */
+.nea-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 100; /* above the navbar (z-50) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+}
+.nea-splash-out {
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+}
+/* Repeat visitors: an inline script in app/layout.tsx sets this attribute
+   before first paint, so the curtain never flashes during hydration. */
+html[data-splash-seen] .nea-splash {
+  display: none;
+}
+/* Reduced motion: the signature doesn't animate, so a splash is pure delay. */
+@media (prefers-reduced-motion: reduce) {
+  .nea-splash {
+    display: none;
+  }
+}
+
 /* ─── 404 page: lively "404" glyphs ─────────────────────────────────────────── */
 @keyframes nf-bob {
   0%, 100% { transform: translateY(0); }
