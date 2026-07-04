@@ -1,11 +1,12 @@
 import Link from 'next/link'
+import { SITE } from '@/lib/site'
 
 export default function Footer() {
   return (
     <footer className="border-t border-[var(--border)] bg-[var(--bg)]">
       <div className="max-w-5xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-4">
         <p className="text-sm text-[var(--muted)]">
-          © {new Date().getFullYear()} Emadamerho-Atori Nefe. All rights reserved.
+          © {new Date().getFullYear()} {SITE.name}. All rights reserved.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
           <Link
@@ -27,13 +28,13 @@ export default function Footer() {
             Portfolio
           </Link>
           <a
-            href="mailto:nefejames1@gmail.com"
+            href={`mailto:${SITE.email}`}
             className="text-sm text-[var(--muted)] hover:text-[var(--accent-text)] transition-colors"
           >
             Email
           </a>
           <a
-            href="https://linkedin.com/in/nefe-emadamerho-atori"
+            href={SITE.social.linkedin}
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm text-[var(--muted)] hover:text-[var(--accent-text)] transition-colors"

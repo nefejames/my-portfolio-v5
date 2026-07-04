@@ -231,13 +231,28 @@ function convertEmbeds(markdown) {
   return { content: lines.join('\n'), count }
 }
 
+// Re-encode PNG/JPEG buffers as WebP (typically 60-70% smaller) so imports
+// stop accumulating multi-MB originals in the repo. GIFs (animation), SVGs
+// (vectors), and existing WebP/AVIF pass through untouched. On any encode
+// failure, fall back to the original bytes.
+async function webpIfRaster(buf, ext) {
+  if (ext !== '.png' && ext !== '.jpg' && ext !== '.jpeg') return { buf, ext }
+  try {
+    const sharp = require('sharp')
+    return { buf: await sharp(buf).webp({ quality: 82 }).toBuffer(), ext: '.webp' }
+  } catch (err) {
+    console.warn(`  ⚠ WebP conversion failed: ${err.message} — saving original`)
+    return { buf, ext }
+  }
+}
+
 async function downloadImage(url, destDir, index, contentTypeHint) {
   const res = await fetch(url)
   if (!res.ok) throw new Error(`HTTP ${res.status}`)
   const contentType = res.headers.get('content-type') || contentTypeHint
-  const ext = extImageFromUrl(url, contentType)
+  const raw = Buffer.from(await res.arrayBuffer())
+  const { buf, ext } = await webpIfRaster(raw, extImageFromUrl(url, contentType))
   const fileName = `image-${index}${ext}`
-  const buf = Buffer.from(await res.arrayBuffer())
   fs.mkdirSync(destDir, { recursive: true })
   fs.writeFileSync(path.join(destDir, fileName), buf)
   return fileName
@@ -1016,8 +1031,9 @@ async function importDocument(doc, clientSlug, sourceUrl) {
     try {
       const res = await fetch(meta.ogImage)
       if (res.ok) {
-        const ext = extImageFromUrl(meta.ogImage, res.headers.get('content-type'))
-        const buf = Buffer.from(await res.arrayBuffer())
+        const rawExt = extImageFromUrl(meta.ogImage, res.headers.get('content-type'))
+        const raw = Buffer.from(await res.arrayBuffer())
+        const { buf, ext } = await webpIfRaster(raw, rawExt)
         fs.mkdirSync(imageDestDir, { recursive: true })
         fs.writeFileSync(path.join(imageDestDir, `cover${ext}`), buf)
         coverImage = `${publicBase}/cover${ext}`

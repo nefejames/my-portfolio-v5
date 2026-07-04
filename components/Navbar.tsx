@@ -1,9 +1,9 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
-import { usePathname } from 'next/navigation'
 import { useState } from 'react'
+import { SITE } from '@/lib/site'
+import AnimatedLogo from '@/components/AnimatedLogo'
 
 const links = [
   { label: 'Work', href: '/#work' },
@@ -13,14 +13,13 @@ const links = [
 ]
 
 export default function Navbar() {
-  const pathname = usePathname()
   const [open, setOpen] = useState(false)
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[var(--bg)]/90 backdrop-blur-sm border-b border-[var(--border)]">
       <nav className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
-          <Image src="/logo.svg" alt="NEA" width={36} height={36} priority />
+          <AnimatedLogo size={36} />
         </Link>
 
         {/* Desktop */}
@@ -35,7 +34,7 @@ export default function Navbar() {
             </Link>
           ))}
           <a
-            href="mailto:nefejames1@gmail.com"
+            href={`mailto:${SITE.email}`}
             className="text-sm font-medium px-4 py-2 bg-[var(--accent)] text-white rounded-lg hover:bg-[var(--accent-hover)] transition-colors"
           >
             Hire me
@@ -74,7 +73,7 @@ export default function Navbar() {
             </Link>
           ))}
           <a
-            href="mailto:nefejames1@gmail.com"
+            href={`mailto:${SITE.email}`}
             className="text-sm font-medium px-4 py-2 bg-[var(--accent)] text-white rounded-lg hover:bg-[var(--accent-hover)] transition-colors text-center"
           >
             Hire me
