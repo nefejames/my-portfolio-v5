@@ -102,16 +102,18 @@ function Figure({
   height?: number
 }) {
   return (
-    <figure className="my-8">
+    // Capped and centered so images stay readable-editorial instead of growing
+    // with the article column on wide screens.
+    <figure className="my-8 max-w-2xl mx-auto">
       <div className="relative w-full rounded-xl overflow-hidden bg-[var(--surface-2)]">
         <Image
           src={src}
           alt={alt}
           width={width}
           height={height}
-          // The article column is ~720px on desktop, full width below `lg`.
-          // Without this, next/image assumes 100vw and serves oversized files.
-          sizes="(min-width: 1024px) 720px, 100vw"
+          // Matches the figure's max-w-2xl (672px) cap above; full width below
+          // it. Without this, next/image assumes 100vw and serves oversized files.
+          sizes="(min-width: 768px) 672px, 100vw"
           className="w-full h-auto"
         />
       </div>
