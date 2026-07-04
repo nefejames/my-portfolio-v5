@@ -9,7 +9,6 @@ excerpt: "Discover the benefits of next-gen image formats. We explain how to ser
 coverImage: "/portfolio/prismic/006-next-gen-image-formats/cover.png"
 tags: []
 ---
-
 A picture is worth a thousand words, and this holds true even on the world wide web. Next-gen images go a long way to enhance our browsing experience, particularly when used correctly.
 
 As great as images are, they can lead to an unpleasant experience if they are not handled properly, as heavy images can cause websites to load slowly.
@@ -200,9 +199,7 @@ The code snippet below is a sample of the Next.js image component.
 
 Next.js Image Component
 
-Copy
-
-```
+```js
 import Image from 'next/image'
 import profileImg from '../public/profile.png'
 
@@ -239,9 +236,7 @@ We can use [the picture element](https://developer.mozilla.org/en-US/docs/Web/HT
 
 Note that we have to provide a fallback image to the img element in case the browser does not support the modern image formats.
 
-Copy
-
-```
+```html
 <picture>
   <source srcset="image.avif" type="image/avif" media="(min-width: 600px)">
   <source srcset="image.webp" type="image/webp" media="(min-width: 400px)">

@@ -9,7 +9,6 @@ excerpt: "The landscape of static site generators is rapidly evolving. Get an up
 coverImage: "/portfolio/prismic/003-static-site-generators/cover.png"
 tags: []
 ---
-
 The way we build websites has evolved over the years. Developers have transitioned from building websites with only traditional CMSs like WordPress as they seek out modern tools. Today, there are multiple frameworks to choose from, as well as no-code tool options.
 
 One such tool developers are using to build websites: **Static Site Generators(SSG)**.
@@ -291,6 +290,65 @@ Know someone who’s looking to use an SSG this year? Share this guide with them
 The benefits of SSGs include:
 
 - **Performance**: Static sites are pre-rendered, resulting in faster load times and improved performance
+
 - **Security**: With no server-side processing or databases, static sites have a reduced attack surface and are generally more secure
+
 - **Scalability**: Static sites can easily handle high-traffic loads since they rely on serving pre-built files
+
 - **Version control**: Static sites can be easily version-controlled with [Git or similar tools](https://prismic.io/blog/gitlab-vs-github)
+
+### When should you use a static site generator?
+
+SSGs are best suited for projects like blogs, documentation sites, marketing/ landing pages, portfolio sites, and small to medium websites with little dynamic content.
+
+SSGs are inadequate for projects that require live, dynamic data that changes frequently. Examples are stock trading and crypto exchange platforms or SaaS dashboards.
+
+### What is the most popular static site generator?
+
+Some of the most popular static site generators include:
+
+- **Next.js**: A React framework that supports static site generation, server-side rendering, and other rendering modes
+
+- **Gatsby**: A React-based SSG with a rich ecosystem of plugins and integrations
+
+- **Jekyll**: A popular Ruby-based SSG widely used for blogging and documentation sites
+
+- **Hugo**: A fast and modern SSG written in Go, known for its performance and simplicity
+
+- **Eleventy**: A simple and lightweight SSG that [supports 10+ templating languages](https://www.11ty.dev/docs/languages/)
+
+- **Astro**: A cutting-edge static site generator for building content-rich websites
+
+### How secure are static sites?
+
+Since static sites are generated as simple HTML files and do not have a backend database or server-side scripting, there are fewer potential entry points for attackers to exploit. This makes static sites less vulnerable to common web vulnerabilities such as SQL injection and cross-site scripting.
+
+### Can I use a static site generator with a headless CMS?
+
+Yes, static site generators can be used with headless CMSs. For example, you can integrate [Next.js](https://prismic.io/docs/setup-nextjs), [Nuxt.js](https://prismic.io/docs/nuxt-3-setup), and [SvelteKit](https://prismic.io/docs/svelte-install) with Prismic; follow the attached links to view their respective documentation.
+
+### What is the main difference between static and dynamic websites?
+
+The main difference between static and dynamic websites is how their content is generated and served:
+
+- **Static websites**: Static websites consist of pre-built HTML, CSS, and JavaScript files that are served directly to the browser
+
+- **Dynamic websites**: Dynamic websites generate content on the server before being sent to the browser
+
+### What is the difference between a static site generator and a dynamic site generator?
+
+Here are some differences between static site generators (SSGs) and dynamic site generators (DSGs):
+
+- SSGs pre-generate the entire website into static HTML, CSS, and JavaScript files during the build process, while DSGs generate pages dynamically on each request by rendering content on the server
+
+- SSGs offer faster loading times since the website content is pre-built, while DSGs may be slower due to the data fetched on each request
+
+- SSGs offer limited interactivity and are best suited for content-focused sites, while DSGs offer more interactivity, making them a great choice for websites with dynamically generated content
+
+### Can I use a static site generator for ecommerce websites?
+
+While SSGs are not traditionally associated with e-commerce, they can be used for smaller e-commerce sites with static product catalogs. APIs and JavaScript can be employed to add dynamic functionalities like shopping carts and payment processing.
+
+### Are there any performance trade-offs with using a static site generator?
+
+Static site generators generally offer improved performance due to fast load times and reduced server-side processing. However, if your site requires frequent content updates or relies heavily on dynamic features, the lack of real-time updates may be a trade-off to consider.

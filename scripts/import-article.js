@@ -539,7 +539,93 @@ function smashingCleanup(markdown) {
 // signup, and a footer (a related-articles block, "Hit your website goals", the
 // "Websites success stories from the Prismic Community" case studies, and the
 // "Prismic Toolbar iFrame"). Strip all of it. Runs ONLY for `--client prismic`.
-function prismicCleanup(markdown) {
+// ─── Prismic slice data ───────────────────────────────────────────────────────
+// prismic.io is a Next.js App Router app; each article's Prismic document (its
+// "slices") is embedded in the page's React flight data. Recovering it gives us
+// ground truth the scraped markdown flattens away: comparison-table rows, every
+// FAQ answer (the accordion renders only the open one), video embeds, and each
+// code snippet's language.
+
+const PRISMIC_ARTICLE_SLICE_TYPES = new Set([
+  'text_content', 'code_snippet', 'video', 'faq', 'comparison_table',
+  'image', 'quote', 'embed', 'blog_call_to_action', 'heading',
+])
+
+function extractPrismicSlices(html) {
+  if (!html) return []
+  // Concatenate the flight-stream chunks. Each push payload is a JSON string
+  // literal, so JSON.parse recovers one escaping level.
+  let stream = ''
+  const pushRe = /self\.__next_f\.push\(\[1,("(?:[^"\\]|\\.)*")\]\)/g
+  let m
+  while ((m = pushRe.exec(html))) {
+    try { stream += JSON.parse(m[1]) } catch { /* skip malformed chunk */ }
+  }
+  // The document may sit one more string level deep; try both depths and keep
+  // the "slices" array that contains the most article slice types (the page
+  // also embeds nav/footer documents with their own slices arrays).
+  const candidates = [stream, stream.replace(/\\"/g, '"').replace(/\\\\/g, '\\')]
+  let best = null
+  for (const text of candidates) {
+    let idx = text.indexOf('"slices":[{')
+    while (idx !== -1) {
+      const start = idx + '"slices":'.length
+      let depth = 0
+      let end = -1
+      for (let i = start; i < text.length; i++) {
+        const c = text[i]
+        if (c === '"') {
+          i++
+          while (i < text.length && text[i] !== '"') { if (text[i] === '\\') i++; i++ }
+        } else if (c === '[' || c === '{') depth++
+        else if (c === ']' || c === '}') { depth--; if (depth === 0) { end = i + 1; break } }
+      }
+      if (end !== -1) {
+        try {
+          const arr = JSON.parse(text.slice(start, end))
+          if (Array.isArray(arr)) {
+            const n = arr.filter((s) => s && PRISMIC_ARTICLE_SLICE_TYPES.has(s.slice_type)).length
+            if (n > 0 && (!best || n > best.n)) best = { arr, n }
+          }
+        } catch { /* not the document we want */ }
+      }
+      idx = text.indexOf('"slices":[{', idx + 1)
+    }
+    if (best) break // prefer the shallower escape depth once it yields slices
+  }
+  return best ? best.arr : []
+}
+
+/** Prismic rich text (blocks with spans) → markdown. `inline: true` joins
+ *  blocks with spaces for table cells; otherwise blocks become paragraphs. */
+function richTextToMarkdown(blocks, { inline = false } = {}) {
+  const renderBlock = (b) => {
+    let text = b.text || ''
+    // Apply spans back-to-front so earlier offsets stay valid.
+    const spans = (b.spans || []).slice().sort((a, z) => z.start - a.start)
+    for (const s of spans) {
+      const seg = text.slice(s.start, s.end)
+      let wrapped = seg
+      if (s.type === 'hyperlink' && s.data && s.data.url) wrapped = `[${seg}](${s.data.url})`
+      else if (s.type === 'strong') wrapped = `**${seg}**`
+      else if (s.type === 'em') wrapped = `*${seg}*`
+      text = text.slice(0, s.start) + wrapped + text.slice(s.end)
+    }
+    if (b.type === 'list-item') return `- ${text}`
+    if (b.type === 'o-list-item') return `1. ${text}`
+    if (b.type === 'preformatted') return '```\n' + (b.text || '') + '\n```'
+    return text
+  }
+  const parts = (blocks || []).map(renderBlock).filter((t) => t.trim() !== '')
+  return inline ? parts.join(' ').replace(/\s+/g, ' ').trim() : parts.join('\n\n')
+}
+
+/** Normalize a markdown line for matching against slice text. */
+function normForMatch(t) {
+  return t.replace(/[*\\`]/g, '').replace(/\s+/g, ' ').trim()
+}
+
+function prismicCleanup(markdown, slices = []) {
   let lines = markdown.split('\n')
 
   // 1. Leading header — cut through "Search", then skip a series table-of-contents
@@ -629,6 +715,171 @@ function prismicCleanup(markdown) {
     k++
   }
   lines = out
+
+  // 4b. CTA slices — Prismic interleaves "blog_call_to_action" promos (product
+  //     pitch + illustration + signup link) into articles. Match each slice's
+  //     title heading in the markdown and cut the section up to the next heading.
+  for (const slice of slices) {
+    if (slice.slice_type !== 'blog_call_to_action') continue
+    const title = ((slice.primary && slice.primary.title && slice.primary.title[0] && slice.primary.title[0].text) || '').trim()
+    if (!title) continue
+    const idx = lines.findIndex((l) => {
+      const hm = l.match(/^#{2,4}\s+(.*)$/)
+      return hm && normForMatch(hm[1]) === normForMatch(title)
+    })
+    if (idx === -1) continue
+    let end = idx + 1
+    while (end < lines.length && !/^#{1,6}\s/.test(lines[end])) end++
+    lines.splice(idx, end - idx)
+  }
+
+  // 4c. Comparison tables — the rendered table is a div grid, so the scrape
+  //     flattens it to one line per cell. Rebuild a GFM table from the slice
+  //     and replace the flattened run (header names through the last cell text).
+  for (const slice of slices) {
+    if (slice.slice_type !== 'comparison_table' || !slice.items || !slice.items.length) continue
+    const p = slice.primary || {}
+    const cats = [p.category_one, p.category_two, p.category_three].filter(Boolean)
+    if (!cats.length) continue
+    const cellText = (item, i) => {
+      const text = richTextToMarkdown(item[`text_category_${i}`] || [], { inline: true })
+      if (text) return text.replace(/\|/g, '\\|')
+      const val = item[['value_one', 'value_two', 'value_three'][i - 1]]
+      return val === true ? '✓' : '—'
+    }
+    const header = ['', ...cats]
+    const tableLines = [
+      `| ${header.join(' | ')} |`,
+      `| ${header.map(() => '---').join(' | ')} |`,
+      ...slice.items.map((it) => {
+        const label = (it.sub_heading || '').replace(/\|/g, '\\|')
+        return `| ${[label, ...cats.map((_, i) => cellText(it, i + 1))].join(' | ')} |`
+      }),
+    ]
+    // Locate the flattened run: category_one's line directly followed (over
+    // blanks) by category_two's, then each row's texts in order.
+    const start = lines.findIndex((l, i) => {
+      if (normForMatch(l) !== normForMatch(cats[0])) return false
+      let j = i + 1
+      while (j < lines.length && lines[j].trim() === '') j++
+      return j < lines.length && normForMatch(lines[j]) === normForMatch(cats[1] || '')
+    })
+    if (start === -1) continue
+    const expected = []
+    for (const it of slice.items) {
+      if (it.sub_heading) expected.push(it.sub_heading)
+      cats.forEach((_, i) => {
+        for (const b of it[`text_category_${i + 1}`] || []) {
+          if (b.text && b.text.trim()) expected.push(b.text)
+        }
+      })
+    }
+    let cursor = start + 1
+    let last = start + 1 // at least consume the two header lines
+    for (const exp of expected) {
+      for (let j = cursor; j < Math.min(lines.length, cursor + 10); j++) {
+        if (lines[j].trim() !== '' && normForMatch(lines[j]) === normForMatch(exp)) {
+          last = j
+          cursor = j + 1
+          break
+        }
+      }
+    }
+    lines.splice(start, last - start + 1, '', ...tableLines, '')
+  }
+
+  // 4d. FAQs — the rendered accordion exposes only the open answer, so the
+  //     scrape drops the rest. Rebuild the whole section from the faq slice.
+  const faqSlice = slices.find((s) => s.slice_type === 'faq' && s.items && s.items.length)
+  if (faqSlice) {
+    let start = lines.findIndex((l) => /^#{2,3}\s+.*\b(FAQs?|Frequently asked questions)\b/i.test(l))
+    if (start === -1) {
+      const firstQ = ((faqSlice.items[0].question || [])[0] || {}).text || ''
+      if (firstQ.trim()) {
+        start = lines.findIndex(
+          (l) => /^#{2,4}\s/.test(l) && normForMatch(l.replace(/^#+\s*/, '')).includes(normForMatch(firstQ)),
+        )
+      }
+    }
+    if (start !== -1) {
+      const lvl = lines[start].match(/^(#{1,6})\s/)[1].length
+      let end = start + 1
+      while (end < lines.length) {
+        const hm = lines[end].match(/^(#{1,6})\s/)
+        if (hm && hm[1].length <= lvl) break
+        end++
+      }
+      const qLevel = '#'.repeat(Math.min(lvl + 1, 6))
+      const rebuilt = [lines[start], '']
+      for (const item of faqSlice.items) {
+        const q = (item.question || []).map((b) => b.text || '').join(' ').trim()
+        const a = richTextToMarkdown(item.answer || [])
+        if (!q) continue
+        rebuilt.push(`${qLevel} ${q}`, '')
+        if (a) rebuilt.push(a, '')
+      }
+      lines.splice(start, end - start, ...rebuilt)
+    }
+  }
+
+  // 4e. Video embeds — the scrape renders a YouTube embed as its thumbnail
+  //     image (i.ytimg.com/vi/<id>/...). Swap in the <YouTube> component before
+  //     image download would save the thumbnail as an article image.
+  lines = lines.map((line) => {
+    const im = line.trim().match(/^!\[[^\]]*\]\(([^)]*ytimg\.com[^)]*)\)$/)
+    if (!im) return line
+    const idMatch = im[1].match(/(?:%2Fvi%2F|\/vi\/)([A-Za-z0-9_-]{11})/)
+    return idMatch ? `<YouTube id="${idMatch[1]}" />` : line
+  })
+
+  // 4f. Code blocks — drop the copy-button text the scrape captures as a bare
+  //     "Copy" line before each fence, and tag every untagged fence with the
+  //     language recorded in the article's code_snippet slices (matched by
+  //     first-line content, document order as fallback).
+  const snippets = []
+  for (const s of slices) {
+    if (s.slice_type !== 'code_snippet') continue
+    for (const item of s.items || []) {
+      snippets.push({
+        language: (item.language || '').toLowerCase(),
+        firstLine: (((item.code || [])[0] || {}).text || '').split('\n')[0].trim(),
+      })
+    }
+  }
+  const LANG_MAP = { javascript: 'js', typescript: 'ts', shell: 'bash', sh: 'bash', markup: 'html', node: 'js' }
+  const processed = []
+  let fenceOpen = false
+  let snippetCursor = 0
+  for (let i = 0; i < lines.length; i++) {
+    const t = lines[i].trim()
+    if (!fenceOpen && t === 'Copy') {
+      let j = i + 1
+      while (j < lines.length && lines[j].trim() === '') j++
+      if (j < lines.length && lines[j].trim().startsWith('```')) continue
+    }
+    if (t.startsWith('```')) {
+      if (!fenceOpen) {
+        fenceOpen = true
+        if (t === '```' && snippets.length) {
+          let j = i + 1
+          while (j < lines.length && lines[j].trim() === '') j++
+          const firstCode = (lines[j] || '').trim()
+          let pick = snippets.findIndex((sn, k) => k >= snippetCursor && sn.firstLine && sn.firstLine === firstCode)
+          if (pick === -1) pick = snippetCursor < snippets.length ? snippetCursor : -1
+          if (pick !== -1) {
+            snippetCursor = pick + 1
+            const lang = LANG_MAP[snippets[pick].language] || snippets[pick].language
+            processed.push('```' + lang)
+            continue
+          }
+        }
+      } else {
+        fenceOpen = false
+      }
+    }
+    processed.push(lines[i])
+  }
+  lines = processed
 
   // 5. Fix FAQ headings scraped as "### \#\#\# Question" (escaped literal hashes).
   lines = lines.map((l) => l.replace(/^(#{1,6})\s+\\#\\#\\#\s*/, '$1 '))
@@ -734,7 +985,9 @@ async function importDocument(doc, clientSlug, sourceUrl) {
   } else if (clientSlug === 'smashing-magazine') {
     cleanedMarkdown = smashingCleanup(markdown)
   } else if (clientSlug === 'prismic') {
-    cleanedMarkdown = prismicCleanup(markdown)
+    // Slice data recovered from the page's flight data drives the table/FAQ/
+    // video/code-language reconstruction — see extractPrismicSlices.
+    cleanedMarkdown = prismicCleanup(markdown, extractPrismicSlices(doc.rawHtml || doc.html || ''))
   }
 
   // Convert standalone tweet/YouTube/LinkedIn links into component tags first,
@@ -929,4 +1182,6 @@ module.exports = {
   sanitizeMdx,
   slugFromUrl,
   prismicCleanup,
+  extractPrismicSlices,
+  richTextToMarkdown,
 }

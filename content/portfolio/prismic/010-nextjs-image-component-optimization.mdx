@@ -9,7 +9,6 @@ excerpt: "Learn how Next.js image component, or next/image, enhances website per
 coverImage: "/portfolio/prismic/010-nextjs-image-component-optimization/cover.png"
 tags: []
 ---
-
 Images are a vital part of any website. They allow us to engage users and visually convey complex information. As the saying goes, “A picture is worth a thousand words.”
 
 While images have numerous benefits and can improve user experience and [SEO performance](https://prismic.io/blog/how-does-nextjs-help-with-seo), they can also slow down page load times and lead to poor website performance if not properly optimized.
@@ -72,9 +71,7 @@ The component supports the lazy loading. This means the browser will only load t
 
 Lazy loading helps to improve the initial page load time. Here’s a code snippet of `next/image`'s lazy loading in action.
 
-Copy
-
-```
+```js
 <Image src={img} alt="a cool image" loading="lazy" />
 ```
 
@@ -86,29 +83,17 @@ Optimized images lead to fast-loading websites, meaning users get the best exper
 
 The `next/image` component abstracts the complexities of image optimization and makes it easier for us to work with images. This means we can focus on core activities, such as handling bugs and building propriety functionalities. We can rest easy knowing that we don’t have to worry about optimizing images because `next/image` handles that for us.
 
-## Deliver a fast website with a visual Page Builder
-
-Prismic is a headless solution, with a visual Page Builder for your marketing team to release pages independently.
-
-![Prismic slice connected to package illustration](/portfolio/prismic/010-nextjs-image-component-optimization/image-4.png)
-
-[Get started](https://prismic.io/dashboard/signup)
-
 ## How to use the Next.js `<Image/>` component
 
 The first step is importing the `<Image/>` component from `next/image`.
 
-Copy
-
-```
+```js
 import Image from 'next/image' //import the image component
 ```
 
 After that, use it as shown below:
 
-Copy
-
-```
+```js
 import Image from 'next/image'
 import img from "./img.jpg";
 
@@ -125,9 +110,7 @@ However, when working with remote images, we must manually define their `width` 
 
 Explicitly defining the `width` and `height`, as shown in the example below, helps Next.js know how much space to reserve for the image. This prevents layout shifts from occurring when the image loads.
 
-Copy
-
-```
+```js
 import Image from 'next/image'
 
 export default function Page() {
@@ -146,13 +129,11 @@ export default function Page() {
 
 When working with remote images in Next.js, we have to register the images’ root URL for them to render in the browser. We can handle this configuration in the `remotePatterns` [property](https://nextjs.org/docs/app/api-reference/components/image#remotepatterns). Failure to do that will result in the following error.
 
-![An image of an unhandled rentime error.](/portfolio/prismic/010-nextjs-image-component-optimization/image-5.png)
+![An image of an unhandled rentime error.](/portfolio/prismic/010-nextjs-image-component-optimization/image-4.png)
 
 To fix the error, add the `protocol` and `hostname` of the URL to the `images.remotePatterns` config in `next.config.js` file.
 
-Copy
-
-```
+```js
 const nextConfig = {
   images: {
     remotePatterns: [\
@@ -167,9 +148,7 @@ const nextConfig = {
 
 We can also define the URLs of remote images with the `domains` property. However, this has been deprecated since Next.js 14 in favor of `remotePatterns`. Here’s how the `domains` configuration works.
 
-Copy
-
-```
+```js
 module.exports = {
   images: {
     domains: ['dummyimageurl.com'],
@@ -183,9 +162,7 @@ Next.js provides a built-in Image Optimization API that optimizes and serves ima
 
 Configure `next.config.js` with the following to add a custom loader:
 
-Copy
-
-```
+```js
 module.exports = {
   images: {
     loader: "cloudinary",
@@ -226,9 +203,7 @@ As of this writing, the image component has sixteen properties. Here’s a brief
 
 The code snippet below shows a practical application of the `<Image/>` components props.
 
-Copy
-
-```
+```js
 import Image from 'next/image'
 
 const imageLoader = ({ src, width, quality }) => {
@@ -271,9 +246,7 @@ Setting the `width` and `height` attributes for remote images ensures optimal pe
 
 Lazy loading defers the loading of images until they are about to enter the viewport. This reduces the page's initial load time and improves its overall performance. Next.js image component has built-in support for lazy loading, making it easy to implement.
 
-Copy
-
-```
+```js
 <Image src={img} alt="a cool image" loading="lazy" />
 ```
 
@@ -283,9 +256,7 @@ If you are the width of your user's devices, you can use the `deviceSizes` prop 
 
 Next.js provides the following default breakpoints:
 
-Copy
-
-```
+```js
 module.exports = {
   images: {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
@@ -297,15 +268,13 @@ module.exports = {
 
 This shows [a blurry base64 version of the image](https://nextjs.org/docs/app/api-reference/components/image#placeholder) as a placeholder while the image loads. While the blur effect won’t make the image load faster, it will affect the web visitor’s perception and make the loading process appear faster.
 
-Copy
-
-```
+```js
 <Image src={img} alt="a cool image" placeholder="blur" />
 ```
 
 The gif below shows the `next/image` blur effect in action.
 
-![A GIF of next/image blur effect.](/portfolio/prismic/010-nextjs-image-component-optimization/image-6.gif)
+![A GIF of next/image blur effect.](/portfolio/prismic/010-nextjs-image-component-optimization/image-5.gif)
 
 ## Improvements with Next.js 14
 
@@ -322,7 +291,7 @@ Seeing code in action can often solidify concepts and help with practical applic
 
 [Install the starter](https://github.com/prismicio-community/nextjs-starter-prismic-multi-page) and see how to optimize images on your website with Next.js and how you can further simplify this using [Prismic's image component!](https://prismic.io/docs/technical-reference/prismicio-next#prismicnextimage)
 
-![](/portfolio/prismic/010-nextjs-image-component-optimization/image-7.jpg)
+<YouTube id="uHidK4buKL8" />
 
 ## Summing up `next/image`
 
@@ -335,3 +304,11 @@ Luckily, we don’t need to trade between performance and providing users with e
 ### What is the best image format for Next.js?
 
 No image format works best for Next.js. Instead, Next.js helps with image optimization by ensuring browsers receive images in the most compatible and performant format. It automatically serves images in modern formats such as WebP and AVIF.
+
+### What attributes do you always add to the Next.js image component?
+
+For `next/image` to work properly, the `src` and `alt` properties are required. Also, when fetching images from remote sources, the `width` and `height` properties must be included because Next.js cannot access remote files during the build process. However, when working with local images, Next.js automatically detects the `width` and `height` of any imported images.
+
+### How does Next.js image work?
+
+The image component uses Squoosh, a fully node-based image optimization solution, to optimize images. The component lazy loads images by default to improve website performance and load time.

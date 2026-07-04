@@ -3,6 +3,7 @@ import { getTweet } from 'react-tweet/api'
 import { EmbeddedTweet, TweetNotFound } from 'react-tweet'
 import { YouTubeEmbed } from '@next/third-parties/google'
 import { slugify } from '@/lib/toc'
+import CodeBlock from './CodeBlock'
 import type { ReactNode } from 'react'
 
 // ─── Twitter/X embed ─────────────────────────────────────────────────────────
@@ -154,4 +155,7 @@ export const mdxComponents = {
   img: ({ src, alt }: { src?: string; alt?: string }) => (
     <Figure src={src ?? ''} alt={alt ?? ''} caption={alt || undefined} />
   ),
+  // Fenced code blocks get VS Code-style chrome: language icon + name and a
+  // click-to-copy button (see CodeBlock.tsx). Inline code is untouched.
+  pre: CodeBlock,
 }

@@ -55,28 +55,33 @@ html {
 
 /* ─── Code blocks (rehype-pretty-code / Shiki) ──────────────────────────────
    Shared by blog posts and portfolio articles. Token colors come from the
-   github-light Shiki theme (inline styles on each span); the block chrome
-   below is styled to match the site's surface/border tokens. */
-[data-rehype-pretty-code-figure] pre {
+   github-dark Shiki theme (inline styles on each span); the block chrome
+   (header, border, copy button) lives in components/blog/CodeBlock.tsx. */
+figure[data-rehype-pretty-code-figure] pre {
   background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 0.75rem;
   padding: 1rem 1.25rem;
   overflow-x: auto;
   font-size: 0.875rem;
   line-height: 1.7;
+  /* The .code-block wrapper (CodeBlock.tsx) owns the border and radius. */
+  border: 0;
+  border-radius: 0;
+  margin: 0;
 }
 
-/* Reset the inline-code pill styling for block code so only Shiki colors show. */
-[data-rehype-pretty-code-figure] code {
+/* Reset the inline-code pill styling for block code so only Shiki colors show.
+   The explicit foreground is github-dark's default, so untagged/plaintext code
+   reads as normal code instead of inheriting the purple prose accent. */
+figure[data-rehype-pretty-code-figure] code {
   background: transparent !important;
   padding: 0 !important;
   border-radius: 0;
   font-weight: 400;
+  color: #e6edf3;
   counter-reset: line;
 }
 
-[data-rehype-pretty-code-figure] code [data-line] {
+figure[data-rehype-pretty-code-figure] code [data-line] {
   display: block;
 }
 
@@ -94,6 +99,26 @@ html {
 [data-rehype-pretty-code-title] + pre {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+
+/* ─── Article tables (GFM pipe tables, e.g. imported comparison tables) ───── */
+.prose table {
+  border-collapse: collapse;
+  font-size: 0.9em;
+}
+.prose th,
+.prose td {
+  border: 1px solid var(--border);
+  padding: 0.625rem 0.875rem;
+  vertical-align: top;
+}
+.prose thead th {
+  background: var(--surface-2);
+  color: var(--text);
+  text-align: left;
+}
+.prose tbody tr:nth-child(even) {
+  background: color-mix(in srgb, var(--surface) 55%, transparent);
 }
 
 /* ─── 404 page: lively "404" glyphs ─────────────────────────────────────────── */
