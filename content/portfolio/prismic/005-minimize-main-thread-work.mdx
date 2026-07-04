@@ -9,7 +9,6 @@ excerpt: "We will learn what the main thread is, what it does, the website eleme
 coverImage: "/portfolio/prismic/005-minimize-main-thread-work/cover.png"
 tags: []
 ---
-
 A clogged tap can cause the water flowing from it to slow to a trickle. That can be frustrating to deal with. Similarly, the browser’s main thread, which works in the background to render website pages, can get blocked, leading to slow-loading websites and a terrible user experience. That’s why it’s so important to minimize main thread work.
 
 How can we unclog the “browser’s pipe,” i.e. the main thread? That’s what we will learn in this article. We will learn what the main thread is, what it does, the website elements that block it, and how to minimize its workload to improve website performance and load times.
@@ -126,9 +125,7 @@ We can [fix render-blocking fonts](https://prismic.io/blog/understanding-how-to-
 
 Here’s a short snippet on how we can manually preload fonts.
 
-Copy
-
-```
+```html
 <!-- Add the link tag with a preload attribute to the head of your HTML -->
 <head>
   <link
@@ -139,9 +136,7 @@ Copy
 </head>
 ```
 
-Copy
-
-```
+```css
 /* then add the font declaration in the external stylesheet */
 @font-face {
   font-family: "Nunito", sans-serif;
@@ -185,4 +180,8 @@ Deploying these strategies will significantly improve performance by reducing ti
 
 ### How do you minimize main thread work in React?
 
-Many strategies for minimizing main thread work, such as image optimization and lazy loading apply to React applications. However, if your Core Web Vitals metrics are a top priority for your site, you should consider using a framework like Next.js, which allows you to utilize more optimal rendering methods than client-side rendering.
+Many strategies for minimizing main thread work, such as image optimization and lazy loading apply to React applications. However, if your Core Web Vitals metrics are a top priority for your site, you should consider using a framework like Next.js, which allows you to utilize more optimal rendering methods than client-side rendering. 
+
+### How do you minimize main thread work in WordPress?
+
+There are some quick ways you can try to minimize main thread work in WordPress, such as removing or replacing plugins that are adding unnecessary resources to your site during load time, using a lazy loading plugin, optimizing your site's images, and minifying, removing, or deferring JavaScript and CSS. However, if it's an option for your site, you can have a maximum impact on your Core Web Vitals by switching over to the Jamstack ecosystem and a headless content management product.

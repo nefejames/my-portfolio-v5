@@ -9,7 +9,6 @@ excerpt: "Web fonts can negatively impact Core Web Vitals (CWV). This article ex
 coverImage: "/portfolio/prismic/002-understanding-how-to-minimize-web-fonts-negative-impacts/cover.png"
 tags: []
 ---
-
 [Core Web Vitals (CWV)](https://prismic.io/blog/how-to-improve-core-web-vitals) are web performance measurements that affect a website's rank in Search Engine Results Pages (SERPs). These metrics help search engines understand what the [user experience](https://prismic.io/blog/ux-tips-for-developers) will be like on any given website so that they can provide high-quality results to their users.
 
 Monitoring and improving the CWVs of websites has never been more important. Web visitors expect a delightful experience and will not settle for less. Not only are CWVs critical to keeping users engaged and reducing bounce rates, but they are also important for SEO because websites with poor CWV scores will rank low on SERPs.
@@ -85,9 +84,7 @@ A better way is to increase the download speed of custom web fonts by preloading
 
 The `preload` attribute ensures that the fonts are loaded as early as possible, and the optional display gives the font some window of time to load. If the font doesn’t load on time, the page will be rendered with that default font. The web font will then be cached and used on future page loads.
 
-Copy
-
-```
+```html
 <!-- Add the link tag with a preload attribute to the head of your HTML -->
 <head>
   <link
@@ -98,9 +95,7 @@ Copy
 </head>
 ```
 
-Copy
-
-```
+```css
 /* then add the font declaration in the external stylesheet */
 @font-face {
 	font-family: "Roboto", sans-serif;
@@ -128,9 +123,7 @@ We can improve font loading speeds by using `<link rel=”preconnect”>`. [The 
 
 A benefit of Google Fonts is that it adds the `preconnect` keyword to the HTML snippet they create for us.
 
-Copy
-
-```
+```html
 <head>
   <link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -152,9 +145,7 @@ We can use the following tools to subset web fonts:
 
 Inlining web fonts in the `head` of an HTML document makes them available to the browser early on. It also prevents the browser from making multiple download requests to the server where the fonts reside. This reduces the amount of data that needs to be transferred and causes the font to render faster. However, we must use font inlining with care, as it can cause page load delays in cases where the font files are large.
 
-Copy
-
-```
+```html
 <head>
   <link
     rel="preload"
