@@ -1,0 +1,533 @@
+---
+title: "GraphQL vs. REST: API Guide - Benefits, Pros & Cons, & More"
+client: "Prismic"
+clientSlug: "prismic"
+originalUrl: "https://prismic.io/blog/graphql-vs-rest-api"
+publishedAt: "2024-09-20"
+canonical: "https://prismic.io/blog/graphql-vs-rest-api"
+excerpt: "In this article, we look at GraphQL versus REST APIs to see how they stack up against each other. GraphQL and REST APIs are two of the most widely used types of APIs available. Learn more here!"
+coverImage: "/portfolio/prismic/038-graphql-vs-rest-api/cover.webp"
+tags: []
+---
+APIs (Application Programming Interfaces) are a fundamental part of software development. They power many of the web applications and tools we use daily, from social media apps to payment gateways. The API ecosystem has grown significantly, with over [1.29 billion API requests](https://www.postman.com/state-of-api/api-global-growth/#api-global-growth) made in 2023 — [a 14.16% increase](https://www.postman.com/state-of-api/2022/api-global-growth/) from 2022 — as reported in Postman’s 2023 State of the API report.
+
+GraphQL and REST APIs are two of the most widely used types of APIs available. Both have their strengths, and understanding how they work can help you choose the right one for your projects.
+
+In this article, we look at GraphQL versus REST APIs to see how they stack up against each other.
+
+## What is a REST API?
+
+_REST stands for **Re** presentational **S** tate **T** ransfer_, an architectural style for designing networked applications. Introduced by Roy Fielding in 2000, it has become the predominant architectural approach for building web services.
+
+[REST](https://en.wikipedia.org/wiki/REST) provides a set of rules and constraints that define how resources (such as data or services) can be accessed and manipulated over a network, often using the HTTP protocol.
+
+_In simpler terms_, REST allows clients (like web browsers or mobile apps) to interact with a server by sending requests for data or services. The server responds by providing the requested information, typically in formats like JSON or XML.
+
+Several API architectures are available, but [according to Postman’s State of the API report, REST is still the most popular one](https://www.postman.com/state-of-api/api-technologies/#api-technologies).
+
+![An image of API architectures ](/portfolio/prismic/038-graphql-vs-rest-api/image-1.webp)
+
+### How REST works
+
+Here are the most common methods in a RESTful API:
+
+- **GET**: Retrieve data from the server. For example, fetching a list of users.
+- **POST**: Send data to the server to create a new resource. For example, adding a new user.
+- **PUT**: Update an existing resource on the server. For example, editing user information.
+- **DELETE**: Remove a resource from the server. For example, deleting a user.
+
+![A cartoon depiction of how REST APIs work.](/portfolio/prismic/038-graphql-vs-rest-api/image-2.webp)
+
+When a client makes an HTTP request to a RESTful API, it targets a specific endpoint (a URL), which corresponds to a resource. The client specifies the operation (GET, POST, PUT, DELETE) and provides any necessary data (such as in the request body for POST or PUT). The server processes the request and returns a response, usually in JSON format.
+
+For example, a client sends a GET request to a `/api/users/123` endpoint, asking for information about a user with ID 123. The server responds with the user’s data in JSON format:
+
+```json
+{
+  "id": 123,
+  "name": "John Doe",
+  "email": "johndoe@example.com"
+}
+```
+
+## Learn more about how APIs work!
+
+Read our dedicated article to learn more about [how APIs work](https://prismic.io/blog/how-do-apis-work) in detail.
+
+### REST API examples
+
+Here are some popular REST APIs you can build, practice, and experiment with.
+
+1. [**Stripe REST API**](https://docs.stripe.com/api/authentication): Stripe’s REST API is widely used for handling payments, managing customers, processing refunds, and handling subscriptions. It’s known for its simplicity and clear documentation.
+2. [**OpenWeatherMap REST API**](https://openweathermap.org/api): OpenWeatherMap provides a REST API that allows developers to retrieve weather information — current weather data, forecasts, and historical data — for any location in the world.
+3. [**Spotify REST API**](https://developer.spotify.com/documentation/web-api): Spotify offers a REST API for accessing music data, including albums, tracks, and playlists.
+
+## What is a GraphQL API?
+
+[GraphQL](https://graphql.org/) is a query language and runtime for APIs that was developed by Facebook in 2012 and was open-sourced in 2015. It provides a more efficient and flexible way to interact with APIs compared to REST.
+
+Instead of hitting multiple endpoints to get different pieces of data, GraphQL allows you to query exactly what you need from a single endpoint that can handle complex queries, mutations, and subscriptions. It also allows you to request exactly the data you need, nothing more and nothing less. It does have a bit of a learning curve, though!
+
+![An image of GraphQL website.](/portfolio/prismic/038-graphql-vs-rest-api/image-3.webp)
+
+### How GraphQL works
+
+GraphQL operates by allowing clients to send requests — through a single endpoint — to fetch a piece of data or to mutate/change the data. Here's a simplified breakdown of how it works:
+
+1. **Schema definition**: GraphQL operates with a schema-based approach, allowing clients to specify the shape of the response they expect. The schema defines the types of data available in the API and the relationships between them. It outlines the structure of the API and serves as a contract between the client and server.
+2. **Client queries and mutations**: **Queries** are used to fetch data from the API. Clients request only the data they need, and the server responds accordingly. These queries can be nested, allowing clients to retrieve related data in a single request. **Mutations** allow clients to update or modify data on the server, similar to POST, PUT, or DELETE requests in REST.
+3. **Resolver functions**: When a client asks for specific data through a GraphQL query, resolvers are the functions that go out and fetch that data. They act as the bridge between your query and the data. Each field in your query has a resolver that knows how to fetch the right data for that specific request.
+4. **Response**: The response is what the server sends back after it processes your query. It is a JSON object that mirrors the structure of the query, containing only the requested data.
+
+For example, if you want to retrieve a user’s name and their last three posts, a GraphQL query might look like this:
+
+```json
+{
+  user(id: "123") {
+    name
+    posts(limit: 3) {
+      title
+      content
+    }
+  }
+}
+```
+
+The query would return a JSON object with the user's name, email, and titles of their blog posts:
+
+```json
+{
+  "data": {
+    "user": {
+      "name": "John Doe",
+      "posts": [\
+        { "title": "Post 1", "content": "Content of post 1" },\
+        { "title": "Post 2", "content": "Content of post 2" },\
+        { "title": "Post 3", "content": "Content of post 3" }\
+      ]
+    }
+  }
+}
+```
+
+## Check out these tips for getting started with GraphQL!
+
+📹 Learning GraphQL can be scary, especially if all you’ve known are REST APIs. Luckily, you don’t need to go through this journey alone. In an exclusive interview with Kitze, he shared [3 tips for getting started with GraphQL](https://www.youtube.com/watch?v=0yr25jzVLMg). Watch the video to learn more.
+
+### GraphQL API examples
+
+Here are some popular GraphQL APIs you can build, practice, and experiment with.
+
+1. [**GitHub GraphQL API**](https://studio.apollographql.com/public/github/variant/current/home): \*\*\*\*GitHub's GraphQL API allows developers to query repositories, users, commits.
+2. [**Shopify GraphQL API**](https://shopify.dev/docs/api/admin-graphql): Shopify offers a powerful GraphQL API for developers to build [custom commerce experiences](https://prismic.io/blog/headless-commerce). It gives you control over product, order, and customer data, making it easy to integrate with any platform.
+3. [**SpaceX GraphQL API**](https://studio.apollographql.com/public/SpaceX-pxxbxen/variant/current/home): The SpaceX GraphQL API allows you to query detailed information about past and upcoming SpaceX launches, rockets, and mission data. It offers an easy-to-use schema for developers interested in space exploration data.
+
+## Differences between GraphQL and REST APIs
+
+### GraphQL vs REST: Learning curve
+
+_REST is generally easier_ to get started with. It relies on standard HTTP methods (GET, POST, PUT, DELETE) and is generally more familiar to developers. Its simplicity makes it easier to implement quickly.
+
+_GraphQL has a steeper learning curve_ for developers who are unfamiliar with schemas, resolvers, and the query language. Tools like GraphQL Playground make learning easier by providing an interactive environment to explore queries.
+
+### GraphQL vs REST: Number of endpoints
+
+**REST (Multiple endpoints)**
+
+REST APIs typically uses multiple endpoints, each corresponding to a resource or collection. For example, you might need one endpoint to fetch users (`/users`) and another to fetch posts (`/posts`).
+
+```js
+// Fetching users
+fetch('https://api.example.com/users')
+  .then(response => response.json())
+  .then(data => console.log(data));
+
+// Fetching a specific user
+fetch('https://api.example.com/users/123')
+  .then(response => response.json())
+  .then(data => console.log(data));
+
+// Fetching user's posts
+fetch('https://api.example.com/users/123/posts')
+  .then(response => response.json())
+  .then(data => console.log(data));
+```
+
+**GraphQL (Single endpoint)**
+
+GraphQL uses a single endpoint for all operations (queries and mutations). This means you only need to point your client to one URL, regardless of the data or actions you're requesting.
+
+```js
+const query = `
+  query {
+    user(id: "123") {
+      name
+      email
+      posts {
+        title
+      }
+    }
+  }
+`;
+
+fetch('https://api.example.com/graphql')
+  .then(response => response.json())
+  .then(data => console.log(data));
+```
+
+### GraphQL vs REST: Type system (strongly typed or not)
+
+**REST (Not typed)**
+
+REST isn't inherently typed and there is no built-in way to enforce or define the structure of data. You’ll have to rely on the documentation or test the API to see what types it returns for its data. Then, you can use TypeScript to type the responses:
+
+```ts
+interface User {
+  id: string;
+  name: string;
+  email: string;
+}
+
+fetch('https://api.example.com/users/123')
+  .then(response => response.json())
+  .then((data: User) => console.log(data.name));
+```
+
+**GraphQL (Strongly typed)**
+
+- GraphQL _is_ strongly typed. The server defines a schema that specifies the types of data clients can request. This schema acts like a contract between the server and the client. You can generate TypeScript types from your GraphQL schema:
+
+```js
+// Generated types
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  posts: Post[];
+}
+
+interface Post {
+  id: string;
+  title: string;
+}
+
+// Query
+const GET_USER = gql`
+  query GetUser($id: ID!) {
+    user(id: $id) {
+      id
+      name
+      email
+      posts {
+        id
+        title
+      }
+    }
+  }
+`;
+
+// Usage with Apollo Client
+const { data } = useQuery<{ user: User }>(GET_USER, { variables: { id: '123' } });
+console.log(data?.user.name);
+```
+
+## Advance your TypeScript skills!
+
+Looking to learn more about TypeScript? Then, explore the following resources:
+
+\- [What is TypeScript and Why You Should Use It For Your Next Project](https://prismic.io/blog/what-is-typescript)
+
+\- [TypeScript Interfaces: A Practical Guide with Code Examples](https://prismic.io/blog/typescript-interfaces)
+
+\- [Understanding TypeScript Generics: Why, How, and When to Use Them](https://prismic.io/blog/typescript-generics)
+
+\- [TypeScript vs. JavaScript: What’s the Difference?](https://prismic.io/blog/compare-javascript-vs-typescript)
+
+### GraphQL vs REST: API versioning
+
+**REST (Versioning usually required)**
+
+In REST, versioning is often necessary as the API evolves. When changes are made, such as adding or removing fields, modifying response structures, or introducing new features, API maintainers typically create a new version of the API (e.g., `/v1/users` to `/v2/users`).
+
+This ensures that older clients can continue to use the previous version without breaking, while newer clients can adopt the latest changes. However, this approach can lead to managing multiple versions of the same API, which adds complexity and maintenance overhead.
+
+**GraphQL (Versioning not required)**
+
+On the other hand, GraphQL eliminates the need for versioning. Since clients in GraphQL specify exactly what data they want in their queries, adding new fields or deprecating old ones doesn’t impact existing clients.
+
+Clients can simply ignore the newly added fields and continue working with their existing queries. This allows for a seamless evolution of the API that doesn’t require creating new versions. This flexibility makes GraphQL more adaptable as APIs grow and change over time, reducing the burden of managing multiple versions.
+
+### GraphQL vs REST: Error handling
+
+**REST (HTTP error responses)**
+
+In REST, errors are primarily communicated using HTTP status codes. For example, a `404 Not Found` indicates that the requested resource doesn’t exist, while a `500 Internal Server Error` signals a problem on the server. These status codes help identify issues at the HTTP layer and are widely understood by developers.
+
+REST responses often include additional details like error messages in the response body to explain the error but the status code itself is key to understanding the nature of the problem.
+
+**GraphQL (Errors field in response body)**
+
+In **GraphQL**, error handling is a bit more nuanced. While the HTTP layer will always return a `200 OK` if the request was processed, any errors are included in the response body under an `errors` field. This allows GraphQL to return partial data alongside error messages.
+
+For example, if part of a query succeeds while another part fails, GraphQL will still return the successful data, making it more flexible in complex applications. However, this means developers must inspect the response body for errors instead of relying on HTTP status codes alone.
+
+Here’s a partial response with errors and successful data, showing GraphQL’s approach to error handling.
+
+```json
+{
+  "data": {
+    "user": {
+      "name": "John Doe",
+      "posts": [\
+        {\
+          "title": "First Post",\
+          "comments": null\
+        },\
+        {\
+          "title": "Second Post",\
+          "comments": null\
+        }\
+      ]
+    }
+  },
+  "errors": [\
+    {\
+      "message": "Field 'comments' cannot be accessed due to insufficient permissions",\
+      "locations": [{ "line": 6, "column": 7 }],\
+      "path": ["user", "posts", "comments"]\
+    }\
+  ]
+}
+```
+
+### GraphQL vs REST: Data fetching efficiency
+
+**REST (Less efficient with large datasets)**
+
+REST API endpoints are prone to over-fetching and under-fetching as they return the entire resource, even if you only need part of it. This can lead to inefficiencies, especially when working with large datasets. This also means that you need to make multiple requests to get all the data you need.
+
+```js
+// Over-fetching: We only need the name, but we get all user data
+fetch('https://api.example.com/users/123')
+  .then(response => response.json())
+  .then(data => console.log(data.name));
+
+// Under-fetching: We need posts too, so we make an additional request
+fetch('https://api.example.com/users/123/posts')
+  .then(response => response.json())
+  .then(data => console.log(data))
+```
+
+**GraphQL (More efficient overall)**
+
+GraphQL eliminates issues like over-fetching and under-fetching by allowing you to request exactly what you need in one operation. This is especially useful when you only need specific fields from a resource, like a user’s name without their entire profile.
+
+With GraphQL, you can fetch related data in a single query, eliminating the need for multiple requests.
+
+```ts
+query {
+  user(id: "123") {
+    name
+    posts {
+      title
+    }
+  }
+}
+```
+
+### GraphQL vs REST: Caching strategies
+
+**REST (HTTP caching)**
+
+REST works well with **HTTP caching** mechanisms. For example, GET requests can be cached based on URL and headers.
+
+```js
+fetch('https://api.example.com/users', {
+  headers: { 'Cache-Control': 'max-age=3600' }
+})
+  .then(response => {
+    if (response.status === 304) {
+      console.log('Not modified, use cached data');
+    } else {
+      return response.json();
+    }
+  })
+  .then(data => console.log(data));
+```
+
+**GraphQL (Caching via client-side libraries)**
+
+Caching in GraphQL is more complex since it uses a single endpoint. You’ll need to use client-side libraries like Apollo Client to manage caching.
+
+```js
+import { ApolloClient, InMemoryCache } from '@apollo/client';
+
+const client = new ApolloClient({
+  uri: 'https://api.example.com/graphql',
+  cache: new InMemoryCache()
+});
+
+// Subsequent queries for the same data will be served from the cache
+client.query({ query: GET_USER, variables: { id: '123' } })
+  .then(result => console.log(result.data));
+```
+
+### GraphQL vs REST: File uploads
+
+**REST (Natively supported)**
+
+File uploads are straightforward and **natively supported** in REST.
+
+```js
+const formData = new FormData();
+formData.append('file', fileInput.files[0]);
+
+fetch('https://api.example.com/upload', {
+  method: 'POST',
+  body: formData
+})
+  .then(response => response.json())
+  .then(data => console.log(data));
+```
+
+**GraphQL (Not supported, third-parties required)**
+
+GraphQL doesn’t provide native capabilities for uploading files. This means you need to use third-party solutions like [Apollo Upload Client](https://github.com/jaydenseric/apollo-upload-client).
+
+```js
+import { ApolloClient, InMemoryCache, ApolloProvider, useMutation, gql } from '@apollo/client';
+import { createUploadLink } from 'apollo-upload-client';
+
+// Set up Apollo Client with createUploadLink for file uploads
+const client = new ApolloClient({
+  link: createUploadLink({
+    uri: 'https://your-graphql-endpoint.com/graphql', // Replace with your GraphQL server URL
+  }),
+  cache: new InMemoryCache(),
+});
+
+// GraphQL mutation for uploading a file
+const UPLOAD_FILE_MUTATION = gql`
+  mutation($file: Upload!) {
+    uploadFile(file: $file) {
+      success
+      message
+    }
+  }
+`;
+
+// File upload component below
+```
+
+### GraphQL vs REST: Real-time capabilities
+
+**REST (Real-time updates via WebSockets)**
+
+REST doesn’t support real-time updates natively. You need to use additional technologies like WebSockets for this.
+
+```js
+const socket = new WebSocket('wss://api.example.com/ws');
+
+socket.onmessage = (event) => {
+  console.log('Received update:', JSON.parse(event.data));
+};
+```
+
+**GraphQL (Real-time updates support built-in)**
+
+GraphQL provides built-in support for real-time updates via subscriptions, which allow clients to listen for data changes.
+
+```js
+const COMMENT_ADDED_SUBSCRIPTION = gql`
+  subscription OnCommentAdded($postId: ID!) {
+    commentAdded(postId: $postId) {
+      id
+      content
+    }
+  }
+`;
+
+const { data, loading } = useSubscription(
+  COMMENT_ADDED_SUBSCRIPTION,
+  { variables: { postId: '123' } }
+);
+
+useEffect(() => {
+  if (!loading && data) {
+    console.log('New comment:', data.commentAdded);
+  }
+}, [loading, data]);
+```
+
+|  | GraphQL | REST |
+| --- | --- | --- |
+| Number of endpoints | Single endpoint for all operations (queries and mutations). | Multiple endpoints, each representing a resource (e.g., /users, /posts). |
+| Type system | Strongly typed schema that defines the structure and types of data. | Not strongly typed; relies on documentation or implied structure. |
+| API versioning | No versioning required; APIs evolve by adding/removing fields without breaking clients. | Requires versioning to handle breaking changes (e.g., /v1/users to /v2/users). |
+| Error handling | Errors are returned in the errors field alongside partial data. | Errors are indicated by HTTP status codes (e.g., 404, 500), with full request failure. |
+| Data fetching efficiency | Fetches only the requested data, avoiding over-fetching and under-fetching. | Fixed endpoints may result in over-fetching or under-fetching of data. |
+| Caching strategies | More complex; caching requires custom client-side solutions like Apollo Client. | Works well with standard HTTP caching mechanisms (e.g., Cache-Control). |
+| File uploads | Requires additional setup (e.g., Apollo Server for multipart uploads). | Natively supports file uploads. |
+| Learning curve | Steeper learning curve due to schema, queries, and resolvers. | Easier to learn and implement, based on familiar HTTP methods and status codes. |
+| Real-Time capabilities | Supports real-time updates via subscriptions. | Requires solutions like WebSockets for real-time updates as it is not native to REST. |
+
+## When to use GraphQL and REST APIs
+
+Let’s explore some factors to consider when choosing between GraphQL and REST APIs.
+
+### When to use GraphQL
+
+- Use GraphQL when you need flexibility in data fetching, especially for applications with complex data structures and relationships.
+- If your project involves fetching multiple resources in one request, GraphQL allows you to minimize network requests by fetching exactly the data you need.
+- GraphQL is ideal for real-time applications or dynamic frontends where you need precise control over the data returned.
+- It’s a great option when you want to avoid over-fetching or under-fetching data from multiple endpoints.
+
+### When to use REST
+
+- REST remains a solid choice for simpler, resource-oriented architectures and public APIs that need to be easily consumable by a wide range of clients.
+- It works best for straightforward CRUD operations where you want to leverage HTTP methods like GET, POST, PUT, and DELETE.
+- REST is particularly effective when you want to utilize HTTP caching mechanisms for improving performance with static resources.
+- Use REST when your project has lower complexity or if you need an API that is easier to implement and maintain.
+
+## Exploring Prismic’s APIs
+
+Prismic's [headless CMS](https://prismic.io/blog/headless-cms) capabilities go beyond the user-friendly interface of our [website builder](https://prismic.io/page-builder). We also provide APIs that let you access, manage, and manipulate your content with ease.
+
+Let’s explore Prismic’s REST and GraphQL API solutions that enable you fetch documents, update assets, build custom queries, and more.
+
+### Prismic’s REST APIs
+
+Prismic provides various REST APIs that let you interact with your content repository in different ways. From retrieving document tags to managing assets, these REST APIs are essential tools for any Prismic project.
+
+1. **Document API**: The Document API is what you’ll use to fetch your content. It allows you to make calls to retrieve specific documents, filter content by tags, or even paginate through large collections of data. [Learn more about the Document API](https://prismic.io/docs/rest-api-technical-reference).
+2. **Migration API**: The Migration API lets you migrate content from one place to another. This API is best used for moving off from other content management systems, like WordPress or Contentful. [Learn more about the Migration API](https://prismic.io/features/migration).
+3. **Asset API**: The Asset API allows you to retrieve, upload, and delete assets from your repository’s media library. [Learn more about the Asset API](https://prismic.io/docs/asset-api-technical-reference).
+4. **Tags API**: The Tags API allows you to fetch all tags from your repository, which can be helpful when you need to organize or filter content. [Learn more about the Tags API](https://prismic.io/docs/tags-api-technical-reference).
+5. **Types API**: The Types API gives you control over your content models (custom types and [slices](https://prismic.io/docs/slice)). It allows you to programmatically manage your content types, enabling quicker development workflows and more dynamic updates. [Learn more about the Types API](https://prismic.io/docs/custom-types-api).
+
+### GraphQL API
+
+Prismic also provides a [GraphQL API](https://prismic.io/docs/graphql-technical-reference#root-fields) that allows you to selectively fetch content and retrieve the specific fields you need in a single query. With GraphQL, you also get access to tools like Prismic’s GraphQL Explorer, which lets you test your queries and see the structure of your data in real-time.
+
+### Writing Custom APIs
+
+Prismic allows you to [create custom APIs](https://prismic.io/docs/integration) to integrate third-party data into your repository. This is especially useful when you want to pull data from external sources like e-commerce catalogs or your own custom-built APIs.
+
+There are three main ways to integrate a custom API into Prismic:
+
+1. **Pull data from a custom read API:** This option allows you to sync external data into Prismic by connecting your custom API.
+2. **Push data to prismic from a custom write API:** You can also push data into Prismic using the Integration Field Write API. This API lets you create, update, or delete catalog items in your repository programmatically.
+
+## Conclusion
+
+Choosing between GraphQL and REST APIs is one of the many choices you'll face when developing websites, applications, or software products. It's essential to weigh their unique strengths and limitations to ensure you're selecting the right option for your needs.
+
+We hope this article has provided valuable insights to guide you in making a well-informed choice that suits your specific use cases, aligns with your team's capabilities, and supports your long-term goals.
+
+Want to learn more about APIs in detail? Explore the below resources:
+
+- [API response times: a quick guide to improving performance](https://prismic.io/blog/api-response-times)
+- [SDK vs API: a developer's simplified, explained guide with examples](https://prismic.io/blog/sdk-vs-api)
+- [How do APIs work?](https://prismic.io/blog/how-do-apis-work)
+- [13 fun and powerful APIs and project ideas to try them with](https://prismic.io/blog/13-best-api-project-ideas)
+- [A 6-minute introduction to API testing with Postman](https://prismic.io/blog/api-testing-using-postman-for-beginners)

@@ -32,3 +32,12 @@
 29. https://prismic.io/blog/top-nextjs-freelancers-and-agencies
 30. https://prismic.io/blog/ab-testing
 31. https://prismic.io/blog/nextjs-blog-templates
+32. https://prismic.io/blog/vue-component-libraries
+33. https://prismic.io/blog/nextjs-seo-optimization-tips
+34. https://prismic.io/blog/tailwind-vs-bootstrap
+35. https://prismic.io/blog/top-vscode-extensions
+36. https://prismic.io/blog/tailwind-component-library
+37. https://prismic.io/blog/shopify-vs-bigcommerce
+38. https://prismic.io/blog/graphql-vs-rest-api
+39. https://prismic.io/blog/vite-vs-nextjs
+40. https://prismic.io/blog/wordpress-alternatives
