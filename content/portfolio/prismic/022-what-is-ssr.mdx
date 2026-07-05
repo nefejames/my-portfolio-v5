@@ -1,0 +1,278 @@
+---
+title: "What is Server-side Rendering (SSR)?"
+client: "Prismic"
+clientSlug: "prismic"
+originalUrl: "https://prismic.io/blog/what-is-ssr"
+publishedAt: "2024-03-22"
+canonical: "https://prismic.io/blog/what-is-ssr"
+excerpt: "This guide explores what server-side rendering is, how it works, its pros and cons, and popular SSR frameworks like Next.js and Nuxt.js."
+coverImage: "/portfolio/prismic/022-what-is-ssr/cover.webp"
+tags: []
+---
+Server-side rendering (SSR) has grown in popularity in recent years. This rendering method leads to improved website performance, greater search engine visibility, and an overall better user experience.
+
+Understanding SSR and how it works is crucial for web developers and businesses looking to optimize their websites and provide superior user experience to web visitors.
+
+In this article, we will learn what server-side rendering is, how it works, the pros and cons, and scenarios for using SSR. We’ll also explore SSR frameworks and libraries like Next.js and Nuxt.js that make the implementation of SSR seamless.
+
+Let’s dive in.
+
+## What is server-side rendering?
+
+Server-side rendering is a web development technique that involves rendering a web page on a server before sending the fully rendered HTML markup to the client.
+
+_SSR is a method where the server generates the HTML and CSS code for a web page and sends it to the client (the user's browser) as a fully rendered page._
+
+![An image of Server-side rendering.](/portfolio/prismic/022-what-is-ssr/image-1.webp)
+
+Sending a fully rendered page to the browser leads to faster page load times and helps search engines to effectively crawl and index the page, [leading to improved SEO performance](https://prismic.io/blog/headless-cms-seo).
+
+With SSR, the client doesn’t need to wait for JavaScript or [CSS files](https://prismic.io/blog/best-css-frameworks) to load. Instead, the web page is fully rendered and filled with the necessary content. This leads to a better user experience because web visitors won’t encounter a blank screen while waiting for the required code to load. Instead, they see the website content faster.
+
+## Types of JavaScript rendering methods
+
+There are three main types of JavaScript rendering methods available:
+
+\- Client-side rendering (CSR)
+
+\- Server-side rendering (SSR)
+
+\- Static-site generation (SSG)
+
+[Read our in-depth guide](https://prismic.io/blog/javascript-rendering-methods) to learn about these rendering methods, how they work, and their pros and cons.
+
+## How does server-side rendering work?
+
+Here's a high-level overview of how the SSR process works and how it generates and serves web pages:
+
+1. **A user visits a URL**: a user navigates to a given URL, say [prismic.io](http://prismic.io/), via their browser.
+2. **The server receives a request for the page**: This action sends a request to the server, which receives the request and identifies the desired route or URL.
+3. **Fetching data**: The server retrieves the necessary data from databases, [external APIs](https://prismic.io/blog/api-response-times), or other relevant sources. This data will be used to populate the HTML template.
+4. **Template rendering**: The server generates the HTML markup using a templating engine or a framework that combines the fetched data with the predefined structure of the page. This includes rendering the content, applying styles, and adding any necessary functionality.
+5. **Sending the rendered page**: Once the template is rendered and the HTML is generated, the server sends the fully rendered page to the user's browser as a response to the request.
+6. **Displaying the page**: The user's browser then displays the page without waiting for additional JavaScript execution since the initial page load does not depend on JavaScript code.
+7. **Rehydration**: Along with the rendered HTML, the server also sends the JavaScript required to handle client-side interactivity and dynamic behavior. This JavaScript is responsible for "rehydrating" the static HTML into a fully interactive web app, ensuring a seamless transition from server-side rendering to client-side interactivity. For example, say an app has a form submit button, the rehydration process attaches the click event listener to the button, ensuring it fires when clicked. Without rehydration, the button will remain non-interactive when clicked.
+8. **Repeat the rendering process**: When the user navigates to other pages, the browser sends new requests to the server, and the process repeats itself.
+
+With SSR, the heavy lifting of the page generation process happens on the server. This ensures that users enjoy fast-loading pages and allows them to see a web page's content as soon as possible.
+
+## Advantages of server-side rendering
+
+### Faster loading times
+
+SSR improves a web page's initial loading time since the client doesn't have to wait for JavaScript code to load before it can render the content. The increased loading speed leads to a better user experience and [improved Core Web Vitals like First Contentful Paint (FCP) and Largest Contentful Paint (LCP)](https://prismic.io/blog/how-to-improve-core-web-vitals).
+
+### Improves SEO
+
+Search engines like Google and Bing use web crawlers to index and rank websites. These crawlers struggle to understand client-side rendered websites because they have to wait for the JavaScript to load in order to crawl a page's content. This approach leads to low search rankings.
+
+SSR fixes this by sending a fully rendered HTML file to the client, which makes it easier for web crawlers to index and understand a web page's content. It is ideal for SEO and [leads to higher search engine result page (SERP) rankings](https://prismic.io/blog/headless-cms-seo).
+
+### Enhanced security
+
+Rendering HTML on the server reduces the risk of security vulnerabilities. This is because SSR does not expose any application logic or code to the client. Instead, the core implementation details remain on the server. This approach allows us to protect sensitive user data and website information while also preventing malicious attacks.
+
+### Richer user experience
+
+CSR often results in slower-loading websites because the browser has to:
+
+- Download the necessary HTML, CSS, and JavaScript files
+- Execute the code
+- Make API calls to fetch the required data for a page
+- Construct the Document Object Model (DOM)
+
+Users encounter a loading screen while the CSR process occurs, which can create a bad experience and result in users leaving the site before it fully loads.
+
+![A diagram of loading, skeleton, rendered process.](/portfolio/prismic/022-what-is-ssr/image-2.webp)
+
+We can offer web visitors a richer browsing experience by switching to server-side rendering. This rendering method returns a fully rendered page to the client, eliminating the need for loading screens.
+
+### Better performance on low network bandwidth devices
+
+With server-side rendering, devices with low network bandwidth and low processing power don't have to bear the heavy lifting of rendering the page. This significantly reduces the time taken to load and display the content, resulting in a smoother user experience.
+
+SSR reduces device data consumption since the client doesn't have to fetch and execute the JavaScript files. This is a huge advantage for users with limited network bandwidth.
+
+## Disadvantages of server-side rendering
+
+### **Increased server load**
+
+Server-side rendering requires the server to perform the rendering process for each request it receives. This can put a significant load on the server, especially during periods of high traffic or when rendering complex pages. As a result, server-side rendering may require additional server resources to handle the increased processing demands, potentially leading to higher hosting costs.
+
+### **Delayed website interactivity**
+
+Server-side rendering can limit a website’s interactivity and responsiveness. While the content is [pre-rendered on the server](https://prismic.io/blog/what-is-pre-rendering), interactive elements like dynamic forms or real-time updates still need to wait for the browser to fetch and execute the client-side JavaScript code. This can result in a slower [time to interactive (TTI)](https://web.dev/articles/tti), particularly when the client-side code is heavy and takes longer to download.
+
+### Increased cost
+
+Implementing server-side rendering—particularly for high-traffic websites—requires additional server resources, which can lead to higher costs due to the computational power required.
+
+Instead of setting up a server ourselves, we can use hosting providers like Vercel and Netlify that support server-side frameworks. However, the cost implications remain since SSR websites consume more computational resources.
+
+### **Increased development complexity**
+
+Implementing server-side rendering can be more complex compared to client-side rendering. It requires additional server-side logic and infrastructure to handle the rendering process. This complexity can increase development time, cost, and maintenance efforts, especially for teams with limited resources or experience in SSR.
+
+While SSR may complicate the development process, this initial investment eventually pays off with high search engine visibility, improved core web vitals, and a better user experience. Ultimately, this makes SSR worth the effort.
+
+### Not compatible with many frameworks and libraries
+
+Few frameworks provide built-in support for server-side rendering compared to those that support CSR. This limits the number of tools we can work with. While we could add SSR to libraries and frameworks that don’t provide built-in support, that would only further complicate the development process.
+
+While many frameworks do not support SSR, there are popular options like Next.js, Nuxt.js, Astro, and SvelteKit that we can use to build server-side rendered websites. For example, The Washington Post uses Next.js for its SSR-powered website while Appwrite uses SvelteKit.
+
+### Learning curve
+
+Many developers learn a client-side framework before diving into more advanced topics. This leads to a learning curve if they want to implement server-side rendering in a project. In this case, the best would be to learn an SSR framework, which can be time-consuming and a source of extra complexity.
+
+Learning a new framework may take some time and effort. However, it’s worth it, and there’s a real-life example that shows its benefits. [In this case study](https://vercel.com/blog/migrating-a-large-open-source-react-application-to-next-js-and-vercel), the Vercel team broke down how they removed over 30 dependencies and 20,000 lines of code from a large React codebase by switching to Next.js. This example shows that while learning a new SSR framework requires effort, it will pay off in the long run.
+
+The table below is a summary of the core advantages and disadvantages of server-side rendering.
+
+|  | Advantages | Disadvantages |
+| --- | --- | --- |
+|  | Leads to improved SEO | Increased development complexity |
+|  | Ensures fast loading times even with poor network connections | Greater development cost |
+|  | Eliminates loading screens and creates a better user experience | Delays website interactivity |
+|  | Enhances security and prevents cyber threats | Consumes more computational resources and increases the load on servers |
+
+## Server-side rendering frameworks and tools
+
+### **Next.js**
+
+[Next.js](https://nextjs.org/) is a widely used and highly regarded SSR [framework built on top of React](https://prismic.io/blog/nextjs-vs-react). It provides a seamless development experience by enabling server-side rendering out of the box. Next.js offers features like automatic code splitting, hot module replacement, and app router—its file-based routing system—making it a powerful tool for SSR.
+
+![An image of Next.js site.](/portfolio/prismic/022-what-is-ssr/image-3.webp)
+
+## Improve your SEO with Next.js
+
+Learn more about [how Next.js can help you rank higher on search engines](https://prismic.io/blog/how-does-nextjs-help-with-seo) and improve your SEO.
+
+### **Nuxt.js**
+
+[Nuxt.js](https://nuxtjs.org/) is a [Vue.js meta-framework](https://prismic.io/blog/javascript-meta-frameworks-ecosystem) with SSR capabilities. It is one of the most popular Vue-based frameworks. It enjoys wide adoption because of built-in features like routing, state management, auto imports, and transitions, that simplify the development process.
+
+![An image of Nuxt.js website.](/portfolio/prismic/022-what-is-ssr/image-4.webp)
+
+### SvelteKit
+
+[SvelteKit](https://kit.svelte.dev/) is a Svelte-based framework created by Rich Harris. Like [Svelte](https://prismic.io/blog/svelte-and-sveltekit), SvelteKit also doesn't have a virtual DOM, making it fast and performant. SvelteKit supports server-side rendering, which we can leverage to build fast-loading websites.
+
+![An image of SvelteKit website.](/portfolio/prismic/022-what-is-ssr/image-5.webp)
+
+## A beginner's guide to Svelte and SvelteKit
+
+Ready to dive into the deeper details of Svelte and SvelteKit? Then, [explore this in-depth beginner's guide](https://prismic.io/blog/svelte-and-sveltekit) to learn more.
+
+### **Gatsby**
+
+[Gatsby](https://www.gatsbyjs.com/) is a static site generator that can also be used for server-side rendering. It utilizes React and GraphQL to create high-performance websites. We can use Gatsby to generate static HTML pages at build time and pull data from various sources, including APIs and CMS platforms.
+
+![An image of Gatsby website.](/portfolio/prismic/022-what-is-ssr/image-6.webp)
+
+## Which static generator is right for me?
+
+**There are over 300 static site generators available**. Knowing the right one to use can be tricky. [This article](https://prismic.io/blog/static-site-generators-2023) streamlines the decision process by covering top tools worth considering for your next project and factors to consider when choosing. Dive in to learn more!
+
+### **Angular Universal**
+
+[Angular Universal](https://blog.angular-university.io/angular-universal/) is a server-side rendering solution for Angular applications. It allows us to [render Angular components on the server](https://angular.io/guide/ssr), resulting in optimized initial page loads and improved search engine visibility.
+
+![An image of Angular website.](/portfolio/prismic/022-what-is-ssr/image-7.webp)
+
+### Remix
+
+Developed by the creators of React Router, [Remix](https://remix.run/) is an open-source web framework built on top of React that makes it easier to create full-stack web applications. Remix was originally a subscription-based premium framework but was eventually released as an open-source solution.
+
+![An image of Remix website.](/portfolio/prismic/022-what-is-ssr/image-8.webp)
+
+### Astro
+
+[Astro](https://astro.build/) positions itself as an all-in-one JavaScript framework that is well-suited for building content-heavy sites like marketing landing pages, portfolios, and blogs. It aims to provide the best of both worlds by leveraging the benefits of static site generation and server-side rendering.
+
+An interesting thing about Astro is that [it supports several UI frameworks](https://docs.astro.build/en/guides/framework-components/), including Vue, React, Svelte, and Solid.js, and allows us to combine them in the same application. Learn more about how Astro works.
+
+![An image of Astro website.](/portfolio/prismic/022-what-is-ssr/image-9.webp)
+
+### Qwik
+
+[Qwik](https://qwik.dev/) is a lightweight front-end JavaScript framework that aims to simplify and streamline the process of web development. Qwik was developed by Google and focuses on improving developer productivity and providing a fast, efficient, and scalable solution for building interactive web applications.
+
+Qwik is a relatively new solution compared to other web frameworks on this list. Despite that, it has an active and growing community.
+
+![An image of Qwik website.](/portfolio/prismic/022-what-is-ssr/image-10.webp)
+
+## When to use server side-rendering
+
+While server-side rendering has its benefits, it's not always the best rendering strategy. Let's explore scenarios and projects where SSR is a better option than CSR.
+
+### **When SEO is a priority**
+
+Server-side rendering plays a critical role in enhancing a website's SEO performance. This is because it provides fully-rendered HTML to search engine crawlers, ensuring the content is readily available for indexing. Proper indexing can lead to better search engine rankings and increased organic traffic.
+
+## How Pally achieved growth with Nuxt.js + Prismic!
+
+Check out this case study: [how Nuxt.js and Prismic helped Pally increase organic traffic and grow daily visitors from 500 to 10,000](https://prismic.io/customers/pallyy).
+
+### **When a fast initial page load is required**
+
+Server-side rendering improves the initial page load time by rendering the HTML on the server and delivering it to the client's browser. This approach ensures that users can see the latest content without waiting for client-side JavaScript to load and execute.
+
+SSR improves page load times, and this is especially true for content-heavy websites like blogs and website content that updates often like in news publications or for e-commerce websites. Rendering the content on the server in real time significantly reduces the initial load time and allows users to access and consume the up-to-date content as quickly as possible. This can enhance user engagement and reduce bounce rates.
+
+### When catering to slow internet connections
+
+Server-side rendering provides a better experience to web visitors with slow internet connections. By generating the HTML on the server and sending it directly to the browser, users access content faster, even when dealing with sluggish networks. It ensures a smoother experience regardless of a web visitor's internet speed. For instance, if your target audience is located in regions with poor network coverage, SSR ensures fast-loading websites despite the poor network.
+
+## Explore these Next.js server-side rendering starter templates
+
+Here are some great Next.js starter templates we can use to shorten the SSR learning curve:
+
+- [prismic-blog-tutorial](https://github.com/prismicio-community/prismic-blog-tutorial): a Next.js blog built with Prismic
+- [leerob.io](https://github.com/leerob/leerob.io): Leerob’s Next.js portfolio built with NextAuth.js and Postgres
+- [ecommerce-template](https://github.com/MarcosCamara01/ecommerce-template): a Next.js ecommerce platform built with Stripe, MongoDB, and NextAuth.js
+
+## Conclusion
+
+Server-side rendering offers important benefits that can enhance a website's performance, user experience, and search engine optimization, mainly:
+
+- Enables websites to load faster
+- Makes it easier for search engine crawlers to index a page
+- Boosts security and reduces vulnerabilities
+
+However, SSR also comes with downsides, including:
+
+- Increased server load
+- Delayed interactivity
+- A more complex development process
+- Higher operational and maintenance costs
+
+Server-side rendering can be a powerful technique when executed properly. As we’ve learned, SSR is the right approach to follow when SEO, page load times, and slow internet connections are core website considerations.
+
+It's important to assess your goals, content needs, budget, and technical constraints to determine if SSR will meet your project needs and requirements.
+
+## FAQs
+
+### What is an SSR application?
+
+An SSR application is one where the initial HTML markup is generated on the server rather than on the client side. This HTML is then sent to the browser.
+
+### What are the benefits of SSR?
+
+The benefits of SSR include faster initial page loads, improved SEO, and enhanced security.
+
+### What is an example of SSR?
+
+Examples of SSR frameworks include Next.js, Nuxt.js, and Sveltekit. Websites built with these frameworks include TypeScript, Linktree, The Washington Post, and Notion.
+
+### What does SSR mean for websites?
+
+For websites, SSR means the HTML is rendered on a server before being sent to the user's browser. This improves performance and SEO.
+
+### Is server-side rendering better?
+
+There are pros and cons to using server-side rendering. For example, while it improves initial load speed and SEO, it increases complexity and cost. The decision to use SSR or not should be based on factors like cost and your project's requirements.
+
+### What is the difference between SSR and CSR?
+
+With SSR, the content is rendered on the server and sent to the client as a fully generated HTML file. On the other hand, CSR involves rendering a website on the client. SSR leads to faster initial loads, while CSR allows more interactivity.

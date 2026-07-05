@@ -1,0 +1,173 @@
+---
+title: "[Guide] Core Web Vitals: What They Are and How to Improve Them"
+client: "Prismic"
+clientSlug: "prismic"
+originalUrl: "https://prismic.io/blog/how-to-improve-core-web-vitals"
+publishedAt: "2022-12-14"
+canonical: "https://prismic.io/blog/how-to-improve-core-web-vitals"
+excerpt: "Core Web Vitals are key metrics that help Google evaluate a website's user experience. Good SEO rankings depend on optimal metrics -- here's how to improve them."
+coverImage: "/portfolio/prismic/025-how-to-improve-core-web-vitals/cover.webp"
+tags: []
+---
+This article was initially written by **[Anthony Campolo](https://prismic.io/blog/authors/anthony-campolo)** on **December 14th, 2022,** and revamped by **[Nefe Emadamerho-Atori](https://prismic.io/blog/authors/nefe-emadamerho-atori)** on **April 25th, 2024** to include more up-to-date information.
+
+If you’ve started to dig into the technical side of SEO, inevitably the term [Core Web Vitals](https://prismic.io/blog/understanding-how-to-minimize-web-fonts-negative-impacts) will have come across your path. In this post, we’ll explore not only what Core Web Vitals are, but also how you can take steps to improve them on your website.
+
+## What are Core Web Vitals?
+
+[Core Web Vitals](https://nl.wikipedia.org/wiki/Core_web_vitals) are a subset of web performance metrics from Google that help developers understand how users experience a web page. These metrics focus on three primary areas of user experience: **the speed**, **interactivity**, and **visual stability** of a webpage.
+
+Core Web Vitals are a ranking factor for search engines as Google considers them when deciding what pages to place at the top of search engine result pages (SERPs). This means that improving your website’s metrics can lead to higher rankings and more traffic to your website while also providing a better user experience.
+
+![An image of Core Web Vitals](/portfolio/prismic/025-how-to-improve-core-web-vitals/image-1.webp)
+
+Measuring Core Web Vitals is essential for understanding your website's performance and user experience. You can perform diagnostic tests with their developer tools like [Page Speed Insights](https://pagespeed.web.dev/) and [Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/). The data from these tests can inform your optimization strategies and help you prioritize areas that require immediate attention. This ensures visitors get a fast, responsive, and engaging experience while visiting and navigating your website.
+
+### The 3 primary Core Web Vitals and what they measure
+
+There are many web vitals you can track, but these three are the primary Core Web Vital metrics:
+
+- [Largest Contentful Paint](https://web.dev/optimize-lcp/) (LCP): Measures when the largest element on the page becomes visible, which helps Google understand how users will perceive page load speed.
+- [Cumulative Layout Shift](https://web.dev/cls/) (CLS): Measures how much the elements on the page move around while the page is loading, which helps Google evaluate how stable the user’s experience on the page will be.
+- [Interaction to Next Paint](https://web.dev/articles/inp) (INP): Measures a web page’s responsiveness to user interactions and inputs like clicks, taps, and keyboard inputs. It captures the latency between when a user interacts with the page and when the browser visually indicates that an interaction occurred.
+
+**_Note_:** Core Web Vitals are constantly being updated to better reflect and capture how users experience and interact with websites and web pages. For example, the third metric on the list used to be [First Input Delay](https://developer.mozilla.org/en-US/docs/Glossary/First_input_delay) (FID) before Google updated the primary three Core Web Vitals to include Interaction to Next Paint (INP) on March 12th, 2024.
+
+First Input Display measured how long it took before a user could interact with the content they see on the page. It told Google how quickly the page becomes “usable” from the user's perspective.
+
+## The importance of Core Web Vitals
+
+Core Web Vitals play a crucial role in determining the overall user experience of a website. A poor user experience can lead to higher bounce rates, lower engagement, and reduced conversions.
+
+Also, websites with high bounce rates are more likely to have poor search engine visibility. Search engines tend to promote websites that offer the best experience and keep users engaged. Therefore, optimizing Core Web Vitals is crucial for achieving higher SEO rankings and increasing organic traffic.
+
+Besides these, a website with poor performance and user experience can damage a brand's reputation and negatively impact customer trust and loyalty.
+
+### How do Core Web Vitals impact SEO?
+
+Google’s secrecy when it comes to disclosing what variables factor into SEO ranking is infamous.
+
+The specific extent to which bad performance harms SEO ranking is unknown, but Google and their developer advocates have made numerous public statements confirming that sites with poor Lighthouse scores will be ranked lower than sites with high Lighthouse scores. This brings us to Lighthouse and our next important question.
+
+### How do you measure and evaluate Core Web Vitals?
+
+Lighthouse collects "Lab data" (also known as synthetic data) from a controlled environment to measure different web vitals. It is important to note that this data is not derived from actual users since it's going to run scripts with synthetic data.
+
+This puts them in sharp contrast with real user metrics (RUM) since the data can be collected during the development process and incorporated into CI processes. Another example of a tool that collects synthetic data is [WebPageTest](https://www.webpagetest.org/).
+
+Google also offers Page Speed Insights, which provides results that are based on a mixture of real-world data and lab data, which can provide another perspective of a site’s performance.
+
+When it comes to Core Web Vitals, all green is all good. Here’s a screenshot of the result for [mParticle's website](https://www.mparticle.com/)—one of [Prismic’s customers](https://prismic.io/showcase)—tested with the Page Speed Insights tool:
+
+![An image of mParticle's Core Web Vitals metrics](/portfolio/prismic/025-how-to-improve-core-web-vitals/image-2.webp)
+
+## Largest Contentful Paint (LCP) how to improve it
+
+### What is Largest Contentful Paint?
+
+Largest Contentful Paint (LCP) observes the time needed for the largest element to load and appear on the user’s screen. This is important because users want to be immediately served viewable content when they open the page instead of having to wait and stare at a blank screen. [According to Google](https://web.dev/articles/lcp#what-elements-are-considered), the following elements are considered for Largest Contentful Paint:
+
+- `<img>` tags
+- `<image>` tags within an &lt;svg> tag
+- `<video>` tags
+- Tags loading a background image with the `url()` function
+- Block-level tags containing nodes or inline-level text elements.
+
+The reported element size will usually be determined by the size that is visible to users within the viewport. Elements that extend outside the viewport do not count toward the final size. [Google's guidelines](https://web.dev/optimize-lcp/) advise aiming for less than 2.5 seconds across 75% or more of page visits.
+
+To achieve this, Google recommends eliminating resource load delay and element render delay along with reducing resource load time and time to first byte. [Explore Google’s documentation](https://web.dev/optimize-lcp/#how-to-optimize-each-part) to better understand these terms.
+
+### How can I reduce my LCP?
+
+To reduce your LCP scores, consider the following strategies:
+
+- Load CSS stylesheets and JavaScript files asynchronously to eliminate render-blocking resources. Alternatively, the resources can be inlined directly inside the HTML
+- Use [DNS-prefetch](https://developer.mozilla.org/en-US/docs/Web/Performance/dns-prefetch) or [pre-connect](https://developer.mozilla.org/en-US/docs/Web/Performance/dns-prefetch#best_practices) resource hints to initiate an early connection to any required third-party origins
+- Defer unused or unnecessary JavaScript that delays rendering the page
+- Compress and resize images to ensure as few bytes as possible are sent over the network
+
+You can observe granular timing information in JavaScript by utilizing performance APIs such as the [Largest Contentful Paint API](https://w3c.github.io/largest-contentful-paint/), the [Navigation Timing API](https://www.w3.org/TR/navigation-timing-2/), and the [Resource Timing API](https://www.w3.org/TR/resource-timing-2/).
+
+## Need more strategies for fixing LCP issues?
+
+[This guide dives into greater detail](https://prismic.io/blog/fix-lcp-issues) and provides effective strategies for improving your LCP metrics.
+
+## Cumulative Layout Shift (CLS) and how to improve it
+
+### What is Cumulative Layout Shift?
+
+Cumulative Layout Shift (CLS) measures how much elements on the page move from their initial position as the page loads.
+
+[Google’s guidelines](https://web.dev/cls/) advise having a CLS score of 0.1 or less for 75% of pages or more. They recommend including image dimensions such as `width` and `height` size attributes, anticipating and alleviating layout shifts from advertisements, avoiding dynamically inserting new content on top of existing content, and using `transform` animations.
+
+### How can I reduce my Cumulative Layout Shift?
+
+To reduce your Cumulative Layout Shift, consider the following strategies:
+
+- Lazy-load offscreen images and videos rather than loading all images and videos when the page first loads. Only loading those that are visible in the viewport reduces the amount of layout shifts that can occur as new content is loaded.
+- Minimize third-party scripts by reducing or eliminating scripts that aren’t needed for your page to function. These can cause unexpected layout shifts when they load.
+
+Under the "Core Web Vitals" section of Google Search Console, you can find a report on your site's CLS score. This report can help you identify specific URLs that are affecting your score.
+
+## Interaction to Next Paint (INP) and how to improve it
+
+### What is Interaction to Next Paint?
+
+Interaction to Next Paint (INP) measures the duration from when a user initiates an interaction (e.g., clicking a button) to the time when the browser renders the next frame, showing the interaction was successful (e.g., the button’s color changing). The time interval from the initial interaction to the next visual paint is critical for providing responsive feedback to users.
+
+A low INP value indicates the page responds quickly to user input and provides a smooth experience. However, a high INP means there is significant latency before the browser paints a frame reflecting the user's interaction, which means the page is unresponsive to user input
+
+[Google recommends](https://web.dev/articles/inp) the following benchmarks for INP score:
+
+- 200ms or less is considered a good, responsive experience. This is the standard to aim for
+- Between 200-500ms needs improvement
+- Greater than 500ms indicates a poor, unresponsive experience
+
+### How can I reduce my site’s INP?
+
+Here are some strategies that can help reduce your website's Interaction to Next Paint (INP) values:
+
+- The first step is to collect performance data from real user interactions and website traffic. You can do this with tools like [Real User Monitoring (RUM) providers](https://sematext.com/blog/real-user-monitoring-tools/) or the [Chrome User Experience Report (CrUX)](https://web.dev/articles/chrome-ux-report). [Google recommends](https://web.dev/articles/optimize-inp#find_slow_interactions_in_the_field) using a RUM provider since it provides more contextual data than CrUX.
+- Offload computation to a [web worker](https://developer.mozilla.org/en-US/docs/Web/API/Worker) so the main thread is not blocked. [Partytown](https://partytown.builder.io/) is a library built specifically for this task and can be integrated with many [popular JavaScript frameworks](https://prismic.io/blog/javascript-meta-frameworks-ecosystem).
+- Minimize work on the main thread since the less work the main thread has to do, the more responsive it will be to input events. To minimize this work, use efficient algorithms and data structures. For example, don’t sort an array of 10 items when only the first five items are needed. Break up work into smaller chunks, such as parsing a large JSON file into pieces instead of all at once.
+- Minimize the size of the DOM. Larger DOMs require more work for style, layout, and painting phases, so DOM tree complexity and depth should be reduced where possible. Also, complex CSS selectors should be reviewed as complicated selectors require more work to match against the DOM tree.
+- Create loading states for heavy tasks and interactions that trigger expensive operations. You can defer the heavy workload while the loading state renders.
+- Avoid alert/confirm/prompt operations because they block the main thread. Defer them in scenarios where they cannot be avoided.
+
+## How Web Vitals patterns can further improve performance
+
+The Web Vitals patterns are a curated selection of patterns designed to attain high scores on Core Web Vitals. They target common UI components that are frequently difficult to optimize. [web.dev](https://web.dev/) provides a list of these patterns and recommendations for how to avoid common problems:
+
+- **Carousel**: A component that displays content like a slideshow with each image cycled through, one by one. A page’s LCP element can be contained within large carousels above the fold and impact LCP scores. CSS scroll snaps can be used to create transitions free of layout shifts.
+- **Fonts**: Browsers typically delay rendering any text that uses a web font that hasn't been loaded yet. FCP and LCP can be delayed due to fonts loading too late, and layouts can shift when the text finally renders the correct font. This can be avoided by using inline font declarations, the WOFF2 font format, or pre-connect resource hints. See web.dev's Best practices for fonts for more details on those techniques.
+- **Images**: Layout shift can be caused by images if they load after the rest of the page has already been rendered. This happens more often with slow-loading images due to weak internet connections or images with large file sizes. This can be avoided by specifying the width and height of the image or by using density descriptors.
+- **Infinite scroll**: A continuous stream of content is loaded and appended to the page as the user continues to scroll past the end of the currently available content. This technique may lead to layout shifts with some implementations. See web.dev’s infinite scroll implementation for an example of how to use JavaScript when creating an infinite scroll to avoid causing any layout shifts.
+- **Banners and notices**: Banners and notices commonly cause layout shifts because lower page elements are pushed further down the page when a banner is inserted into the DOM after the rest of the page has already been rendered. Adding a banner that slides in from the bottom can avoid layout shift. Modals can also be used as alternatives to banner notices.
+- **Placeholders**: One solution to layout shifts that occur from injected page content is reserving space for anticipated content with a placeholder. They can also be used along with lazy-loading to visually indicate to the user that fresh content is loading.
+- **Video**: Video can cause layout shifts and can also delay LCP by monopolizing network resources. This delays the loading of other page resources. The `<video>` tag can be used to display a poster image which doesn't cause layout shift.
+
+## Final thoughts
+
+Core Web Vitals are a collection of metrics designed to capture important aspects of the user experience. They can be a complex and bewildering array of metrics. Thankfully, the creators behind these metrics have gone to great lengths to explain the purpose of each metric and how to address them. Google provides tools to help developers measure their Core Web Vitals scores and offers recommendations on how to improve them.
+
+Some common techniques for improving Core Web Vitals scores include [optimizing images](https://prismic.io/blog/nextjs-image-component-optimization), [fonts](https://prismic.io/blog/nextjs-fonts), and videos, reserving space for content with placeholders, and using alternatives to banner ads and modals. By taking the time to improve their site's performance on these metrics, developers can make a real difference in the user experience of their visitors all over the world. And furthermore, they can impact the business outcomes their websites are designed to support.
+
+## Prismic: a headless solution for building CWV-friendly websites
+
+More than simply being a CMS, Prismic is a headless page builder that transforms how development and marketing teams build websites and manage content.
+
+With Prismic, marketers can launch and iterate on-brand pages independently of technical assistance, and developers can deliver [a custom page builder](https://prismic.io/page-builder) that integrates into their tech stack. Brands like Kaplan, Paddle, and McLaren Group use Prismic to build their websites.
+
+Here are some ways Prismic enables you to boost your Core Web Vitals:
+
+- Prismic's headless approach allows you to leverage modern frontend frameworks like [Next.js](https://prismic.io/blog/nextjs-seo-tutorial) and [SvelteKit](https://prismic.io/blog/svelte-sveltekit-tutorial) to build your website. This means you can use powerful techniques like [server-side rendering](https://prismic.io/blog/nextjs-ssr-vs-ssg), which can significantly enhance Core Web Vitals metrics like LCP and FCP. [Learn more about the headless approach](https://prismic.io/blog/headless-cms).
+- Separating the frontend and backend gives you a lightweight website that is optimized to deliver the best possible experience to your visitors.
+- All images stored on Prismic are automatically [optimized by Imgix](https://prismic.io/blog/prismic-image-optimization-imgix), which can improve your website’s LCP. Prismic also provides [a custom component called](https://prismic.io/docs/image#render-images)`PrismicImage` for rendering images and improving website performance.
+- By offloading content management and delivery to [Prismic's robust API](https://prismic.io/blog/api-response-times), you can [streamline your frontend codebase](https://prismic.io/blog/best-code-practices-scalability-collaboration), reduce bloat, and minimize the risk of performance bottlenecks. This separation of concerns allows you to focus on crafting a lean and efficient frontend, which can directly translate to improved Core Web Vitals.
+- Building with Prismic allows you to future-proof your tech stack and stay at the edge of innovation. As new technologies emerge and customers' expectations evolve, you can seamlessly adapt and refine your website to [consistently offer the best possible experience](https://prismic.io/blog/ux-tips-for-developers).
+
+## Ready to conquer Core Web Vitals and unleash optimal performance with Prismic?
+
+- [Create a free account](https://prismic.io/dashboard/signup) and start building
+- [Explore our documentation](https://prismic.io/docs) to get started
+- Try out our [in-website demo of the headless page builder](https://prismic.io/try) in action; no signup required

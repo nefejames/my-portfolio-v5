@@ -1,0 +1,387 @@
+---
+title: "Guide: React SEO Considerations and Solutions"
+client: "Prismic"
+clientSlug: "prismic"
+originalUrl: "https://prismic.io/blog/react-seo-solutions"
+publishedAt: "2022-06-07"
+canonical: "https://prismic.io/blog/react-seo-solutions"
+excerpt: "What technical challenges do you have to overcome to achieve SEO goals in a React app? When does SEO matter? Get answers to all of your questions!"
+coverImage: "/portfolio/prismic/024-react-seo-solutions/cover.webp"
+tags: []
+---
+This article was initially written by **[Coner Murphy](https://prismic.io/blog/authors/coner-murphy)** on **June 7th, 2022**, and revamped by **[Nefe Emadamerho-Atori](https://prismic.io/blog/authors/nefe-emadamerho-atori)** on **April 17th, 2024**, to include more up-to-date information.
+
+As web developers, we’re often told about the importance of good SEO and why we should strive to achieve it. But the issue is exactly that; we’re just told it's important and not how to implement it or what to focus on from a developer’s perspective.
+
+Well, that’s what we’re going to solve in this post. By the end of this post, you should have a good understanding of why SEO is important, how it can impact a business/website, and how to play your part as a developer in getting technical SEO right in React applications.
+
+So, without further delay, let’s get started with why SEO is important and what it actually is.
+
+## What is SEO, and why is it important?
+
+At a high level, SEO or Search Engine Optimization is the process by which we can optimize our content and website to rank higher on search engines like Google, Bing, etc.
+
+SEO can take many forms, but today, we’re going to focus on the technical side and how we, as developers, can play our part when handling React SEO. In reality, the technical side of SEO is just a piece of the pie. There are also other important areas impacting SEO in content creation and management, although those fall outside this post’s (and often outside the developer’s) scope.
+
+### Why is SEO important to a business’ website?
+
+Speaking of having an impact, let’s talk about why SEO is important to a business’ website in the first place. SEO is very rarely the end goal. In most cases, it is the means to make the end goal a reality.
+
+For businesses, this goal often takes the form of revenue or sales. A business might want to increase its online revenue, but to achieve that goal, it needs more people to visit its website.
+
+To get more people to visit your website, you need people searching for things related to your product or service to find it. This is where SEO comes in because it's one way to make your offerings and products discoverable. For that, you need to rank in the top 5 positions of the search terms related to your product.
+
+Think about it for a moment: when was the last time you went to the second page of Google when searching for something, especially something to buy? I’d wager that for the majority of people, the second page of Google and beyond isn’t a place well-traveled. No business wants to be there.
+
+You want to be on the first page. But, not just anywhere on the first page, you want to be as close to that top spot as possible. In fact, a study from Ahrefs showed that 75% of Google users click the first three organic results.
+
+![Top 3 google search results diagram.](/portfolio/prismic/024-react-seo-solutions/image-1.webp)
+
+_**Source: [Ahrefs](https://ahrefs.com/blog/serps/)**_
+
+And it gets lower and lower for each following spot down the page.
+
+![2nd page Google search results graph.](/portfolio/prismic/024-react-seo-solutions/image-2.webp)
+
+_**Source: [Ahrefs](https://ahrefs.com/blog/serps/)**_
+
+There are a lot of sales opportunities right there. So, for a business looking to generate revenue via its website, SEO is undeniably important and is often one of the core building blocks of a business plan.
+
+Now that we’ve established the importance of SEO, you have to ask: are there times when SEO isn’t important? That’s what we’re going to explore in the next section.
+
+### Are there times when SEO doesn’t matter?
+
+When it comes to SEO, you want to focus your efforts on public-facing pages like blog posts and marketing product pages but not pages that don’t offer a simple path to discovering your business and product (for instance, your login, status, security pages). Instead, focus your efforts on the pages you want people to find. You want a blog post to be seen by thousands of people, if not millions. But, you want a user’s settings page to (hopefully) only ever be seen by one person: the user. So, invest your SEO efforts in the URLs that make sense.
+
+And there are, of course, some businesses that don’t benefit from SEO as much as others. For example, businesses that utilize methods like direct proposals and/or bid invitations for new work. These businesses won’t be too concerned about their page ranking on Google as it will have a minimal impact on their revenue. But, it’s important to note that a lot of good SEO practices are just good web development practices in general, like making sure your website pages load fast for visitors. So, just because SEO isn’t important to your business model doesn’t mean the best practices that also have an SEO impact shouldn’t be followed.
+
+## How Google crawls and indexes pages
+
+Google—and other search engines—use automated software programs called crawlers or spiders to scan the web. Google’s crawler is called Googlebot. It “crawls” the internet to discover new and updated web pages and adds them to its index.
+
+![How search engines work diagram.](/portfolio/prismic/024-react-seo-solutions/image-3.webp)
+
+_**Source: [SEMRush](https://www.semrush.com/blog/google-index/)**_
+
+Here’s a detailed breakdown of how this process works:
+
+### **Crawling**
+
+This is the first step in the process. At this stage, Googlebot explores pages in Google's existing index, one link after the other. While crawling a page, Googlebot:
+
+- Gathers information on the uniqueness of its content,
+- Identifies links to other pages it can visit and crawl
+- Downloads HTML, CSS, JavaScript, and image files
+- Check the number of backlinks
+- Analyzes a page’s metadata
+
+### Indexing
+
+After crawling a page, the Googlebot sends all of the information it receives to Google’s servers, which updates the index with the latest data. This automated process repeats itself as the bot discovers new links and explores the ever-expanding web, ensuring that Google’s index is always updated.
+
+## Challenges for React SEO
+
+With the general technical SEO areas covered, in this section, we’re going to build your skills even further by focusing on the SEO issues that can occur in React as well as how we can resolve them.
+
+### Client-side rendering
+
+How you render your website can have a big impact on its SEO performance. React by default only utilizes Client-side rendering (CSR), which means the entire application is rendered on the client’s device and not on the server as with [Server-Side Rendering (SSR) or Static-Site Generation (SSG)](https://prismic.io/blog/nextjs-ssr-vs-ssg).
+
+![A diagram of CSR, SSR, and SSG.](/portfolio/prismic/024-react-seo-solutions/image-4.webp)
+
+_**Source: [JavaScript in Plain English](https://javascript.plainenglish.io/ssg-static-site-generation-vs-ssr-server-side-rendering-what-dae2a3892d66)**_
+
+Using client-side rendering (CSR) for our application has two profound impacts on SEO:
+
+1. Not all search engines can render JavaScript.
+2. CSR increases page load times as well as the page’s “time to interactive” (TTI).
+
+By using only CSR in our application, we place more workload on the client’s devices. This isn’t a big issue for powerful desktop computers with CPUs that can easily handle the workload, but it is an issue for mobile devices, especially older ones.
+
+Mobile CPUs aren’t as powerful as their desktop counterparts and can be easily slowed down when it comes to rendering complex JavaScript scripts. This is especially prominent if you have a website that utilizes a lot of complex functionality or animations, for example.
+
+Slow rendering negatively impacts Time to Interactive (TTI), among other Core Web Vitals we mentioned earlier. And, because Core Web Vitals are one of the many ranking factors for Google, having slow loading times on mobile not only hurts your user experience, it also hurts your Search Engine Result Page (SERP) rankings.
+
+### **How to solve client-side rendering issues**
+
+#### **1\. Use server-side rendering**
+
+Server-side rendering (SSR) is a [JavaScript rendering method](https://prismic.io/blog/javascript-rendering-methods) that involves rendering a web page on the server and sending the fully rendered HTML file to the client.
+
+Rendering websites on the server instead of the client allows you to overcome the SEO challenges and limitations of client-side rendering. Unlike CSR, which sends a bare HTML file to the browser, SSR ensures the browser receives a complete HTML file. This rendering method allows search engine crawlers and bots to effectively scan and index the web page, detect its metadata, and properly understand the information it contains.
+
+Besides making it easier for bots and crawlers to properly index pages, SSR also improves initial page load speeds since the browser doesn’t need to download or execute any JavaScript or CSS files before rendering a page.
+
+You can use server-side rendering by building with React meta-frameworks like [Next.js and Gatsby](https://prismic.io/blog/compare-nextjs-vs-gatsby), which provide out-of-the-box SSR functionality. Here’s a summary of the impact server-side rendering can have on your website:
+
+- It increases the likelihood that your website gets high SERP rankings
+- It improves its performance
+- It improves important [Core Web Vitals (CWV)](https://prismic.io/blog/how-to-improve-core-web-vitals), like [Largest Contentful Paint (FCP)](https://prismic.io/blog/fix-lcp-issues) and [Total Blocking Time (TBT](https://prismic.io/blog/understanding-how-to-minimize-web-fonts-negative-impacts), which affect SEO performance.
+
+![An image of Server-side rendering.](/portfolio/prismic/024-react-seo-solutions/image-5.webp)
+
+## SEO benefits of Next.js
+
+Besides supporting server-side rendering, Next.js provides other features that can help improve the SEO performance of your React application. Read on to [learn more about how Next.js can help you build SEO-friendly websites](https://prismic.io/blog/how-does-nextjs-help-with-seo).
+
+#### **2\. Use React Server Components**
+
+[React Server Components (RSCs)](https://nextjs.org/docs/app/building-your-application/rendering/server-components) was introduced in [React v18](https://react.dev/blog/2022/03/29/react-v18). This React feature gives you the best of both worlds by allowing you to combine SSR and CSR when building applications.
+
+With RSCs, you can choose which components to render on the server and which to render on the client. This flexibility allows you to pre-render essential parts of your application on the server while the interactive and dynamic parts are rendered on the client.
+
+RSCs' hybrid rendering model gives you the benefits of SSR (improved SEO and performance) and the advantages of CSR (interactivity and responsiveness).
+
+Here’s a code example of RSCs in action. We can perform access server-only operations like fetching data directly from a database since RSCs execute on the server.
+
+```js
+// Server Component
+const ServerRenderedBlogPost = async ({ id }) => {
+  const post = await db.posts.get(id); //database operation
+
+  return (
+    <div>
+      <h1>{post.title}</h1>
+      <section>{post.body}</section>
+    </div>
+  );
+};
+```
+
+### Unoptimized resources and assets
+
+Optimizing resources and assets like images, fonts, and JavaScript files is sometimes overlooked. However, failing to optimize them can negatively impact your SEO efforts.
+
+Unoptimized resources and assets can affect page load times, as large files take longer to load. Slow loading can frustrate users and lead to higher bounce rates. Search engines can interpret these high bounce rates as a signal of low-quality content or a poor user experience, which can negatively impact rankings.
+
+### **How to properly optimize resources and assets**
+
+#### **1\. Implement lazy loading the right way**
+
+Lazy loading is a technique that allows you to load only assets like images, JavaScript modules, and components when they're needed rather than loading everything at the initial page load. Lazy loading can significantly improve your website's initial load time and SEO performance.
+
+React provides built-in support for lazy loading through the `React.lazy` and `Suspense` components. Here's an example of how to lazy load a component:
+
+```js
+import React, { lazy, Suspense } from 'react'
+
+const LazyComponent = lazy(() => import('./LazyComponent'))
+
+const App = () => {
+  return (
+    <div>
+      <h1>My App</h1>
+      <Suspense fallback={<div>Loading...</div>}>
+        <LazyComponent />
+      </Suspense>
+    </div>
+  )
+}
+```
+
+In the example above, `React.lazy` lazily imports the `LazyComponent` while `Suspense` displays a fallback UI while the `LazyComponent` loads.
+
+If you’re working with Next.js, you can use its [custom-built Next.js Image component](https://nextjs.org/docs/pages/building-your-application/optimizing/images) to lazy-load images. Here’s a code sample of Next.js image in action:
+
+```js
+import Image from 'next/image'
+
+export default function Page() {
+  return (
+    <Image
+      src="/profile.png"
+      width={500}
+      height={500}
+      alt="Picture of the author"
+      loading="lazy" //lazy loading with the "lazy" prop
+    />
+  )
+}
+```
+
+While lazy loading is important, _doing it the right way_ is equally critical. Avoid lazy-loading vital page content, as doing so can cause the search to skip the lazy-loaded content. This can lead to that content not being indexed, thereby reducing the page's overall visibility and ranking potential.
+
+## Built-in optimization with Next.js
+
+Manually optimizing static assets like images and fonts can be time-consuming. Luckily, you don’t have to. Next.js provides built-in optimization functionality through its custom [next/image component](https://prismic.io/blog/nextjs-image-component-optimization) and [next/font module](https://prismic.io/blog/nextjs-fonts). Learn more about these features.
+
+## Technical SEO and its importance
+
+As mentioned earlier in this post, SEO isn’t just an effort for developers; it’s a collaborative effort between the content teams and developers. If either of these teams does a bad job, your SEO is doomed to fail. And, while it’s not often thought about, the truth of the matter is there are some core technical SEO tasks that developers need to get right so the content team isn’t fighting with one hand tied behind their backs.
+
+In this section, we’re going to give an overview of some of the core technical SEO tasks developers can do to help their content colleagues out in the pursuit of the number one spot on Google.
+
+### Page speed and Core Web Vitals
+
+![A diagram of core web vitals.](/portfolio/prismic/024-react-seo-solutions/image-6.webp)
+
+_**Source: [Beyonds](https://www.beyonds.fr/blog/core-web-vitals/)**_
+
+One of the most well-known influencers of SEO is page speed. If your page is performing slowly and takes [longer than 2.5 seconds to perform the Largest Contentful Paint (LCP)](https://web.dev/vitals/#core-web-vitals), then there is a chance Google will lower your page ranking. The reality of the matter is that no user likes a slow-loading page. How long does it take you to press the back button when a page doesn’t load? More than 2.5s. Right?
+
+You don’t want Google to knock your site down the rankings, but what you really don’t want is for visitors you've attracted to leave before they even viewed the page because of poor performance.
+
+That's where Core Web Vitals come in. They are Google's way of trying to assess some aspects of user experience, which is playing an increasingly prominent role in their ranking algorithm as it relates to page load speed and its impacts. Core Web Vitals are comprised of three metrics that help them understand the speed of the page load, the speed at which the page becomes interactive for users, and the stability of the page during the process. Keeping these metrics in mind as you build pages and making technical decisions to optimize for them is important for SEO-optimized websites.
+
+## New to Core Web Vitals?
+
+Check out our guide on [**Core Web Vitals: What They Are and How to Improve Them**](https://prismic.io/blog/how-to-improve-core-web-vitals)
+
+### Sitemaps
+
+[Sitemaps](https://www.semrush.com/blog/website-sitemap/) are a directory for your website. They are files that tell search engines crawling what pages are available on the website, the URLs the pages can be found, and other info like the date the pages were last updated.
+
+The whole purpose of a search engine is to crawl every page on the internet, index it, and show it in relevant searches. While they could do this to some extent on their own, we can be helpful here by creating a sitemap for our website that updates every time we add new pages or change URLs and then submit it to search engines. Effectively we are giving them the address book to our website and saying, “Here is every contact (page) and here’s how to call them (URLs), now get dialing (crawling/indexing).”
+
+If you want your pages to show on search engines faster, [submit a sitemap](https://developers.google.com/search/docs/advanced/sitemaps/build-sitemap) in Google Search Console.
+
+![An image of source code.](/portfolio/prismic/024-react-seo-solutions/image-7.webp)
+
+_**Example sitemap of prismic.io, at [https://prismic.io/sitemap-0.xml](https://prismic.io/sitemap-0.xml)**_
+
+### HTTPS
+
+[HTTP (or HyperText Transfer Protocol)](https://prismic.io/blog/how-do-apis-work) is, in simple terms, the protocol on which the internet is built. It allows for and facilitates the internet as we know it today. HTTPS (HTTP Secure) fulfills the same role as HTTP but with one core difference, which is that HTTPS is encrypted to ensure that the data communicated between users and websites is protected from attackers trying to peer in.
+
+HTTPS has long been the standard for web pages, and in 2024, there’s no reason to use regular HTTP on any of your pages. With free SSL certificates being provided by companies like [Let’s Encrypt](https://letsencrypt.org/), it’s easier than ever to use HTTPS, and it’s more secure for your users.
+
+Why is this important for SEO? Well, in 2014, Google made HTTPS a ranking factor for SEO, so if your page isn’t using it, expect to rank lower than pages that do.
+
+### Use the correct status codes
+
+As developers, we’re used to dealing with HTTP status codes, especially when it comes to handling API calls and debugging issues. But did you know that the status code you return for a page can impact its SEO ranking?
+
+You can tell bots like [the Googlebot](https://developers.google.com/search/docs/advanced/crawling/googlebot) if a page can’t be crawled/indexed or a page can’t be found using a 404 code. You can use a 410 if you’ve intentionally deleted a bit of content (although 404, 410, and most other 4xx codes have a similar impact). You can also use 3xx codes to indicate a redirect if you’ve moved a piece of content to a new URL so the index can be updated.
+
+In short, the status code you choose to return for your pages can have a significant impact on your website crawl rate and rankings.
+
+- All 4xx client errors, with the exception of 429 (too many requests), are handled the same way: Googlebot notifies the indexing pipeline that the content does not exist. If the URL was previously indexed, the indexing pipeline removes it. Newly encountered 404 pages are not processed, and the crawling frequency gradually decreases.
+- 5xx and 429 server errors cause Google's crawlers to temporarily slow down their crawling. URLs already indexed are retained in the index but are eventually removed. Googlebot interprets the 429 status code as a signal that the server is overloaded and considers it a server error.
+
+If you’re curious to learn more about how Google handles each HTTP status code, [check out their documentation](https://developers.google.com/search/docs/advanced/crawling/http-network-errors#http-status-codes).
+
+### Meta tags
+
+Meta tags are small pieces of code that live in the head tag of each page. These tags give important information to search engines and your content. You can also use them to control and restrict how search engines crawl your pages. Some core meta tags include:
+
+1. **Meta title**: It defines the title of a web page, which is displayed in the browser's title bar, bookmarks, search engine results pages (SERPs), and social media previews.
+2. **Meta description**: It provides a concise (150-160 characters) summary of the page's content. It is displayed below a page’s title in search engine results.
+3. **Meta robots tag**: Markup on a web page that tells search engine crawlers what pages to index and what pages to not. Common values for the meta robots tag include: **index**: allows search engines to crawl and index a page **noindex**: prevent page indexing **follow**: tells search engines to follow any links they find on a page **nofollow**: prevents search engines from following links.
+4. **Meta refresh redirect**: It instructs browsers to redirect to a specified URL after a period of time. This meta tag is responsible when you see a message like _“You will be redirected to the new page in 5 seconds.”_
+5. **Meta charset**: It specifies the character encoding for a webpage and ensures that special characters are displayed correctly. UTF-8 is the most popular character encoding and [is used by 98.2% of websites](https://w3techs.com/technologies/cross/character_encoding/ranking).
+6. **Meta viewport**: It tells browsers how to render a page, control its dimensions, and scale on different screen sizes. It is a vital part of responsive web design and ensures content is easily viewed on various devices.
+
+In short, you need to have key meta tags on your page, and omitting them is an SEO error that you can easily resolve. [Read this helpful guide from Ahrefs](https://ahrefs.com/blog/seo-meta-tags) to learn more about meta tags.
+
+You can add these tags to a page by including them in the its &lt;head> element. Tools like [react-helmet-async](https://github.com/staylor/react-helmet-async) are a convenient way to manage meta tags in React applications, ensuring they are properly rendered in the document's &lt;head> section.
+
+Here’s an example of these meta tags together:
+
+```js
+import { Helmet } from 'react-helmet-async';
+
+Export default function MyPage (){
+  return (
+    <div>
+      <Helmet>
+        <title>My awesome SEO-optimized React website</title>
+        <meta name="description" content="This is a description of my website">
+        <meta name="robots" content="index, follow">
+        <meta charset="UTF-8">
+        <meta http-equiv="refresh" content="5; URL=https://example.com/">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      </Helmet>
+
+      <h1>My awesome page</h1>
+      {/* Page content goes here */}
+    </div>
+  );
+};
+```
+
+## Are you looking to optimize your website’s SEO?
+
+[Explore this guide](https://prismic.io/blog/headless-cms-seo) to learn how headless CMS SEO helps and how it stacks against traditional CMS SEO.
+
+### Structured data / schemas
+
+You know when you search for a cooking recipe or product to buy and get those helpful cards at the top of the results page? Well, they’re called rich results, and they are the product of schemas (or, as Google likes to call them, [structured data](https://developers.google.com/search/docs/advanced/structured-data/intro-structured-data)).
+
+![An image of structured data.](/portfolio/prismic/024-react-seo-solutions/image-8.webp)
+
+Simply put, they’re pieces of JSON data that we can add to pages to serve as helpful clues to search engines about the type of content that is on that page and its key content elements. So, for a cooking recipe, it might be the cooking time, ingredients, and a picture of the end result it needs to be cooked at.
+
+All of this information provides helpful insights to Google, and by using these on your website, you can appear in rich results sections, letting you get all that much closer to the top of the results page if that result is not a URL but a structured preview of your content.
+
+[Check out this Google guide](https://developers.google.com/search/docs/advanced/structured-data/intro-structured-data#search-appearance) if you’re interested in learning more about these helpful tools.
+
+### Accessibility
+
+Quality remains key here. There are some parts of accessibility that can hurt your website more than others if not done right. Take semantic HTML, for example. If you don’t correctly use the right HTML tags for the right use case, then you might prohibit your website from being crawled as effectively as it could be.
+
+A common mistake with SPAs is using a `<div>` or a `<button>` to change the URL. This isn’t an issue with React itself, but how the library is used. If the `<a href>` element is missing, Google won’t crawl the URLs, and it won’t rank them.
+
+Simply put [accessibility](https://prismic.io/blog/what-is-accessibility) isn’t a nice to have but is a mandatory part of building your website. In some countries, it’s a legal requirement. So, it’s no surprise that Google and other search engines put an emphasis on your site’s accessibility and penalize it if it is poorly configured.
+
+Following [accessibility best practices](https://prismic.io/blog/what-is-accessibility#sorting-out-the-visible-work) and using the right semantic HTML will improve the user experience and boost your SEO performance.
+
+### Responsiveness
+
+With the culture shift that has happened over recent years to mobile usage, it’s no surprise that if your site performs poorly on mobile, you won’t get anywhere near the number one spot.
+
+When visitors access your site from their mobile devices and face difficulties interacting with it, they return to the Google results page. This signals to Google that your page might not be relevant to their search, a result, Google will lower your rankings.
+
+You don’t need to completely adopt the mobile-first way of building websites, but you do need to make sure your website performs great on mobile and has a seamless user experience displaying all the relevant content they need.
+
+Not having a responsive website in 2024 is a massive red flag and should be the first thing you fix on this list if you don’t already have it.
+
+## Ensure React SEO success by working with the right tools
+
+How we build React applications and websites with React has changed over time. Create React App (CRA) is now deprecated, and the React team no longer maintains it. Instead, they now [recommend using React-powered frameworks for new projects](https://react.dev/learn/start-a-new-react-project). There are several popular frameworks you can leverage, including Next.js and Remix.
+
+Over time, Next.js has established itself as the go-to React framework for building SEO-optimized and fast-loading websites. It’s no surprise that [1.9 million websites are built with Next.js](https://trends.builtwith.com/framework/Next.js), including ones like Washington Post, Loom, Notion, and Target.
+
+[Next.js provides several built-in and SEO-friendly features](https://prismic.io/blog/how-does-nextjs-help-with-seo), including:
+
+- Server-side rendering support
+- Font optimization
+- Image optimization
+- Custom head component for managing meta tags and metadata
+- Custom script component for optimizing third-party resources
+
+If you want to explore more about Next.js' SEO-friendly capabilities, [check out our step-by-step guide](https://prismic.io/blog/nextjs-headless-cms-tutorial) detailing how to build a website with Next.js and Prismic.
+
+## Automate content scaling for SEO and GEO
+
+While React frameworks like Next.js address technical SEO challenges such as rendering, performance, and crawlability, modern search behavior introduces a new challenge. As queries evolve from simple 6-word searches to complex 25-word conversational AI prompts ( [as some experts suggest](https://graphite.io/five-percent/the-ultimate-guide-to-aeo-on-lennys-podcast)), teams need to create exponentially more content variations to maintain visibility.
+
+Prismic's AI landing page builder for SEO and GEO addresses this by automating the creation of hundreds of brand-consistent, optimized landing pages from a single template. The tool generates content optimized for both traditional search engines (SEO) and AI-powered discovery (GEO). This automation lets you scale organic visibility without sacrificing the technical SEO foundations you've built or requiring additional developer resources to manually create pages.
+
+[**Learn more about the SEO and GEO landing page builder**](https://prismic.io/seo-landing-page-builder)
+
+## Laying the groundwork: Embrace technical SEO best practices
+
+As we’ve explored in this article, you can improve your React website’s SEO by:
+
+- Optimizing SEO metadata, tags, and titles
+- Using server-side rendering
+- Implementing lazy loading and doing it properly
+- Using React Server Components
+
+These solutions are only part of ensuring React SEO success, as you also have to consider technical SEO.
+
+Technical SEO lays the groundwork for your website's discoverability and increases its chances of getting high search engine rankings. Adhering to best practices from the onset gives you a solid foundation that sets your project up for success.
+
+Essential technical SEO areas to focus on include:
+
+1. **XML sitemaps**: This is a list of all the important web pages and provides information on the pages’ location and when they were last updated. XML sitemaps help search engine crawlers discover and index a website’s content more efficiently.
+2. **Robots.txt**: A `robots.txt` file allows you to control which parts of your site are accessible to search engine bots and how they should crawl and index those parts.
+3. **Internal linking**: Implement a solid internal linking structure to help search engines understand the relationships between your pages and effectively distribute rankings between pages.
+4. **Duplicate content**: Avoid duplicate content issues by using redirects with canonical URLs. You can use free tools like [Siteliner](https://www.siteliner.com/) to check if your website has any duplicate content.
+5. **Site speed**: Optimize your website's performance by minifying resources, leveraging caching, and implementing techniques like code splitting and lazy loading.
+6. **Structured data**: This is a standardized way of giving search engines more context and information about a page's content. Adding structured data to your pages enhances how your content appears in search engine results and can lead to rich snippets.
+7. **Mobile-friendliness**: Ensure that your website is fully responsive and provides a great user experience on mobile devices, as this is a crucial ranking factor for search engines.
+
+And breathe! We’ve covered a lot of ground in this post, from a high-level overview of SEO and technical SEO to, more specifically, the challenges for React SEO and solutions for them.
+
+I hope you found this post useful!
