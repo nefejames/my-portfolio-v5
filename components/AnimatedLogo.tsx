@@ -1,11 +1,15 @@
-import type { CSSProperties } from 'react'
+'use client'
+
+import { useState, type CSSProperties } from 'react'
 
 // ─── Animated NEA mark ────────────────────────────────────────────────────────
 // Same geometry as public/logo.svg, but the letters "hand-write" themselves
-// stroke by stroke on page load — a signature, which is the brand. The indigo
-// tile pops in first, then the nine strokes draw in writing order (N → E → A),
-// staggered via the --d custom property. Keyframes + reduced-motion fallback
-// live in globals.css (.nea-logo). Static logo.svg stays for favicons/OG.
+// stroke by stroke — a signature, which is the brand. The indigo tile pops in
+// first, then the nine strokes draw in writing order (N → E → A), staggered
+// via the --d custom property. Hovering the mark replays the whole signature
+// (the SVG remounts via `key`, restarting its CSS animations). All keyframes +
+// the reduced-motion fallback live in app/animations.css (.nea-logo).
+// The static logo.svg stays for favicons/OG.
 
 // One path per pen stroke, in the order a hand would write them.
 const STROKES = [
@@ -27,8 +31,15 @@ const TILE_POP_S = 0.2 // letters start once the tile has mostly landed
 const STAGGER_S = 0.13
 
 export default function AnimatedLogo({ size = 36 }: { size?: number }) {
+  // Bumping the key remounts the SVG, which restarts every CSS animation in
+  // it — the hover-replay. (Reduced-motion users: animations.css disables the
+  // keyframes, so a remount just re-renders the finished mark. Harmless.)
+  const [run, setRun] = useState(0)
+
   return (
     <svg
+      key={run}
+      onPointerEnter={() => setRun((r) => r + 1)}
       width={size}
       height={size}
       viewBox="0 0 80 80"

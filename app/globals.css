@@ -1,4 +1,6 @@
 @import "tailwindcss";
+/* All keyframes/animation rules live in one place — see app/animations.css. */
+@import "./animations.css";
 @plugin "@tailwindcss/typography";
 
 :root {
@@ -121,95 +123,3 @@ figure[data-rehype-pretty-code-figure] code [data-line] {
   background: color-mix(in srgb, var(--surface) 55%, transparent);
 }
 
-/* ─── Animated logo: signature draw-on (components/AnimatedLogo.tsx) ────────── */
-@keyframes nea-pop {
-  from { transform: scale(0.6); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-@keyframes nea-write {
-  to { stroke-dashoffset: 0; }
-}
-.nea-logo {
-  transition: transform 0.25s ease;
-}
-/* Playful stamp-tilt when hovering the mark. */
-.nea-logo:hover {
-  transform: rotate(-5deg) scale(1.06);
-}
-.nea-logo .nea-bg {
-  transform-origin: center;
-  /* Slight overshoot, like a stamp landing. */
-  animation: nea-pop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-}
-.nea-logo .nea-stroke {
-  /* pathLength=1 on each stroke → dash of 1 hides it; drawing = offset → 0.
-     Each stroke waits its turn via --d (set inline, in writing order). */
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  animation: nea-write 0.3s ease-out both;
-  animation-delay: var(--d, 0s);
-}
-@media (prefers-reduced-motion: reduce) {
-  .nea-logo .nea-bg,
-  .nea-logo .nea-stroke {
-    animation: none;
-    stroke-dashoffset: 0;
-    opacity: 1;
-  }
-  .nea-logo:hover {
-    transform: none;
-  }
-}
-
-/* ─── Splash screen (components/SplashScreen.tsx) ─────────────────────────────
-   Curtain over the site while the signature draws, once per session. */
-.nea-splash {
-  position: fixed;
-  inset: 0;
-  z-index: 100; /* above the navbar (z-50) */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--bg);
-}
-.nea-splash-out {
-  opacity: 0;
-  transition: opacity 0.45s ease;
-  pointer-events: none;
-}
-/* Repeat visitors: an inline script in app/layout.tsx sets this attribute
-   before first paint, so the curtain never flashes during hydration. */
-html[data-splash-seen] .nea-splash {
-  display: none;
-}
-/* Reduced motion: the signature doesn't animate, so a splash is pure delay. */
-@media (prefers-reduced-motion: reduce) {
-  .nea-splash {
-    display: none;
-  }
-}
-
-/* ─── 404 page: lively "404" glyphs ─────────────────────────────────────────── */
-@keyframes nf-bob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-}
-@keyframes nf-look {
-  0%, 100% { transform: translateX(0); }
-  20% { transform: translateX(-4px); }
-  60% { transform: translateX(4px); }
-}
-.nf-glyph {
-  display: inline-block;
-  animation: nf-bob 3s ease-in-out infinite;
-}
-.nf-glyph-2 { animation-delay: 0.3s; }
-.nf-glyph-3 { animation-delay: 0.6s; }
-.nf-pupil {
-  animation: nf-look 4s ease-in-out infinite;
-  transform-box: fill-box;
-  transform-origin: center;
-}
-@media (prefers-reduced-motion: reduce) {
-  .nf-glyph, .nf-pupil { animation: none; }
-}
