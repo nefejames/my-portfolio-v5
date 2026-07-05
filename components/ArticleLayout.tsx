@@ -109,9 +109,10 @@ export default function ArticleLayout({
             </footer>
           </div>
 
-          {/* Sticky TOC sidebar */}
+          {/* Sticky TOC sidebar — capped to the viewport so long TOCs scroll
+              inside the box instead of running past the fold. */}
           {toc.length > 0 && (
-            <aside className="hidden lg:block sticky top-28 self-start">
+            <aside className="hidden lg:block sticky top-28 self-start max-h-[calc(100vh-8.5rem)] overflow-y-auto overscroll-contain pr-1 nea-toc-scroll">
               <TableOfContents items={toc} />
             </aside>
           )}

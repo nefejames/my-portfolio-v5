@@ -176,6 +176,12 @@ function getTextContent(node: ReactNode): string {
   if (typeof node === 'string') return node
   if (typeof node === 'number') return String(node)
   if (Array.isArray(node)) return node.map(getTextContent).join('')
+  // Recurse into elements (<strong>, <a>, <code>…) so a heading like
+  // "**3D flip card**" contributes its inner text to the anchor id —
+  // otherwise the id won't match what lib/toc.ts derives from the markdown.
+  if (node && typeof node === 'object' && 'props' in node) {
+    return getTextContent((node.props as { children?: ReactNode }).children)
+  }
   return ''
 }
 

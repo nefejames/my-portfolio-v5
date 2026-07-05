@@ -123,3 +123,19 @@ figure[data-rehype-pretty-code-figure] code [data-line] {
   background: color-mix(in srgb, var(--surface) 55%, transparent);
 }
 
+/* ─── Sticky TOC: slim scrollbar for long tables of contents ────────────────── */
+.nea-toc-scroll {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: var(--border) transparent;
+}
+.nea-toc-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.nea-toc-scroll::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+.nea-toc-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
