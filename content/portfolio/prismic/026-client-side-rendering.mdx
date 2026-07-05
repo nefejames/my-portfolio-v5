@@ -1,0 +1,164 @@
+---
+title: "What is Client-side Rendering (CSR)?"
+client: "Prismic"
+clientSlug: "prismic"
+originalUrl: "https://prismic.io/blog/client-side-rendering"
+publishedAt: "2024-05-02"
+canonical: "https://prismic.io/blog/client-side-rendering"
+excerpt: "Client-side rendering (CSR) shifts content rendering to the browser for dynamic web apps. Explore the pros, cons, use cases, and more in this guide."
+coverImage: "/portfolio/prismic/026-client-side-rendering/cover.webp"
+tags: []
+---
+Have you ever visited a website and seen, for just a millisecond, a blank page while the page loaded? If so, you most likely visited a website that was rendered on the client.
+
+Client-side rendering is a web developed technique that has transformed how developers deliver content to target audiences. It shifts the rendering process from the server to the user's browser and leverages JavaScript to create dynamic, interactive, and immersive web experiences.
+
+In this article, we will explore what client-side rendering is, how it works, and its pros and cons. We will also learn about use cases where client-side rendering is the right approach and frameworks for implementing it.
+
+## What is client-side rendering (CSR)?
+
+Client-side rendering (CSR for short) is a [JavaScript rendering method](https://prismic.io/blog/javascript-rendering-methods) that uses JavaScript to render a website or application in the browser. With CSR, the processing and rendering of the content happens in the browser rather than on the server.
+
+With CSR, the server sends a barebones HTML file with links to JavaScript files. The browser then downloads the required resources and uses them to populate the page and render the content.
+
+CSR is commonly used for applications that have dynamic content and require a high degree of interactivity, like chat apps and social media platforms. It is also ideal for single-page applications (SPAs) and internal applications like admin and user dashboards that don’t need to be indexed by search engines.
+
+JavaScript frameworks like [React](https://prismic.io/blog/nextjs-vs-react), [Vue.js](https://prismic.io/blog/compare-react-vs-vue), Angular, Backbone.js, Ember.js, and [Svelte](https://prismic.io/blog/svelte-vs-react) have become popular choices for implementing client-side rendering.
+
+![A diagram of how CSR works](/portfolio/prismic/026-client-side-rendering/image-1.webp)
+
+## How does client-side rendering work?
+
+Here’s a breakdown of how client-side rendering works and the steps involved in the rendering process:
+
+1. **User requests a webpage**: The user requests a webpage from the browser.
+2. **A server receives the request**: This user’s action triggers a GET request to the server, which identifies the desired route or URL.
+3. **The server sends a minimal HTML page with links to CSS and JavaScript files**: The browser requests the initial HTML file from the server. The file contains links to [external CSS stylesheets](https://prismic.io/blog/best-css-frameworks) and JavaScript files.
+4. **Parsing the HTML**: The browser parses the HTML markup and constructs the Document Object Model (DOM) tree, which represents the webpage's structure.
+5. **Browser downloads CSS and JavaScript**: The browser sends additional requests to the server to download the CSS and [JavaScript resources](https://prismic.io/blog/compare-javascript-vs-typescript).
+6. **Rendering the page**: The browser uses the DOM tree and the downloaded CSS files to render the basic structure of the web page. This includes elements like text, images, buttons, and styles.
+7. **JavaScript execution**: The browser executes the JavaScript code to add interactivity and dynamic content to the webpage. This can include animations, form validations, or [fetching data from an API](https://prismic.io/blog/api-response-times).
+8. **Re-rendering and updating**: As the user interacts with the webpage (clicking on buttons, filling out forms), the browser will re-render parts of the webpage based on the user's actions. This can involve updating the DOM or making additional requests to the server for new data.
+9. **Final display**: The updated DOM, along with any dynamically fetched data, is rendered by the browser, resulting in a fully interactive and dynamically updated webpage.
+
+## Interested in server-side rendering?
+
+Server-side rendering is another popular JavaScript rendering strategy. [Explore this guide](https://prismic.io/blog/what-is-ssr) to learn more about it.
+
+## Advantages of client-side rendering
+
+### Reduced server load
+
+Client-side rendering offloads a significant portion of the rendering process from the server to the client's browser. Since the server only needs to send minimal HTML and static assets, it experiences lower processing overhead and reduced server load.
+
+With server-side rendering, the server has to generate the complete HTML for each request, potentially putting a strain on server resources, especially during periods of high traffic. By leveraging client-side rendering, the server can focus on handling data retrieval, business logic, and API requests, resulting in improved scalability and better resource utilization.
+
+### Greater interactivity
+
+Here are some ways CSR improves user interactivity:
+
+1. With CSR, user interactions like button clicks, form submissions, or navigation between pages are handled in the browser without the need for full page reloads. CSR applications can respond to user actions and inputs in real-time. This results in near-instant updates, provides a richer user experience, and makes websites feel more responsive
+2. CSR frameworks like React, Vue.js, and Angular use effective rendering techniques like the Virtual DOM to ensure that complex updates are executed without any perceivable lag
+
+## Disadvantages of client-side rendering
+
+### Longer page load time
+
+Client-side rendering can lead to longer page load times than server-side rendering because the browser has to download and execute all the necessary JavaScript files before rendering the complete webpage.
+
+### Poor SEO
+
+Search engines like [Google and Bing have improved their indexing of JavaScript-loaded websites](https://www.searchenginejournal.com/seo-javascript-good-bad-uncertainty/346708/). However, bots and crawlers still find it easier to index server-side rendered websites than client-side ones.
+
+Websites rendered on the client may not be as easily discoverable in search results, which can negatively affect their visibility, organic traffic, and conversion rates. Because of this, client-side rendering is the wrong approach for websites like landing pages, blogs, media publications, and e-commerce platforms that require high search engine visibility.
+
+## Improved SEO with Next.js
+
+[Explore our Next.js SEO guide](https://prismic.io/blog/how-does-nextjs-help-with-seo) to learn how this React meta-framework can improve your website’s SEO.
+
+### Dependency on the user's device
+
+Client-side rendering relies heavily on the processing power of the user's device. If the device is older or lacks sufficient resources, it may struggle to handle the rendering and execution of complex JavaScript frameworks or [libraries](https://prismic.io/blog/react-component-libraries).
+
+This dependency on the user's device can lead to inconsistent performance across different devices and browsers. We can address this issue by implementing performance optimization strategies like [lazy loading](https://prismic.io/blog/nextjs-image-component-optimization), [asset optimization](https://prismic.io/blog/understanding-how-to-minimize-web-fonts-negative-impacts), and code splitting.
+
+## Client-side rendering frameworks
+
+### React
+
+![A image of React website.](/portfolio/prismic/026-client-side-rendering/image-2.webp)
+
+[React](https://react.dev/) is a popular JavaScript library for building user interfaces and web applications. It was developed by Facebook and allows developers to [create dynamic and interactive websites](https://prismic.io/blog/nextjs-vs-react). Some of its notable features include the virtual DOM (vDOM), and the JavaScript XML (JSX) syntax extension.
+
+### Vue.js
+
+![An image of the Vue website.](/portfolio/prismic/026-client-side-rendering/image-3.webp)
+
+[Vue.js](https://vuejs.org/) was created by Evan You in 2014, and it is widely known for its simplicity and ease of use. It is incrementally adoptable, meaning that you can start using it in small parts of your project and gradually introduce more features as needed. This makes it a great choice for both beginners and experienced developers.
+
+### Angular
+
+![An image of Angular website.](/portfolio/prismic/026-client-side-rendering/image-4.webp)
+
+[Angular](https://angular.io/) is a popular open-source framework developed by Google for building dynamic applications. It offers features like declarative templates and two-way data binding that make it easier to build interactive and responsive web applications.
+
+### Svelte
+
+![An image of Svelte website.](/portfolio/prismic/026-client-side-rendering/image-5.webp)
+
+[Svelte](https://svelte.dev/) was developed by Rich Harris and its first version was released in November 26, 2016. Unlike React and Vue, which use virtual DOM diffing, it [compiles code into highly optimized vanilla JavaScript](https://prismic.io/blog/svelte-and-sveltekit) at build time. This eliminates the need for bulky run-time libraries, resulting in faster loading times and smaller file sizes.
+
+## When to use client-side rendering
+
+Client-site rendering, like any technology, is not a one-size-fits-all solution. Therefore, understanding its appropriate use cases is crucial. Here are some scenarios where client-side rendering is the right approach:
+
+### Dynamic web applications
+
+CSR is a great fit for dynamic applications like social networks and online messengers that have multiple users and require frequent updates. By rendering content on the client, these applications can push real-time updates without needing to reload the entire page, which would disrupt the user experience.
+
+### Internal applications
+
+CSR is well-suited for internal applications like analytical dashboards, admin panels, CRM systems, LMSes, and employee portals. [These type of applications](https://prismic.io/blog/nextjs-example-projects) prioritize speed, interactivity and instant updates.
+
+### When SEO is not a priority
+
+While SEO is important, not every website or application needs to be visible to search engines. Chat applications, social platforms, and internal applications fall into this category.
+
+## Key differences between client-side and server-side rendering
+
+### SEO
+
+Websites rendered on the client can be difficult for search engines to index, as they may struggle to parse JavaScript-heavy websites. This can result in lower search engine rankings. On the other hand, websites rendered on the server are more SEO-friendly, as search engines can better index their content.
+
+## Next.js image optimization
+
+An important aspect of SEO is image optimization. [Learn how Next.js’ custom image component helps with image optimization and web performance](https://prismic.io/blog/nextjs-image-component-optimization).
+
+### Rendering process
+
+In client-side rendering, the browser initially receives a minimal HTML file containing links to JavaScript files. The browser then downloads the JavaScript code, fetches any necessary data from APIs, and dynamically renders the content. On the other hand, with server-side rendering, the server generates the complete HTML markup for a page and sends it to the browser for rendering.
+
+### Initial page load experience
+
+With client-side rendering, users typically encounter a blank page or a loading spinner while the browser fetches the JavaScript files, parses them, and renders the content. The lack of visible content during the initial load can create a perception of slowness or unresponsiveness, potentially leading to frustration or abandonment.
+
+With server-side rendering, the user immediately sees the website content on page load since the browser receives the fully rendered HTML markup. This improves the user experience since users interact with the content immediately without any initial blank screen or loading indicators.
+
+|  | Client-side rendering | Server-side rendering |
+| --- | --- | --- |
+|  | Difficult for search engines to index and may affect SEO | Easier for search engines to index, which improves SEO |
+|  | The rendering process occurs on the browser | The rendering process occurs on the server |
+|  | The browser receives a blank HTML file with links to download the required JavaScript files | The browser receives a fully rendered HTML file populated with a webpage’s content |
+|  | Users may see a blank page or loading screen during the initial page load | Users do not encounter blank pages or loading screens during the initial page load |
+
+## Conclusion
+
+Client-side rendering helps developers create dynamic and interactive websites and applications. CSR’s approach of leveraging JavaScript and moving the rendering process to the browser helps us create responsive applications that offer a native-like experience.
+
+While client-side rendering is not a one-size-fits-all solution, it has become a valuable web development tool. Understanding its strengths, limitations, and appropriate use cases will help us know when client-side rendering is the right approach to follow.
+
+Dive into the following resources to learn more about the other types of JavaScript rendering methods in the web development space:
+
+- [What is server-side rendering?](https://prismic.io/blog/what-is-ssr)
+- [How JavaScript rendering works and how to use it strategically](https://prismic.io/blog/javascript-rendering-methods)
+- [Next.js server-side rendering vs. static site generation](https://prismic.io/blog/nextjs-ssr-vs-ssg)

@@ -22,3 +22,13 @@
 19. https://prismic.io/blog/nextjs-vs-react
 20. https://prismic.io/blog/nextjs-typescript
 21. https://prismic.io/blog/nextjs-example-projects
+22. https://prismic.io/blog/what-is-ssr
+23. https://prismic.io/blog/website-cms-platforms
+24. https://prismic.io/blog/react-seo-solutions
+25. https://prismic.io/blog/how-to-improve-core-web-vitals
+26. https://prismic.io/blog/client-side-rendering
+27. https://prismic.io/blog/client-side-vs-server-side-rendering
+28. https://prismic.io/blog/website-redesign-guide
+29. https://prismic.io/blog/top-nextjs-freelancers-and-agencies
+30. https://prismic.io/blog/ab-testing
+31. https://prismic.io/blog/nextjs-blog-templates
