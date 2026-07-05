@@ -1,0 +1,390 @@
+---
+title: "39 Awesome CSS Animation Examples with Demos + Live Code"
+client: "Prismic"
+clientSlug: "prismic"
+originalUrl: "https://prismic.io/blog/css-animation-examples"
+publishedAt: "2024-12-27"
+canonical: "https://prismic.io/blog/css-animation-examples"
+excerpt: "Discover 39 eye-catching CSS animations from text effects to loading screens, with interactive code examples and real-world website implementations."
+coverImage: "/portfolio/prismic/045-css-animation-examples/cover.webp"
+tags: []
+---
+
+One way website owners are capturing and keeping user attention is through eye-catching animations. Whether it’s subtle hover effects, smooth transitions, or dynamic interactions, animations can create an engaging experience that draws users in from the moment they land on a site.
+
+In this article, we’ll explore 39 CSS animation examples you can add to your website to enhance its interactivity and visual appeal. We’ll view a mix of animations along the way — those that work solely with CSS and those that require JavaScript to work. Let’s dive in!
+
+## [Text animations](https://prismic.io/blog/css-text-animations)
+
+### 1\. Simple text animation
+
+<CodePen user="yemon" id="pWoROm" title="Simple CSS text animation" />
+
+The [simple text animation](https://codepen.io/yemon/pen/pWoROm) by [Nooray Yemon](https://codepen.io/yemon/pen/pWoROm) creates a vertical text-flipping effect inside the `#flip` container, making different words — work, lifestyle, and everything — appear in a sequential and infinite loop. The animation is controlled by the `@keyframes show` ( [docs](https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes)), which adjusts the `margin-top` of the child `div` elements, causing them to slide into view.
+
+### 2\. CSS text animation
+
+<CodePen user="kh-mamun" id="NdwZdW" title="Pure CSS Text animation" />
+
+The [CSS text animation](https://codepen.io/kh-mamun/pen/NdwZdW) by [Mamun Khandaker](https://codepen.io/kh-mamun) creates a series of animations — rotation, scaling, bouncing, sliding in, and various combinations — for different groups of text. The animations are powered by `@keyframes` declarations that control transformations like `translate` ( [docs](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/translate)), `scale` ( [docs](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/scale)), and `opacity` ( [docs](https://developer.mozilla.org/en-US/docs/Web/CSS/opacity)).
+
+While this animation doesn’t require JavaScript to work, JavaScript is used to repeat the animations when the “Repeat Animation” button is clicked.
+
+### 3\. Hover effect for headers
+
+<CodePen user="oliviale" id="YgzNzK" title="Hover Effect for Headers" />
+
+The [hover effect for headers](https://codepen.io/oliviale/pen/YgzNzK) by [Olivia Ng](https://codepen.io/oliviale) creates a visually engaging webpage with sections representing different natural elements like deserts, forests, canyons, glaciers, mountains, oceans, and more. Each "element" has a unique [background image](https://developer.mozilla.org/en-US/docs/Web/CSS/background-image), interactive hover effects, and text animations to enhance [user experience](https://prismic.io/blog/ux-tips-for-developers).
+
+### 4\. CSS party5.
+
+<CodePen user="davideast" id="vYPZdWV" title="CSS Party" />
+
+The [CSS party](https://codepen.io/davideast/pen/vYPZdWV) animation by [David East](https://codepen.io/davideast) puts control in your hands by providing a slider for controlling the intensity and speed of the text animation.
+
+This text animation relies on `@keyframes breath`, which adds a [text shadow](https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow) to the text and makes it scale up and down, and some JavaScript code that handles the slider’s input value and uses [CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) to control the animation’s timing.
+
+## See more creative text animations!
+
+Want to see more examples of [CSS text animations](https://prismic.io/blog/css-text-animations)? Then, check out our dedicated article that covers 40 text effects.
+
+## [Hover animations](https://prismic.io/blog/css-hover-effects)
+
+### 5\. Animated CSS mail button
+
+<CodePen user="jakegilesphillips" id="MveNLe" title="Animated CSS Mail Button" />
+
+The [animated CSS main button](https://codepen.io/jakegilesphillips/pen/MveNLe) by [Jake Giles-Phillips](https://codepen.io/jakegilesphillips) creates an envelope animation where the envelope opens and reveals its content on hover. It relies on various CSS transforms to work.
+
+### 6\. Sparkly shiny text
+
+<CodePen user="jh3y" id="oNqdmbW" title="Sparkly Shiny Text ✨" />
+
+The [sparkly shiny text](https://codepen.io/jh3y/pen/oNqdmbW) animation by [Jhey](https://codepen.io/jh3y) creates an interactive button that features multiple black sparkle SVGs that animate on hover. The text of the button has a layered effect that creates a `text-shadow` ( [docs](https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow)) for a 3D-like appearance.
+
+### 7\. Glowing dot effect
+
+<CodePen user="onediv" id="zYEZXdz" title="Full CSS growing dot effect" />
+
+The [glowing dot effect](https://codepen.io/onediv/pen/zYEZXdz) by [Vincent Durand](https://codepen.io/onediv) creates a card component with a grid of tiny dots as its background. The dots expand as users hover over specific sections of the card, and this makes for an interesting effect.
+
+### 8\. Glide to reveal
+
+<CodePen user="jh3y" id="JjxPKXz" title="Glide To Reveal with CSS :has()" />
+
+The [glide to reveal](https://codepen.io/jh3y/pen/JjxPKXz) hover effect by [Jhey](https://codepen.io/jh3y) features six digits that are blurred initially but scale up and become clear on hover or focus.
+
+### 9\. OS dock
+
+<CodePen user="jh3y" id="mdxggmO" title="CSS OS Dock \[CSS :has(), lerp custom props\]" />
+
+## Check out more CSS hover effects!
+
+Explore our dedicated article to see more [CSS hover effects](https://prismic.io/blog/css-hover-effects).
+
+## [Button animations](https://prismic.io/blog/css-button-animations)
+
+### 10\. Keyframe tricks
+
+<CodePen user="davideast" id="MWxvzjm" title="Single Keyframe Tricks" />
+
+The [keyframe tricks](https://codepen.io/davideast/pen/MWxvzjm) effect by [David East](https://codepen.io/davideast) showcases various types of animations — like shake, pulse, glitch, flip, fill — applied to buttons using CSS keyframes. The JavaScript code in this Codepen is used to stop and start the animation.
+
+### 11\. CSS fizzy button
+
+<CodePen user="jcoulterdesign" id="xVJWvz" title="CSS Fizzy Button" />
+
+The [CSS fizzy button](https://codepen.io/jcoulterdesign/pen/xVJWvz) by [Jamie Coulter](https://codepen.io/jcoulterdesign) creates an animated button effect where bubble particles emanate from the text button while a right arrow slides into view and the background color changes.
+
+### 12\. Fun 3D button
+
+<CodePen user="LukyVj" id="oNPJrdy" title="Fun 3D button" />
+
+The [fun 3D button](https://codepen.io/LukyVj/pen/oNPJrdy) by [LukyVJ](https://codepen.io/LukyVj) creates a button that, when hovered over, scales up while heart-shaped elements of different sizes scale into view. It also provides controls for debugging the animation and changing the body’s background color.
+
+### 13\. Rainbow gradient button
+
+<CodePen user="LukyVj" id="LYJBdYo" title="Lil rainbow gradient button" />
+
+The [rainbow gradient button](https://codepen.io/LukyVj/pen/LYJBdYo) by [LukyVJ](https://codepen.io/LukyVj) creates a button that scales up, shifts, and shuffles through various colors on hover. It relies on several colors, CSS variables, `scale`, `translateY`, and `linear-gradient` ( [docs](https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient)) to work.
+
+### 14\. Storm button
+
+<CodePen user="jwktje" id="JjBaJBv" title="Andreas Storm button" />
+
+The [storm button](https://codepen.io/jwktje/pen/JjBaJBv) by [jwktje](https://codepen.io/jwktje) uses HTML, CSS, and SVG to create a voltage button with a glowing effect. The SVG includes a `filter` named “glow” that gives the graphic a glowing, wavy look. The effect relies on three keyframes to work: `spark-1`, `spark-2`, and `fly-up`.
+
+## Click animations
+
+### 15\. Toggle switch with a hole
+
+<CodePen user="jkantner" id="OJNezxj" title="Toggle Switch with a Hole Handle" />
+
+[Jon Kantner](https://codepen.io/jkantner) created a [toggle switch with a hole](https://codepen.io/jkantner/pen/OJNezxj) that, when clicked, the hole extends and moves to the opposite end along the x-axis. It’s a solid implementation of the basic toggle switch animation we see around.
+
+### 16\. Pure CSS drawer
+
+<CodePen user="jh3y" id="ExNQxKV" title="Pure CSS Drawers" />
+
+The [pure CSS drawer](https://codepen.io/jh3y/pen/ExNQxKV) by [Jhey](https://codepen.io/jh3y) creates a 3D drawer with panels that open when clicked. The third drawer has a wavy text animation inside it, further enhancing the awesomeness of this animation.
+
+### 17\. Copy button click effect
+
+<CodePen user="arjunace" id="dyMdbyr" title="Copy Button Click Effect" />
+
+The [copy button click effect](https://codepen.io/arjunace/pen/dyMdbyr) by [Arjun Ace](https://codepen.io/arjunace) uses two SVG elements to create its animation. When clicked, a copy-like motion occurs. This effect relies on two keyframe definitions: `press` to give the card a pressed-in feel when clicked and `bounce` to animate the SVG copy icon out of view.
+
+### 18\. Beveled buttons
+
+<CodePen user="brandonmcconnell" id="bzwMxx" title="SCSS Beveled Buttons" />
+
+The [beveled buttons](https://codepen.io/brandonmcconnell/pen/bzwMxx) animation by [Brandon McConnell](https://codepen.io/brandonmcconnell) creates a button that transforms from an envelope-like button to a ghost button when clicked. At the same time, the “Bevel Up” text moves from its initial position above the button to the back.
+
+### 19\. Biometrics button
+
+<CodePen user="ainalem" id="mQBNpg" title="Black Biometirics Button" />
+
+The [biometrics button](https://codepen.io/ainalem/pen/mQBNpg) by [Mikael Ainalem](https://codepen.io/ainalem) creates an interactive login button with a fingerprint animation. When the button is clicked, it transforms from displaying the text "LOGIN," to showing an SVG fingerprint animation that traces different curved path lines to mimic a fingerprint scan.
+
+Among other CSS features, the animation relies on `stroke-dasharray` and `stroke-dashoffset` to manipulate the SVG’s path and give the illusion of drawing fingerprint lines. It also uses a `text` keyframe to manage the text’s visibility and the `Ok` keyframe to control the SVG animation.
+
+## Loading animations
+
+### 20\. Kinetic CSS loaders
+
+<CodePen user="jenning" id="LYWJdWz" title="Kinetic CSS loaders" />
+
+The [kinetic CSS loaders](https://codepen.io/jenning/pen/LYWJdWz) by [Jenning](https://codepen.io/jenning) use a combination of keyframes, [pseudo-elements](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements), and CSS properties to create loading elements. You can use these loaders to add visual feedback when processes are running in the background of your app.
+
+### 21\. Newton’s cradle
+
+<CodePen user="arushi011" id="EXmMvx" title="Newton's cradle using only CSS" />
+
+[Newton’s cradle](https://codepen.io/arushi011/pen/EXmMvx) animation by [Arushi Bajpai](https://codepen.io/arushi011) creates a pendulum swing that continually sways from one end to the other. Each `.ball` represents a pendulum bob, with a `::before` pseudo-element styled to resemble the bob’s strange. The `.first` and `.last` balls are animated with `firstball` and `lastball` keyframes to mimic the natural swinging motion of a pendulum. The `transform-origin` ( [docs](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin)) ensures the balls rotate from the top point of their pseudo-element strings, creating a realistic pivot.
+
+### 22\. Glowing loader ring
+
+<CodePen user="Curlmuhi" id="ExKWXKO" title="Glowing Loader Ring Animation" />
+
+The [glowing loader ring](https://codepen.io/Curlmuhi/pen/ExKWXKO) animation by [Ekta maurya](https://codepen.io/Curlmuhi) creates a creates a glowing, spinning ring effect. The `.ring` element forms the circular base while its `:before` pseudo-element imitates the yellow border. The `animateC` keyframe handles the yellow rim’s motion, while the `animate` keyframe handles the yellow dot’s motion.
+
+### 23\. Making-pancake loader
+
+<CodePen user="pawelqcm" id="dMqrqd" title="Never-ending box" />
+
+The [making-pancake loader](https://codepen.io/pawelqcm/pen/ObwyNe) by [Pawel](https://codepen.io/pawelqcm) creates a playful animation of a flipping pancake in a pan, complete with bubbling effects to simulate cooking. The pancake-flipping effect is achieved through multiple keyframe animations:
+
+- `jump`: Handles the movement of the pancake
+- `flip`: Animates the pan’s flipping motion
+- `switchSide`: Rotates the pan around its Y-axis
+- `fly`: Simulates the pancake rising to its peak, rotating mid-air, and returning to its starting position
+- `bubble`: Controls the size, position, and fading of the bubbles as they rise from the pan
+- `pulse`: Adds a pulsating effect to the _"Cooking in progress..."_ text by gradually scaling and fading the text in and out
+
+### 24\. Speedy truck
+
+<CodePen user="tippyfodder" id="OyXWpr" title="Speedy truck" />
+
+The [speedy truck](https://codepen.io/tippyfodder/pen/OyXWpr) animation by [Tippy fodder](https://codepen.io/tippyfodder) creates a looping animation of a scenic background with a truck driving through a landscape of mountains, hills, trees, and rocks. This animation relies on the following keyframes:
+
+- `tree`: Animates the trees to move from the right side of the screen (1350px) to the left side (-50px)
+- `tree2`: Similar to `tree`, but starts at 650px, creating variation in the scrolling speed and position of the second tree
+
+1. `tree3`: Another variation for the third tree, starting at 2750px
+2. `rock`: Animates rocks from right to left
+3. `truck`: Simulates the truck's motion by slightly bouncing it up and down to mimic driving over uneven terrain
+4. `wind`: Animates the "wind" effect on the truck's visual elements by slightly moving them up and down
+5. `mtn`: Moves the mountain backdrop horizontally from its initial position to create the illusion of distant background movement
+6. `hill`: Similar to `mtn`, moves the hill horizontally to simulate scrolling terrain closer to the foreground
+
+## Menu animations
+
+### 25\. Dropdown menus
+
+<CodePen user="kkrueger" id="jOrYaM" title="Dropdown Menus" />
+
+[Kevin’s](https://codepen.io/kkrueger) [dropdown menus](https://codepen.io/kkrueger/pen/jOrYaM) effect creates a dropdown menu with four categories: animals, names, things, and movies. Each category is styled as a button with hover effects that reveal a list of items.
+
+### 26\. Swanky CSS Drop Down menu
+
+<CodePen user="jcoulterdesign" id="qdWxEm" title="Swanky Pure CSS Drop Down Menu V2.0" />
+
+The swanky CSS Drop Down menu by [Jamie Coulter](https://codepen.io/jcoulterdesign) provides a combination of click and hover animations that will make any menu stand out. When the menu links are clicked, the sub-menus stagger into view one after the other. The social media buttons aren’t left out, as a slide animation is applied to its content on hover.
+
+### 27\. Pure CSS menu
+
+<CodePen user="tonkec" id="aRMaWR" title="Pure CSS menu" />
+
+The [pure CSS menu](https://codepen.io/tonkec/pen/aRMaWR) by [Antonija Šimić](https://codepen.io/tonkec) creates a fullscreen menu design that features a toggle button that:
+
+- Transforms into an animated "X" when clicked
+- Opens two animated sections: a left panel with a call-to-action (CTA) button and a right panel with navigational links.
+
+The left panel slides down vertically, while the right panel slides in horizontally, creating a dynamic opening effect. The menu links include a hover animation where an underline shifts from left to right for enhanced interactivity.
+
+### 28\. **💪 CSS menu feat. emoji**
+
+<CodePen user="pgalor" id="mKGdwr" title="💪 CSS menu feat. emoji" />
+
+[💪 CSS menu feat. emoji](https://codepen.io/pgalor/pen/mKGdwr) by [Piotr Galor](https://codepen.io/pgalor) defines a navigation menu with skewered sub-menus that appear when hovered over. It is a simple but catchy menu animation.
+
+### 29\. Pure CSS menu animation
+
+<CodePen user="FUGU22" id="bYbNaY" title="Pure CSS Menu Animation" />
+
+The [pure CSS menu animation](https://codepen.io/FUGU22/pen/bYbNaY) by [Charlie Marcotte](https://codepen.io/FUGU22) creates a menu with a white bottom panel containing three hoverable headings — Explore, Connect, and Interact. This effect also includes a pulsating blob-like element that shifts position based on which heading is being hovered.
+
+## Card animations
+
+### 30\. 3D cards flip
+
+<CodePen user="jsulpis" id="VwBNoEb" title="3D Cards Flip" />
+
+The [3D cards flip](https://codepen.io/jsulpis/pen/VwBNoEb) effect by [Julien Sulpis](https://codepen.io/jsulpis) creates an interactive 3D card-flipping animation. The `.board` contains three `.card` elements, each of which can flip between its front and back faces when clicked. As the cards flip, they stack on top of each other and, when clicked again, revert back to their original state and position.
+
+### 31\. Card hover effect
+
+<CodePen user="aaroniker" id="yLEPJXj" title="Card hover effect" />
+
+The [card hover effect](https://codepen.io/aaroniker/pen/yLEPJXj) by [Aaron Iker](https://codepen.io/aaroniker) creates cards that, when hovered on, receive a shiny tile effect. Among others, it relies on CSS features like `mask-image` ( [docs](https://developer.mozilla.org/en-US/docs/Web/CSS/mask-image)), `backdrop-filter` ( [docs](https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter)), `conic-gradient` ( [docs](https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/conic-gradient)), `radial-gradient` ( [docs](https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/radial-gradient)), and `@keyframes tile`, which animates the opacity of the tiles on hover.
+
+### 32\. Animated info card
+
+<CodePen user="BlogFire" id="mdXNMVX" title="Pure CSS Responsive animated info card" />
+
+When a user hovers over the [animated info card](https://codepen.io/BlogFire/pen/mdXNMVX) by [Chris Smith](https://codepen.io/BlogFire), its green overlay slides to the left, revealing a text section with detailed information about trees. This card relies on three animations — `slide`, `slide-left`, and `slide-up` to function.
+
+### 33\. Flipping split card
+
+<CodePen user="tobiasdev" id="XjyaKr" title="CSS \| Flipping Card Split" />
+
+The [flipping split card](https://codepen.io/tobiasdev/pen/XjyaKr) effect by [Tobias Bogliolo](https://codepen.io/tobiasdev) creates a flippable card effect using CSS transforms and perspective, where a wrapper contains a flip container with front and back sides. When a user hovers over the wrapper, the `.flip-left` and `.flip-right` elements rotate 180 degrees along the Y-axis, creating a smooth flipping animation.
+
+The `backface-visibility: hidden` ( [docs](https://developer.mozilla.org/en-US/docs/Web/CSS/backface-visibility)) property ensures that only one side of the card is visible during the rotation, while the `perspective` and `transform-style: preserve-3d` ( [docs](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-style)) properties give the flip a three-dimensional feel.
+
+### 34\. House of CSS cards
+
+<CodePen user="amit_sheen" id="QWGjRKR" title="House of CSS cards" />
+
+The [house of CSS cards](https://codepen.io/amit_sheen/pen/QWGjRKR) animation by [Amit Sheen](https://codepen.io/amit_sheen) creates a 3D card tower that rotates continuously. The tower is built using multiple nested `.card` elements; each positioned using precise `rotateY`, `translateX`, and `translateY` transformations to create the circular structure.
+
+A `towerRotate` animation spins the entire structure at a slow, consistent pace. As the tower rotates, visitors can change the viewing angle by moving their mouse over different parts of the screen, which makes the tower look like it's shifting perspective.
+
+## Other creative animations
+
+### 35\. Watch tower
+
+<CodePen user="tdoughty" id="bGGZWqg" title="Watch Tower Pure CSS Animation" />
+
+The [watch tower](https://codepen.io/tdoughty/pen/bGGZWqg) animation by [Travis Doughty](https://codepen.io/tdoughty) features flying birds and moving clouds and is a great reminder that there are almost no limits to what one can create with CSS and HTML alone. This animation works with clip path, CSS transforms, and several keyframe animations.
+
+### 36\. Funny candle
+
+<CodePen user="kevin_David_k" id="eYNeQVY" title="Funny Candle Pure CSS Animation" />
+
+The [funny candle](https://codepen.io/kevin_David_k/pen/eYNeQVY) animation by [Kevin David](https://codepen.io/kevin_David_k) could easily pass for a scene from a cartoon. The candles are brought to life through multiple keyframe animations that control their body expansion, eye blinking, mouth movements, and overall positioning, while additional elements like smoke, light waves, and a flickering fire add character to the scene.
+
+Each element—from the candles' eyes and mouths to the smoke and waves—has its own unique animation sequence.
+
+### 37\. Ants on sugar
+
+<CodePen user="thathurtabit" id="bgWdge" title="Ants on Sugar CSS Animation" />
+
+The [ants on sugar](https://codepen.io/thathurtabit/pen/bgWdge) animation by [Stephen Fairbanks](https://codepen.io/thathurtabit) uses various keyframe animations to create ants moving across a cube of sugar and the background in general.
+
+### 38\. Submarine
+
+<CodePen user="ajerez" id="EaEEOW" title="Submarine with CSS" />
+
+The [submarine](https://codepen.io/ajerez/pen/EaEEOW) animation by [Alberto Jerez](https://codepen.io/ajerez) creates a submarine immersed in a body of water. It defines various keyframes that handle the animation of the bubbles, lights, and the submarine’s body and blades.
+
+### 39\. Glowing loader
+
+<CodePen user="Maxoor" id="JZZvXJ" title="The Glowing Loader - Pure CSS Animation" />
+
+## Websites with cool CSS animation examples
+
+### Twinbru
+
+![A GIF of Twinbru website](/portfolio/prismic/045-css-animation-examples/image-1.gif)
+
+[Twinbru](https://www.twinbru.com/)’s website is full of many hover animations, 3D elements that move in response to the mouse’s motion, and scroll animations that would be delightful to website visitors. There’s also a color picker for changing the site’s theme, a page-load animation, and a logo animation that occurs on hover.
+
+### Fix Studio
+
+![A GIF of Fix Studio website](/portfolio/prismic/045-css-animation-examples/image-2.gif)
+
+[Fix Studio’s website](https://fix.studio/) starts off with a mesmerizing loading animation, and then as you scroll, their projects scale into and out of view. There are also various micro-interactions that occur as you explore different pages.
+
+This website is proof that minimalistic websites don’t need to be boring. Rather, they can be creative and engaging.
+
+### Apple — iPad Pro
+
+![A GIF of Apple site](/portfolio/prismic/045-css-animation-examples/image-3.gif)
+
+Besides building sleek and performant smart devices, Apple is also known for creating beautifully designed and animation-packed landing pages for its products. An example is the [iPad Pro website](https://www.apple.com/ipad-pro/), which is full of many scroll animations that are nothing short of amazing.
+
+### BetterUp
+
+![A GIF of BetterUp site](/portfolio/prismic/045-css-animation-examples/image-4.gif)
+
+Reports don’t have to be boring, and [BetterUp’s landing page](https://grow.betterup.com/resources/insights-report-inclusive-leadership) for its insights report is is proof. It enhances the reading experience by adding slight transitions, [lottie animations](https://iconscout.com/lottie-animations), hover animations, parallax effects, and SVG animations to the site.
+
+### Somefolk
+
+![A GIF of Somefolk website](/portfolio/prismic/045-css-animation-examples/image-5.gif)
+
+[Somefolk's website](https://www.somefolk.co/) kicks things off by using its logo and some text to run a page loader — powered by lottie and SVG animations. Hovering over the text or scrolling through it causes it to shift across a 3D-space — a nice micro-interaction to include.
+
+The site also comes with other scroll animations, SVG animations, and parallax effects, which you’ll see as you scroll further.
+
+## CSS animation generators and animation tools you should know
+
+### [Cubic-bezier.com](http://cubic-bezier.com/)
+
+![A GIF of cubic-bezier](/portfolio/prismic/045-css-animation-examples/image-6.gif)
+
+[Cubic-bezier.com](https://cubic-bezier.com/) is an interactive tool for creating and visualizing custom cubic-bezier easing functions, which are used to control the speed and timing of motion effects, CSS animations, and transitions. The tool provides a graphical interface where you can adjust the shape of a Bézier curve by dragging control points, allowing you to see how the easing affects an animation's speed visually and in real time.
+
+[Cubic-bezier.com](http://cubic-bezier.com/) gives you a live preview of the Bézier curve, Includes predefined options like `ease`, `linear`, `ease-in`, `ease-out`, and `ease-in-out`, and automatically generates the CSS `cubic-bezier()` function, which you can copy and paste into your stylesheet.
+
+### AngryTools’ CSS animation kit
+
+![A GIF of CSS Animation Kit](/portfolio/prismic/045-css-animation-examples/image-7.gif)
+
+The [CSS animation kit](https://angrytools.com/css/animation/) offers over 30 categories of animations and comes with 120+ unique types of effects. It allows you to configure animation properties like the duration, timing function, delay, iteration count, direction, and fill mode.
+
+One of its standout features is the ability to customize keyframes — at 10% intervals — between 0% to 100%. You can define custom keyframes and add specific CSS styles for those percentages, giving you greater control and personalization.
+
+### Gradiently’s CSS animations generator
+
+![GIF CSS Animation Generator](/portfolio/prismic/045-css-animation-examples/image-8.gif)
+
+[Gradiently’s CSS animations generator](https://gradienty.codes/animations) provides over 600 animation effects, offering endless possibilities to bring your web elements to life. Like other tools, it allows you to customize the behavior of animations via controls for direction, fill mode, duration, etc.
+
+### GSAP
+
+![A GIF of GSAP](/portfolio/prismic/045-css-animation-examples/image-9.gif)
+
+**Quick disclaimer**: Technically speaking, [GSAP](https://gsap.com/) isn’t a CSS animation tool, as it relies on [JavaScript](https://prismic.io/glossary/javascript-framework). However, it’s such a versatile animation library that I had to include it in this list.
+
+GSAP is a powerful JavaScript animation library that allows you to “animate anything JS can touch.” It is a must-have tool if you’re particular about adding all kinds of animations to your website. There’s almost no type of animation you can’t create with this tool; even simple to complex hover animations.
+
+When it comes to GSAP, the limit is your imagination _and your ability to learn complex types of animations in depth_. The gif below shows a showcase of animations created with GSAP.
+
+There are only so many CSS animation tools we can cover. However, other notable ones worth mentioning include:
+
+- [TheAppGuruz’s keyframe animation generator](https://www.theappguruz.com/tag-tools/web/CSSAnimations/)
+- [DevTools’ CSS animation generator](https://tools.webdevpuneet.com/css-animation-generator/)
+- [Toptal’s animation code generator](https://www.toptal.com/developers/css3maker/css3-animation)
+- [Front-end Tools’ CSS transition generator](https://front-end-tools.com/en/generateTransition/)
+- [CSS Portal’s CSS keyframe animation generator](https://www.cssportal.com/css-animation-generator/)
+- [Web Code Tools’ CSS animation generator](https://webcode.tools/css-generator/keyframe-animation)
+
+## Conclusion
+
+Animations can transform a website from static and functional to dynamic and engaging.
+
+In this article, we’ve explored 40 CSS animation examples, ranging from simple, CSS-only effects to more complex ones that need JavaScript.
+
+Whether you’re looking to add subtle enhancements or bold, eye-catching interactivity, these animations can help you bring your website to life. Experiment with and customize them to suit your brand, and watch as your website becomes more memorable and engaging to web visitors.
