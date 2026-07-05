@@ -1,0 +1,383 @@
+---
+title: "A Guide to Using Next.js [App Router] with TypeScript"
+client: "Prismic"
+clientSlug: "prismic"
+originalUrl: "https://prismic.io/blog/nextjs-typescript"
+publishedAt: "2024-01-25"
+canonical: "https://prismic.io/blog/nextjs-typescript"
+excerpt: "Learn the benefits of using Next.js and TypeScript and how to leverage them to build scalable apps, with code examples and steps to start your own project."
+coverImage: "/portfolio/prismic/020-nextjs-typescript/cover.webp"
+tags: []
+---
+In the past few years, Next.js and TypeScript have become favorites among developers and changed how we build websites and applications.
+
+According to [Stack Overflow's developer survey](https://survey.stackoverflow.co/2023/#section-most-popular-technologies-web-frameworks-and-technologies), Next.js' popularity has increased from 13.52% in 2022 to 16.67% in 2023. The State of Frontend 2022 also shows that [43% of developers believe TypeScript will overtake JavaScript](https://tsh.io/state-of-frontend/#in-your-opinion-which-of-the-following-future-of-typescript-scenarios-seems-most-likely-to-happen) and become a new standard.
+
+Next.js allows us to build server-side rendered React applications. It [offers features](https://prismic.io/blog/nextjs-vs-react#features-of-nextjs) like API route handlers and link prefetching, making it easier to create fast websites and web apps. The [Next.js 13 release](https://nextjs.org/blog/next-13-4) also provides features like the App Router that further improve the developer experience.
+
+Next.js also offers first-class TypeScript support, allowing us to add static type checking and better code organization for an improved developer experience.
+
+This article will explore how to combine Next.js with TypeScript. Whether you are a beginner or an experienced developer, this guide will equip you with the knowledge and skills to leverage the power of Next.js and TypeScript in your projects.
+
+## What is Next.js?
+
+[Next.js](https://nextjs.org/) is an open-source React-powered framework created by Vercel, a [hosting and development service](https://prismic.io/blog/vercel-vs-netlify) provider. It is widely used for creating SEO-friendly websites and applications.
+
+Next.js provides several features, including:
+
+- [Server-side rendering](https://prismic.io/blog/nextjs-ssr-vs-ssg)
+- Static-site generation
+- Link prefetching
+- Automatic code splitting
+- Route handlers
+- Support for React Server Components (RSC)
+- [Built-in optimization for fonts](https://prismic.io/blog/understanding-how-to-minimize-web-fonts-negative-impacts), images, and third-party scripts
+
+Websites built with Next.js enjoy high search engine visibility as search engines can effectively crawl and index them. This SEO-friendliness makes Next.js' a great tool for projects like marketing websites, landing pages, [blogs](https://prismic.io/blog/nextjs-blog-tutorial), and e-commerce applications that require high SEO performance.
+
+## What is TypeScript?
+
+TypeScript is an open-source and strongly typed programming language created by Microsoft and released in October 2012.
+
+TypeScript is a statically typed superset of JavaScript that compiles into plain JavaScript code. It adds features like optional static typing, interfaces, generics, and enums, enabling us to write clean, scalable, and easy-to-maintain code.
+
+Since its release, TypeScript has grown in popularity and is widely adopted by many large companies, including Google, Airbnb, Slack, and Asana. Its ability to catch errors before runtime, enhance code readability, and improve development productivity has made it a go-to choice for many developers.
+
+## Learn more about TypeScript!
+
+Explore our “ [What is TypeScript?](https://prismic.io/blog/what-is-typescript)” guide to learn more about TypeScript.
+
+## Benefits of using TypeScript with Next.js
+
+Integrating TypeScript into your Next.js project provides several benefits, including:
+
+### Type safety and error detection
+
+One of the primary benefits of TypeScript is its strong type system. By enforcing strict typings, TypeScript helps us catch potential errors and bugs during development, leading to better code quality.
+
+TypeScript's compiler can detect type-related issues, like assigning a value of the wrong type to a variable or passing incorrect arguments to a function, and provide early warnings. This ensures that data types are consistent throughout a codebase, which reduces the likelihood of bugs and makes our code easier to maintain.
+
+### Scalability
+
+We must maintain code quality and scalability as applications grow. TypeScript helps achieve this by providing a more structured approach to developing applications. We can add new code to applications with confidence thanks to the type safety and build-time errors TypeScript provides.
+
+### Improved collaboration
+
+While TypeScript is great for solo projects, development teams can also benefit from it. By providing clear and explicit typing, TypeScript makes it easier for team members to understand and work with each other's code. This leads to improved teamwork and faster development cycles.
+
+Also, TypeScript's static type checking reduces the need for extensive manual testing and increases confidence when merging code changes.
+
+### Enhanced tooling and developer experience
+
+TypeScript provides excellent tooling support, making the development experience more efficient and enjoyable. Integrated Development Environments (IDEs) like VS Code, WebStorm, and Atom offer TypeScript support with features like autocompletion, code navigation, and refactoring tools.
+
+There's also the TypeScript compiler, a powerful tool that provides detailed error messages and suggestions for fixing issues. It offers features like incremental compilation that allow us to recompile only the modified files instead of recompiling everything from scratch. This can significantly reduce the time spent debugging and speed up the development process, especially in large projects.
+
+## Discover the benefits of TypeScript interfaces!
+
+Are you curious about the benefits TypeScript interfaces provide? [Explore our practical guide with code examples](https://prismic.io/blog/typescript-interfaces).
+
+## Understanding Next.js’ TypeScript plugin
+
+Next.js provides a [TypeScript plugin](https://nextjs.org/docs/app/building-your-application/configuring/typescript#typescript-plugin) that comes with auto-completion and advanced type-checking. It integrates seamlessly with [code editors like VS Code](https://prismic.io/blog/top-vscode-extensions), making it easier to catch errors and write clean code.
+
+The TypeScript plugin:
+
+- Performs type-checking, catches errors, and [warns against invalid segment config options](https://nextjs.org/docs/messages/invalid-next-config)
+- Provides intelligent suggestions and in-context documentation. It helps us understand the "use client" directive and provides details about Next.js APIs
+- Helps with future-proofing, as the Next.js team plans on releasing more features in the future
+
+### How to activate the Next.js TypeScript plugin
+
+Follow the steps below to activate the plugin in VS Code:
+
+1. Open the command palette (Ctrl/⌘ + Shift + P) in VS Code.
+2. Search for "TypeScript: Select TypeScript Version."
+3. Select "Use Workspace Version."
+
+## Statically typed links
+
+Next.js allows us to [add type-checking to routes](https://nextjs.org/docs/app/building-your-application/configuring/typescript#statically-typed-links). This helps prevent typos and other errors when using `next/link`.
+
+This is an experimental feature and must be used at our own risk. We can activate it by enabling `experimental.typedRoutes` in the `nextConfig` object of the `next.config.js` file.
+
+```js
+//next.config.js file
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  experimental: {
+    typedRoutes: true,
+  },
+};
+
+module.exports = nextConfig;
+```
+
+With that, TypeScript will alert us in the editor if the `href` attribute of any `next/link` instance carries an invalid route value.
+
+![Statically typed links](/portfolio/prismic/020-nextjs-typescript/image-1.webp)
+
+## Incremental type checking
+
+TypeScript supports incremental type checking, which optimizes the type-checking process by only checking modified files and their dependencies for changes instead of re-evaluating every file in a codebase.
+
+Incremental type checking is enabled by default in the Next.js `tsconfig.json` file. It speeds up type-checking and leads to faster compilation, particularly in large-scale applications.
+
+```json
+// tsconfig.json
+
+{
+  "compilerOptions": {
+    "incremental": true,
+  },
+}
+```
+
+## Using TypeScript with route handlers
+
+We can add types to Next.js’ route handlers by using `NextResponse` and `NextRequest`, which the `next/server` package provides.
+
+Here’s a sample of this in action.
+
+```js
+import { NextResponse, NextRequest } from 'next/server';
+
+export async function POST(request: NextRequest) {
+  const body = await request.json();
+  console.log({ body });
+
+  // Do something cool here
+  return NextResponse.json({ message: 'Something cool done' };
+};
+```
+
+## TypeScript, Next.js, and end-to-end type safety
+
+[End-to-end type safety](https://nextjs.org/docs/app/building-your-application/configuring/typescript#end-to-end-type-safety) gives us a single source of truth for our types across the frontend, API, and database layers.
+
+Instead of detecting errors at runtime, end-to-end type safety can help us detect errors before compilation, potentially reducing the time spent debugging.
+
+Next.js helps with end-to-end type safety in the following ways:
+
+- React Server Components eliminate the need for data serialization between server and client, ensuring consistency and preventing potential errors
+- Switching from `_app` to root layouts makes the data flow between components cleaner and easier to type
+
+The code snippet below shows RSC in action. Data fetching is directly integrated within components and layouts, which enhances type safety.
+
+```js
+import db from "db";
+// (A1) We import from NoteEditor.js - a Client Component.
+import NoteEditor from "NoteEditor";
+
+async function Note(props) {
+  const { id, isEditing } = props;
+  // (B) Can directly access server data sources during render, e.g. databases
+  const note = await db.posts.get(id);
+
+  return (
+    <div>
+      <h1>{note.title}</h1>
+      <section>{note.body}</section>
+      {/* (A2) Dynamically render the editor only if necessary */}
+      {isEditing ? <NoteEditor note={note} /> : null}
+    </div>
+  );
+}
+```
+
+```js
+import db from "db";
+
+async function BlogCard(props) {
+  const { id } = props;
+
+  // RSC allows us to directly access server data during render
+  const blog = await db.posts.get(id);
+
+  return (
+    <div>
+      <h1>{blog.title}</h1>
+      <section>{blog.body}</section>
+    </div>
+  );
+}
+```
+
+## Building a Next.js App with TypeScript (using App Router)
+
+Having understood TypeScript and its benefits, let's explore how to integrate it into a Next.js application.
+
+### 1\. Creating a new Next.js project with TypeScript
+
+Let’s see how to add TypeScript to a new Next.js project.
+
+First, run the command below in your terminal to install Next.js.
+
+```bash
+npx create-next-app@latest
+```
+
+After that, configure the Next.js project to fit your development workflow. Since we’ll use TypeScript, set the “W **ould you like to use TypeScript**” option to “Yes.”
+
+![An image of the config options when setting up a Next.js TypeScript project.](/portfolio/prismic/020-nextjs-typescript/image-2.webp)
+
+With that, we’ve successfully added TypeScript to a new Next.js project.
+
+### 2\. How to add TypeScript to an existing Next.js project
+
+Here’s how to add TypeScript to an existing Next.js project.
+
+First, run the command below to create a `tsconfig.json` file in the project’s root directory.
+
+```bash
+touch tsconfig.json
+```
+
+Next, install TypeScript and it's dependencies.
+
+```bash
+npm install -D typescript @types/react @types/node
+```
+
+After that, start the dev server, which will populate the `tsconfig.json` file with the basic rules and configurations TypeScript provides.
+
+```bash
+npm run dev
+```
+
+Lastly, add the `moduleResolution` rule under the `compilerOptions` object and set it to `node`.
+
+```json
+
+//sample of generated TypeScript config
+
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "incremental": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+
+    // Add the rule
+    "moduleResolution": "node",
+
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve"
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
+}
+```
+
+Lastly, rename the extensions of all the pages and components from `.js`/`.jsx` to `.ts`/`.tsx`.
+
+At this point, the next step would be to migrate the codebase from JavaScript to TypeScript incrementally. Stripe is one of many businesses that has switched to TypeScript, and their migration process involved [converting over 3.7 million lines of code](https://stripe.com/blog/migrating-to-typescript).
+
+### 3\. Using TypeScript with Next.js in a sample app
+
+We’ve learned how to set up TypeScript in a Next.js app.
+
+Here’s the code for a form built with Next.js, TypeScript, and [Zod](https://zod.dev/), a schema library for defining and validating data structures.
+
+```js
+import { z, ZodType } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+const FormData = z.object({
+  name: z.string().min(2).max(30),
+  email: z.string().email(),
+});
+type FormData = z.infer<typeof FormData>;
+
+function App() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: zodResolver(FormData),
+  });
+
+  const submitData = (data: FormData) => {
+    console.log("data valid, logging user in", data);
+  };
+
+  return (
+    <form onSubmit={handleSubmit(submitData)}>
+      <div className="form-row">
+        <label> Name: </label>
+        <input type="text" {...register("name")} />
+        {errors.name && <span> {errors.name.message}</span>}
+      </div>
+
+      <div className="form-row">
+        <label> Email: </label>
+        <input type="email" {...register("email")} />
+        {errors.email && <span> {errors.email.message}</span>}
+      </div>
+
+      <button>Log in<button/>
+    </form>
+  );
+}
+
+export default App;
+```
+
+Here’s a breakdown of the TypeScript aspect of the code above:
+
+- The `type FormData = { name: string; email: string; };` line creates a type alias called `FormData` to represent the expected shape of the form data
+- The `<FormData>` in `useForm` and `ZodType` adds type-checking to both functions
+
+This allows TypeScript to type-check the form values against the FormData interface.
+
+- Adding `FormData` to the `useForm` checks if the `data` has the correct type and validates it against the schema
+- Adding `FormData` to the `submitData` function helps us now the `data` parameter’s type
+
+## Other ways to kickstart your Next.js TypeScript project
+
+Here are some great Next.js and TypeScript starter templates that use the app router. Explore them for practice, learning, and to use in future projects.
+
+- [vercel/ai-chatbot](https://github.com/vercel/ai-chatbot) \- an AI chatbot template from Vercel
+- [jpedroschmitz/typescript-nextjs-starter](https://github.com/jpedroschmitz/typescript-nextjs-starter) \- a minimal starter that uses ESLint and Prettier
+- [nextjs-kickstart](https://github.com/syhner/next-kickstart) \- a Next.js 14.0 app router boilerplate that includes ESLint, Tailwind, Testing Library, and more
+- [prismicio-community/nextjs-starter-prismic-minimal-ts](https://github.com/prismicio-community/nextjs-starter-prismic-minimal-ts) \- a minimal Prismic starter built with Next.js and TypeScript
+
+## Ignoring TypeScript errors in production
+
+While it is better to avoid this, we can [ignore TypeScript errors](https://nextjs.org/docs/app/building-your-application/configuring/typescript#ignoring-typescript-errors) while type-checking in production.
+
+We can ignore the errors and disable the type checking step by enabling the ignoreBuildErrors option in next.config.js.
+
+```js
+module.exports = {
+  typescript: {
+    // !! WARN !!
+    // Dangerously allow production builds to successfully complete
+		//even if your project has type errors.
+    // !! WARN !!
+    ignoreBuildErrors: true,
+  },
+};
+```
+
+## Key takeaways and next steps
+
+Here’s a quick recap of everything we’ve explored in this article:
+
+- Next.js is a popular and [widely-adopted open-source React meta-framework](https://prismic.io/blog/nextjs-vs-react) for building SEO-friendly websites and applications. Its features include server-side rendering, static-site generation, prefetching, and automatic code splitting.
+- TypeScript is a statically typed superset of JavaScript that compiles into plain JavaScript code. It helps us write clean, scalable, and easy-to-maintain code.
+- Next.js’ deep TypeScript support elevates the developer experience by giving us access to a custom TypeScript plugin, client-side errors, and end-to-end type safety.
+
+## Is your Next.js project using the Pages Router?
+
+If you would like to see code examples and tips for using TypeScript in a Next.js project using the pages router, explore our complete guide on [TypeScript tips and FAQs](https://prismic.io/blog/nextjs-typescript-tips-faqs).
