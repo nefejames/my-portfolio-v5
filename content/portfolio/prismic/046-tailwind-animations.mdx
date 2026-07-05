@@ -1,0 +1,362 @@
+---
+title: "Tailwind CSS Animations: Tutorial and 40+ Examples"
+client: "Prismic"
+clientSlug: "prismic"
+originalUrl: "https://prismic.io/blog/tailwind-animations"
+publishedAt: "2025-01-24"
+canonical: "https://prismic.io/blog/tailwind-animations"
+excerpt: "Explore over 40 Tailwind CSS animations that transform web design, from simple spins to complex interactive effects."
+coverImage: "/portfolio/prismic/046-tailwind-animations/cover.webp"
+tags: []
+---
+
+[Tailwind CSS](https://prismic.io/blog/tailwind-component-library) simplifies the process of adding motion to your designs with its utility-first approach and prebuilt animation classes. In this article, we’ll showcase various animation examples you can implement using Tailwind CSS, demonstrating how easy it is to bring your designs to life.
+
+## Tailwind CSS vs. Bootstrap
+
+Learn about how [Tailwind CSS compares with Bootstrap](https://prismic.io/blog/tailwind-vs-bootstrap) and how to choose the right CSS library for your project.
+
+## Tailwind CSS classes that power animations and transitions
+
+Let’s explore some of its classes that allow developers to create stunning animations and smooth transitions with minimal effort.
+
+- `transition`: Enables transition effects for properties
+- `ease-linear`, `ease-in`, `ease-out`, `ease-in-out`: Define the timing functions
+- `duration-{time}`: Specifies the transition duration (e.g., `duration-150`, `duration-500`)
+- `delay-{time}`: (e.g., `delay-200` for 200ms)
+- `transition-opacity`: Targets changes in opacity
+- `transition-transform`: Targets transformations like scaling or rotating
+- `transition-colors`: Focuses on color changes
+- `transition-shadow`: Smoothens box-shadow adjustments
+- `animate-spin`: Rotates the element in a circular motion
+- `animate-ping`: Creates a fading pulse effect
+- `animate-pulse`: Simulates a pulsing fade in/out
+- `animate-bounce`: Bounces the element up and down
+
+## How to create custom Tailwind CSS animations
+
+Tailwind CSS is a flexible library that allows you to define [custom animations](https://tailwindcss.com/docs/animation#using-custom-values), keyframes, durations, transitions via the `extend` object of its [configuration](https://tailwindcss.com/docs/configuration) file. Let’s explore how to create a custom glow effect animation from scratch.
+
+**1\. Open your Tailwind CSS configuration file**
+
+Ensure you have a `tailwind.config.js` file in your project. If not, generate it using:
+
+```bash
+npx tailwindcss init
+```
+
+**2\. Define custom keyframes**
+
+Define the animation `keyframes` under the keyframes object — which is inside the `extend` section of the `theme` object — and link them to an animation under the `animation` property. Here are the keyframes for the glow effect:
+
+```js
+module.exports = {
+  theme: {
+    extend: {
+      animation: {
+        glow: 'glow 1.5s infinite',
+      },
+      keyframes: {
+        glow: {
+          '0%, 100%': { boxShadow: '0 0 10px #ff00ff' },
+          '50%': { boxShadow: '0 0 20px #ff00ff' },
+        },
+      },
+    },
+  },
+```
+
+**3\. Add the Tailwind class**
+
+After adding the glow animation, use it in your HTML file by applying its class, `animate-glow`, in this case, to your HTML element. Here’s the glow effect applied:
+
+```html
+<div class="animate-glow bg-pink-500 p-5 rounded-lg">
+  Glowing Box
+</div>
+```
+
+**4: Customize animation duration, delay, and iteration**
+
+You can tweak the glow animation further by using Tailwind's utilities like `duration-*`, `delay-*`, or `repeat-*.` . Example:
+
+```html
+<div class="animate-glow duration-1000 delay-200 bg-green-500 p-4 rounded">
+  Glowing Box
+</div>
+```
+
+Now, let’s dive into the examples, starting with ones using Tailwind’s predefined animation classes.
+
+## Tailwind CSS animations using built-in animation classes
+
+### 1\. Spin animation
+
+<CodePen user="nefejames" id="MYgrmpG" title="Spin" />
+
+The spin animation relies on Tailwind’s `animate-spin` class. It creates a spinning effect and is useful for creating loading icons.
+
+### 2\. Ping animation
+
+<CodePen user="nefejames" id="XJrVRRy" title="Ping" />
+
+The spin animation relies on Tailwind’s `animate-ping` class. It produces a pulsing effect, which is great for drawing people’s attention to specific parts of a web page.
+
+### 3\. Pulse animation
+
+<CodePen user="nefejames" id="bNbaWRR" title="Pulse" />
+
+The spin animation relies on Tailwind’s `animate-pulse` class. It simulates a subtle fading effect, commonly used for skeleton loaders.
+
+### 4\. Bounce animation
+
+<CodePen user="nefejames" id="emOyWEL" title="Bounce" />
+
+The spin animation relies on Tailwind’s `animate-bounce` class. It creates a bouncing effect, perfect for call-to-action buttons or icons.
+
+Tailwind also provides an `animate-none`class for disabling animations.
+
+## Tailwind CSS text animations
+
+### 5\. Text reveal animation
+
+<CodePen user="rhistoba" id="dyYXYKr" title="Tailwind animation" />
+
+The [text reveal animation](https://codepen.io/rhistoba/pen/dyYXYKr) by [rhistoba](https://codepen.io/rhistoba) showcases a button that causes the “Hello World” text to pick. It is a simple but playful interaction to add to a website.
+
+### 6\. Typewriter animation effect
+
+<CodePen user="nefejames" id="wBwjXzL" title="Typewriter animation effect" />
+
+The [typewriter animation effect](https://codepen.io/nefejames/pen/wBwjXzL) by [Samuel Dawson](https://tailwindflex.com/@samuel33/typewriter-animation-effect) is an implementation of the classic typewriter effect. Only this time, it's powered by Tailwind.
+
+### 7\. Jumping button text
+
+<CodePen user="nefejames" id="NPKMzMG" title="Jumping button text" />
+
+The [jumping button text](https://codepen.io/nefejames/pen/NPKMzMG) animation by [Chitranshu](https://tailwindflex.com/@Chitranshu) creates a “Message” text that continually jumps in a wave-like pattern. This type of animation will work well as a loading indicator.
+
+### 8\. “Coming soon” text
+
+<CodePen user="nefejames" id="xbKjzQz" title="Coming soon text" />
+
+The [“coming soon” text animation](https://codepen.io/nefejames/pen/xbKjzQz) by [Samuel Abera](https://tailwindflex.com/@sammytg7/animated-coming-soon-page-3) features text with dynamic colors, blur, and a reflection that flickers on and off. It’ll definitely make your text stand out and catch people’s attention.
+
+### 9\. “Coming soon” text 2
+
+<CodePen user="nefejames" id="mybLjWe" title="Coming soon text 2" />
+
+The [coming soon text 2](https://codepen.io/nefejames/pen/mybLjWe) animation by [Samuel Abera](https://tailwindflex.com/@sammytg7/animated-coming-soon-4-4) pushes the creative boundaries of what’s possible with Tailwind. It has a masked text with a moving background and a gear-like element oscillating vertically along with the blue background.
+
+## Tailwind CSS button animations
+
+### 10\. Disabled button
+
+<CodePen user="victoralberto87" id="yLeRzdE" title="tailwind animation buttons disabled" />
+
+The [disabled button animation](https://codepen.io/victoralberto87/pen/yLeRzdE) by [Victor Alberto](https://codepen.io/victoralberto87) features a button that becomes disabled on click. At the same time, a loading spinner appears next to the button’s text.
+
+### 11\. Loading spinner buttons
+
+<CodePen user="nefejames" id="azoGYgo" title="Loading spinner buttons" />
+
+The [loading spinner buttons](https://codepen.io/nefejames/pen/azoGYgo) by [Abhiraj](https://tailwindflex.com/@abhirajk/spinner-9) combine custom CSS styles with Tailwind’s classes to create 4 types of loading spinner buttons. It also comes with some extra flavor — a dark-mode toggle.
+
+### 12\. Tailwind buttons scale
+
+<CodePen user="Sher94" id="BawOZdW" title="tailwind buttons" />
+
+The [tailwind buttons](https://codepen.io/Sher94/pen/BawOZdW) animation by [Sher](https://codepen.io/Sher94) is a simple animation showcasing three buttons that scale up on hover using the `scale-105` class ( [docs](https://tailwindcss.com/docs/scale)).
+
+### 13\. Tailwind buttons hover
+
+<CodePen user="DBOmoto" id="QWONXZz" title="Tailwind Animations" />
+
+The [Tailwind buttons](https://codepen.io/DBOmoto/pen/QWONXZz) animation by [Daniel Omoto](https://codepen.io/DBOmoto) showcases five buttons that display different types of animations that trigger on hover. Check them out if you’re looking to spice up your [CTA](https://prismic.io/blog/call-to-action-examples) buttons.
+
+### 14\. Spinning icon button
+
+<CodePen user="hwbuk" id="YzmpJQe" title="UI ENG 101 / W2L6 / BTN using tailwind animations" />
+
+The [spinning icon button](https://codepen.io/hwbuk/pen/YzmpJQe) animation by [HWBUK](https://codepen.io/hwbuk) showcases a button with a subtle loading spinner inside it. This is a great animation for developers looking to add a minimal amount of animation to their apps and sites.
+
+### 15\. Switching button text
+
+<CodePen user="nefejames" id="LEPmByK" title="Switching button text" />
+
+The [switching button text](https://codepen.io/nefejames/pen/LEPmByK) animation by [andresandaar](https://tailwindflex.com/@andresandaar/botton-hover) switches its text from “Hover me” to “Thank you! on hover.” At the same time, the top and button border of the button connect.
+
+## Tailwind CSS card and image animations
+
+### 16\. Image hovering
+
+<CodePen user="Hsins" id="abVaVOv" title="DEMO: Tailwind Animation - Move when Hovering" />
+
+The image [hovering effect](https://codepen.io/Hsins/pen/abVaVOv) by [Hsins](https://codepen.io/Hsins) features an image that moves aside to reveal a card underneath it. To spice things up a bit, consider adding it to your blog cards.
+
+### 17\. Empty state card icons
+
+<CodePen user="hwbuk" id="xxvPXXz" title="UI ENG 101 - W3L2 - Empty State" />
+
+The [empty state card icons](https://codepen.io/hwbuk/pen/xxvPXXz) animation by [HWBUK](https://codepen.io/hwbuk) presents three cards that “break up” on hover, going their separate ways.
+
+### 18\. Image opacity effect
+
+<CodePen user="proweb" id="qBbQpOa" title="Tailwind animations" />
+
+The [image opacity effect](https://codepen.io/proweb/pen/qBbQpOa) by [Sergey Mochalov](https://codepen.io/proweb) features an image that gradually becomes clearer when hovered over.
+
+### 19\. Mix-blend mode animation
+
+<CodePen user="manz" id="YzRQMYW" title="ManzDev + mix-blend-mode + animations" />
+
+The [mix-blendmode](https://codepen.io/manz/pen/YzRQMYW) animation by [Manz](https://codepen.io/manz) showcases four images moving in different directions. I particularly like the picture of the person who slides into the purple frame.
+
+### 20\. Animated Tailwind cards
+
+<CodePen user="nefejames" id="MYgGQRE" title="Animated Tailwind cards" />
+
+The [animated Tailwind cards](https://codepen.io/nefejames/pen/MYgGQRE) animation by [Prajwal Hallale](https://tailwindflex.com/@prajwal/transitions-animations) showcases three cards with different animations that run on hover.
+
+### 21\. Animated image cards
+
+<CodePen user="nefejames" id="qEWYKGQ" title="Animated image cards" />
+
+The [animated image cards](https://codepen.io/nefejames/pen/qEWYKGQ) animation by [Michael Andreuzza](https://tailwindflex.com/@michael-andreuzza/animated-cards-with-tailwind-css) also showcases some cards with animations that trigger on hover.
+
+## Tailwind CSS SVG animations
+
+### 22\. Tailwind animation by Sam Provenza
+
+<CodePen user="samserif" id="ENePeM" title="tailwind animation" />
+
+The [tailwind animation](https://codepen.io/samserif/pen/ENePeM) by [Sam Provenza](https://codepen.io/samserif) features an SVG element with “wings” that stagger into view one after the other.
+
+### 23\. Tailwind SVG animation
+
+<CodePen user="hwbuk" id="KKOyyjb" title="UI ENG 101 - W4 - SVG Animations" />
+
+The [Tailwind SVG animation](https://codepen.io/hwbuk/pen/KKOyyjb) by [HWBUK](https://codepen.io/hwbuk) features a “writing” SVG icon with a pen that slides in on hover.
+
+## Other Tailwind CSS animations
+
+### 24\. Skeleton loading screens
+
+<CodePen user="vincenttt" id="qBbgjjg" title="Different Skeleton Loading Screens" />
+
+The [skeleton loading screens](https://codepen.io/vincenttt/pen/qBbgjjg) by [Vincent](https://codepen.io/vincenttt) display four loading skeletons, which can aid the user experience while a page or parts of your application load into view.
+
+### 25\. Expanding form
+
+<CodePen user="jverast" id="WNmmMaX" title="Untitled" />
+
+The [expanding form](https://codepen.io/jverast/pen/WNmmMaX) effect by [jverast](https://codepen.io/jverast) demonstrates an input field that expands to its full length when clicked.
+
+### 26\. Disappearing bird
+
+<CodePen user="rhistoba" id="jObMRqy" title="tailwind animation 1" />
+
+While it’s not the most serious animation we’ve seen — or will see — the [disappearing bird animation](https://codepen.io/rhistoba/pen/jObMRqy) by [rhistoba](https://codepen.io/rhistoba) shows a bird that toggles in and out of view when the button is clicked. Yes, I only added it because it's cute. 🙃
+
+### **27\. Framer Motion + Tailwind CSS animation**
+
+<CodePen user="alegherix" id="qBqoYWr" title="Low Fidelity FramerMotion && Tailwind animation" />
+
+This animation by [Martin Hansson](https://codepen.io/alegherix) combines the React-based animation library, Motion, and Tailwind to create an accordion, with each accordion having a toggle switch inside it.
+
+### 28\. Splitscreen Tailwind CSS animation
+
+<CodePen user="PatrickWendt" id="OJWqXbG" title="Splitscreen Tailwind animation" />
+
+The [splitscreen Tailwind animation](https://codepen.io/PatrickWendt/pen/OJWqXbG) by [Patrick Wendt](https://codepen.io/PatrickWendt) features a screen that’s split in two. When the white box is clicked, the white section becomes dominant; when the black box is clicked, the black section gains dominance.
+
+### 29\. Tailwind animations demo
+
+<CodePen user="moose62712" id="rNejgJY" title="Tailwind animations demo" />
+
+The [Tailwind animations demo](https://codepen.io/moose62712/pen/rNejgJY) by [Adam Whitlock](https://codepen.io/moose62712) features a colorful display of bubbles with different types of animation applied to them. It can serve as inspiration for moving backgrounds — if you’re into creative websites like that.
+
+### 30\. Tailwind marquee
+
+<CodePen user="nefejames" id="ByBxrrR" title="Tailwind marquee" />
+
+The [marquee animation](https://codepen.io/nefejames/pen/ByBxrrR) by [Anonymous](https://tailwindflex.com/@anonymous/marquee-animation-with-tailwind-css) creates a marquee-like element with different boxes. You can reuse it for the logos section of your portfolio.
+
+### 31\. 3D box
+
+<CodePen user="nefejames" id="ByBxxLr" title="3D box" />
+
+The [3D box animation](https://codepen.io/nefejames/pen/ByBxxLr) by [Samuel Abera](https://tailwindflex.com/@sammytg7/3d-box) features a rating 3D box that simply rotates on and on — that’s about it.
+
+### 32\. Walking Boba
+
+<CodePen user="annexxx" id="poBdbLV" title="Custom Tailwind Animation - Walking Boba" />
+
+The [walking Boba animation](https://codepen.io/annexxx/pen/poBdbLV) by [Anne](https://codepen.io/annexxx) shows a humanoid Boba tea character swinging its arms and legs. I’m not sure how you’d use this, but it’s definitely fun to see.
+
+### 33\. Bubble background animation
+
+<CodePen user="nefejames" id="jENxprL" title="Bubble background animation" />
+
+The [bubble background animation](https://codepen.io/nefejames/pen/jENxprL) by [Anonymous](https://tailwindflex.com/@anonymous/background-animation) is another great option for your website’s background. It features different-sized bubbles that slide in from beneath the page. I find it very calming and soothing and could look at it for hours.
+
+### 34\. Sticky full page slides
+
+<CodePen user="nefejames" id="JoPvBMq" title="Sticky full page slides" />
+
+The [sticky full-page slides](https://codepen.io/nefejames/pen/JoPvBMq) animation by [Laurits](https://tailwindflex.com/@laurits/sticky-fullpage-pages-slides) has a scroll + parallax effect, in which the different pages snap into and out of view as the user scrolls.
+
+### 35\. Collection of fade animations
+
+<CodePen user="nefejames" id="ZYzoMWN" title="Collection of fade animations" />
+
+This [collection of fade animations](https://codepen.io/nefejames/pen/ZYzoMWN) showcases various types of fade animations.
+
+### 36\. Collection of slide animations
+
+<CodePen user="nefejames" id="JoPvaRG" title="Collection of slide animations" />
+
+This [collection of slide animations](https://codepen.io/nefejames/pen/JoPvaRG) showcases various types of slide animations.
+
+### 37\. Collection of zoom animations
+
+<CodePen user="nefejames" id="GgKdXMy" title="Collection of zoom animations" />
+
+The [collection of zoom animations](https://codepen.io/nefejames/pen/GgKdXMy) showcases various types of zoom animations.
+
+### 38\. Collection of flip animations
+
+<CodePen user="nefejames" id="MYgGqrN" title="Collection of flip animations" />
+
+The collection of flip animations showcases various types of flip animations.
+
+## Tailwind CSS animation tools and libraries you should know
+
+### 39\. Tailwind CSS Animated
+
+![A GIF of Tailwind CSS Animated](/portfolio/prismic/046-tailwind-animations/image-1.gif)
+
+[Tailwind CSS Animated](https://www.tailwindcss-animated.com/) is a library of extended animation utilities for Tailwind CSS. This plugin provides various pre-built CSS animations to quickly add to your projects. It also comes with a [configuration editor](https://www.tailwindcss-animated.com/configurator.html) for defining custom animations — and their properties — and copying the corresponding classes.
+
+[Rombo](https://rombo.co/tailwind/) provides an animation library for Tailwind CSS. All animations are built to be beautiful, performant, and accessible. It provides tens of preset animations and allows you to create custom ones. Notable features of Rombo include:
+
+- Allows you to export code to Tailwind CSS, Framer Motion, GSAP, and more
+- Provides a visual editor via its [Chrome extension](https://rombo.co/extension/)
+
+### 41\. TW Elements
+
+![A GIF of Tailwind Elements library](/portfolio/prismic/046-tailwind-animations/image-2.gif)
+
+[TW Elements](https://tw-elements.com/docs/standard/content-styles/animations/) is an open-source UI toolkit. Besides providing 500+ UI [components](https://prismic.io/blog/tailwind-component-library), it has 20+ animations available.
+
+## Conclusion
+
+We’ve explored various animations powered by Tailwind CSS, from the simple types to the calming and complex ones. Hopefully, you’ve gained some inspiration and will use a few in future projects. Always remember to ensure your animations are performant and accessible to users with disabilities.
+
+Lastly, explore the following resources to learn more about Tailwind CSS:
+
+- [9 Best Tailwind Component Libraries and How to Choose One](https://prismic.io/blog/tailwind-component-library)
+- [Tailwind CSS vs. Bootstrap: Which is better?](https://prismic.io/blog/tailwind-vs-bootstrap)
+- [Integrate and Customize Tailwind CSS Dark Mode in a Next.js Project](https://prismic.io/blog/tailwind-css-darkmode-tutorial)
+
+Happy learning and building!

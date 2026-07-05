@@ -85,7 +85,14 @@ const websiteSchema = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${hanken.variable} ${fraunces.variable} ${geistMono.variable}`}>
+    // suppressHydrationWarning: scoped to this element's attributes — the
+    // pre-paint splash script legitimately adds data-splash-seen before React
+    // hydrates, which would otherwise log a mismatch on every repeat view.
+    <html
+      lang="en"
+      className={`${hanken.variable} ${fraunces.variable} ${geistMono.variable}`}
+      suppressHydrationWarning
+    >
       <body className="min-h-screen flex flex-col">
         {/* Runs before first paint: repeat visitors this session skip the
             splash curtain entirely (CSS hides it via the html attribute),

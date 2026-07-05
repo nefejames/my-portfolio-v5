@@ -1,0 +1,474 @@
+---
+title: "CSS Text Animations: 40 Creative Examples to Try"
+client: "Prismic"
+clientSlug: "prismic"
+originalUrl: "https://prismic.io/blog/css-text-animations"
+publishedAt: "2024-12-06"
+canonical: "https://prismic.io/blog/css-text-animations"
+excerpt: "Discover 40 stunning CSS text animations to captivate your audience, from explosive effects to 3D rotations. Learn techniques to make your website text truly pop!, Typing Animation css"
+coverImage: "/portfolio/prismic/042-css-text-animations/cover.webp"
+tags: ["Typing Animation css","HTML","CSS"]
+---
+
+Did you know the average internet user visits over [15 websites a day](https://daniel.haxx.se/blog/2019/12/04/daily-web-traffic/#:~:text=Let%27s%20count%20with%203%2C000%20requests,Feels%20about%20right.)? So, how do you keep your visitors engaged and focused on your content? One way is by adding text animations. Done right, they can grab attention, add personality, and keep visitors' engaged long enough to make an impact.
+
+In this article, we’ll explore 40 creative CSS text animations featuring ten custom animations I've personally created, plus 30 additional hand-picked examples from talented CodePen creators. Each one comes with a live demo and code, so you can dive in and try them out. Let’s get started!
+
+## 40 examples of CSS text animations
+
+In this listicle, we won’t just be exploring the 40 examples. We’ll also look at the technologies and the core CSS principles used for each one. Let’s start by checking out 10 custom examples. After that, we’ll see 30 others created by developers across the web.
+
+## Custom text animations
+
+### 1\. Explosive letter burst on hover
+
+<CodePen user="nefejames" id="pvzzVLj" title="Explosive letter burst on hover" />
+
+This animation creates an "explosive" visual effect when the user hovers over the text. The text slightly enlarges, and two circular bursts radiate outward, giving the appearance of an explosion.
+
+The animation relies on the following CSS features and definitions:
+
+- `::before` and `::after` [pseudo-elements](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements): The animations are attached to these elements
+- `radial-gradient` ( [docs](https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/radial-gradient)): Applied to the pseudo-elements to simulate the colorful burst effect
+- `@keyframes burst` ( [docs](https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes)): Animates the pseudo-elements to create the explosive effect
+
+### 2\. Dancing shadow
+
+<CodePen user="nefejames" id="XJrrPRj" title="Dancing shadow" />
+
+This CSS animation creates a "dancing shadow" effect where the text's shadow shifts dynamically in opposite diagonal directions. The shadows alternate between two colors and move inwards and outwards. It relies on:
+
+- `text-shadow`: To create the colorful shadow layers around the text
+- `@keyframes shadow-dance`: Animates the text-shadow property to shift shadows dynamically
+
+### 3\. Melting text
+
+<CodePen user="nefejames" id="emOOLgJ" title="Melting text" />
+
+This CSS animation creates a "melting text" effect where the text visually appears to droop and dissolve downward, resembling liquid dripping. Key CSS features used include:
+
+- `::before` [pseudo-element](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements): Adds a semi-transparent layer to simulate the initial stage of dripping
+- `::after` pseudo-element: Adds a blurred, faded version for a more pronounced liquid effect. The `filter: blur(10px)` property is also applied to `::after` to make the melting effect more pronounced
+- `@keyframes melt`: Animates the main text to gently bob up and down, mimicking a drooping motion
+- `@keyframes drip`: Animates the pseudo-elements to stretch and fade, creating the dripping effect
+
+### 4\. Matrix
+
+<CodePen user="nefejames" id="azooaqw" title="Matrix" />
+
+This animation creates a "Matrix-style" digital effect to simulate the green text and "rain" commonly associated with the movie _The Matrix_. It relies on:
+
+- `text-shadow`: Creates the glowing effect around the text
+- `clip-path`: Used to crop parts of the `::before` text, simulating a "glitch"
+- `repeating-linear-gradient` ( [docs](https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/repeating-linear-gradient)): Creates the rain-like background
+- `@keyframes rain`: Handles the vertical translation of the “rain” background
+- `@keyframes glitch`: Animates the text distortion effect
+
+### 5\. Text masking
+
+<CodePen user="nefejames" id="JoPPBxK" title="Text masking" />
+
+This is a masked text animation effect where a background image is clipped to the text, creating a visually engaging "shimmering" effect. Here's a breakdown of the core CSS features used:
+
+- `color: transparent`: Makes the text itself invisible, so only the background image appears
+- `background-clip: text`: Clips the background image to the shape of the text
+- `@keyframes animate-background`: Moves the background image horizontally from left
+
+### 6\. 3d spin
+
+<CodePen user="nefejames" id="MYggBNg" title="3d spin" />
+
+This animation creates a 3D spinning text effect with vibrant shadows for depth and color. Here's an overview of the features used:
+
+- `text-shadow`: Multiple text shadows are used to give the text a 3D-like appearance
+- `transform: rotateY(0deg)`: Sets the initial rotation angle on the Y-axis
+- `transform-style: preserve-3d`: Ensures that child elements (if any) retain their 3D transformations
+
+### 7\. Glitch effect
+
+<CodePen user="nefejames" id="ZYzzMEE" title="Glitch effect" />
+
+This animation does what it says: it creates a glitch text effect and simulates a digital distortion. It relies on:
+
+- `::before` and `::after`: Create duplicate layers of the text. `clip-path: polygon` is applied to these pseudo-elements to mask specific parts of their text
+- `transform: translate`: Shifts the text slightly in various directions to create the distortion effect
+- `@keyframes glitch`: Animates the movement of the text
+
+### 8\. Neon glow
+
+<CodePen user="nefejames" id="ByBBOaO" title="Neon glow effect" />
+
+This animation creates a neon glow text effect with a dynamic glow animation that alternates between two colors. It works with the following CSS features and definitions:
+
+- `text-shadow`: Creates the glow effect with multiple layers of progressively larger blurs
+- `@keyframes glow`: Animates the text shadows as the colors alternate
+
+### 9\. Wavy text
+
+<CodePen user="nefejames" id="gbYYdpK" title="Wavy text" />
+
+Everyone loves waves 🏄, and while it isn’t the same as being on the beach, this wavy animation creates a wave-like motion among the individual letters in the word “WAVE.” It relies on:
+
+- `@keyframes wave`: Applies the continuous wave-like animation to each letter
+- `animation-delay`: A 0.2s delay is applied to each letter, so their animation kicks in slightly after the previous one
+
+### 10\. Split text
+
+<CodePen user="nefejames" id="azooadB" title="Split text" />
+
+This animation creates an effect where two parts of a word (`CON` and `JOINED`) slide in from opposite directions and join at the center. It works with the following:
+
+- `transform: translateX`: Positions both parts of the text off-screen initially
+- `@keyframes slide-in-left`: Moves the left text from the left end to its center position
+- `@keyframes slide-in-right`: Moves the right text from the right end to its center position
+- `animation-fill-mode: forwards`: Ensures the text remains in place after the animation ends
+
+That’s it for the custom CSS text animations. Now, let’s move on to examples from other developers. We’ll start with checking out 3d text animations; _View [this Codepen collection](https://codepen.io/collection/bGZkxg) to see other text animations I created._
+
+## 3d text animations
+
+### **11\. Glowing 3D text**
+
+<CodePen user="bennettfeely" id="kVLQop" title="Glowing 3D Text" />
+
+The [glowing 3D text](https://codepen.io/bennettfeely/pen/kVLQop) effect by [Bennett Feely](https://codepen.io/bennettfeely) gives the “3D CSS GLOW” text a dynamic rotation in 3D space. It works with the following:
+
+- `@keyframes wobble`: Defines the 3D rotation movements
+- `@keyframes glow`: Defines the glow color transitions
+- `text-shadow` **:** Creates the glowing effect around the text by applying a shadow that changes color during the glow animation
+- `transform-style: preserve-3d` **:** Ensures that the child elements (`<h1>` tags) of the container (`<figure>`) are rendered in a 3D space
+- `translateZ`: Positions each text layer at different depths to create the stacked 3D effect
+- `rotate3d`: Rotates the entire figure along multiple axes to add dynamic movement
+
+### 12\. “ **HEY” 3D animation**
+
+<CodePen user="RaduBratan" id="vYLKNYO" title="&quot;HEY&quot; - CSS 3D Text Animation \[ANIMATION\]" />
+
+Next on the list is the [“HEY” 3D animation](https://codepen.io/RaduBratan/pen/vYLKNYO) by [Radu Bratan](https://codepen.io/RaduBratan). This animation uses vibrant colors and dynamic shadows to give the text a pulsating and heartbeat-like effect. The core CSS concepts powering this animation are:
+
+- Text shadows
+- CSS transforms
+- CSS Flexbox
+
+### 13\. 3D text marquee effect
+
+<CodePen user="comehope" id="GdrrZq" title="3d text marquee effects" />
+
+Like others, [Comehope’s](https://codepen.io/comehope) [3d text marquee effect](https://codepen.io/comehope/pen/GdrrZq) isn’t an actual 3D animation but a mirage of one. The animation creates the illusion of text passing through the corner of a 3D box by combining perspective transforms, clipping, and marquee motion. CSS features used include:
+
+- Perspective and 3D transforms
+- `transform-origin`: Ensures the rotation occurs from the correct side
+- `@keyframes marquee`: Defines the smooth motion of the text across the panels
+
+### 14\. Nabla color font
+
+<CodePen user="scottkellum" id="ExLNjzj" title="Nabla color font!" />
+
+The [Nabla color font](https://codepen.io/scottkellum/pen/ExLNjzj) by [Scott Kellum](https://codepen.io/scottkellum) creates a "pulsing" 3D depth effect for each letter in the text "COLOR FONTS!" The letters animate in a staggered sequence with different delays, creating a visually engaging cascading effect.
+
+The major CSS features and definitions used in this animation are:
+
+- `font-variation-settings`: Adjusts the `EDPT` (extrusion depth) of the Nabla font to change the 3D depth dynamically
+- `@font-palette-values`: Applies a specific color palette to the variable font to customize its appearance
+- CSS Grid
+- SCSS features `@for` loops and `#{$variable}` syntax for generating repetitive styles and interpolation
+
+### 15\. 3D rotate
+
+<CodePen user="emilio_ta" id="NWYWNaW" title="EAT SLEEP RAVE - 3D ROTATE" />
+
+The [3D rotate](https://codepen.io/emilio_ta/pen/NWYWNaW) animation by [Emilio](https://codepen.io/emilio_ta) displays the text "EAT SLEEP RAVE," rotates the text along its X-axis, and arranges it in a circular formation that resembles a cylinder. The major CSS features and definitions used in this animation are:
+
+- `transform-style: preserve-3d`: Ensures that child elements retain their 3D positioning
+- `@keyframes animate`: Rotates the entire container around the X-axis for a continuous spinning effect
+- `transform: perspective`: Creates an illusion of depth and makes the object farther away from the viewer. This makes the 3D scene more realistic
+
+## Slide-in text animations
+
+### 16\. Text animation with background
+
+<CodePen user="yemon" id="YrPmQr" title="Text Animation with background" />
+
+The [text animation with background](https://codepen.io/yemon/pen/YrPmQr) by [Yemon](https://codepen.io/yemon) is a classic example of slide-in text. However, they take things a step further by changing the page’s background as the text switches.
+
+The secret to this animation is two [keyframes](https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes):
+
+- `roll`: creates the drop-in and fade-out text effect
+- `bg`: cycles through different background colors
+
+### 17\. A Gooey Marquee
+
+<CodePen user="amit_sheen" id="wvORNYm" title="A Gooey Marquee" />
+
+[A Gooey Marquee](https://codepen.io/amit_sheen/pen/wvORNYm) by [Amit Sheen](https://codepen.io/amit_sheen) gives off a **"Gooey Marquee" effect**, where text melts out of one side of a glowing wall and melts into the other side of the wall. It's a cool animation that looks like something out of a ghost movie and relies on:
+
+- [CSS filters](https://developer.mozilla.org/en-US/docs/Web/CSS/filter): To create the gooey blur effect
+- `@keyframes marquee`: creates for the continuous horizontal motion of the text
+
+### 18\. **Ghosts and Ghouls**
+
+<CodePen user="Sicontis" id="KKROgaG" title="Codepen Challenge: Ghosts and Ghouls" />
+
+[Ghosts and Ghouls](https://codepen.io/Sicontis/pen/KKROgaG) by [Sicontis](https://codepen.io/Sicontis) is another ghost-like animation. In this case, though, the text isn’t sliding from one side to the other; a ghost icon is.
+
+- `@keyframes ghostMove`: Moves the icon across the screen
+- `mix-blend-mode: exclusion`: Creates the dynamic color effect when the ghost passes through the text
+
+### 19\. Schitt’s Creek title animation
+
+<CodePen user="robjoeol" id="WNywdEW" title="Schitt's Creek (CSS) title animation" />
+
+The [Schitt’s Creek title animation](https://codepen.io/robjoeol/pen/WNywdEW) by [Rob](https://codepen.io/robjoeol) animates two groups of text: the main text (Schitt Creek) and the superscript (s). It's a simple slide-in animation that adds some flair by giving the superscript a shimmer effect at the end.
+
+This animation relies on the following keyframes:
+
+- `pop-word`: Causes the word to rotate and become visible
+- `show`: Makes the word fade in from opacity 0 to 1
+- `bar-scale`: Makes the superscript "s" bar appear
+- `sparkle`: Scales and moves the sparkle effect around the superscript "s"
+- `shimmer`: Adds a text-shadow glow effect to the superscript "s"
+
+### 20\. Text frame border rotation
+
+<CodePen user="designfenix" id="gOGVXWw" title="Text frame border animation rotation that \[ONLY CSS\]" />
+
+The [text frame border rotation](https://codepen.io/designfenix/pen/gOGVXWw) animation — I know; it’s a mouthful — by [Fernando Cohen](https://codepen.io/designfenix) switches things up a bit. Instead of text sliding in and out, it rotates around a picture frame. Not only that but when you hover over the image, some CSS magic happens. Check it out for yourself 👇.
+
+This animation relies on a `frameMove` keyframe to rotate each character (using the `rotate()` function) around the edges of the frame.
+
+## CSS Typing Effects
+
+### 21\. Typewriter Effect
+
+<CodePen user="frankeno" id="QWmmxQb" title="Typewriter Effect in pure CSS" />
+
+The [Typewriter Effect](https://codepen.io/frankeno/pen/QWmmxQb) by [Frank Eno](https://codepen.io/frankeno) is a good example of the typewriter effect with a blinking cursor. Here's a breakdown of how it works:
+
+- `@keyframes typewriter`: Controls the typing effect by gradually expanding the width of the text.
+- `@keyframes blinkingCursor`: Creates the blinking effect of the cursor.
+- `cursor` class: Gives the text a white right border, which is the cursor that shows
+
+### 22\. Typewriter text animation
+
+<CodePen user="alvaromontoro" id="rNwVpdd" title="CSS-only typewriter text animation" />
+
+The [typewriter text animation](https://codepen.io/alvaromontoro/pen/rNwVpdd) by [Alvaro Montoro](https://codepen.io/alvaromontoro/pen/rNwVpdd) creates a dynamic typewriter effect and has different variations of a blinking cursor present. It relies on:
+
+- The `typewriter`, `thick`, and `nocaret` classes that define the normal, thick, and no cursors, respectively
+- `@keyframes typing`: Simulates the typing effect
+- `@keyframes blink`: Causes the cursor to alternate between fully visible (`opacity: 1`) and invisible (`opacity: 0`)
+
+### 23\. Gradient typing effect
+
+<CodePen user="ladyjellington" id="qBBQBYy" title="Gradient typing effect in CSS" />
+
+The [Gradient typing effect](https://codepen.io/ladyjellington/pen/qBBQBYy) by [Jasmine G](https://codepen.io/ladyjellington) is another straightforward implementation of this type of text animation. It relies on these keyframes to work:
+
+- `blink`: Create a blinking cursor effect by toggling the `border-color` between visible and transparent
+- `type`: Makes the text appear letter by letter, simulating a typing effect
+
+### 24\. Editor illustration
+
+<CodePen user="klare" id="xmgbaz" title="Editor Illustration" />
+
+There’s a lot going on in the [Editor illustration](https://codepen.io/klare/pen/xmgbaz) by [Klare](https://codepen.io/klare/pen/xmgbaz). However, we’ll focus on the typing animation, which relies on the following CSS features and definitions:
+
+- `typing-1`, `typing-2`, `typing-3`, `typing-4`, and `typing-5`: Each of these keyframes animates the width of a specific line of code over time to simulate the typing effect
+- `cursor` and `cursor-persist` handle the blinking effect of the cursor by animating its `border-color` property
+- SCSS features `@for` loops for generating repetitive styles and interpolation using `#{$variable}` syntax
+
+### 25\. Typing text
+
+<CodePen user="uiswarup" id="JBMGbb" title="Typing Text" />
+
+The [Typing text effect](https://codepen.io/uiswarup/pen/JBMGbb) by [Swarup Kumar Kuila](https://codepen.io/uiswarup) is yet another CSS text animation where the text is revealed like its being typed out on the screen. However, in this example, some wave animations were added to the background. It relies on:
+
+- `@keyframes type`: Creates the typing effect
+- `@keyframes bg-animation`: Creates the background animation
+
+## Hover text animations
+
+### 26\. Animated text hover
+
+<CodePen user="clovisneto" id="VmzEmj" title="ANIIMATED TEXT HOVER IN CSS" />
+
+We open up this group of CSS text animations with the [animated text hover](https://codepen.io/clovisneto/pen/VmzEmj) by [Clovis Neto](https://codepen.io/clovisneto). Here, the text “STRONG” splits in half on hover and reappears again. This animation relies heavily on CSS [pseudo-classes](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes) and pseudo-elements:
+
+- `::before` pseudo-element on the `p` tag: This uses `transform: translateX` to create the underline effect we see on hover
+- `span:first-child` (top half) and `span:last-child` (bottom half): These are positioned slightly outside the visible area using `transform: translateY` and animate into view on hover
+
+### 27\. Link split hover effect
+
+<CodePen user="jhancock532" id="YzxxEKa" title="Link Split Hover Effect" />
+
+Like the first, this is also a [split hover effect](https://codepen.io/jhancock532/pen/YzxxEKa), and it was created by [James Hancock](https://codepen.io/jhancock532). The only difference is that this split effect is more pronounced and the text is literally cut into 2 when you hover over it. Talk about CSS magic.
+
+They say a magician never reveals their secret, but here’s how this one works:
+
+- CSS [clip-path](https://developer.mozilla.org/en-US/docs/Web/CSS/clip-path) property: Used to create custom shapes for the text elements (`link--top` and `link--bottom`). These are the two halves we see on hover
+- CSS transforms (`translateY`, `rotateZ`, and `scaleX`): These are used to animate the two halves into view on hover
+
+### 28\. Text hover transition
+
+<CodePen user="rafaelavlucas" id="GzmZPO" title="CSS Text Hover Transition #cpc-pop" />
+
+[Rafaela Lucas](https://codepen.io/rafaelavlucas/pen/GzmZPO)’ [text hover transition](https://codepen.io/rafaelavlucas/pen/GzmZPO) relies on a single `h1` element powered by `::before` and `::after` pseudo-elements:
+
+- `::before`: When the `.text` container is hovered, `::before`, with the pink background, expands to `height: 100%`. This creates the effect of a pink bar sliding down over the text
+- `::after`: Has a white background that slides in after the pink one, creating a two-layered background effect
+
+### 29\. CSS text hover effect
+
+<CodePen user="parkhj11" id="oKpOwN" title="Css Text Hover Effects" />
+
+This [text hover effect](https://codepen.io/parkhj11/pen/oKpOwN) by [parkHJ11](https://codepen.io/parkhj11) gives off a sort of _hamburger_ vibe with the “in yourself” text placed between two “believe” texts. It relies on:
+
+- `clip-path`: To clip the top and bottom halves of the “believe” texts on hover
+- CSS transforms (`translateY` and `scaleY`): To make the different text slide into view on hover
+
+### 30\. Text hover
+
+<CodePen user="gayane-gasparyan" id="vYmYMeV" title="Text Hover" />
+
+The text (”Line”) in [Gayane Gasparyan](https://codepen.io/gayane-gasparyan)’s [text hover effect](https://codepen.io/gayane-gasparyan/pen/vYmYMeV) starts with a bold, colorful shadow effect and a thick stroke. When hovered over, the text’s weight lightens, becomes non-italic, and loses its shadow. This animation relies on:
+
+- `ft-varionation-settings`: This allows you to control specific variations of a variable font. In this case, it is set to `"wght" 900, "ital" 1` before hover and becomes `"wght" 100, "ital" 0` on hover
+
+## CSS text color animations
+
+### 31\. The aurora
+
+<CodePen user="ostylowany" id="vYzPVZL" title="🌌 The aurora (only CSS)" />
+
+[The aurora](https://codepen.io/ostylowany/pen/vYzPVZL) animation by [Ostylowany](https://codepen.io/ostylowany/pen/vYzPVZL) uses CSS magic to replicate an aurora effect — think “Northern lights. It relies on:
+
+- `mix-blend-mode`: To make the colors blend where they overlap
+- `border-radius`: There are several border-radius values that give the colors an organic blob-like shape
+- `filter: blur()`: For the soft, glowing effect that's essential for the aurora appearance
+
+### 32\. City nights text effect
+
+<CodePen user="zastrow" id="PoJmzGJ" title="City Nights Text Effect" />
+
+The [city nights text effect](https://codepen.io/zastrow/pen/PoJmzGJ) by [Philip Zastrow](https://codepen.io/zastrow) is a glowing and colorful one with a pulsating text effect. It relies on the @keyframes rule to animate the color and text-shadow of the &lt;h2> element:
+
+- `@keyframes lights`: Changes the `color` and `text-shadow` of the text over time
+- `color`: Changes between different shades of blue (using `hsl()` values)
+- `text-shadow`: Creates a glowing effect by layering shadows with varying opacity and spread
+
+### 33\. T **ext shadow animation**
+
+<CodePen user="natszafraniec" id="gOxrKJv" title="Text shadow animation (CSS) but I'm being extra" />
+
+[Natalia](https://codepen.io/natszafraniec)’s [text shadow animation](https://codepen.io/natszafraniec/pen/gOxrKJv) gives the effect of 2 sets of colors sliding in consecutively and “painting” some piece of text. It relies on the following CSS properties:
+
+- `overflow: hidden`: Creates the cutting mask for the reveal
+- `@for` loop: Generates staggered delays for each word’s animation
+- `max-width` and `max-height` keyframes: Animates the horizontal and vertical flow of the colors over the text
+
+### 34\. Holographic type
+
+<CodePen user="cjimmy" id="zYzNBJj" title="Holographic type" />
+
+The [holographic type](https://codepen.io/cjimmy/pen/zYzNBJj) animation by [Jimmy Chion](https://codepen.io/cjimmy) gives off the effect of text hovering over a 3d-like platform. It relies on:
+
+- `@keyframes cube-rotate`: Uses transforms (`perspective()` and `rotate3d()`) to rotate the platform back and forth and give it depth
+- `@keyframes shimmer`: Uses `filter()` to create a dynamic gradient that cycles between brightness levels
+- `mix-blend-mode`: Creates a unique holographic aesthetic
+
+### 35\. Rainbow spotlight
+
+<CodePen user="TajShireen" id="xxGPEEp" title="Rainbow spotlight" />
+
+[Shireen Taj](https://codepen.io/TajShireen)’s [Rainbow spotlight](https://codepen.io/TajShireen/pen/xxGPEEp) animation creates a **moving spotlight effect** on a large, bold piece of text. As the spotlight moves through the text, it creates a rainbow gradient background. Key CSS features used include:
+
+- `h1:before`: Its background is a **rainbow gradient** that creates the illusion of color moving over the text
+- `clip-path`: Gives the spotlight an ellipsis shape as it moves through the text
+- `@keyframes swing`: Transitions the `clip-path` position, giving the text a spotlight-like movement
+
+## Variable font animations
+
+### 36\. Breathe variable font animation
+
+<CodePen user="typeforward" id="wvNgEqy" title="Breathe animation – Variable Font, HTML" />
+
+The [Breathe variable font animation](https://codepen.io/typeforward/pen/wvNgEqy) by [Type Forward](https://codepen.io/typeforward) makes the font appear as if it's "breathing" by dynamically adjusting the font weight. It relies on:
+
+- `font-variation-settings`: Changes the font’s weight from `100` (thin) to `900` (bold)
+- `@keyframes letter-breathe`: Animates the change in font weight to create the breathing effect
+
+### 37\. Font transition on hover
+
+<CodePen user="dlyck" id="eYZRBdN" title="CSS Variable font transition on hover" />
+
+The [font transition on hover animation](https://codepen.io/dlyck/pen/eYZRBdN) by [Don Lyckman](https://codepen.io/dlyck) transitions from a thin to a bold style when the user hovers over the text. It also uses the `font-variation-settings` property to adjust the font’s weight from `100` to `1000`.
+
+### 38\. Curved Dusseldot
+
+<CodePen user="peteyio" id="vYOvjvv" title="Curved Dusseldot - Variable Fonts" />
+
+The [Curved Dusseldot](https://codepen.io/peteyio/pen/vYOvjvv) by [P](https://codepen.io/peteyio) creates a mesmerizing circular text animation using variable fonts and rotation. The animation relies on the following:
+
+- `font-variation-settings`: Changes the width ("width") of each character, giving it a pulsating effect during animation
+- `spin#{$i}` keyframe animations: SCSS `@for` loop generates unique `@keyframes` animations (`spin1`, `spin2`, etc.) for each character. The animation places each character on a circular path using `transform: rotate` and rotates each one independently
+
+### 39\. Work/Life font animation
+
+<CodePen user="gayane-gasparyan" id="dyPEgVo" title="Work/Life - Variable Fonts animation" />
+
+The [Work/Life font animation](https://codepen.io/gayane-gasparyan/pen/dyPEgVo) by [Gayane Gasparyan](https://codepen.io/gayane-gasparyan) creates a dynamic "WORK LIFE BALANCE" text effect using variable fonts where "WORK" and "LIFE" alternate between thick/wide and thin/narrow styles. It works with the following:
+
+- `@keyframes swapthings`: Defines the `font-variation-settings` for the “WORK LIFE” text container and animates the font's weight and width for those texts
+- `@keyframes swapthings2`: Defines the `font-variation-settings` for the “WORK” text and animates the weight and width of its font. It ensures that "WORK" and "LIFE" have opposite styles. That way, when "WORK" is bold, "LIFE" is light, and when "WORK" is light, "LIFE" is bold
+
+### 40\. “Draw in” text effect
+
+<CodePen user="mandymichael" id="OvELdE" title="&quot;Draw In&quot; Text Effect with Decovar" />
+
+The [“Draw in” text effect](https://codepen.io/mandymichael/pen/OvELdE) by [Mandy Michael](https://codepen.io/mandymichael) creates a dynamic "I/O" text effect using variable fonts, gradients, and shadow layers. It works with:
+
+- `text-shadow`: Purple shadows are applied to the `::before`, `::after`, and `span` elements to give the text depth and create a glowing 3D-like appearance
+- Pseudo-elements: The `::before`, `::after`, and `<span>::before` elements add layers to the text and are positioned behind it with `z-index`
+- `@keyframes draw`: Uses `font-variation-settings` to animate the 'DRAW' axis of the font between two extremes: `1000` (its fully drawn-out appearance) and 0 (its compressed or minimal appearance)
+
+## Text animation tools and libraries you should know
+
+So far, we’ve explored various types of text animations. Let’s be honest: while these animations are great and engaging, they can be tricky to make, especially when you have limited experience working with CSS. Thankfully, you don’t need to make them all from scratch. There are open-source solutions you can use.
+
+These tools aren’t strictly dedicated to making text animations. However, you can use them for that purpose. Let’s explore them.
+
+### Animate.css
+
+[Animate.css](https://animate.style/) is a lightweight — [5.2kb (minified + gzipped)](https://bundlephobia.com/package/animate.css@4.1.1) — CSS animation library. It is widely used and has over 80k GitHub stars.
+
+Animate.css provides 16 categories of animations and 90+ animations in total. This ensures you have a wide range of CSS animation types, styles, and effects to explore. The gif below shows some of these animations in action.
+
+![Animate.css GIF](/portfolio/prismic/042-css-text-animations/image-1.gif)
+
+Another secret to its success and wide adoption is that it is easy to learn and use. All you need to do is install the library, import its CSS file into your app, and apply its special classes like `animate__animated`.
+
+### Animsta
+
+[Animsta](https://animista.net/) is a versatile CSS animation library for animating text, background colors, SVGs, images, and more. It provides different types of animations, including entrance and exit animations. As for text animations, Animsta provides over 50 of them, including ones for blur, focus, shadow, and pop-up effects.
+
+![Animista.gif ](/portfolio/prismic/042-css-text-animations/image-2.gif)
+
+An interesting thing about Animsta is that unlike other libraries where you have to install their npm packages, Animsta gives you access to the code for your desired animation. It does this via itsplayground environment where you can test its animations and copy their code (classes and keyframes) to paste into your project.
+
+### [Loading.io](http://loading.io/)
+
+[Loading.io](https://loading.io/) is a comprehensive online platform for all your online needs. It provides tools for animating images, texts, icons, spinners, and backgrounds. It also has CSS and JavaScript libraries for loading animations, button animations, and transitions.
+
+![Loading.GIF](/portfolio/prismic/042-css-text-animations/image-3.gif)
+
+When it comes to text, [Loading.io](http://loading.io/) provides over 130 animations for you to work with. The animations are extremely unique and eye-catching, which is something I love. You can export texts as GIFs, SVGs, PNGs, JPGs, MP4s, and Lottie files.
+
+Overall, [Loading.io](http://loading.io/) is a great platform to explore. The only downside is most of its animations are paid for; less than 20 of them are free.
+
+## Conclusion
+
+You can never go wrong with adding animations to your website and web app. Or can you?
+
+While animations are a great way to add eye-catching visual flair to your websites, it's important to be moderate and consider factors like accessibility, performance, and animation overload for your visitors. Ensure that you don't add too many animations and that they aren't overwhelming for your visitors.
+
+Lastly, explore the different CSS text animation examples we've covered in this article and include them in your site(s).

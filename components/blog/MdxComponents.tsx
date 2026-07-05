@@ -89,6 +89,48 @@ function LinkedIn({ url }: { url: string }) {
   )
 }
 
+// ─── CodePen embed ───────────────────────────────────────────────────────────
+// Usage: <CodePen user="nefejames" id="pvzzVLj" title="Optional title" />
+// Uses CodePen's click-to-run preview mode: articles can carry dozens of pens,
+// and preview mode keeps them static (and lazy-loaded) until the reader runs
+// one — instead of executing every demo on page load.
+function CodePen({
+  user,
+  id,
+  title,
+  height = 500,
+}: {
+  user: string
+  id: string
+  title?: string
+  height?: number
+}) {
+  return (
+    // Capped narrower than the article column (and centered) — pens are demos,
+    // not hero media; full-column iframes dominated the reading flow.
+    <figure className="my-8 max-w-xl mx-auto">
+      <iframe
+        src={`https://codepen.io/${user}/embed/preview/${id}?default-tab=result&theme-id=dark`}
+        title={title ? `CodePen: ${title}` : 'CodePen embed'}
+        height={height}
+        loading="lazy"
+        allowFullScreen
+        className="w-full rounded-xl border border-[var(--border)] bg-[var(--surface)]"
+      />
+      <figcaption className="mt-2 text-center text-sm">
+        <a
+          href={`https://codepen.io/${user}/pen/${id}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[var(--accent-text)] hover:underline"
+        >
+          {title ? `${title} — open on CodePen →` : 'Open on CodePen →'}
+        </a>
+      </figcaption>
+    </figure>
+  )
+}
+
 // ─── Figure (image with caption) ─────────────────────────────────────────────
 // Usage: <Figure src="/images/chart.png" alt="..." caption="..." />
 function Figure({
@@ -152,6 +194,7 @@ export const mdxComponents = {
   Tweet,
   YouTube,
   LinkedIn,
+  CodePen,
   Figure,
   h2: H2,
   h3: H3,
