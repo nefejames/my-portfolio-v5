@@ -12,3 +12,13 @@
 9. https://prismic.io/blog/sdk-vs-api
 10. https://prismic.io/blog/nextjs-image-component-optimization
 11. https://prismic.io/blog/vercel-vs-netlify
+12. https://prismic.io/blog/headless-vs-no-code
+13. https://prismic.io/blog/svelte-and-sveltekit
+14. https://prismic.io/blog/vue-vs-react
+15. https://prismic.io/blog/headless-cms
+16. https://prismic.io/blog/headless-cms-use-cases
+17. https://prismic.io/blog/business-benefits-headless-cms
+18. https://prismic.io/blog/best-css-frameworks
+19. https://prismic.io/blog/nextjs-vs-react
+20. https://prismic.io/blog/nextjs-typescript
+21. https://prismic.io/blog/nextjs-example-projects
