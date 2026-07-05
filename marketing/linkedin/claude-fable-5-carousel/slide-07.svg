@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+    <rect width="1080" height="1080" fill="#0F0F12"/>
+    <rect x="0" y="0" width="1080" height="6" fill="#4F46E5"/>
+    <g transform="translate(64,56) scale(0.9)">
+    <rect width="80" height="80" rx="14" fill="#4F46E5"/>
+    <path d="M12 10L12 36" stroke="white" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M12 10L68 36" stroke="white" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M68 10L68 36" stroke="white" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M12 46L12 70" stroke="white" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M12 46L36 46" stroke="white" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M12 58L31 58" stroke="white" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M12 70L36 70" stroke="white" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M44 70L56 46L68 70" stroke="white" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M49 60L63 60" stroke="white" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </g>
+    <text x="1016" y="102" text-anchor="end" font-family="'Segoe UI', Arial, sans-serif" font-size="26" fill="#A1A1AA">7 / 9</text>
+    <line x1="64" y1="984" x2="1016" y2="984" stroke="#2A2A30" stroke-width="2"/>
+    <text x="64" y="1028" font-family="'Segoe UI', Arial, sans-serif" font-size="24" fill="#A1A1AA">Emadamerho-Atori Nefe</text>
+    <text x="1016" y="1028" text-anchor="end" font-family="'Segoe UI', Arial, sans-serif" font-size="24" fill="#818CF8">Content marketer &amp; SEO manager</text>
+    <text x="64" y="240" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="600" letter-spacing="6" fill="#818CF8">SEO — MY HOME TURF</text>
+    <text x="64" y="330" font-family="Georgia, 'Times New Roman', serif" font-size="80" font-weight="bold" fill="#F4F4F5">And it speaks</text><text x="64" y="424.4" font-family="Georgia, 'Times New Roman', serif" font-size="80" font-weight="bold" fill="#F4F4F5">fluent SEO.</text>
+    
+      <rect x="64" y="490" width="952" height="84" rx="16" fill="#1A1A1F" stroke="#2A2A30" stroke-width="2"/>
+      <circle cx="112" cy="532" r="7" fill="#818CF8"/>
+      <text x="148" y="543" font-family="'Segoe UI', Arial, sans-serif" font-size="30" fill="#F4F4F5">JSON-LD: Person, Article, Breadcrumbs, ProfilePage</text>
+      <rect x="64" y="596" width="952" height="84" rx="16" fill="#1A1A1F" stroke="#2A2A30" stroke-width="2"/>
+      <circle cx="112" cy="638" r="7" fill="#818CF8"/>
+      <text x="148" y="649" font-family="'Segoe UI', Arial, sans-serif" font-size="30" fill="#F4F4F5">Generated OG images for all 75 articles</text>
+      <rect x="64" y="702" width="952" height="84" rx="16" fill="#1A1A1F" stroke="#2A2A30" stroke-width="2"/>
+      <circle cx="112" cy="744" r="7" fill="#818CF8"/>
+      <text x="148" y="755" font-family="'Segoe UI', Arial, sans-serif" font-size="30" fill="#F4F4F5">Canonicals pointing to original publications</text>
+      <rect x="64" y="808" width="952" height="84" rx="16" fill="#1A1A1F" stroke="#2A2A30" stroke-width="2"/>
+      <circle cx="112" cy="850" r="7" fill="#818CF8"/>
+      <text x="148" y="861" font-family="'Segoe UI', Arial, sans-serif" font-size="30" fill="#F4F4F5">Sitemap, robots, Search Console verification</text></svg>
