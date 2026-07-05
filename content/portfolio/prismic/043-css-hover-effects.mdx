@@ -1,0 +1,476 @@
+---
+title: "CSS Hover Effects: 40 Engaging Animations To Try"
+client: "Prismic"
+clientSlug: "prismic"
+originalUrl: "https://prismic.io/blog/css-hover-effects"
+publishedAt: "2024-12-11"
+canonical: "https://prismic.io/blog/css-hover-effects"
+excerpt: "Discover 40+ CSS hover effects, from holographic cards to liquid buttons, all complete with live CodePen demos and code!"
+coverImage: "/portfolio/prismic/043-css-hover-effects/cover.webp"
+tags: []
+---
+
+_**Don’t come for my head**_, but I think it’s safe to say that static websites are officially a thing of the past. People nowadays expect some level of interactivity when they visit websites. One of the ways you can keep them engaged is by adding hover animations to your websites.
+
+There’s no limit to the type of hover animation you could make. It could be a simple button that scales up on hover or a card that flips over 3D-style — the possibilities are endless.
+
+In this article, we will explore 40 examples of CSS hover animations—ten of which I created myself 🙃. Hopefully, these examples help you draw inspiration and give you ideas for how to keep users engaged and provide them with a memorable experience. Let’s dive in.
+
+## 40 examples of CSS hover animations
+
+Let’s start by taking a look at ten custom animations I personally created, complete with demos and code examples!
+
+## Custom CSS hover effects
+
+### 1\. Holographic card
+
+<CodePen user="nefejames" id="ogvNgJq" title="Holographic card" />
+
+As they say, you can’t beat the classics. So, we’re starting with a simple card effect where it scales up, gets a colorful border shadow, and shimmers with a holographic gradient on hover. This animation works with:
+
+- `::before` pseudo-element: Creates the holographic effect by placing a gradient background with varying opacity and rotation. It initially has `0` opacity, and on hover, it becomes visible while moving downwards
+- `.holographic-card:hover`: Applies a scale effect (`transform: scale(1.05)`) and a glowing box shadow (`box-shadow: 0 0 20px rgba(0, 255, 255, 0.5)`)
+
+### 2\. Liquid morph
+
+<CodePen user="nefejames" id="WbeNvrr" title="Liquid morph" />
+
+This animation creates a liquid-like morphing effect on a button when hovered over. Initially, the button has a rounded rectangular shape with a dark blue background and a centered text label. When hovered, the button slightly rotates, its border-radius decreases, and a colorful, conic gradient appears. The CSS features powering this animation include:
+
+- `::before` pseudo-element: Creates a conic gradient background, which transitions from cyan to dark blue, giving the appearance of a liquid filling the button
+- `.liquid-morph-element:hover`: Reduces the border-radius to `10px` and applies a rotation of `15deg`, giving the button a more angular shape
+
+### 3\. Explosive text effect
+
+<CodePen user="nefejames" id="XJrWbKz" title="Particle deconstruction" />
+
+This animation creates an "explosive" effect when the element is hovered over. It works with the `::before` and `::after` pseudo-elements, which produces the radial gradient effect and scale up and rotate on hover.
+
+### 4\. Text underline
+
+<CodePen user="nefejames" id="qEWBOBz" title="Text hover underline" />
+
+This animation creates a unique hover effect where underlines appear above and below the text when the user hovers over it. Its powered by the `::before` and `::after` pseudo-elements, which create the underline effect. The pseudo-elements grow from `0` to `100%` on hover while a gradient is applied to them.
+
+### 5\. Dropdown menu
+
+<CodePen user="nefejames" id="yyBNogQ" title="Dropdown menu" />
+
+This animation creates a dropdown menu that appears when hovering over a button. Initially, the dropdown menu is hidden, with its opacity set to `0`, but becomes fully visible on hover. The key to this animation is the `opacity`, which is set to `1` on hover and `transform: translateY(0)`, which moves the menu to its normal position.
+
+### 6\. Double-sided card
+
+<CodePen user="nefejames" id="RNbPZpp" title="Double-sided card" />
+
+This animation creates a 3D flipping card effect. When the user hovers over the card, it rotates 180 degrees along the Y-axis, revealing the back side. The front and back sides of the card are identical in size but have different backgrounds and the `perspective` property on the cards’ container enhances the 3D effect.
+
+This animation works with:
+
+- `transform-style: preserve-3d`: Allows the cards to maintain their 3D position during rotation
+- `transform: rotateY(180deg)`: Rotates the cards along the Y-axis
+
+### 7\. 4-corner image
+
+<CodePen user="nefejames" id="azoOyyz" title="4-corner image" />
+
+This animation creates an interactive image effect where the image is divided into four quadrants on hover. The quadrants represent a different section of an image, and they are positioned to create a complete picture when assembled. Upon hovering over the container, the quadrants shift outward, creating the split effect.
+
+It works with:
+
+- `background-image: url()` applies the image to each quadrant
+- `background-position` crops specific quadrants of the image
+- `transform: translate()` moves quadrants outwards on hover
+
+### 8\. Cursor animations
+
+<CodePen user="nefejames" id="emONEew" title="Cursor animations 1" />
+
+This animation has two effects. First, it demonstrates various CSS cursor styles on hover, and each box undergoes different visual effects, like scaling, rotating, clipping, and pulsing. Here’s a breakdown of what powers the effects in this:
+
+- `cursor`: Defines [unique cursor types](https://developer.mozilla.org/en-US/docs/Web/CSS/cursor) for the different boxes
+- `::before`: Creates a linear gradient effect that moves diagonally from top-left to bottom-right on hover
+- `@keyframes pulse`: Creates a pulsating effect where the box grows and shrinks in size repeatedly
+- `@keyframes shake`: Simulates a shaking or jittery motion, like the kind used to signify "error" or "not allowed"
+- `@keyframes moveAround`: Causes the boxes to shift slightly in various directions
+- CSS transforms: `transform: scale()`, `rotate()`, `translateY()`, `translateX()`, and `skew()` are applied to various boxes
+
+### 9\. Rotating cube
+
+<CodePen user="nefejames" id="gbYpxvX" title="Rotating cube" />
+
+This 3D animation creates an interactive cube with six faces (front, back, right, left, top, and bottom), each styled with distinct colors and a subtle gradient.The cube rotates smoothly in 3D space when hovered over, and a glass-like gradient appears on the faces. It works with:
+
+- `translateZ`, `rotateX`, and `rotateY`: Position the faces to form a cube
+- `perspective` and `transform-style: preserve-3d`: Ensure proper 3D rendering
+- `@keyframes rotate3d`: Creates the continuous cube rotation
+- `::before` and `::after`: Creates the glass-like reflections that occur on hover
+
+### 10\. Chameleon SVG
+
+<CodePen user="nefejames" id="jENPLzQ" title="Chameleon SVG" />
+
+When hovered over, the card cycles through different SVG-based background patterns and shifts the pattern's position smoothly across the surface. It works with:
+
+- `background-image`: Uses inline SVG data to display custom patterns
+- `@keyframes move-and-color`: Defines the stages of animation, specifying changes to `background-image` and `background-position`
+
+That’s it for the custom CSS hover effects. Now, let’s move on to examples from other developers. We’ll start with checking out card hover animations; _view [this Codepen collection](https://codepen.io/collection/EPjRwB) to see other text animations I created._
+
+## Card CSS hover animations
+
+These card hover animations add a unique effect that will grab the attention of your visitors’.
+
+### 11\. Profile card hover
+
+<CodePen user="codev_land" id="yLXeyWX" title="Profile card Hover" />
+
+[The profile card hover animation](https://codepen.io/codev_land/pen/yLXeyWX) by [Codev Land](https://codepen.io/codev_land) creates a two-layer sliding effect on a card component. When hovered, the top slide (with an icon) moves up to reveal the bottom slide containing text. This animation relies on:
+
+- `transform: translateY()` ( [docs](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/translate)): Moves each slide along the vertical axis during hover
+- `transition` ( [docs](https://developer.mozilla.org/en-US/docs/Web/CSS/transition)): Creates a smooth animation effect when both slides’ positions change on hover
+
+### 12\. CSS hard hover effects
+
+<CodePen user="obrunorocha" id="aggLgE" title="CSS Card Hover Effects" />
+
+The [CSS hard hover effects](https://codepen.io/obrunorocha/pen/aggLgE) by [Bruno Rocha](https://codepen.io/obrunorocha) creates a dynamic card hover effect, where top layer shrinks on hover to reveal the inner text-filled layer. The creator uses the transition property to add to the cards to animate changes in their height, border-radius, and font size during hover.
+
+### 13\. Glowing gradient glassmorphism card
+
+<CodePen user="kodplay" id="oNBreRJ" title="Glowing Gradient Glassmorphism Card" />
+
+The [Glowing gradient glassmorphism card](https://codepen.io/kodplay/pen/oNBreRJ) by [Kodplay](https://codepen.io/kodplay) creates a visually appealing card layout with a hover animation effect. Each card has a distinct style, with unique gradient backgrounds, blur effects, and hover interactions. Here's a breakdown of how the code works:
+
+- `::before` and `::after` pseudo-elements: Creates gradient skewed backgrounds. On hover, the skew effect is removed, and the dimensions adjust
+- `transition`: Animates the hover effects
+- `span::before` and `span::after`: Adds blur and glow effects on hover
+- `backdrop-filter` ( [docs](https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter)): Adds a glassmorphism effect to the card's content
+- `@keyframes animate`: Creatives a slight vertical motion to give a dynamic floating effect
+
+### 14\. Tourist cards
+
+<CodePen user="kjawhar15" id="zLBaPj" title="hovering cards" />
+
+The [tourist cards hover effect](https://codepen.io/kjawhar15/pen/zLBaPj) by [karim jawhar](https://codepen.io/kjawhar15) features three interactive cards, each showcasing the image of a landmark. When hovered over, the cards transform by rotating along the X and Z axes, giving them a 3D effect. This animation works with:
+
+- `transform`: `rotateX`, `rotateZ`, `translateY`, and `translateZ` properties create the 3D rotation and positioning effect that occurs on hover
+- `transition`: Smoothens the change between states, especially on the `transform` and `box-shadow`, making the hover effect more fluid
+
+### 15\. Same height cards
+
+<CodePen user="veronicadev" id="WJyOwG" title="FlexBox Exercise #4 - Same height cards" />
+
+The [same height cards animation](https://codepen.io/veronicadev/pen/WJyOwG) by [Veronica](https://codepen.io/veronicadev) is another great example. When hovered over, the cards enlarge slightly and reveal more information about the items, such as a "like" icon and time information. At the same time, the image becomes partially opaque as its opacity reduces.
+
+This animation relies on:
+
+- `transform: scale`: Enlarges the card on hover, making it appear to "pop" out
+- `card__img--hover` class: Handles the changes that occur on the background image when hovered. The image properties that change include `opacity` ( [docs](https://developer.mozilla.org/en-US/docs/Web/CSS/opacity)), `background-size` ( [docs](https://developer.mozilla.org/en-US/docs/Web/CSS/background-size)), and `background-position` ( [docs](https://developer.mozilla.org/en-US/docs/Web/CSS/background-position))
+
+## Icon CSS hover effects
+
+Let’s take a look at some icon hover effects that will be sure to make your website stand out.
+
+### 16\. Social media icons hover effect
+
+<CodePen user="ephs23" id="NeQZGx" title="Social Media Icons hover effect" />
+
+The [social media icons hover effect](https://codepen.io/ephs23) by [Ephraim Sangma](https://codepen.io/ephs23/pen/NeQZGx) creates a set of Font Awesome social media icons that animate on hover. Here's a breakdown of how it works and the key elements involved:
+
+- `a:before`: Used to create a background color effect when hovering over the social media icons. It is initially positioned below the button. On hover, it slides up and fills the icon’s circle
+- `transform: rotateY`: Rotates the icon in 360 degrees along the Y-axis, giving a flip effect
+
+### 17\. Interactive close button
+
+<CodePen user="mariusgnicula" id="MpzOoP" title="A simple but interactive close button" />
+
+The [interactive close button](https://codepen.io/mariusgnicula/pen/MpzOoP) animation by [Marius Nicula](https://codepen.io/mariusgnicula) creates an interactive button with circular elements inside it that move and change colors on hover. It works with the following:
+
+- SCSS `transition` [mixin](https://sass-lang.com/documentation/at-rules/mixin/): Creates a consistent transition effect that applies to all properties
+- `transform: rotate`: Rotates the bars diagonally (+45° and -45°) to give the “X” shape
+- `&:hover`: The background color of the bars and the position of the circles in the bars change on hover
+
+### 18\. Icon hover effect
+
+<CodePen user="EngSafa" id="MpPvea" title="css Icon Hover Effect" />
+
+[Engineer’s](https://codepen.io/EngSafa) [icon hover effect](https://codepen.io/EngSafa/pen/MpPvea) completes the circular background of the icons on hover. It works with:
+
+- `border-radius: 50%` ( [docs](https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius)): Gives the list items their circular shape
+- `transform: rotate`: Rotates each list item 45° to tilt the semicircles
+- `::before`: The half of the semicircle that remains static and visible
+- `::after`: The other half of the semicircle that slides in on hover
+
+### 19\. CSS social tiles
+
+<CodePen user="Stockin" id="mzydLz" title="3D - CSS Social Tiles" />
+
+The [CSS social tiles animation](https://codepen.io/Stockin/pen/mzydLz) by [Stockin](https://codepen.io/Stockin) uses CSS to create titled 3D buttons that “levitate” in the air on hover. It relies on the following to work:
+
+- CSS transforms (`skew(25deg)` and `rotate(-30deg)`): Create the tilted card effect
+- `box-shadow`: Gives each item depth and a 3D effect
+- `::before` and `::after`: Complete the 3D effect by acting as the “walls” of each item
+- Hover effect: The item moves slightly to the right and up and the box shadow becomes larger and more pronounced, enhancing the 3D effect
+
+### 20\. Text and gradient icon hover effect
+
+<CodePen user="yxwang31" id="NWYpdxx" title="CSS Icon Hover Effects with Text And Gradient Drop Shadow" />
+
+The [text and gradient icon hover effect](https://codepen.io/yxwang31/pen/NWYpdxx) by [Yixuan](https://codepen.io/yxwang31) creates an animated navigation bar with expanding menu items and colorful hover effects. Here's a breakdown of how it works:
+
+- `::before`: Creates a gradient overlay that fades in on hover
+- `::after`: Generates a blurred glow around the button
+- `scale(0)`: Shrinks the icons when hovered upon
+- `scale(1)`: Scales up the title on hover to become visible
+- `li`: Increases in width as the title appears
+
+## Link and menu CSS hover animations
+
+Let’s explore some link and menu hover effects that can add flair to navigation bars.
+
+### 21\. Creative menu hover effect
+
+<CodePen user="abdelRhman345" id="PXMmdv" title="Creative Menu Hover Effects #" />
+
+The [creative menu hover effect](https://codepen.io/abdelRhman345/pen/PXMmdv) by [abdel Rhman](https://codepen.io/abdelRhman345) generates a navigation menu dynamically using Pug templating language. The CSS styles applied give the menu items a simple but eye-catching hover effect. Here's an explanation of how it works:
+
+- `:before`: Creates the border lines that scale into view on hover
+- `:after`: Creates the background that expands to cover the menu item on hover
+
+### 22\. Menu hover
+
+<CodePen user="larrygeams" id="kPeXNw" title="CSS3 Hover Effect using :after Psuedo Element" />
+
+Each menu item in [Larry Geams](https://codepen.io/larrygeams)’ [menu hover effect](https://codepen.io/larrygeams/pen/kPeXNw) has a unique left-border color and when a user hovers over the links, the background color slides in to fill the links. This animation is powered by an `::after` attached to each link. On hover, the width of `::after` extends to 100%, making it fill its source element.
+
+### 23\. Magic line navbar
+
+<CodePen user="RockStarwind" id="WmGwwp" title="Pure CSS Magic Line Navbar" />
+
+The [Magic line navbar](https://codepen.io/RockStarwind/pen/WmGwwp) animation by [Rock Starwind](https://codepen.io/RockStarwind) creates a sleek navigation bar with a dynamic hover effect. When a user hovers over any of the links, a line indicator slides to align with the hovered link. Here’s a breakdown of the animation:
+
+- `position: absolute` and `bottom: 0`: Positions the line at the bottom of the nav bar
+- `opacity`: Sets the default opacity of the line to `0` and transitions it to `1` on hover
+- `calc()`: Calculates the size and position of the `.line` using the `--index` [custom property](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) based on the hovered link's position in the grid
+- `-index`: Dynamically changes based on the hovered link to indicate which link is active and where the `.line` should move
+- `hover ~ .line`: A sibling selector that updates the `.line` properties (like `--index`) based on which link is hovered
+
+### 24\. Wavy menu line
+
+<CodePen user="mburakerman" id="xpZJYL" title="Menu Hover Line Effect" />
+
+The [wavy menu line](https://codepen.io/mburakerman/pen/xpZJYL) effect by [Mehmet Burak Erman](https://codepen.io/mburakerman) makes links stand out by giving them a wavy line that shows up to the party on hover. It works with:
+
+- `li:hover`: Gives links a base64-encoded SVG line as their `background-image`
+- `@keyframes line`: Animates the background's position horizontally on hover
+
+### 25\. Desktop menu animation
+
+<CodePen user="Mareken" id="rRyQEo" title="\[Pure CSS\] Desktop Menu Animation" />
+
+There’s a lot going on with the [desktop menu animation](https://codepen.io/Mareken/pen/rRyQEo) by [Gabriel Antonio](https://codepen.io/Mareken). Let’s explore how it works.
+
+- `translateY`: Moves the position of the top and bottom bars of the hamburger menu on hover
+- `opacity`: Hides the top and bottom hamburger menu bars on hover
+- `scaleY`: Increases the size of the middle hamburger menu bar on hover
+- `translateX`: Slides the menu out from the left side when users hover over the hamburger menu
+- `translateY`, `rotate(-90deg)`, and `opacity`: Rotates the “MENU” text into view and makes it visible on hover
+- `nth-of-type`: Creates staggering delays for the menu items, so they animate into view one after the other
+
+## Button CSS hover animations
+
+Add character to your [CTAs](https://prismic.io/blog/call-to-action-examples) with these creative CSS button hover effects.
+
+### 26\. Don’t push me buttons
+
+<CodePen user="ahart814" id="yLNMZGa" title="Don't Push Me Buttons / CPC Color" />
+
+The [Don’t push me buttons](https://codepen.io/ahart814/pen/yLNMZGa) animation by [Alex Hart](https://codepen.io/ahart814) is a 2-for-1 package that comes with a hover animation and a click one. It works with the following:
+
+- `transform-style: preserve-3d`: Gives the buttons a 3D-like appearance
+- `translate(0, 0.375em)`: Moves the buttons slightly downwards on hover to simulate a "press" effect
+- `transform: translate(0em, 0.75em)`: Simulates a complete button press when clicked by moving the button further down
+
+### 27\. Next button hover
+
+<CodePen user="folaad" id="YvmRpz" title="CSS BUTTON HOVER" />
+
+The [Next button hover](https://codepen.io/folaad/pen/YvmRpz) by [Imran Pardes](https://codepen.io/folaad) displays the word "NEXT" in a bold, skewed background, accompanied by an animated arrow composed of three SVG paths. Here’s how it works
+
+- `transform: translateX`: Places the first and 2nd paths of the arrow off-screen. This ensures they are initially hidden, then slide into view on hover
+- `@keyframes color_anim`: Makes the arrow paths flash yellow periodically
+- `box-shadow`: The shadow increases on hover, and its color changes to yellow
+
+### 28\. Sleepy birds button
+
+<CodePen user="ash_creator" id="zYaZXLJ" title="すやすやなボタン" />
+
+The [sleepy birds button](https://codepen.io/ash_creator/pen/zYaZXLJ) by [ash\_creator](https://codepen.io/ash_creator) is a wildly creative animation that pushes the boundaries of what’s possible with CSS. The birds in this project were all created with HTML and CSS. Initially, the birds are sleeping with there eyes closed, and when hovered over, 2 out of 3 of them wake up.
+
+Let’s see what makes this animation tick:
+
+- `@keyframes sleep`: Gives all characters a subtle breathing/pulsing animation by alternating the birds’ heights. This animation is constantly running on all birds
+- `@keyframes wakeup`: Transitions the height of all characters on hover. Character expansion on hover
+- `@keyframes eye` and `@keyframes eye_2`: Creates the blinking and eye movement animations that occur on hover
+- `@keyframes body_hoo`: Character body movements
+- `@keyframes face_pen`: Face scaling animations
+- `letter-spacing`: Increases the letter spacing of the buttons’ texts on hover
+- `translateX`, `rotateY`, and `translateX`: Animates the background of the buttons on hover
+
+### 29\. Rainbow button hover
+
+<CodePen user="althi" id="eKdmaa" title="Animated button with rainbow hover #pride" />
+
+The [rainbow button hover](https://codepen.io/althi/pen/eKdmaa) effect by [Thiago Marques](https://codepen.io/althi/pen/eKdmaa) is colorful and mesmerizing. When a user hovers over the set of rainbow-colored buttons, a sliding gradient animation that transition through multiple colors occurs, giving the illusion of a moving rainbow background. This effect is powered by:
+
+- `@keyframes slidebg`: Changes the `background-position` of the background gradients to simulate the moving rainbow effect on hover
+- `background-image`: Defines the `linear-gradient` colors of each button
+
+### 30\. 3D blend mode buttons
+
+<CodePen user="lisilinhart" id="OJRoRJe" title="CSS 3D Blend Mode Buttons" />
+
+The [3D blend mode buttons](https://codepen.io/lisilinhart/pen/OJRoRJe) by [Lisi](https://codepen.io/lisilinhart), who drew inspiration from [Oleg Frolov](https://dribbble.com/shots/8582990-VR-Menu-Interaction), have a 3D-look to it. When the user hovers over a button, it uses three layers of colors to create a wobble-like animation that gives the button a 3D-like appearance. This animation is powered by:
+
+- `perspective`: Gives the buttons a 3D view
+- `transform`: Creates the rotation effect
+- `@keyframes rotateAngle`: Uses `rotateY` to rotate the main container on the Y-axis in a continuous loop
+- `@keyframes translateWobble`: Applies the wobble effect to the button's `::before` and `::after`pseudo-elements on hover. It uses `transform: translate3d` to translate the element in all three axes (X, Y, Z)
+- `mix-blend-mode`: Is set to `color-dodge` and causes the colors of the pseudo-elements to blend, creating a striking color contrast effect
+
+## Image CSS hover animations
+
+These image hover effects that turn visuals into interactive art.
+
+### 31\. Frame hover effect
+
+<CodePen user="t_afif" id="JjLVLPL" title="Frame hover effect with one element" />
+
+The images in [Temani Afif](https://codepen.io/t_afif)’s [frame hover effect](https://codepen.io/t_afif/pen/JjLVLPL) initially appear without a border/frame. However, when hovered over, a border appears, and the images become bright, almost as if a dark veil had been removed. The following properties are adjusted on hover to create this animation:
+
+- `outline`: The outline covers the image by default. However, on hover, its thickness changes to a thinner value, creating the effect of a shrinking border
+- `outline-offset`: Defines the gap between the image and the outline
+
+### 32\. Dual image effect
+
+<CodePen user="t_afif" id="LYdqGKQ" title="Dual image with hover effect" />
+
+[Temani Afif](https://codepen.io/t_afif/pen/LYdqGKQ)’s [dual image effect](https://codepen.io/t_afif/pen/LYdqGKQ) gives a diagonally-split box with an image on either side. When the image on the left corner is hovered over, it fills 75% of the screen. The same goes for the image on the r right corner. This dynamic “sliding triangle reveal” animation relies on:
+
+- `clip-path`: Defines triangular regions of the images
+- `--_p` CSS variable in `clip-path`: Dynamically adjusts the size and position of the clipping polygon on hover. This causes the triangular regions to grow or shrink, revealing more or less of the images
+
+### 33\. Image hover effect
+
+<CodePen user="ig_design" id="WNrWezW" title="Image Hover Effect - pure css - #18" />
+
+When the user hovers over a specific image in the [image hover effect](https://codepen.io/ig_design/pen/WNrWezW) created by [Ivan Grozdic](https://codepen.io/ig_design), all other images become dim (`opacity: 0.1`) while the hovered one remains fully visible (`opacity: 1`).
+
+Simultaneously, the image scales up and rotates 3 _**°**_ while a masked text corresponding to the image appears at the center of the screen.
+
+This animation works with:
+
+- `opacity`: Controls the opacity of the images on hover
+- `scale` and `rotate`: Create a zoom effect when an image is hovered on hover
+- `scale`: scales up the text on hover
+- `mix-blend-mode: difference`: Applies the masking effect to the text so it adapts to its background
+
+### 34\. Gallery hover effect
+
+<CodePen user="bobbykorec" id="yLgRwRx" title="Gallery Hover Effect" />
+
+In the [gallery hover effect](https://codepen.io/bobbykorec/full/yLgRwRx) by [Bobby Korec](https://codepen.io/bobbykorec), the image zooms in on hover while the header text slides upwards and scales down, creating a clean and visually engaging effect. It works with:
+
+- `transform: scale(2)`: Enlarges the image on hover, creating a zoom effect
+- `bottom: 300px` and `transform: scale(.4)`: Scales the text down on hover and moves its position to create an upward sliding effect
+
+### 35\. Masking hover rays
+
+<CodePen user="thebabydino" id="YzppPmm" title="Hover rays with masking and Houdini magic" />
+
+The [masking hover rays effect](https://codepen.io/thebabydino/pen/YzppPmm) by [Ana Tudor](https://codepen.io/thebabydino) creates a dynamic effect on an image, where a series of gradients and masks are used to create other “images” that extend out of the original on hover. It resembles a squid’s tentacles extending outward and works with:
+
+- `mask`: Applies multiple radial and linear gradients that control the areas where the image is visible and masked
+- `filter: grayScale`: Gives the image a gray scale effect that changes on hover
+
+## Five other creative CSS hover effects I particularly liked
+
+Lastly, let’s explore five more hover animations that don’t fit into any one category but I found to be really engaging.
+
+### 36\. Scotch VHS
+
+<CodePen user="BlurSoulx" id="zYXJqMy" title="Scotch VHS CSS" />
+
+The [Scotch VHS homepage](https://codepen.io/BlurSoulx/pen/zYXJqMy) effect by [BlurSoulx](https://codepen.io/BlurSoulx) spices up a product homepage with five types of animations:
+
+- Subtle entrance animation: Creates a fade-in effect when the page loads. It relies on `@keyframes spawn` to animate the page’s opacity from `0` to `1` and give the page a growing box-shadow
+- Sphere hover effect: A range of background gradient changes, box shadow effects, and scale up effects are applied to the buttons and links on hover
+- Navigation link hover effects: The links and CTAs have various hover effects
+- Animated GIF texture effect: Applies an animated GIF texture to the main container’s `::after` pseudo-element on hover. It uses `mix-blend-mode: screen` to make the effect more colorful
+
+### 37\. All but me
+
+<CodePen user="seyedi" id="RwdrMYw" title="All-but-me query with :has()" />
+
+The [all-but-me](https://codepen.io/seyedi/pen/RwdrMYw) blog page effect by [Mojtaba Seyedi](https://codepen.io/seyedi) introduces an interactive hover effect on a grid of cards, where hovering over a single card highlights it by making the other cards blur. It works with the following:
+
+- `:has()` pseudo-class: Targets the parent `.card-list` to detect if any `li` child is being hovered (`:has(li:hover)`). It ensures the blur effect only applies when a hover event occurs
+- `:not()` pseudo-class: Used to exclude the hovered card (`li:not(:hover)`) from the blur effect
+- `filter: blur()`: Applies a blur filter (`blur(4px)`) to the non-hovered cards to de-emphasize them. This makes the hovered card stand out from the crowd
+
+### 38\. Cubes hover effect
+
+<CodePen user="gvissing" id="QWBrzdB" title="CSS Only Cubes Hover Effects @ OnlineTutorialsYT" />
+
+The [cubes hover effect](https://codepen.io/gvissing/pen/QWBrzdB) by [Greg Vissing](https://codepen.io/gvissing) creates a dynamic 3D-like effect where stacked cubes rotate through various color hues on hover, giving the structure an eye-catching, colorful transition effect. It works with:
+
+- `@keyframes animate`: Applies a `hue-rotate` filter over the `.container`, creating a smooth color transition that loops infinitely over 5 seconds
+- `translate()`: Gives the structure its 3D-like positioning
+- `:before` and `:after`: Create the side and top surfaces for the cubes
+
+### 39\. Inward shadow
+
+<CodePen user="smashingmag" id="abPOwRm" title="Inward Shadow Pt. 2" />
+
+The [inward shadow](https://codepen.io/smashingmag/pen/abPOwRm) effect by [Smashing Magazine](https://codepen.io/smashingmag) creates an interactive and colorful overlay effect where three circular elements representing news publications transform on hover to reveal their logos. Its powered by:
+
+- `box-shadow`: Gives the circles the initial subtle shadow
+- `.item:hover`: Makes the text transparent and transitions the box shadow, revealing the logo within
+
+### 40\. X-ray
+
+<CodePen user="josetxu" id="yLqWogR" title="X-Ray - Pure CSS" />
+
+Last but not least is the [X-ray effect](https://codepen.io/josetxu/pen/yLqWogR) by [Josetxu](https://codepen.io/josetxu), which is simply mind-blowing. This animation shows an X-ray of the human body on hover. There are also two buttons for toggling between full body view and full X-ray view. The CSS powering this animation is long and quite complex, but some of the key things powering it are:
+
+- `@keyframes startup-scaner`: Controls the initial movement of the scanner overlay during the startup sequence
+- `@keyframes startup-skeleton`: Gradually reveals the skeleton layer during the startup animation
+- `clip-path`: Masks and reveals the skeleton in sync with the scanning zones, creating dynamic effects as users interact
+
+## Hover animation tools and libraries you should know
+
+### Hover.css
+
+[Hover.css](https://ianlunn.github.io/Hover/) is a collection of CSS-powered hover effects that you can apply to images, links, SVGs, buttons, and more. It is a lightweight library that weighs [6.7kb (minified + gzipped)](https://bundlephobia.com/package/hover.css@2.3.2).
+
+Hover.css provides over 110 animation effects for animating CSS properties like background colors, borders, shadows, and icons.
+
+![A GIF of Hover.css](/portfolio/prismic/043-css-hover-effects/image-4.gif)
+
+### Mocassin.css
+
+[Mocassin.css](https://eliezerpujols.github.io/mocassin.css/) provides a collection of 20+ hover effects for captions. It is designed to enhance user interactions with visually appealing animations and transitions. The library is easy to use and doesn’t require extensive customization or setup.
+
+![A GIF of Macassin.css](/portfolio/prismic/043-css-hover-effects/image-5.gif)
+
+### iHover
+
+[iHover](https://gudh.github.io/ihover/dist/index.html) is a collection of 20 hover effects that you can apply to your website. The library is built on SCSS and is compatible with [CSS frameworks](https://prismic.io/blog/best-css-frameworks) like [Bootstrap](https://prismic.io/blog/tailwind-vs-bootstrap).
+
+![A GIF of iHover](/portfolio/prismic/043-css-hover-effects/image-6.gif)
+
+### Conclusion
+
+Adding hover animations to your website is a great way to give visitors a more engaging and interactive [user experience](https://prismic.io/blog/ux-tips-for-developers). Whether you're enhancing buttons, images, text, or other elements, these animations can add personality and depth to your designs, leaving a stronger impression.
+
+We trust you’ve gained inspiration from the CSS hover animations we’ve explored in this article. Keep coding and remember to share what you build with the Prismic team!

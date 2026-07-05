@@ -41,3 +41,13 @@
 38. https://prismic.io/blog/graphql-vs-rest-api
 39. https://prismic.io/blog/vite-vs-nextjs
 40. https://prismic.io/blog/wordpress-alternatives
+41. https://prismic.io/blog/call-to-action-examples
+42. https://prismic.io/blog/css-text-animations
+43. https://prismic.io/blog/css-hover-effects
+44. https://prismic.io/blog/css-button-animations
+45. https://prismic.io/blog/css-animation-examples
+46. https://prismic.io/blog/tailwind-animations
+47. https://prismic.io/blog/css-background-effects
+48. https://prismic.io/blog/css-image-effects
+49. https://prismic.io/blog/css-scroll-effects
+50. https://prismic.io/blog/nextjs-ai-chatbot

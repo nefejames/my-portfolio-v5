@@ -482,7 +482,7 @@ function altexsoftCleanup(markdown, videos = []) {
 function sanitizeMdx(markdown) {
   const escape = (s) =>
     s.replace(/[<{}]/g, (c) => ({ '<': '&lt;', '{': '&#123;', '}': '&#125;' }[c]))
-  const isComponentLine = (l) => /^<\/?(YouTube|Tweet|LinkedIn)\b/.test(l.trim())
+  const isComponentLine = (l) => /^<\/?(YouTube|Tweet|LinkedIn|CodePen)\b/.test(l.trim())
 
   let inFence = false
   return markdown
@@ -642,6 +642,88 @@ function normForMatch(t) {
 
 function prismicCleanup(markdown, slices = []) {
   let lines = markdown.split('\n')
+
+  // 0. CodePen embeds — the scrape renders each pen as a widget dump:
+  //    "CodePen Embed - {title}", fake editor code fences, account chrome
+  //    ("This Pen is owned by…", External CSS/JS), a loading message, and
+  //    finally "[Open on CodePen](https://codepen.io/{user}/pen/{id})".
+  //    Collapse the whole block into a <CodePen /> component tag. Runs first
+  //    so the junk (which contains code fences) can't confuse later passes.
+  {
+    // Tolerates the occasional mangled target the scraper produces, e.g.
+    // "https://prismic.io/blog/=https://codepen.io/user/pen/id".
+    const penUrl = (l) => {
+      const m = l.match(/^\[Open on CodePen\]\(([^)]*)\)/)
+      // /details/ and /full/ appear when Prismic couldn't auto-embed a pen.
+      return m && m[1].match(/codepen\.io\/([^/)?]+)\/(?:pen|details|full)\/([A-Za-z0-9]+)/)
+    }
+    const penTag = (user, id, rawTitle) => {
+      // Titles arrive as "1\. Explosive letter burst" — drop the list
+      // numbering; escape quotes for the JSX attribute.
+      const title = (rawTitle || '').replace(/^\d+\\?\.\s*/, '').replace(/"/g, '&quot;').trim()
+      return `<CodePen user="${user}" id="${id}"${title ? ` title="${title}"` : ''} />`
+    }
+
+    // 0a. Fully-hydrated widget dump: "CodePen Embed - {title}", fake editor
+    //     fences (which can include the pen's entire source, hundreds of
+    //     lines), account chrome, then the Open-on-CodePen link. Everything
+    //     between marker and link is widget junk; dumps never nest, so the
+    //     first link found belongs to this marker. Also stops at an existing
+    //     <CodePen> tag (re-cleaning a file where 0b already tagged the tail).
+    let out = []
+    for (let i = 0; i < lines.length; i++) {
+      const start = lines[i].match(/^CodePen Embed - (.*)$/)
+      if (start) {
+        let j = i + 1
+        let pen = null
+        let tagLine = null
+        for (; j < lines.length && j - i < 900; j++) {
+          if (/^<CodePen /.test(lines[j])) { tagLine = lines[j]; break }
+          pen = penUrl(lines[j])
+          if (pen) break
+        }
+        if (pen || tagLine) {
+          out.push(tagLine || penTag(pen[1], pen[2], start[1]))
+          i = j // resume after the link / existing tag
+          continue
+        }
+      }
+      out.push(lines[i])
+    }
+    lines = out
+
+    // 0b. Compact form (pen never hydrated at scrape time): a bare title line,
+    //     "Loading interactive CodePen...", then the Open-on-CodePen link.
+    //     Walk back from the link absorbing the loading line and the label.
+    out = []
+    for (const line of lines) {
+      const pen = penUrl(line)
+      if (pen) {
+        // Pop trailing blanks + the loading / embed-failure message.
+        while (out.length && out[out.length - 1].trim() === '') out.pop()
+        if (
+          out.length &&
+          /^(Loading interactive CodePen|This CodePen URL could not be embedded)/.test(
+            out[out.length - 1].trim(),
+          )
+        ) {
+          out.pop()
+          while (out.length && out[out.length - 1].trim() === '') out.pop()
+        }
+        // The widget label: a short plain line (not a heading/list/image/link).
+        let title = ''
+        const prev = out.length ? out[out.length - 1].trim() : ''
+        if (prev && prev.length < 80 && !/^[#\-*>!\[<|]|^\d+\\?\./.test(prev)) {
+          title = prev
+          out.pop()
+        }
+        out.push('', penTag(pen[1], pen[2], title), '')
+        continue
+      }
+      out.push(line)
+    }
+    lines = out
+  }
 
   // 1. Leading header — cut through "Search", then skip a series table-of-contents
   //    (a run of standalone link-only lines) before the real intro.
