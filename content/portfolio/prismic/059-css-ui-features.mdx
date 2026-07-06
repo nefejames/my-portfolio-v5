@@ -1,0 +1,282 @@
+---
+title: "Modern CSS Alternatives to JavaScript:  Sliders, Dialogs, Accordions & More!"
+client: "Prismic"
+clientSlug: "prismic"
+originalUrl: "https://prismic.io/blog/css-ui-features"
+publishedAt: "2025-10-03"
+canonical: "https://prismic.io/blog/css-ui-features"
+excerpt: "Learn how to build accordions, modals, tooltips, carousels, and other UI components using pure CSS instead of JavaScript. Faster, maintainable code."
+coverImage: "/portfolio/prismic/059-css-ui-features/cover.webp"
+tags: []
+---
+CSS has improved a lot over the years. With new specifications and better browser support, it can now handle animations, interactions, and UI components that previously required [JavaScript](https://prismic.io/blog/compare-javascript-vs-typescript). This means we don’t always need JavaScript for certain effects, which helps make websites faster and easier to maintain.
+
+In this article, we will look at some common UI components that used to require JavaScript and show how you can now build them using modern CSS.
+
+## Why Replace JavaScript with CSS?
+
+Replacing JavaScript with CSS where possible has several benefits:
+
+- **Better performance**: CSS is handled by the browser’s rendering engine, which is highly optimized for visual changes. This means animations and transitions run smoothly, even on old phones and laptops.
+- **Faster load times**: Less JavaScript means there are fewer scripts for browsers to download, parse, and execute, which reduces [page load time](https://prismic.io/blog/api-response-times).
+- **Improved maintainability**: Styling and visual effects stay in the stylesheet, making code cleaner and easier to manage.
+- **Fewer dependencies**: You can avoid relying on third-party [libraries](https://prismic.io/blog/tailwind-component-library) or [frameworks](https://prismic.io/blog/best-css-frameworks) for effects that CSS can handle natively.
+- **Progressive enhancement**: You can gracefully degrade features in older browsers without breaking your site’s core functionality.
+
+Having learned about the benefits of using CSS (where and when possible) instead of JavaScript, let’s explore scenarios where CSS can fully replace JavaScript, starting with animations and transitions.
+
+## Accordion
+
+An accordion is one of those website components you’ve probably seen a hundred times, including places like FAQs, menus, and settings panels. It's a stack of sections where each one can expand or collapse to reveal more content. Instead of showing everything all at once and overwhelming the user, the accordion helps you hide content till the user opens it.
+
+### JavaScript version
+
+The JavaScript version of an accordion works by using event listeners on each accordion header. When a user clicks a header, JavaScript checks its current state and toggles an "active" CSS class. This class controls whether the accordion expands to show its content or collapses to hide it. Each click updates the state, allowing users to open and close sections dynamically.
+
+<CodePen user="nefejames" id="xbwzeYW" title="Accordion - JavaScript version" />
+
+### CSS version
+
+The CSS-only accordion uses hidden checkboxes and the `:has()` selector to handle interactivity. The checkbox acts as the “state manager”: when it’s checked, the accordion knows to expand, and when it’s unchecked, it collapses.
+
+The checkbox’s label acts as the clickable element, and the `::after` pseudo-element creates the plus sign that rotates when the section is opened.
+
+<CodePen user="nefejames" id="OPyEGdV" title="Accordion - CSS version" />
+
+## Tooltips and popovers
+
+Tooltips are small “text bubbles” that appear when you hover over or focus on something, like when you hover over an icon and a short description appears.
+
+Popovers are a bit bigger. They’re like tooltips but can hold more content and have buttons or links inside. Both are ways to give users extra context without crowding the screen.
+
+### JavaScript version
+
+Instead of relying on pseudo-elements or `:hover`, the JS version uses scripts to dynamically create, attach, and control tooltip elements for each trigger on the page.
+
+<CodePen user="nefejames" id="qEOKwGQ" title="Tooltips and popovers - JavaScript version" />
+
+### CSS version
+
+The tooltip is powered by the `::before` and `::after` pseudo-elements. The `::before` holds the text itself, pulled straight from a `data-tooltip` attribute, while the `::after` draws the little arrow pointing back to the trigger.
+
+By default, both are invisible. When the user hovers over any button, the hover state kicks in, making the tooltip text appear.
+
+CSS also handles positioning: The `.top`, `.bottom`, `.left`, and `.right` classes shift where the tooltip appears relative to the trigger, and the arrow automatically adjusts with it.
+
+<CodePen user="nefejames" id="QwjxPXd" title="Tooltips and popovers - CSS version" />
+
+## Modals
+
+A modal is like a pop-up window that appears on top of the main content, usually to capture your attention for something important. You’ll often see it when a website wants you to confirm an action, log in, or read some extra information before continuing.
+
+### JavaScript version
+
+This JavaScript code includes functions to open and close modals by toggling an `"active"` class, while also disabling page scrolling when a modal is open. The modals can be dismissed by clicking the overlay background, pressing the Escape key, or calling the `closeModal` function directly.
+
+<CodePen user="nefejames" id="WbQKbPx" title="Modals - JavaScript version" />
+
+### CSS version
+
+This CSS-only modal setup uses a hidden checkbox and the `:checked` pseudo-class to control when a modal is shown. When the checkbox is checked, the overlay becomes visible and the modal scales into view with an animation.
+
+<CodePen user="nefejames" id="LEpBEqg" title="Modals - CSS version" />
+
+## Dialogs
+
+A dialog is similar to a modal in that it also pops up on top of a webpage or application to grab your attention and ask you to interact with it.
+
+The main difference is that while a modal often blocks interaction with the rest of the page until it is closed, a dialog can be either modal (blocking) or non-modal (allowing you to still interact with the page behind it). Dialogs are commonly used for alerts, confirmations, or collecting input from users.
+
+### JavaScript version
+
+This JavaScript dialog system uses the native `<dialog>` element, which provides built-in modal functionality in modern browsers. The code defines reusable `openDialog` and `closeDialog` functions, letting you show or hide dialogs by their ID.
+
+<CodePen user="nefejames" id="EaVpaML" title="Dialogs - JavaScript version" />
+
+### CSS version
+
+This CSS-only dialog relies on selectors like `:checked` and `:target` to control when a dialog is shown. A hidden checkbox triggers the dialog to appear. The `.dialog-overlay` darkens and blurs the background, while the `.dialog` container transitions into view.
+
+<CodePen user="nefejames" id="EaVpazL" title="Dialogs - CSS version" />
+
+## Carousels
+
+Carousels are rotating banner that cycles through slides of content, whether [images](https://prismic.io/blog/css-image-effects), text, or both. They’re often used to highlight promotions, products, or featured content. They are commonly seen on [hero sections](https://prismic.io/blog/website-hero-section) and other parts of a website.
+
+### JavaScript version
+
+This JavaScript carousel works by keeping track of the current slide and moving the slides container using `transform: translateX()`. It sets up buttons for moving forward and backward, clickable indicators for jumping to specific slides, and a counter to show the current slide number.
+
+The `nextSlide` and `prevSlide` methods update the index, while `updateCarousel` handles moving the slides, updating indicators, and enabling/disabling buttons.
+
+<CodePen user="nefejames" id="qEOyZxz" title="Carousel - JavaScript version" />
+
+### CSS version
+
+The carousel uses CSS features like `:has()` and `:target`. Each slide is tied to a hidden anchor (`#slide1`, `#slide2`, etc.), and when one of these is targeted, the `transform: translateX()` shifts the slides to show the right one.
+
+<CodePen user="nefejames" id="KwdBzxo" title="Carousel - CSS version" />
+
+## Dropdown menus
+
+Dropdown [menus](https://prismic.io/blog/css-menus) are another common website element. They are typically found in dashboards, navigation bars, or settings menus. A dropdown hides multiple options under a single label, saving space and keeping the interface clean. When clicked or hovered over, the list expands, allowing users to choose an item.
+
+### JavaScript version
+
+The JavaScript dropdown menu uses a class-based setup to manage all its behavior. A button acts as the toggle, and when clicked, it opens or closes the menu by adding or removing a CSS class.
+
+<CodePen user="nefejames" id="ogjMzbp" title="Dropdown Menu - JavaScript version" />
+
+### CSS version
+
+The CSS-only dropdown works by using either a hidden checkbox or the `:hover` state to control when the menu is shown.
+
+- In the checkbox version, the input acts as the toggle. When it’s checked, CSS selectors (`:checked ~ .dropdown-menu`) apply styles that make the menu visible. The arrow icon also rotates to show the open state.
+- In the hover version, the menu appears when the user hovers over the button, and the arrow rotates at the same time.
+
+<CodePen user="nefejames" id="GgpBjZw" title="Dropdown Menu - CSS version" />
+
+## Dark mode switcher
+
+Theme switchers are an optional but nice control you can add to your website. They let users customize the color scheme of the interface by toggling between light mode and [dark mode](https://prismic.io/blog/tailwind-css-darkmode-tutorial). This small feature can improve accessibility, reduce eye strain, and make the experience more personal. While it's not essential for functionality, it adds a thoughtful touch that users often appreciate.
+
+### JavaScript version
+
+The JavaScript dark mode switcher first checks if a saved preference exists in `localStorage`. If not, it falls back to the system’s color scheme preference.
+
+When the user clicks the main switch or the alternative toggle, it switches the theme, updates the page with a `data-theme` attribute, and saves the preference for future visits.
+
+<CodePen user="nefejames" id="yyYqvJz" title="Dark mode switcher - JavaScript version" />
+
+### CSS version
+
+The CSS dark mode switcher works by using CSS variables for colors and themes, and a hidden checkbox to control whether light or dark mode is active.
+
+By default, the `:root` variables define the light theme, while a `@media (prefers-color-scheme: dark)` rule applies the dark theme if the system is set that way.
+
+The hidden checkbox (`.theme-switcher-checkbox`) lets users override this preference manually. When unchecked, the light theme variables are applied, and when checked, the dark theme variables take over.
+
+<CodePen user="nefejames" id="zxvLRKa" title="Dark mode switcher - CSS version" />
+
+### Custom form inputs
+
+Default form inputs often look plain and may not match your brand’s style. That’s where creating custom inputs comes in. By styling inputs yourself, you can add a personal touch that aligns with your brand guidelines, whether it’s changing colors, shapes, or interactions. This way, your forms align with the rest of your website’s design.
+
+### **JavaScript version**
+
+The state of the custom inputs ( **checkboxes**, **radios**, and **toggles**) is stored in a `Map`, which makes it easy to update and keep track of them. When a user clicks one of these inputs, the JavaScript code updates both the stored state and the visual styles.
+
+<CodePen user="nefejames" id="GgpBQGZ" title="Custom Inputs - JavaScript Version" />
+
+### **CSS version**
+
+This CSS version of custom form inputs works by hiding the browser’s default checkboxes and radio buttons (`opacity: 0; position: absolute;`) and replacing them with styled elements (`.custom-checkbox and .custom-radio`).
+
+<CodePen user="nefejames" id="ZYbjrjj" title="Custom Inputs - CSS Version" />
+
+## Speed up component development with Figma to Prismic slice
+
+Building custom UI components—whether with CSS or JavaScript—takes time. What if you could speed up the process from design to development?
+
+[Prismic's Figma to Prismic slice](https://prismic.io/updates/figma-to-prismic) plugin turns Figma frames into structured, ready-to-code components in seconds. Select a frame in Figma, export it with the plugin, and Prismic generates a structured slice model with a starter React or Vue component, complete with mapped fields.
+
+This removes the manual setup work and gives you a clean starting point, letting you focus on creative coding rather than repetitive configuration.
+
+[**Try the Figma to Prismic plugin**](https://www.figma.com/community/plugin/1567955296461153730/figma-to-prismic-slice)
+
+## Animations and transitions
+
+### Text animations
+
+Texts don’t have to be boring. You can “bring them to life” by applying various effects, like fade in, slide in, bounce, color changes, typewriter, etc.
+
+**JavaScript version**
+
+The JavaScript code starts by selecting the text elements and buttons from the DOM, then defines the string to animate. When the typewriter starts, it resets any previous animation, disables the start button, and applies a blinking cursor effect on the right side of the text.
+
+<CodePen user="nefejames" id="WbQKwBz" title="Text animation - JavaScript version" />
+
+**CSS version**
+
+This CSS-only setup relies on keyframes and other selectors to create the typewriter [text animation](https://prismic.io/blog/css-text-animations). The .typewriter-text element starts with a hidden width and gradually reveals the text using the typing animation, which expands the width step by step while showing a blue border on the right as a cursor. After typing finishes, the blink animation takes over to create a blinking cursor effect.
+
+<CodePen user="nefejames" id="wBKxWvp" title="Text animation - CSS version" />
+
+### Scroll animations
+
+[Scroll animations](https://prismic.io/blog/css-scroll-effects) activate as the user moves through the page. Instead of everything loading at once, elements animate in as they come into view. This makes the experience more dynamic and keeps people scrolling because it feels like the page is “responding” to them.
+
+**JavaScript version**
+
+This JavaScript setup uses the Intersection Observer API to watch content sections. It applies a `visible` class when elements enter the viewport so they can smoothly fade in, and removes the class when they exit.
+
+There’s also a scroll event listener that calculates how far the user has scrolled inside the container, then updates a progress bar’s width and a text indicator to show the percentage of scroll progress.
+
+<CodePen user="nefejames" id="vENaKNg" title="Scroll animation - JavaScript version" />
+
+**CSS version**
+
+This design uses CSS scroll-linked animations to track how far the user has scrolled and trigger visual effects without JavaScript.
+
+At the top, a fixed progress bar gradually fills as the user scrolls down, powered by a progressFill animation linked to the scroll timeline. In the corner, a circular progress indicator rotates its border to show progress dynamically.
+
+Alongside it, a percentage indicator updates its number using a counter that increases with scroll, giving a precise percentage readout.
+
+<CodePen user="nefejames" id="LEpBZbZ" title="Scroll animation - CSS version" />
+
+**Note**: CSS handles simple animations well, but if you need physics-based movement, timelines, or fine-grained animation control, [JavaScript libraries](https://prismic.io/blog/javascript-meta-frameworks-ecosystem) like GSAP are better.
+
+## Check out the following resources to see great examples of CSS animations:
+
+- [CSS Text Animations: 40 Creative Examples to Try](https://prismic.io/blog/css-text-animations)
+- [CSS Hover Effects: 40 Engaging Animations To Try](https://prismic.io/blog/css-hover-effects)
+- [CSS Button Animations: 40 Ideas to Inspire You + Code Examples](https://prismic.io/blog/css-button-animations)
+- [39 Awesome CSS Animation Examples with Demos + Live Code](https://prismic.io/blog/css-animation-examples)
+- [Tailwind CSS Animations: Tutorial and 40+ Examples](https://prismic.io/blog/tailwind-animations)
+- [40 CSS Background Effects to Enhance Your Website](https://prismic.io/blog/css-background-effects)
+- [50 Creative CSS Image Effects for Engaging Websites](https://prismic.io/blog/css-image-effects)
+- [50 Creative CSS Image Effects for Engaging Websites](https://prismic.io/blog/css-image-effects)
+- [CSS Scroll Effects: 50 Interactive Animations to Try](https://prismic.io/blog/css-scroll-effects)
+
+## Best Practices for Using CSS Instead of JavaScript
+
+If you’re choosing CSS over JavaScript, here are a few best practices to make sure you’re doing it the right way:
+
+- **Use semantic HTML + CSS for the base UI**: Build the [core layout](https://prismic.io/blog/css-flexbox-vs-css-grid) and interactions with semantic HTML and CSS before adding JavaScript. This way, even if scripts fail to load, your site remains usable and visually consistent.
+- **Always check browser support**: Not all CSS features are fully supported across browsers. Before using something new, like advanced selectors, [scroll](https://prismic.io/blog/css-scroll-effects) snapping, or container queries, check [Can I Use](https://caniuse.com/). This saves you from breaking layouts in older browsers.
+- **Think about accessibility from the start**: Don’t just replace JavaScript with CSS for the sake of it. Make sure interactions are accessible with a keyboard, screen readers, or other assistive tech. For example, CSS-only dropdowns might not always be fully [accessible](https://prismic.io/blog/what-is-accessibility) without [ARIA](https://prismic.io/blog/what-is-aria) attributes or JS support.
+- **Use progressive enhancement**: Start with a working CSS solution, then layer on JavaScript if you need more complex functionality. For example, you can use CSS for [hover effects](https://prismic.io/blog/css-hover-effects) or transitions, then add JS if you need event tracking or dynamic updates.
+- **Keep it maintainable**. Just because CSS can do something doesn’t always mean it should. Don’t write overly complicated CSS hacks just to avoid JavaScript. Keep your styles clean and easy to maintain for future developers.
+- **Test across devices**. A pure CSS solution might work great on desktop but behave unexpectedly on mobile (e.g., [hover-only menus](https://prismic.io/blog/model-mega-menu-prismic)). Always test your implementation across screen sizes and devices.
+
+## CSS vs JavaScript: Choosing the Right Approach
+
+At the end of the day, neither CSS nor JavaScript is “better” across the board. It really depends on what you’re trying to build. CSS is great when you want something lightweight, fast, and easy to maintain. You don’t need to load extra scripts, and the browser does a lot of the heavy lifting for you. CSS is the right option for simple animations, styling changes, or toggling states, especially when combined with the appropriate HTML elements.
+
+But there are times when CSS just isn’t enough. Maybe you need logic, user interaction, or [more complex animations](https://prismic.io/guides/css-animations) that depend on conditions. That’s where JavaScript shines. It gives you flexibility and control that CSS alone can’t provide.
+
+The real trick is knowing when to use which or mix both of them. Think of CSS as your first line of defense. If it can do the job, go for it. If it can’t, then JavaScript is there to pick up the slack. Using both in balance is how you end up with solutions that look good and actually work the way you need them to.
+
+## FAQs
+
+### How can I check which CSS features are supported by different browsers?
+
+You can use websites like [Can I Use](https://caniuse.com/). It shows detailed, up-to-date information on browser support for CSS features across all major browsers.
+
+### What are the newest CSS features available today?
+
+Here are some of the newest CSS features available in 2025:
+
+- **The parent selector ([:has()**](https://developer.mozilla.org/en-US/docs/Web/CSS/:has)): ****Allows you to style a parent element based on whether it contains certain child elements. This helps create more dynamic styling without JavaScript.
+
+- **[Container querie**s](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries): Lets elements change their styles depending on the size of their container, not just the viewport. This makes responsive components that adapt better to different layouts.
+
+- **[Scroll-driven animation**s](https://prismic.io/blog/css-scroll-effects): Enables animations that react to the user’s scroll position, creating interactive effects without needing JavaScript to track the scrolling.
+
+- **Defining custom properties ([@property**](https://developer.mozilla.org/en-US/docs/Web/CSS/@property)): Lets you define CSS custom properties (variables) with specific types and default values, making your styles easier to manage and predict.
+
+- **[Scroll sna**p](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_scroll_snap): Helps create smooth scrolling experiences by locking the scroll position to specific points, such as slides or sections. It's perfect for carousels or full-page scrolls.
+
+### How does using CSS instead of JavaScript impact my website’s accessibility?
+
+Using CSS with semantic HTML generally improves accessibility because it reduces your website’s complexity. However, some interactive features might still need JavaScript to provide keyboard controls or ARIA attributes. Always test your site with assistive technologies to be sure.

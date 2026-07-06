@@ -51,3 +51,13 @@
 48. https://prismic.io/blog/css-image-effects
 49. https://prismic.io/blog/css-scroll-effects
 50. https://prismic.io/blog/nextjs-ai-chatbot
+51. https://prismic.io/blog/ai-code-generators
+52. https://prismic.io/blog/vibe-coding
+53. https://prismic.io/blog/css-menus
+54. https://prismic.io/blog/parts-of-a-website
+55. https://prismic.io/blog/css-sticky-footers
+56. https://prismic.io/blog/css-accordions
+57. https://prismic.io/blog/prompt-engineering
+58. https://prismic.io/blog/css-sliders
+59. https://prismic.io/blog/css-ui-features
+60. https://prismic.io/blog/best-headless-cms-for-developers

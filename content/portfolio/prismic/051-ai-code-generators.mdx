@@ -1,0 +1,564 @@
+---
+title: "12 AI Code Generators Tested: Features, Pricing & Honest Reviews for 2026"
+client: "Prismic"
+clientSlug: "prismic"
+originalUrl: "https://prismic.io/blog/ai-code-generators"
+publishedAt: "2025-10-23"
+canonical: "https://prismic.io/blog/ai-code-generators"
+excerpt: "We compared 12 AI code generators, like Cursor, Claude Code, Windsurf, and more! This is our honest review to help you choose the right tool for your workflow."
+coverImage: "/portfolio/prismic/051-ai-code-generators/cover.webp"
+tags: []
+---
+Love it or hate it, AI is here to stay.
+
+One of the biggest areas that’s changing is how software engineers build applications. From writing code faster to launching full products, AI is transforming software development right before our eyes. Today, the internet is full of examples of people using AI-powered coding tools to bring their ideas to life.
+
+This article will explore 12 AI code generators. We’ll cover their key features, what we like (and dislike) about them, and their prices. The goal is to give you a clear view of what each tool offers.
+
+We'll be exploring a mix of AI coding tools across different categories. You'll see AI code editors like Cursor, Windsurf, and Zed, which bring AI capabilities directly into your development environment. We'll also cover web-based platforms such as Lovable, Bolt.new, Replit, v0 by Vercel, and Firebase Studio, which let you build entire applications from your browser. And we'll look at AI coding assistants and plugins like Claude Code, GitHub Copilot, Amazon Q Developer, and Sourcegraph Amp that integrate into your existing workflow.
+
+_**Note**_: We’re using the free versions of these tools. If you’re using a paid version, your experience may vary slightly, and you might get more advanced results or features. Keep that in mind as you explore the tools yourself.
+
+Now, let’s dive in.
+
+## 1\. Cursor
+
+![An image of Cursor.ai homepage](/portfolio/prismic/051-ai-code-generators/image-1.webp)
+
+[Cursor](https://www.cursor.com/en) is one of the most popular AI code editors out there. It’s essentially a fork of VS Code, but with various AI features built into it. This means you get the same familiar interface as VS Code, but with added tools to help you write, fix, and improve code faster.
+
+### Key features
+
+**Chat AI assistant**
+
+Cursor comes with a built-in chat assistant that works inside the editor. You can ask it questions about your codebase, which is especially useful if you’re joining a new project and need quick context. It can generate code for you, create files, or handle requests, such as implementing a UI from a design image.
+
+![An image of Cursor assistant](/portfolio/prismic/051-ai-code-generators/image-2.webp)
+
+**Cursor rules**
+
+Cursor lets you set [rules](https://cursor.com/docs/context/rules) that act as AI guardrails. These rules tell the AI what it can and can’t do in a project. For example, you might instruct the AI to follow a specific coding convention or use specific frameworks, like [Next.js](https://prismic.io/blog/nextjs-example-projects), when generating its code. You can apply rules to a specific project or set global rules for all your projects.
+
+![An image of Cursor rules](/portfolio/prismic/051-ai-code-generators/image-3.webp)
+
+**Cursor context**
+
+Cursor also lets you set context so the AI knows where to focus. You can attach context to specific files, folders, or documentation. You can even link external docs, run web searches, or let Cursor browse the web. This makes the AI more accurate since it has the right information before generating code.
+
+**Support for multiple LLMs**
+
+Cursor doesn’t lock you into a single AI model. It [supports large language models (LLMs)](https://cursor.com/docs/models) from all major providers, including OpenAI, Claude, Gemini, Grok, and DeepSeek. The list of supported models keeps expanding, so you can switch to the one that best fits your workflow.
+
+![An image of cursor context](/portfolio/prismic/051-ai-code-generators/image-4.webp)
+
+**Privacy mode**
+
+Cursor has a privacy mode that lets you control what data is shared. When privacy mode is on, your codebase, prompts, and session data stay local and are not sent to third-party AI providers. This is especially useful if you’re working on sensitive or proprietary projects.
+
+**Cursor AI agent tools**
+
+The Cursor AI agent comes with over 10 built-in tools. These tools enable the system to read files, search your codebase, delete files, perform web searches, and integrate with MCP servers. Having access to these tools makes Cursor more flexible and powerful than a basic autocomplete AI.
+
+### What I like about Cursor
+
+One thing I really like about Cursor is its memory feature. It learns your coding conventions from how you interact with the AI in chat and then applies them automatically. This means you don’t have to repeat the same instructions over and over. If you prefer not to use it, you can switch off the memory.
+
+I also like how **quickly Cursor updates**. The team quickly adds support for new LLMs, so you’re never stuck waiting to try the latest models.
+
+Another big plus is that Cursor is built on VS Code. This means you can use the same 40,000+ extensions already available. Also, you don’t need to learn a new interface or rebuild your setup. You can import your VS Code settings and extensions with a single click, making the transition to Cursor smooth and low-effort.
+
+### What I dislike about Cursor
+
+While Cursor is a strong tool, it has some weaknesses. For one, I’ve run into **bugs and inconsistent outputs**. Sometimes the AI claims to have completed a task, but when you check, it hasn’t actually done what it said.
+
+Another issue is its struggle with large codebases. Even when I break things down into smaller chunks and give it the best context possible, the AI can still miss the mark.
+
+### Pricing
+
+Cursor offers a free tier, with paid plans starting at $20/month.
+
+## 2\. Claude Code
+
+![An image of Claude Code](/portfolio/prismic/051-ai-code-generators/image-5.webp)
+
+Claude Code is another agentic coding assistant that helps you write, manage, and automate code more effectively with AI. Over time, it has become a fan-favorite among many software engineering teams.
+
+### Key features
+
+**Usage tracking**
+
+Claude Code has a usage-tracking feature that shows how much of your allowed usage you’ve used. It highlights your total weekly usage across all models, as well as the percentage of usage specifically for Cloud Opus. It also tells you when both the session and weekly limits will reset. This makes it easy to manage your usage and avoid hitting limits unexpectedly.
+
+![An image of Claude Code usage tracking](/portfolio/prismic/051-ai-code-generators/image-6.webp)
+
+Source: [Eric Roby](https://codingwithroby.substack.com/p/how-i-use-claude-code-to-build-faster)
+
+**Sandboxing for secure autonomous operations**
+
+Claude Code recently [introduced sandboxing](https://www.anthropic.com/engineering/claude-code-sandboxing) that lets you define exactly which directories and network hosts the agent can access. Inside the safe sandbox, Claude can run more autonomously and safely execute commands without permission prompts. This addresses the security concerns many developers have with AI agents while maintaining productivity.
+
+### What I like about Claude Code
+
+I like the `--dangerously-skip-permissions` flag in Claude Code’s CLI. When this flag is activated, it skips any prompts asking you to confirm actions. Obviously, you should use it carefully, but it’s a great option when you’re confident you want the agent to go ahead and execute tasks without first checking for approval.
+
+### What I dislike about Claude Code
+
+One thing I don’t like about Claude Code is that it’s not free. There’s no free plan or trial, so you can’t experiment or test it out without first paying for one of Cloud’s paid plans.
+
+### Pricing
+
+Claue Code is only available in Claude paid plans, which start at $20/month.
+
+## 3\. Windsurf
+
+![An image of Windsurf website](/portfolio/prismic/051-ai-code-generators/image-7.webp)
+
+[Windsurf](https://windsurf.com/) gives you two options: a VS Code-based IDE and a separate Windsurf plugin. You can either switch fully to the Windsurf IDE or keep working in VS Code and just add the extension.
+
+### Key features
+
+**Cascade AI agent**
+
+Cascade is Windsurf’s built-in AI agent. It can handle the usual tasks, such as generating code, exploring your codebase, and answering questions about your project. Basically, it does the standard things you’d expect from an AI coding assistant.
+
+![An image of Cascade](/portfolio/prismic/051-ai-code-generators/image-8.webp)
+
+**Turbo mode**
+
+Windsurf also has a “Turbo mode” for Cascade. When this is turned on, the agent can automate more of its work without waiting for your approval at every step. For example, it can auto-execute terminal commands or perform tasks directly, which makes the workflow faster if you’re comfortable giving it more control.
+
+**Embedded browser**
+
+Windsurf includes its own browser that’s tightly connected to **Cascade**. You can send logs, page content, or even screenshots straight from the browser into Cascade. There’s also a “ _select element”_ mode that lets you click on parts of a page, and Windsurf will automatically pass that context to Cascade. This is especially useful when building or testing websites, as it allows you to incorporate real page data into your coding workflow quickly.
+
+**App deploys**
+
+Windsurf’s deployment system lets you publish web apps and sites directly from the IDE through Cascade. You can push your project live, share it with a public URL, and update it after making changes. Supported technologies include [Next.js](https://prismic.io/blog/nextjs-vs-react), [React](https://prismic.io/blog/react-component-libraries), [Vue](https://prismic.io/blog/vue-component-libraries), [Svelte](https://prismic.io/blog/svelte-vs-react), and static HTML/CSS/JS.
+
+When deployments are triggered, Cascade analyzes your project, identifies the framework, and then securely uploads your code to Windsurf’s server. From there, the site is deployed to a provider (currently Netlify), and you get a public URL.
+
+### What I like about Windsurf
+
+A significant strength of Windsurf is that it’s multi-platform. You’re not locked into one editor or setup. There’s the standalone IDE and the plugin that’s available in editors like VS Code, JetBrains, Vim, and Xcode, among others. This makes it easy to maintain a consistent AI experience across different environments.
+
+I also like that Windsurf is available as a Chrome extension. That means you can bring AI help into web-based editors like Google Colab or Jupyter Notebook. For anyone who switches between different tools, this flexibility is a big win since the same AI can follow you across different systems and workflows.
+
+### What I dislike about Windsurf
+
+One issue I observed with Windsurf is that the AI agent, Cascade, sometimes gives buggy or inconsistent responses. You might see it generate code that doesn’t quite work as expected, or incorrectly mark a task as complete. These hiccups don’t always happen, but they’re worth keeping in mind if you’re relying heavily on the AI for coding tasks.
+
+### **Pricing**
+
+Windsurf offers a free plan, and its paid ones start at $15/month.
+
+## 4\. Zed
+
+![An image of Zed website](/portfolio/prismic/051-ai-code-generators/image-9.webp)
+
+[Zed](https://zed.dev/) is a Rust-based code editor that distinguishes itself from the typical VS Code-based setups. Unlike tools that build directly on VS Code’s foundation, Zed is built from scratch as its own original platform. It’s open source, lightweight, and designed with speed and performance in mind.
+
+### Key features
+
+**AI agent**
+
+Zed comes with a built-in AI agent that can edit, refactor, and explore your codebase. You can delegate tasks, review changes in a unified diff, and even let the agent run in the background while you keep coding. The agent has an **automatic context discovery** feature that enables it to search your codebase and gather the context it needs without you having to manually set it up.
+
+![An image of Zed AI Agent](/portfolio/prismic/051-ai-code-generators/image-10.webp)
+
+**Native debugger**
+
+Zed offers a debugger that you can use to step through code, set breakpoints, and inspect what’s happening in your codebase in real time. The debugger supports multiple programming languages and is practical for quickly testing scenarios or checking specific parts of your code.
+
+### What I like about Zed
+
+Zed is a great option for budget-conscious users or anyone just testing the waters. At $10, it’s one of the most affordable editors in this space. But it goes further than just being low-priced. Even the forever-free plan offers unlimited use if you connect your own API keys or external agents like Claude Code, which makes it flexible and practical without forcing you into a paid plan right away.
+
+### What I dislike about Zed
+
+While it’s great that Zed is its own unique platform and not just another fork of VS Code, one downside is the limited number of extensions —770+. They do have a growing library, but it’s nowhere near VS Code’s massive directory of over 40,000 extensions. So if you rely heavily on extensions for your workflow, that’s something to keep in mind.
+
+### Pricing
+
+Zed offers a free plan, and its paid plans start at $10/month.
+
+## 5\. Lovable
+
+![An image of Lovable website](/portfolio/prismic/051-ai-code-generators/image-11.webp)
+
+[Lovable](https://lovable.dev/) is a web-based application builder, meaning you can only access the platform from a browser. Unlike code editors, Lovable (and similar products) provides a chat interface where users describe what they want the AI system to build.
+
+Lovable generates its apps using technologies such as React, TypeScript, Tailwind CSS, and Shadcn/UI.
+
+### Key features
+
+**Built-in editor**
+
+Lovable also comes with a built-in editor for working with the codebase of any app the AI generates. You can view and edit the code directly inside the platform. If you want to take things further, you can download the entire project and move it into your own IDE for more advanced work. Alongside the editor, there’s live preview support, so you can instantly see how your changes look in real time.
+
+![An image of Lovable built-in editor](/portfolio/prismic/051-ai-code-generators/image-12.webp)
+
+**Lovable Cloud**
+
+[Lovable Cloud](https://lovable.dev/blog/lovable-cloud) is Lovable’s backend service that allows you to build full-stack applications. Prior to this, Lovable's primary focus was on developing the UI and client-side functionality. Now, with Lovable Cloud, you can add a backend layer that covers storage, user authentication, edge functions, secrets, and logging. The backend is powered by [Supabase](https://prismic.io/blog/nextjs-supabase-tutorial), so you get a reliable and scalable foundation without needing to set up servers or infrastructure yourself.
+
+**Lovable AI**
+
+Lovable AI, powered by Google Gemini models, takes things a step further by not just helping you build websites with AI, but also letting you embed AI functionality directly into the sites you create. For example, you can add a content generation system, embed an AI chatbot for user interaction, or even include tools that generate images or emojis right inside your site.
+
+![Lovable GIF](/portfolio/prismic/051-ai-code-generators/image-13.webp)
+
+**Deployment**
+
+Lovable provides deployment features out of the box. You can publish your app directly from the platform, set up SEO, connect a custom domain, and manage the hosting side of things without leaving Lovable.
+
+### What I like about Lovable
+
+I like how well Lovable positions itself as an all-in-one solution for AI-powered web development. It covers the entire workflow from building to going live, which makes it easier to get a project up and running quickly.
+
+### What I dislike about Lovable
+
+One thing I dislike about Lovable is the lack of information on how battle-tested it is. With platforms like WordPress, Wix, and Squarespace that power countless large-scale websites, web apps, and even enterprise apps, you can see clear proof of performance and scalability. With Lovable, it’s not yet clear how well it handles more demanding use cases.
+
+So while I strongly recommend it for personal projects or even a basic company website, I would be cautious about relying on it entirely for enterprise-grade applications or very complex builds. It’s a great all-in-one solution for smaller projects, but scalability and long-term performance are still question marks to watch out for.
+
+### Pricing
+
+Lovable offers a free plan, with paid options starting at $25/month, making it one of the more expensive options.
+
+## 6\. Bolt.new
+
+![An image of Bolt homepage](/portfolio/prismic/051-ai-code-generators/image-14.webp)
+
+[Bolt](https://bolt.new/) by Stackblitz is another web-based platform for building websites and applications.
+
+### Key features
+
+**Bolt Cloud**
+
+Bolt Cloud handles the entire backend layer for you. From hosting and databases to authentication, payments, SEO, and storage, everything is managed inside Bolt with no setup required. It's built on platforms like [Netlify](https://prismic.io/blog/vercel-vs-netlify) and Supabase, giving you enterprise-grade infrastructure that can easily scale.
+
+![An image of Bolt Cloud](/portfolio/prismic/051-ai-code-generators/image-15.webp)
+
+**Built-in deployment**
+
+You don’t need to leave Bolt to go live. Projects can be published to a `.bolt.host` domain out of the box, or you can connect your own custom domain. SEO Boost ensures your pages are pre-rendered for fast performance and search engine visibility, while Stripe integration makes it simple to monetize your apps with payments and subscriptions.
+
+**Team collaboration**
+
+Bolt is designed with teams in mind. You can bring your own design system, connect to GitHub for version control, fork projects, and collaborate in shared workspaces. This makes it easier for agencies, product teams, or startups to ship software together.
+
+### What I like about Bolt
+
+One feature I really like is the Plan button in the chat interface. Whenever you give Bolt a prompt, you can toggle on the plan option to see a detailed breakdown of how the AI intends to build your app or website.
+
+![Image of Bolt plan button](/portfolio/prismic/051-ai-code-generators/image-16.webp)
+
+It shows you its chain-of-thought (COT), which contains the steps it will take, along with a summary of the plan, allowing you to review and make adjustments before anything is generated. This is especially useful if you want more control over the process or need to add or remove specific steps.
+
+Once you’re happy with the plan, you can click “Implement this plan,” and Bolt will carry it out to produce the final output.
+
+### What I dislike about Bolt
+
+Bolt’s approach to version control is both interesting and a little clunky. Whenever you make a change or provide a new prompt, a version card is automatically created in the chat. Each card features buttons that allow you to preview or restore a specific version, which I thought was a neat idea.
+
+![An image of Bolt version history](/portfolio/prismic/051-ai-code-generators/image-17.webp)
+
+The drawback is that these cards are embedded directly into the chat flow. So, if you’ve made dozens of changes and want to roll back to an earlier version, you’ll need to scroll all the way back through the conversation to find it. This makes tracking your project history less streamlined than it could be.
+
+### Pricing
+
+Bolt’s pricing starts at $25/month.
+
+## 7\. Replit
+
+![An image of Replit homepage](/portfolio/prismic/051-ai-code-generators/image-18.webp)
+
+[Replit](https://replit.com/) is an established web-based editor that has been around for a long time. The team has introduced various AI functionalities into the platform to improve its offerings.
+
+### Key features
+
+Replit provides an agent, called [Agent 3](https://replit.com/agent3), which you can use to turn your ideas into working apps quickly. It takes natural language instructions and automatically creates full apps from scratch, sets up databases, integrates APIs, and manages your environment.
+
+Agent 3 gives you control over how you build your app. You can start with a design-first approach to see a visual prototype in minutes, or go straight to building the full app with complete functionality.
+
+![An image of Agent 3](/portfolio/prismic/051-ai-code-generators/image-19.webp)
+
+**App testing**
+
+Replit’s agent also comes with a self-testing feature for validating app functionality in the browser. Once you turn it on, the agent will interact with your app the way a normal user would: clicking around, checking flows, and making sure things work as expected.
+
+If it spots an issue, it automatically attempts to fix it. The testing covers four main areas:
+
+- **UI**: [buttons](https://prismic.io/blog/css-button-animations), forms, navigation, etc
+- **Functionality**: core features and workflows of your app
+- **Integrations**: [APIs](https://prismic.io/blog/how-do-apis-work), database activities, and third-party services
+- **Performance & accessibility**: load times, responsiveness, and [accessibility](https://prismic.io/blog/what-is-accessibility)
+
+**Connectors**
+
+A cool feature in Replit is Connectors. It’s essentially a way to integrate the apps and services you already use daily into your projects. You can extend your app with tools like Dropbox, Discord, GitHub, Google, Notion, YouTube, and more. The setup is super simple with one-click installation. For example, you could tell the AI to create a dashboard that pulls data from your email, sends follow-up messages through HubSpot, and then pings you on Discord, all stitched together through Connectors.
+
+![An image of connectors](/portfolio/prismic/051-ai-code-generators/image-20.webp)
+
+### What I like about Replit
+
+One thing I like about Replit is the theme selector built into the chat interface. It comes as a simple [drop-down menu](https://prismic.io/blog/css-menus) with themes you can choose from. While it’s a small addition, it’s a nice touch that gives you different design options to work with right out of the box.
+
+![Replit chat interface image](/portfolio/prismic/051-ai-code-generators/image-21.webp)
+
+Replit takes it further by giving you controls to configure different aspects of your site. You can adjust the color scheme, typography, and even the style of inputs and components. This configuration interface makes it easy to customize the look and feel beyond just the default themes, which is a great touch.
+
+![An image of Replit theme configuration panel](/portfolio/prismic/051-ai-code-generators/image-22.webp)
+
+### What I dislike about Replit
+
+One major drawback I noticed with Replit is its speed. When I asked it to replicate a simple to-do app design, it took five minutes to generate the output. That feels slow for a basic UI, especially compared to other tools that delivered results much faster.
+
+Another issue I noticed with Replit is that the AI exhibits some odd behavior after generating results. For instance, after building the to-do app, it asked me whether it should add functionality to the app, even though the output it had already provided included the CRUD functionality. This suggests that the AI may not always be fully aware of the work it has completed.
+
+### Pricing
+
+Replit offers a free plan, and its paid plans start at $25/month.
+
+## 8\. v0
+
+![An image of v0 homepage](/portfolio/prismic/051-ai-code-generators/image-23.webp)
+
+[v0](https://v0.dev/) is Vercel’s AI-powered platform for building UIs and prototyping. It generates code in React and [Tailwind](https://prismic.io/blog/tailwind-css-grid).
+
+### Key features
+
+**Design mode**
+
+In this mode, you can click on any element to inspect its properties and make adjustments. It works similarly to the dev tools that exist in web browsers. When you click something, the chatbot instantly adds that element into its context. From there, you can tell it to, for example, change the button’s color, or you can manually adjust it through the configuration interface in the design panel.
+
+![An image of v0 design mode](/portfolio/prismic/051-ai-code-generators/image-24.webp)
+
+**Instructions**
+
+v0’s AI chatbot comes with two default instructions: **Be Concise**, which tells it to go straight to the point, and **Plan Mode**, which gives you a breakdown before implementing any code. Beyond these defaults, you can set your own custom instructions to guide how the chatbot interacts with you, giving you more control over its behavior.
+
+### What I like about v0
+
+I like how v0 integrates with the Next.js ecosystem. Since it’s a [Vercel](https://vercel.com/) product, it connects directly with Next.js and automatically generates the code for you, so you can focus more on building your app rather than setting up boilerplate or wiring things together.
+
+On top of that, it always uses the most up-to-date Next.js features, meaning the code it generates is always current and in line with Next.js best practices while building your apps.
+
+v0 is a great solution for teams that use Next.js heavily.
+
+### What I dislike about v0
+
+What I dislike about v0 is that it offers limited built-in third-party integrations. As of this writing, there are fewer than 15 available. This means you’ll have to manually set up connections for most external services, which can slow down your workflow.
+
+### Pricing
+
+v0 offers a free plan, with paid plans starting at $20/month.
+
+## 9\. Firebase Studio
+
+![An image of Firebase Studio homepage](/portfolio/prismic/051-ai-code-generators/image-25.webp)
+
+[Firebase Studio](https://studio.firebase.google.com/) is an AI-powered development environment for building and shipping full-stack AI apps. With it, you can create APIs, frontends, backends, mobile, and more.
+
+### Key features
+
+**Multi-platform support**
+
+You can use it to build web and mobile apps, and it works well with popular frameworks and technologies like Flutter, React, and Next.js. This makes it easy to develop and manage projects across different platforms without needing separate tools for each one.
+
+![An image of Firebase Studio](/portfolio/prismic/051-ai-code-generators/image-26.webp)
+
+**Element selection and editing**
+
+When you’re on the preview screen of an app generated by Firebase Studio, you can click on any element and then give the AI instructions related to that specific element. For example, you can select a button and tell the AI to change its background color. This makes editing easier since the AI already knows which element you’ve selected and applies your instructions directly to it.
+
+![An image of Firebase Studio element selection](/portfolio/prismic/051-ai-code-generators/image-27.webp)
+
+### What I like about Firebase Studio
+
+I like how Firebase Studio creates a detailed PRD for any task you give it. For example, when I tested it by uploading a UI design for a to-do app, it generated a complete plan for how it would replicate the design. I could review, approve, or customize that plan to better match what I wanted. That level of control over what the AI does makes the whole experience more flexible and interactive.
+
+![AI instruction](/portfolio/prismic/051-ai-code-generators/image-28.webp)
+
+I also appreciate how detailed the plan is. It not only describes the tasks but also breaks down the stack it plans to use and the design system behind it. You can see the style guidelines, including color scheme, layout, typography, and iconography. Being able to view and modify all of that before the build starts gives you clear visibility and creative control over the final output.
+
+![Image of Firebase Studio plan](/portfolio/prismic/051-ai-code-generators/image-29.webp)
+
+Another great thing about Firebase Studio is how well it integrates with other Google products. Since it’s part of the Google ecosystem, you can easily connect your app to services like the Gemini API for AI features, Google Maps for location data, Firebase Storage for the backend, and Firebase Hosting to deploy your web app with a single click.
+
+### What I dislike about Firebase Studio
+
+When I instructed it to create an Android to-do app, the PRD it generated showed web technologies like Next.js and TypeScript instead of using mobile frameworks such as Flutter, which Firebase actually supports. It would be better if the AI could automatically select the right technology stack based on the prompt.
+
+### Pricing
+
+Firebase Studio is free, but users are limited to 10 workspaces. You can exceed this limit by joining the Google Developer Program.
+
+## 10\. GitHub Copilot
+
+![An image of Github Copilot homepage](/portfolio/prismic/051-ai-code-generators/image-30.webp)
+
+[GitHub Copilot](https://github.com/features/copilot) is an AI-powered coding assistant developed by GitHub and OpenAI. It’s available in two ways:
+
+- As a [web-based chat app](https://github.com/copilot) on GitHub.
+- As a plugin that you can install directly in your code editor, such as VS Code, JetBrains, or Neovim.
+
+It’s a companion that works inside your existing development environment, making it a great tool for day-to-day coding tasks and improving productivity.
+
+### Features
+
+**Agent mode**
+
+Agent mode is a feature that allows the AI to work more independently. In this mode, Copilot can think through your request, plan the necessary steps, and make changes directly in your codebase. The agent can generate new code, edit existing code, or even migrate your codebase to another framework.
+
+![An image of GitHub Copilot agent mode](/portfolio/prismic/051-ai-code-generators/image-31.webp)
+
+**Code reviews**
+
+When you create a pull request (PR) on GitHub, you can assign Copilot as a reviewer. It will analyze the code and leave comments with suggestions or fixes. For example, it can point out syntax mistakes, logical errors, or opportunities to improve performance. You can also accept Copilot’s recommended changes directly within GitHub, and it will automatically update the relevant files with those fixes.
+
+![An image of GitHub Copilot Code Fixes](/portfolio/prismic/051-ai-code-generators/image-32.webp)
+
+Source: [Github Copilot docs](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/request-a-code-review/use-code-review)
+
+### What I like about GitHub Copilot
+
+GitHub Copilot goes beyond just coding. It helps manage various aspects of your development workflow. For example, you can assign GitHub issues to the Copilot agent, and it can plan, write, test, and iterate using GitHub Actions. You can also ask it to create pull requests or respond to issues in your GitHub repository.
+
+### What I dislike about GitHub Copilot
+
+While it may not be a significant issue, it's worth noting that GitHub Copilot's chat functionality is only available in VS Code, Visual Studio, and JetBrains. The code completion feature, however, works across a broader range of IDEs. This means that if you are not using any of these supported editors, you will miss out on the interactive chat experience and only have access to code suggestions.
+
+### Pricing
+
+Copilot offers a free plan, and its paid plans start at $10/month, making it one of the more affordable options available.
+
+## 11\. Amazon Q Developer (formerly CodeWhisperer)
+
+![An image of Amazon Q Developer](/portfolio/prismic/051-ai-code-generators/image-33.webp)
+
+[Amazon Q Developer](https://aws.amazon.com/q/developer/) is a coding AI assistant developed by Amazon. It is trained on over 17 years of proprietary AWS data, including documentation, blog posts, software development kits, and APIs.
+
+### Key features
+
+**Code transformation**
+
+One of the key features of Amazon Q is [code transformation](https://aws.amazon.com/q/developer/transform/). It can analyze legacy Java and .NET projects to modern versions. It does this by generating a detailed transformation plan for review and execution.
+
+![An image of code transformation](/portfolio/prismic/051-ai-code-generators/image-34.webp)
+
+Source: [Amazon Q Developer](https://aws.amazon.com/q/developer/transform/)
+
+The end-to-end upgrade process consists of three steps:
+
+1. The system identifies the components that need to be upgraded.
+2. It analyzes the code to create a transformation plan and fixes any build errors it encounters.
+3. It follows the transformation plan to update existing code and configuration files, generate any new files needed, validate the build, and fix any issues identified with failed builds.
+
+The code transformation feature reduces the time dev teams spend migrating legacy codebases.
+
+**AWS cloud environment management**
+
+Amazon Q Developer acts as an AWS cloud expert. You can use it to explore new AWS services, review configurations, and understand relationships between resources without switching between multiple AWS consoles, documentation pages, or CLIs. It can analyze your cost data from AWS Cost Explorer, help troubleshoot incidents, and guide you through solutions or best practices based on AWS documentation.
+
+### What I like about Q Developer
+
+Amazon Q Developer doesn’t just generate detailed documentation within your source code. It also goes a step further by including data flow diagrams that help you understand your codebase faster. Additionally, when you’re building new features, Q Developer automatically updates your README files, keeping your project documentation current.
+
+![An image of Amazon Q Developer README](/portfolio/prismic/051-ai-code-generators/image-35.webp)
+
+Source: [AWS](https://aws.amazon.com/blogs/aws/new-amazon-q-developer-agent-capabilities-include-generating-documentation-code-reviews-and-unit-tests/)
+
+Another great thing is how it handles the transformation process. When a transformation is completed successfully, a detailed code transformation summary is generated. In this summary, you can see the files that were changed, the dependencies that were added or updated, and the build logs. It also recommends the next steps to take after the transformation. This makes it easier to understand and review what the AI has done.
+
+### What I dislike about Q Developer
+
+It’s the least intuitive product I’ve used so far. Compared to the other tools, it was more challenging to figure out how to interact with the AI. The chat interface, in particular, felt harder to navigate and less user-friendly than what I’ve seen on competing platforms.
+
+### Pricing
+
+Amazon Q Developer offers a free plan, and its paid ones start at $19/month.
+
+## 12\. Sourcegraph Amp
+
+![An image of Sourcegraph Amp](/portfolio/prismic/051-ai-code-generators/image-36.webp)
+
+[Amp](https://sourcegraph.com/amp) is Sourcegraph’s agentic coding tool. It is available in IDEs like VSCode, Cursor, WindSurf, and as a CLI.
+
+### Key features
+
+**Threads**
+
+Threads are conversations with the agent. Each thread contains all your chats, context, and any tool calls, and everything is synced across the AMP platform. One neat aspect of Threads is that it shows you the percentage of the context window you’ve used in the conversation.
+
+![An image of threads](/portfolio/prismic/051-ai-code-generators/image-37.webp)
+
+This helps prevent context overload and drift, so you can see when it’s time to start a new thread. By keeping track of context this way, it helps avoid hallucinations or poor outputs caused by the agent being overwhelmed.
+
+**Message queues**
+
+When an agent is working on a task, you can queue messages to be sent to it once it finishes. Each thread can have up to five queued messages. This is especially useful for time-consuming tasks, as you can continue working on other things, knowing the agent will automatically pick up the next batch of requests once it’s done with its current work.
+
+### What I like about Sourcegraph Amp
+
+**Amp automates model selection**. Unlike other AI coding tools that require you to manually pick a model, Amp automatically chooses the best one for your task. This helps you get the full potential of the most suitable model, eliminating the need to select it yourself.
+
+However, this feature can be a double-edged sword. While it's aimed at delivering top-quality results and is helpful for beginners who may not know which model fits a specific task, it also means you have less control over model selection. It can also lead to higher costs if Amp chooses a more expensive model that uses more tokens.
+
+### What I dislike about Sourcegraph Amp
+
+Amp is still in its early stages and currently in research preview. Because of that, I wouldn’t recommend using it for production projects yet. It’s still being improved, and you can expect to run into a few bugs or inconsistencies along the way.
+
+### Pricing
+
+Amp uses prepaid credits for its pricing, meaning you buy credits in advance and use them.
+
+## Next steps
+
+In this article, we’ve explored 12 AI code generators. However, note that this list isn’t exhaustive. The aim is to provide you with a comprehensive overview of some of the most popular AI coding tools available today.
+
+Here are a few essential tips to keep in mind when working with AI code generators:
+
+- **Always fact-check the output:** AI can sometimes suggest wrong or outdated code. For example, it might use old libraries that are no longer secure or supported, so always review and update where needed.
+- **Understand the code you use:** Don’t blindly copy and paste. If the AI generates a function, review each line to understand its functionality before incorporating it into your project.
+- **Protect sensitive data:** Never input private information like API keys, passwords, or confidential business logic into AI tools, especially if the tool runs online.
+- **Use it as a partner, not a crutch:** AI is there to assist you, not replace your skills. For example, if the AI builds a login system, you still need to know how to secure it properly.
+- **Test thoroughly:** Always run unit tests and integration tests on AI-generated code. Even if the code looks correct, it could fail under real-world conditions.
+
+With that, you’re good to go. Start experimenting, start building, and start scaling your development operations.
+
+## FAQs
+
+### How does AI code generation work?
+
+AI code generation uses machine learning models trained on large sets of programming languages and code examples. These models analyze your prompt and your codebase (if any) and use that context to predict what code should come.
+
+### How do I deal with hallucinations in AI-generated code?
+
+Hallucination happens when the AI generates code that looks correct but doesn't actually work or make sense. To manage this:
+
+- Always test the code before using it.
+
+- Read and understand the output before running it.
+
+- Double-check the AI’s suggestions against official documentation.
+
+- If something seems off, tweak your prompt or ask for a simpler version of the desired output.
+
+### What are the best practices to follow when working with AI code generators?
+
+**1. Write clear prompts**
+
+The more clearly you describe what you want, the better the results. For example, instead of saying, “Improve this [JavaScript](https://prismic.io/blog/javascript-rendering-methods) code,” say, “Refactor this JavaScript code to use functional components and remove unused variables.”
+
+**2. Break your tasks into smaller steps**
+
+Avoid asking the AI to do too much at once. Give it focused requests. For example, instead of asking the AI to build a complete eCommerce website with a cart, checkout, and user login, ask it to make the product listing page first, then move on to other features.
+
+**3. Use AI as a helper, not a lead developer**
+
+AI can speed up your workflow, but it doesn’t replace solid programming knowledge. Always review the suggestions, make changes as needed, and understand what the code does.
+
+**4. Stay updated on your tool**
+
+AI tools change fast. Check the changelog, follow updates, read the docs, and check community discussions to learn what features are available, what’s improved, and existing limitations or bugs.

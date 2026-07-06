@@ -1,0 +1,336 @@
+---
+title: "Vibe Coding: My Deep Dive into Tools, Techniques & Personal Takeaways"
+client: "Prismic"
+clientSlug: "prismic"
+originalUrl: "https://prismic.io/blog/vibe-coding"
+publishedAt: "2025-05-09"
+canonical: "https://prismic.io/blog/vibe-coding"
+excerpt: "Discover what vibe coding is, how it works, and when to use it. Discover how this AI-first development approach is changing the way you build websites."
+coverImage: "/portfolio/prismic/052-vibe-coding/cover.webp"
+tags: []
+---
+**Vibe coding.**
+
+You’ve probably heard the term floating around in dev circles or on tech X. It’s one of the latest buzzwords in the software development space. The phrase was coined by [Andrej Karpathy](https://x.com/karpathy/status/1886192184808149383?lang=en), a co-founder at OpenAI and former AI leader at Tesla.
+
+But what exactly is vibe coding? In this article, we will learn what this emerging philosophy is, how it works, the tools behind it, and what it means for the future of software development. We’ll also explore some vibe coding examples to see products built with this approach.
+
+Whether you’re a seasoned dev or just curious about new workflows, understanding vibe coding can help you stay ahead of the curve.
+
+## What is Vibe coding?
+
+Vibe coding is a prompt-driven approach to software development where you rely heavily on [AI tools](https://prismic.io/blog/ai-tools-for-developers), particularly large language models (LLMs), to produce most, if not all, of your codebase. Instead of treating the AI like a coding assistant, it becomes the lead developer, while you guide it with natural language prompts.
+
+Unlike traditional AI-assisted development, where tools like Copilot or ChatGPT suggest snippets that you review, refine, or debug, vibe coding takes a different route. You prompt the AI, adjust the code it produces until it meets your needs, merge it, and ship it.
+
+With vibe coding, you’re not focused on clean code, architecture, or best practices. You’re not even thinking about how the code works under the hood. Instead, the priority is describing what you want via prompts rather than writing the code line by line.
+
+### How does vibe coding work?
+
+With vibe coding, you focus on what you want the software to do and let the AI handle the "how.” It’s an iterative process that involves tweaking the AI’s output via prompts until you get the desired result or _vibe_.
+
+Here’s what a basic vibe coding workflow looks like.
+
+1. **Start with a broad prompt**. Something like “build a signup form” or “create a blog using Next.js.” The AI generates a large chunk of code based on this request.
+2. **Verify output**: Rather than deeply reviewing the generated code, check the result in the browser to confirm it works.
+3. **Iterate with follow-up prompts**. If the code doesn't work as expected, adjust the prompt and tell the AI what to fix instead of editing it manually. For example:
+
+💬 _“Fix the button’s alignment.”_
+
+💬 _“Add error handling.”_
+
+💬 _”Make the blog responsive and fix the progress tracker.”_
+
+💬 _“Add form validation so the user can’t submit without a password.”_
+
+This loop continues as you guide the AI to refine or adjust the code.
+4. **Copy, paste, adapt**. You take the AI's code and patch it into your codebase. The emphasis is on whether the software works for its intended purpose, not code quality or efficiency.
+
+_Watch our Prismic meetup with Bruno Antunes Luis, the CEO of an award-winning agency, Gaspard+Bruno. We explore how AI can be leveraged in web development and how to balance innovation and delivery.👇_
+
+<YouTube id="7lEqgu3jgmY" />
+
+### When to use and not use vibe coding
+
+**When to use vibe coding**
+
+Vibe coding isn’t for every project, but there are situations where it can be surprisingly effective. Here are some common use cases where this approach can save time, spark creativity, or help move faster:
+
+- **Rapid prototyping:** With vibe coding, you can quickly transform ideas into functional interfaces by describing layouts and flows. It is ideal for hackathons and Minimum Viable Products (MVPs).
+- **Creative/UI exploration:** It's a great way to experiment with visual styles. For example, you can prompt “a playful landing page for a pet brand” or “a sleek, moody dashboard in dark mode” and see what the AI generates—no need to code each layout from scratch.
+- **Solo projects or experiments:** Vibe coding is perfect for individual developers or small teams aiming to test concepts without diving into detailed coding.
+- **Boilerplate generation:** With vibe coding, you can quickly spin up common components like forms, navbars, or dashboards without writing everything from scratch.
+
+**When not to use vibe coding**
+
+While it has its upsides, vibe coding isn’t the right tool for every job. Here are some scenarios where it might not be the best approach.
+
+- **Production-grade applications**: Vibe coding’s lack of structure, testing, and code reviews makes it risky for projects that need to scale or handle sensitive data.
+- **Team-based development**: Vibe coding is not compatible with collaborative workflows. This is because this approach lacks proper documentation and consistent coding conventions.
+- **Highly regulated or audited systems**: Fields like finance, healthcare, and government need strict security regulations and concerns. Vibe coding’s loose, prompt-based nature doesn’t offer the transparency or documentation these environments require.
+
+### Vibe coding vs prompt engineering
+
+![A cartoon image of vibe coding vs. vibe engineering](/portfolio/prismic/052-vibe-coding/image-1.webp)
+
+**Source: [aadityaubhat on Reddit](https://www.reddit.com/r/ChatGPTCoding/comments/1jqpu4x/vibe_coding_vs_vibe_engineering/).**
+
+**What is prompt engineering?**
+
+As mentioned earlier, vibe coding is a more casual workflow where you rely on AI to generate code based on broad instructions. Prompt engineering, on the other hand, takes a more structured and intentional approach.
+
+Instead of giving the model vague requests, prompt engineering involves crafting precise, detailed inputs to guide the AI toward a specific output. It's about knowing what you want and giving the AI the exact context and structure needed.
+
+With prompt engineering, the more detailed and precise your instructions are, the more accurate and useful the output will be.
+
+**Example workflow**
+
+For example, instead of saying, “Create a blog using Next.js,” as we did earlier for vibe coding, a prompt engineer might say:
+
+“Create a blog with Next.js and Prismic. Include a homepage that lists blog posts, a dynamic route for individual post pages, and a Markdown-based content system using gray-matter. Also, add slider page [animations](https://prismic.io/guides/css-animations) with Framer Motion.”
+
+**Skills required**
+
+AI tools perform best when given specific, structured, and well-contextualized inputs. That’s why prompt engineering works best when you have domain knowledge, clear communication skills, and a solid understanding of how LLMs respond to different inputs.
+
+The table below highlights how these AI-assisted programming workflows differ.
+
+|  | Vibe coding | Prompt engineering |
+| --- | --- | --- |
+| Prompt style | Casual, flexible, and vague (e.g., “Build a blog”) | Specific, structured, and detailed (e.g., “Build a blog with Markdown posts and dynamic routes”) |
+| Main focus | Speed and experimentation | Accuracy and control |
+| Code quality | Secondary concern; code may be messy or inconsistent | Prioritizes clean, reliable, reusable output |
+| Skills needed | Minimal coding knowledge; just guide with prompts | Domain knowledge, precise language, LLM behavior understanding |
+| Best for | MVPs, quick demos, UI prototyping, non-technical makers | Production-grade tasks, complex workflows, professional coders |
+| Feedback loop | Fix issues by adjusting prompts casually | Tune prompts deliberately for refined outputs |
+| Code review | Rarely review code; rely on UI/output feedback | Often inspect and debug code line by line to refine prompts |
+| AI’s role | Main developer | Skilled assistant |
+| Human’s role | Guide who reviews UI or output, not code | Designer of inputs who deeply understands the task |
+| Output consistency | Often unpredictable | More consistent and aligned with intent |
+
+## Pros of vibe coding
+
+These are some of the benefits that have quickly made vibe coding a popular approach in software development.
+
+1. **Low barrier of entry:** You don’t need to know a specific programming language or framework to get started. Just describe what you want in natural language, and the AI generates something usable. This makes it accessible for non-programmers.
+
+- **Fast idea-to-interface turnaround:** With vibe coding, you can go from an idea to a working prototype in minutes. This speed is great for testing concepts or pitching ideas quickly.
+- **Encourages experimentation:** Vibe coding allows you to try wild ideas without worrying about messing up the code. You only need to prompt, review, and revise.
+- **Cheaper than hiring a dev:** For solo builders or small teams, vibe coding can help ship features or MVPs without needing to [hire a developer](https://prismic.io/blog/top-nextjs-freelancers-and-agencies). Many vibe coding tools offer free plans, and their paid tiers usually start around $20 to $50 per month. In contrast, hiring an experienced software developer to build your project could cost thousands of dollars. Vibe coding is highly cost-effective if you just need something that works for testing or demos.
+
+## Cons of vibe coding
+
+While vibe coding has many advantages, it also comes with disadvantages.
+
+![Vibe coding cartoon image](/portfolio/prismic/052-vibe-coding/image-2.webp)
+
+**Source: [Catalin on X](https://x.com/catalinmpit/status/1896500679960907922)**
+
+- **Bugs in AI-generated code**: From my experience using several AI coding tools, the code they generate often isn’t accurate on the first try. In many cases, it doesn’t run as expected and needs multiple rounds of prompt tweaking to fix. These tools don’t always understand the bigger picture or the specific context of your project, so relying on them alone can introduce difficult-to-trace bugs.
+- **Builds technical debt quickly**: Vibe coding often prioritizes speed and surface-level results over structure and long-term stability. Since you're not planning architecture or reviewing each line carefully, the codebase can become messy, inconsistent, or fragile. Over time, this leads to more refactoring, harder debugging, and slower progress as minor issues pile up and become harder to fix.
+- **Leads to skill atrophy**: Relying too much on AI can dull your coding skills. When you’re just tweaking prompts instead of thinking through logic or writing code yourself, you stop practicing the habits that make you a better developer.
+- **Loss of context in long sessions**: The longer you keep prompting, the more likely the AI is to forget earlier instructions. Sometimes, this causes the AI tool to change something core and break your working code.
+- **Increased security risk**: AI-generated code can open up your app to attacks. It might skip input validation, include insecure patterns, or expose sensitive data like API keys. Also, AI tools aren't always up to date on the latest security threats.
+
+## Top vibe coding tools
+
+### Cursor
+
+![Image of Cursor AI website](/portfolio/prismic/052-vibe-coding/image-3.webp)
+
+[Cursor](https://www.cursor.com/en) is a desktop-based AI code editor that accelerates coding with smart completions and natural-language commands. It offers a free plan, and its paid plans start at $20/month.
+
+**Features**
+
+- An AI chat assistant that lets you ask questions and request code edits about your codebase in natural language.
+- Detects lint errors and applies fixes to reduce manual debugging.
+- Provides a powerful autocomplete that predicts multi-line edits based on recent changes.
+- Suggests multiple code edits at once to help you move faster.
+- Fixes typos automatically with smart rewrites.
+- Answer codebase-related questions by searching through your project files.
+- Allows you to drag and drop images into the chat for visual context.
+- Searches the web for up-to-date information using the @Web feature.
+
+### Windsurf
+
+![Image of Windsurf AI website](/portfolio/prismic/052-vibe-coding/image-4.webp)
+
+[Windsurf](https://windsurf.com/) (formerly Codeium) is yet another AI code editor and IDE plugin designed to make your development process smoother, faster, and smarter. It offers a free plan, and its paid plans start at $15/month.
+
+**Features**
+
+- Cascade, an intelligent AI agent that anticipates your next move, writes code, fixes issues, and navigates complex codebases.
+- Provides smart autocomplete with Windsurf Tab, offering context-aware suggestions based on your clipboard, command history, and previous actions.
+- Allows you to preview, test, and deploy apps directly within the editor without switching tabs.
+- Remembers project-specific details through its Memories feature, helping you stay consistent across files and functions.
+- Generates code of your UI designs based on image files uploaded to Cascade.
+- Tracks your recent work so you can instantly continue where you left off using the “Continue My Work” feature.
+
+### GitHub Copilot
+
+![Image of GitHub Copilot website](/portfolio/prismic/052-vibe-coding/image-5.webp)
+
+[GitHub Copilot](https://github.com/features/copilot) is GitHub’s AI pair programmer. It's available in popular IDEs (VS Code, Visual Studio, JetBrains, etc.) and GitHub itself. Copilot offers a free plan, and its paid plans start at $10/month.
+
+**Features**
+
+- Suggests whole lines or blocks of code in real-time as you type.
+- A chat interface inside IDEs where you can ask questions or make changes in context.
+- Can summarize code changes or suggest changes in pull requests.
+- Has [a marketplace of 30+ extensions](https://github.com/marketplace?page=2&type=apps&copilot_app=true), like Pinecone AI and PerplexityAI, for extending its functionalities.
+- Allows you to request reviews manually or enable automatic reviews across repositories.
+
+### Bolt.new
+
+![An image of Bolt.new homepage.](/portfolio/prismic/052-vibe-coding/image-6.webp)
+
+[Bolt.new](https://bolt.new/) is a browser-based AI coding assistant (by StackBlitz) for building full-stack web and mobile apps. You interact with it via chat prompts: describe what you want, and Bolt scaffolds, edits, and runs the code in real-time using StackBlitz’s WebContainers.
+
+Bolt focuses on web development. It supports popular web languages and frameworks (JavaScript, TypeScript, HTML/CSS, Node.js, React, Angular, etc.) but does not support non-web languages like Python, C#, or C++.
+
+Bolt’s pricing starts at $20/month.
+
+**Features**
+
+- Uses Anthropic’s Claude 3.7 Sonnet to interpret prompts and generate code.
+- Provides an in-browser editor with a VS Code–like interface for manual code edits.
+- Offers real-time AI-generated suggestions as you type to improve or fix your code.
+- A “discussion” mode for gaining project-specific insights.
+- Native Stripe integration for processing payments.
+- Integrates with Figma to convert design files into working code.
+- Deploys projects instantly to the web using Netlify with minimal setup.
+- Supports Supabase for database setup and authentication workflows.
+- Builds and previews mobile apps using Expo for cross-platform development.
+
+### Lovable
+
+![An image of Lovable home page](/portfolio/prismic/052-vibe-coding/image-7.webp)
+
+[Lovable](https://lovable.dev/) started as an open-source project tagged [GPT Engineer](https://lovable.dev/gpt-engineer), which gained significant traction on GitHub. Over time, it evolved and rebranded to become Lovable.
+
+Similar to Bolt.new, Lovable provides a chat interface, allowing you to interact with the platform via prompts. You describe the desired app in plain English, and Lovable generates the corresponding code.
+
+Lovable offers a free plan, while paid plans start at $25/month.
+
+**Features**
+
+- Uses [Tailwind CSS](https://prismic.io/blog/tailwind-vs-bootstrap) for styling UI interfaces.
+- Allows you to collaborate with other users in real time, with changes synced instantly across all contributors.
+- Supports both frontend and backend development and integrates with tools like Supabase, Stripe, and Clerk.
+- Offers a Figma-like interface where you can hover over and click on elements to edit text and layout, all while keeping the underlying Tailwind code intact.
+- You can add custom context to your project using knowledge files. You can include details like feature specs, design assets, database schema, and user personas.
+- Provides a dev mode where you can access and edit your full project codebase directly in the Lovable editor.
+- You can easily publish your app with one click and share the deployed version.
+- Support for adding custom domain names.
+
+### V0 by Vercel
+
+![An image of V0 by Vercel](/portfolio/prismic/052-vibe-coding/image-8.webp)
+
+[V0](https://v0.dev/) is Vercel’s AI-powered UI generator. With it, you can create and deploy web applications by describing their ideas in natural language.
+
+V0 offers a free plan, while paid plans start at $20/month.
+
+**Features**
+
+- Generates production-ready code using React, Next.js, Tailwind CSS, and shadcn/ui.
+- Supports instant deployment to Vercel and makes storing projects on GitHub easy.
+- You can import designs from Figma to speed up your UI development process.
+- Provides a code mode where you can view a project’s codebase. You can edit the code with V0’s built-in editor.
+- Offers a screenshot-to-UI feature, letting you clone the layout of any interface by uploading an image.
+- You can add custom project instructions to guide the tool’s behavior.
+- Provides version history for projects so you can view and use past iterations as needed.
+
+### How do these AI coding tools compare?
+
+![AI coding tools comparison table](/portfolio/prismic/052-vibe-coding/image-9.webp)
+
+## Real-world projects built with vibe coding
+
+Here’s a brief overview of some projects that have been vibe-coded.
+
+### Pieter’s “Fly” game
+
+![GIF of Pieter fly game](/portfolio/prismic/052-vibe-coding/image-10.webp)
+
+**Source: [levelsio](https://x.com/levelsio/status/1899596115210891751) on X.**
+
+Levelsio (as he's known on X) vibe-coded an MMO game called “ [Fly](https://fly.pieter.com/),” creating the [initial version](https://x.com/levelsio/status/1893350391158292550) in 30 minutes. The multiplayer flight simulator quickly gained popularity and generated over [$87,000](https://x.com/levelsio/status/1899596115210891751) monthly revenue through embedded advertising and sponsorships.
+
+He has progressively improved it since its genesis in Feb 2025, adding features, fixing bugs, etc. Pieter built the app with Cursor AI, HTML, JavaScript, WebRTC, and Three.js.
+
+While Pieter is an established software developer, he had never made a game before and was unfamiliar with the core technologies powering the game.
+
+### Daniel Brugger’s bedtime story creator
+
+![GIF of bedtime story generator](/portfolio/prismic/052-vibe-coding/image-11.webp)
+
+**Source: [Daniel Brugger](https://x.com/_DBrugger/status/1878479550897627438) on X**
+
+Daniel Brugger's [bedtime story creator](https://x.com/_DBrugger/status/1878479550897627438) allows parents to generate personalized bedtime stories for children with minimal effort. Parents only need to input a few details to receive unique narratives tailored to their child's preferences. There’s also a [voice mode](https://x.com/_DBrugger/status/1881004988794830977) where the AI tool narrates the story.
+
+Daniel has zero coding experience and created the app with Bolt.new, GPT-4o mini, and Supabase.
+
+### Vastrik’s menu translator app
+
+![Image of menu translator app](/portfolio/prismic/052-vibe-coding/image-12.webp)
+
+**Source: [Vastrik](https://vas3k.com/notes/vibe_coding/)**
+
+Vastrik built a React-based [menu translator app](https://vas3k.com/notes/vibe_coding) that allows users to take a photo of a restaurant menu and receive a list of dishes with descriptions, images of the dishes, and additional details like ratings.
+
+The app helps people understand French restaurant menus, which are often written in chalk on blackboards without pictures or detailed explanations.
+
+Tools used to build the app include Claude 3.5 Sonnet, Open AI API, DALL-E, [React](https://prismic.io/blog/nextjs-vs-react), [Vite](https://prismic.io/blog/vite-vs-nextjs), [Material UI](https://prismic.io/blog/how-to-choose-the-best-css-framework) (MUI), and Cursor AI IDE.
+
+## The future of vibe coding and AI-assisted development
+
+**The Future of Vibe Coding and AI-Assisted Development**
+
+AI tools and AI-powered workflows are here to stay. Pandora's box has been opened, and it's too late to close it.
+
+There are valid reasons to be cautious about the AI wave sweeping through the tech world. Some developers are rightfully skeptical of vibe coding, while others gradually embrace it and add it to their workflows.
+
+Truthfully, no one knows exactly where AI-based coding will take us. We're all just trying to navigate this new horizon we've been thrust into.
+
+Vibe coding certainly has its risks, but it also offers compelling benefits. I wouldn't be quick to dismiss this approach. Instead, I’ll focus on learning how to harness it effectively to get the best results from AI tools.
+
+Hopefully, the tips in this guide will help if you decide to jump on the vibe coding bandwagon.
+
+Let us know what you think of vibe coding in the comments below! 👇
+
+## FAQs
+
+### Is vibe coding good or bad?
+
+**Short answer:** Neither. It's not inherently good or bad.
+
+**Long answer**: It depends on how and where you use it. Vibe coding shines when prototyping UIs or MVPs and experimenting. However, it may fall short—and even be risky—when building production-grade applications, sensitive data is involved, and high-quality code is required.
+
+Vibe coding is a powerful tool when used appropriately, but it's not a one-size-fits-all solution.
+
+### Why should you care about vibe coding?
+
+Vibe coding is on the rise and is transforming how developers approach software development. In fact, [companies are now actively](https://www.vibecodecareers.com/) hiring [Gen AI prompt engineers](https://x.com/catalinmpit/status/1919028130867822698) with experience in vibe coding.
+
+The stats also agree with this emerging trend. While [66.2%](https://survey.stackoverflow.co/2024/ai#3-challenges-with-ai-at-work) of developers don't trust the output from AI tools, [82%](https://survey.stackoverflow.co/2024/ai#2-ai-in-the-development-workflow) still rely on them to write code. Additionally, [76%](https://survey.stackoverflow.co/2024/ai#2-ai-tools-next-year) expect the use of AI in coding to grow in 2025.
+
+### What is AI for vibe coding?
+
+AI for vibe coding refers to using large language models (LLMs) to generate code based on natural language prompts. Instead of manually writing code, developers describe desired functionalities, and the AI produces the corresponding code.
+
+### What LLM model is best for vibe coding?
+
+Several LLMs are well-suited for vibe coding, including:
+
+- **GPT-4o (OpenAI):** Known for its versatility and strong performance in code generation.
+
+- **Claude 3.7 Sonnet (Anthropic):** Excels in reasoning and handling complex coding tasks.
+
+- **Gemini 1.5 Pro (Google):** Offers robust multimodal capabilities, integrating text and code effectively.
+
+- **LLaMA 3 (Meta):** An open-weight model popular among researchers for its adaptability.
+
+- **Mistral Large (Mistral AI):** Efficient and performant, especially in smaller setups.
+
+The best choice depends on your specific needs, like the complexity of the project, required integrations, and available resources.
