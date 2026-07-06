@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: '%s | Nefe',
   },
   description: SITE.description,
-  keywords: ['content marketer', 'SEO manager', 'technical writer', 'content strategy'],
+  keywords: [...SITE.keywords],
   authors: [{ name: SITE.name, url: SITE.url }],
   creator: SITE.name,
   publisher: SITE.name,
@@ -67,11 +67,25 @@ const personSchema = {
   '@type': 'Person',
   '@id': `${SITE.url}/#person`,
   name: SITE.name,
+  alternateName: 'Nefe Emadamerho-Atori',
   url: SITE.url,
   email: `mailto:${SITE.email}`,
   jobTitle: SITE.jobTitle,
   description: SITE.description,
-  sameAs: [SITE.social.linkedin],
+  // Geo signals for "content writer in Nigeria"-style queries: where Nefe is
+  // based and where clients are served (globally, not just locally).
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: SITE.location.city,
+    addressCountry: SITE.location.countryCode,
+  },
+  nationality: { '@type': 'Country', name: SITE.location.country },
+  areaServed: ['Nigeria', 'Africa', 'Worldwide'],
+  knowsAbout: [...SITE.expertise],
+  knowsLanguage: 'en',
+  // Every public profile + author pages on established publications, so
+  // search engines and AI models reconcile this site with the published work.
+  sameAs: Object.values(SITE.social),
 }
 
 const websiteSchema = {

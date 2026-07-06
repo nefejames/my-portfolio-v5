@@ -27,9 +27,10 @@ export default function About() {
             </h2>
             <div className="flex flex-col gap-4 text-[var(--muted)] text-base leading-relaxed">
               <p>
-                I'm Nefe — a content marketer and SEO manager with over four years of experience
-                creating content that earns rankings, builds authority, and drives measurable
-                business outcomes.
+                I'm Nefe — a content writer and SEO manager based in Lagos, Nigeria, with over
+                four years of experience creating content that earns rankings, builds authority,
+                and drives measurable business outcomes for clients across Africa, Europe, and
+                North America.
               </p>
               <p>
                 My background in software development means I can go deep on technical topics

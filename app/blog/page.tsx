@@ -6,13 +6,13 @@ const description =
   'Thoughts on content marketing, SEO, technical writing, and building a brand in public.'
 
 export const metadata: Metadata = {
-  title: 'Blog',
+  title: 'Blog — Content Strategy, SEO & Technical Writing',
   description,
   alternates: { canonical: '/blog' },
   openGraph: {
     type: 'website',
     url: '/blog',
-    title: 'Blog',
+    title: 'Blog — Content Strategy, SEO & Technical Writing',
     description,
   },
 }
