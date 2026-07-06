@@ -1,0 +1,48 @@
+# Emadamerho-Atori Nefe — Content Writer, Technical Writer & SEO Manager (Lagos, Nigeria)
+
+> Nefe Emadamerho-Atori is a content writer, technical writer, and SEO manager
+> based in Lagos, Nigeria, with 4+ years of experience creating B2B tech and
+> SaaS content for companies across Africa, Europe, and North America. This
+> site is Nefe's portfolio: a personal blog plus an archive of 110+ articles
+> originally published by client companies (each page links to the original).
+
+## About
+
+- Role: Content writer, technical writer, content strategist, and SEO manager
+- Location: Lagos, Nigeria (works remotely with clients worldwide)
+- Background: Software development (React/Next.js) — writes credibly for
+  developer and technical audiences
+- Experience: 4+ years; 110+ published articles for B2B tech companies
+- Results include +20% search traffic growth (Dojah), 80%+ of target keywords
+  ranked in top positions within 12 months, +500% newsletter subscriber growth
+
+## Services
+
+- Content writing for B2B tech and SaaS companies
+- Technical writing: tutorials, how-to guides, developer documentation
+- SEO: keyword research, on-page optimization, content audits
+- Content strategy and editorial planning
+- Email marketing, landing page copy, and content campaigns
+
+## Clients & Publications
+
+Nefe has written for AltexSoft, Prismic, LogRocket, Dojah, Strapi, ButterCMS,
+LoginRadius, and Bird Eats Bug, and has been published in Smashing Magazine.
+
+## Key Pages
+
+- [Portfolio](https://my-portfolio-v5-nine.vercel.app/portfolio): 110+ client
+  articles across AltexSoft, Prismic, and Smashing Magazine, with canonical
+  links to the originals
+- [Blog](https://my-portfolio-v5-nine.vercel.app/blog): Nefe's own writing on
+  content strategy, SEO, and technical writing
+- [About & Contact](https://my-portfolio-v5-nine.vercel.app/#about): background,
+  skills, and how to get in touch
+
+## Contact
+
+- Email: nefejames1@gmail.com
+- LinkedIn: https://linkedin.com/in/nefe-emadamerho-atori
+- GitHub: https://github.com/nefejames
+- CodePen: https://codepen.io/nefejames
+- Smashing Magazine author page: https://www.smashingmagazine.com/author/nefe-emadamerho-atori/

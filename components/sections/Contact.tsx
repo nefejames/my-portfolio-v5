@@ -12,7 +12,8 @@ export default function Contact() {
         </h2>
         <p className="text-lg text-[var(--muted)] max-w-xl mx-auto mb-10">
           Open to full-time roles, freelance projects, and long-term content partnerships.
-          If you need content that ranks and converts, let's talk.
+          Based in Lagos, Nigeria — working with clients worldwide. If you need content that
+          ranks and converts, let's talk.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
           <a
