@@ -1,0 +1,234 @@
+---
+title: "How to Build CSS Accordions: 5 JavaScript-Free Methods That Actually Work"
+client: "Prismic"
+clientSlug: "prismic"
+originalUrl: "https://prismic.io/blog/css-accordions"
+publishedAt: "2025-09-10"
+canonical: "https://prismic.io/blog/css-accordions"
+excerpt: "Learn five ways to build CSS accordions without JavaScript. This step-by-step guide covers details/summary, :checked, :target, flexbox & grid methods with examples."
+coverImage: "/portfolio/prismic/056-css-accordions/cover.webp"
+tags: []
+---
+Accordions are [UI components](https://prismic.io/blog/react-component-libraries) that allow you to organize content into sections that expand or collapse when users interact with them, typically by clicking. Common use cases include FAQs, [navigation menus](https://prismic.io/blog/css-menus), product filters, and mobile layouts where screen space is limited.
+
+They help you present information in a structured, user-friendly way while keeping pages clean and easy to scan.
+
+In this article, you’ll learn how to create accordions using just CSS. We’ll cover various approaches, including using the `<details>` and `<summary>` components, as well as working with CSS [Flexbox and Grid](https://prismic.io/blog/css-flexbox-vs-css-grid).
+
+## Benefits of accordions in websites
+
+Accordions offer several advantages that make them a popular choice for organizing content on websites:
+
+- **Space-saving design:** Accordions enable you to hide content from view, reducing the amount of visible information and keeping layouts tidy.
+- **Improved focus:** Users can open only the sections they’re interested in, making information easier to digest.
+- **Interactive experience:** The expand-and-collapse behavior feels intuitive and has become a standard way of presenting grouped content online.
+- **Mobile responsiveness:** Works especially well on smaller screens where space is limited and you can’t display all content at once.
+- **Versatility:** They’re great for FAQs, product filters, step-by-step instructions, navigation menus, and more.
+
+## Different ways of building CSS accordions
+
+There are several ways to build a CSS accordion, each offering different levels of simplicity, customization, and control. Let’s explore some of the most common approaches.
+
+For this section, the `:target`, Flexbox, and Grid approaches will use the HTML structure below:
+
+```html
+<div class="accordion">
+  <div class="accordion-item" id="item1">
+    <a href="#item1" class="accordion-header">Accordion Item 1</a>
+    <div class="accordion-content">
+      <p>This is the hidden content.</p>
+    </div>
+  </div>
+</div>
+
+<div class="accordion">
+  <div class="accordion-item" id="item2">
+    <a href="#item2" class="accordion-header">Accordion Item 2</a>
+    <div class="accordion-content">
+      <p>This is the hidden content.</p>
+    </div>
+  </div>
+</div>
+```
+
+### Using `<details>` and `<summary>`
+
+The `<details>` and `<summary>` elements provide a native, browser-supported method for creating collapsible sections. They require no [JavaScript](https://prismic.io/blog/compare-javascript-vs-typescript) and work well for simple use cases, such as FAQs.
+
+This approach is the fastest and most straightforward way to create an accordion. It comes with built-in browser behavior, requires little CSS, and has good [accessibility](https://prismic.io/blog/what-is-aria) support by default.
+
+```html
+<details>
+  <summary>Accordion Item 1</summary>
+  <p>This is the hidden content that appears when clicked.</p>
+</details>
+```
+
+**Explore the pen for this method:**
+
+&lt;details> and &lt;summary> accordion
+
+<CodePen user="nefejames" id="myerjvJ" />
+
+### Using the `:checked` selector
+
+This method works by pairing a hidden checkbox with a label. When the user clicks the label, the checkbox switches to a `checked` state, which you can target in CSS using the `:checked` pseudo-class. This allows you to reveal or hide the accordion content without any JavaScript. It’s simple, flexible, and lets you add smooth transitions for a better user experience.
+
+This method gives you full control over the accordion’s design and behavior while staying JavaScript-free.
+
+```html
+/*HTML skeleton*/
+
+<div class="accordion">
+  <div class="accordion-item">
+    <input type="checkbox" id="item1">
+    <label for="item1" class="accordion-header">Accordion Item 1</label>
+    <div class="accordion-content">
+      <p>This is the hidden content.</p>
+    </div>
+  </div>
+</div>
+```
+
+```css
+/*HTML CSS code*/
+.accordion input {
+  display: none;
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.accordion input:checked ~ .accordion-content {
+  max-height: 200px;
+}
+```
+
+**Here’s the pen for this method:**
+
+<CodePen user="nefejames" id="pvjEZGd" title=":checked accordion" />
+
+### **Using `:target`**
+
+`:target` is great when you want to link directly to a specific accordion section from a URL. It’s simple to set up and doesn’t require additional input elements like checkboxes. The `:target` pseudo-class toggles visibility based on the active URL hash (e.g., `#accordion1`).
+
+```css
+.accordion-content {
+  display: none;
+}
+
+.accordion-item:target .accordion-content {
+  display: block;
+}
+```
+
+**Here’s the pen for this method:**
+
+<CodePen user="nefejames" id="ByoLPbL" title=":target accordion" />
+
+### Using CSS Flexbox
+
+[CSS Flexbox](https://prismic.io/blog/css-flexbox-vs-css-grid) doesn’t create the toggle effect by itself, but is great for aligning headers, icons, and content neatly. You can combine Flexbox with the :checked or &lt;details> method for structure.
+
+```css
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background: #eee;
+  cursor: pointer;
+}
+```
+
+**Here’s the pen for this method:**
+
+<CodePen user="nefejames" id="azvmjMQ" title="CSS Flexbox accordion" />
+
+### Using CSS Grid
+
+[CSS Grid](https://prismic.io/blog/tailwind-css-grid) is another way to structure accordion content, especially if you want more complex layouts within each section.
+
+```css
+.accordion-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 10px;
+  padding: 10px;
+}
+```
+
+**Here’s the pen for this method:**
+
+<CodePen user="nefejames" id="NPGRBmp" title="CSS Grid accordion" />
+
+## 📖 Read our in-depth guides to learn more about CSS Flexbox and CSS Grid. 👇
+
+[CSS Flexbox vs Grid](https://prismic.io/blog/css-flexbox-vs-css-grid): Complete Guide & When to Use Each
+
+[Tailwind CSS Grid](https://prismic.io/blog/tailwind-css-grid): Complete Guide & Examples
+
+## CSS accordion examples
+
+We’ve seen different methods for implementing accordions. Now, let’s check out some examples.
+
+### Pure CSS accordion
+
+[Raúl Barrera’s pen](https://codepen.io/raubaca/pen/PZzpVe) showcases two sets of accordions. The first is built with the checkbox input and the second with radio.
+
+<CodePen user="raubaca" id="PZzpVe" title="Pure CSS Accordion" />
+
+### CSS + HTML only accordion element
+
+[Alex Bergin’s accordion](https://codepen.io/abergin/pen/BaKVWd) is also built with the checkbox input. It includes subtle [animations](https://prismic.io/guides/css-animations) that elevate the interaction when the accordion items open and close.
+
+<CodePen user="abergin" id="BaKVWd" title="CSS + HTML only Accordion Element" />
+
+### Pure CSS horizontal accordion
+
+[Aysha Anggraini's accordion](https://codepen.io/rrenula/pen/nZNwxw) switches axes and is horizontal instead of vertical. When users [hover](https://prismic.io/blog/css-hover-effects) over the items, they expand to reveal the hidden within.
+
+<CodePen user="rrenula" id="nZNwxw" title="Pure CSS Horizontal Accordion" />
+
+### Funky pure CSS accordion
+
+If you prefer an accordion that’s full of wild transitions and bright colors, then you’ll enjoy [Jamie Culter’s pen](https://codepen.io/jcoulterdesign/pen/OMmZPd).
+
+<CodePen user="jcoulterdesign" id="OMmZPd" title="Funky Pure CSS Accordion" />
+
+### Awesome accordion menu using only HTML & CSS
+
+[Ahmad Emran’s pen](https://codepen.io/ahmadbassamemran/pen/zXwZKo) is another creative, colorful codepen with eye-catching effects.
+
+<CodePen user="ahmadbassamemran" id="zXwZKo" title="Awesome accordion menu using only HTML & CSS" />
+
+## Final thoughts
+
+In this article, we’ve explored how CSS accordions can improve content organization. By combining clean HTML with modern CSS properties, you can build accordions that are both lightweight and user-friendly.
+
+Don’t forget to test for accessibility and responsiveness to ensure a smooth experience across all devices.
+
+## FAQs
+
+### Why use a CSS-only accordion instead of JavaScript?
+
+CSS-only accordions are lighter, require no external scripts, and can be easier to implement for simple use cases.
+
+### Can I add animations to a CSS accordion?
+
+Yes, you can use [CSS animations](https://prismic.io/guides/css-animations) and transitions to create smooth expand and collapse effects. For example, you can animate the max-height property to make the accordion open and close smoothly:
+
+### How do I make a CSS accordion accessible?
+
+Use semantic HTML like &lt;details> and &lt;summary>, add ARIA attributes (aria-expanded, aria-controls), and ensure keyboard navigation works.
+
+### What are common use cases for accordions?
+
+They are widely used for FAQs, navigation menus, collapsible content sections, and mobile-friendly layouts.
+
+### Can I use CSS frameworks to build accordions?
+
+Yes, CSS frameworks like [Tailwind CSS](https://prismic.io/blog/tailwind-animations) or [Bootstrap](https://prismic.io/blog/tailwind-vs-bootstrap) provide classes that can help style custom or pre-built accordion components.

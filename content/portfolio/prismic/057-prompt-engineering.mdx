@@ -1,0 +1,306 @@
+---
+title: "AI Prompt Engineering: Complete Guide + Examples"
+client: "Prismic"
+clientSlug: "prismic"
+originalUrl: "https://prismic.io/blog/prompt-engineering"
+publishedAt: "2025-07-30"
+canonical: "https://prismic.io/blog/prompt-engineering"
+excerpt: "Learn prompt engineering techniques to get better results from ChatGPT and other AI tools. Includes examples, best practices, and advanced methods."
+coverImage: "/portfolio/prismic/057-prompt-engineering/cover.webp"
+tags: []
+---
+No matter how powerful [AI tools](https://prismic.io/blog/ai-productivity-tools) like ChatGPT are, the quality of their output depends on how clearly and effectively you give them instructions. You may get poor results if you don’t know how to guide the AI model.
+
+That’s where prompt engineering comes in.
+
+Prompt engineering is the skill of communicating with large language models (LLMs) in a way that gets you the best possible outcome for your specific task, whether that’s writing, coding, summarizing, or anything else. Learning to prompt well is how you take full advantage of what these tools can do.
+
+In this guide, you’ll learn what prompt engineering is, how it works, and how to apply it effectively across different use cases.
+
+## What is prompt engineering?
+
+Prompt engineering is the process of writing effective inputs, or "prompts," that guide an AI model to give the output you want. It’s how you communicate with tools like ChatGPT to perform various tasks.
+
+Think of it like giving instructions to a very smart assistant. The better you explain what you want, the better the response you’ll get. That could mean being more specific, using the right format, or providing examples the LLM can follow.
+
+### **Why prompt engineering matters**
+
+AI models don’t work like humans. This means they don’t guess or assume what you mean. Instead, they respond to exactly what you ask. That means your results depend heavily on how you structure your prompt.
+
+Without prompt engineering, you may get vague, inaccurate, or inconsistent outputs. But with well-crafted prompts, you can control the tone, structure, length, etc, of the AI’s response.
+
+Proper prompting matters for several reasons:
+
+- It helps you get clearer, more accurate results from the LLM.
+- It saves time by reducing the need to rewrite or re-ask the same thing in different ways.
+- It gives you more control over the format and style of the output.
+- It’s essential when building or integrating AI into your apps, workflows, or products.
+
+In short, the better your prompt, the better your outcome.
+
+## Anatomy of a good prompt — with examples
+
+Now that we’ve covered what prompt engineering is and why it matters, let’s look at what actually makes a prompt “good.”
+
+Most effective prompts share a few core elements:
+
+### Instructions
+
+Instructions are the core task and the heart of your prompt. They tell the LLM exactly what action to take.
+
+Say we intend to write an article about [JavaScript](https://prismic.io/blog/javascript-meta-frameworks-ecosystem) arrow functions. The instruction could be: _“Write an introductory article that explains how arrow functions work in JavaScript.”_
+
+![An image of ChatGPT arrow function prompt](/portfolio/prismic/057-prompt-engineering/image-1.webp)
+
+### Context
+
+Instructions are a great starting point. However, you can further tailor the prompt by enriching it with the proper context.
+
+Context is king when it comes to working with AI tools. The more relevant background information you provide, the better the model can understand your goal and generate output that matches your expectations.
+
+Take the JavaScript article for example. Instead of leaving the AI to guess, the right context could provide useful data like:
+
+- Who the audience is (e.g., beginners, intermediate devs, or senior engineers)
+- What the content is for (e.g., blog post, technical documentation, course material)
+- What the reader is expected to know already (e.g., basic JavaScript but not arrow functions)
+- The desired tone (e.g., casual, formal, instructional)
+- The platform or brand (e.g., writing for a coding bootcamp vs a developer blog)
+
+Adding even one or two of these points can help the model tailor its language, depth, and structure to better fit your use case.
+
+Now, let’s refine the earlier prompt by making it more specific: _“Write an introductory article that explains how arrow functions work in JavaScript. The target audience is beginner web developers who are familiar with traditional function syntax but new to arrow functions. The article will be published on a programming blog.”_
+
+The moment we do that, the output changes.
+
+![An image of ChatGPT arrow function prompt with context](/portfolio/prismic/057-prompt-engineering/image-2.webp)
+
+If we change the audience to _“expert software engineers with experience in the Python programming language,”_ we get a different result.
+
+![An image of ChatGPT prompt with different context](/portfolio/prismic/057-prompt-engineering/image-3.webp)
+
+As you can see, the right context transforms a basic prompt into a much more focused and useful one. We could continue tweaking the input with extra context, which would affect the AI’s output.
+
+### Format
+
+Another key thing is the format. This tells the LLM how to structure its response, whether that’s a list, table, paragraph, tweet, JSON object, or something else. Without formatting directions, the output might not match how you plan to use it.
+
+Suppose we change our mind and no longer want the info on arrow functions to be an article. Maybe we want to present it as a quick reference list for a cheat sheet or learning resource: _“Explain how arrow functions work in JavaScript using a bullet-point list. Keep each point short and clear so it can be used in a cheat sheet.”_
+
+![An image of ChatGPT prompt in bullet point list](/portfolio/prismic/057-prompt-engineering/image-4.webp)
+
+We could also turn it into an X (Twitter) Thread.
+
+![An image of ChatGPT arrow function prompt in Tweet format](/portfolio/prismic/057-prompt-engineering/image-5.webp)
+
+By defining the format, you help the model organize its output in a way that’s more useful for your
+
+### Constraints
+
+[AI tools](https://prismic.io/blog/ai-tools-for-developers) can _still_ go off the rails, even with clear instructions, context, and format. That’s where constraints come in.
+
+Constraints are rules that shape the final output. They might limit length, keywords, or even things _not_ to include. Constraints help make the output usable and consistent.
+
+Possible constraints for the JavaScript content could include:
+
+- Keep the explanation under 300 words to maintain brevity.
+- Don’t use em dashes.
+- Exclude any mention of frameworks like [React](https://prismic.io/blog/react-component-libraries) or [Vue](https://prismic.io/blog/vue-component-libraries) to keep the scope focused.
+- Avoid technical jargon where possible to keep the explanation simple.
+
+Constraints are used across many disciplines. For example, developers who use AI tools to [vibe code](https://prismic.io/blog/vibe-coding) often have a list of guidelines that shape the kind of output the AI generates.
+
+## Prompt engineering techniques
+
+Prompt engineering isn't just about writing instructions. It's about writing them strategically. There are techniques you can use to enhance clarity, control the output, and consistently get better results from AI tools.
+
+### Zero-shot prompting
+
+Zero-shot prompting is when you ask the model to perform a task without giving it any examples. Here, you rely entirely on the model’s pretraining to understand the task based on the phrasing of your instruction.
+
+![An image of zero-shot prompting.](/portfolio/prismic/057-prompt-engineering/image-6.webp)
+
+Use zero-shot when your task is clear and doesn’t require a specific format or tone, like definitions or explanations, summarization, classification, simple question answering, and language translation.
+
+### One-shot and few-shot prompting
+
+These techniques involve providing one (one-shot) or a few (few-shot) examples along with your prompt to help the LLM understand the desired pattern or format.
+
+![An image of one or few shot prompting](/portfolio/prismic/057-prompt-engineering/image-7.webp)
+
+Examples are great because they help guide the model, especially for less common tasks or where specific structures or formats matter.
+
+For example, say we want to create a prompt that checks whether a given JavaScript function is written using arrow function syntax. To achieve this, we can provide some examples (few-shot) to teach the model exactly how to classify the snippets.
+
+### Chain-of-thought (CoT) prompting
+
+Chain-of-thought prompting encourages the model to explain its reasoning step by step before answering. It is best for math, logic problems, or tasks that require multiple steps.
+
+![An image of chain-of-thought prompting](/portfolio/prismic/057-prompt-engineering/image-8.webp)
+
+### ReAct (reasoning + acting)
+
+ReAct prompting combines reasoning (thinking through the problem) with acting (using tools, APIs, or retrieval to get more information).
+
+The model reasons about a problem, takes action to fetch external data (e.g., from a database or [API](http://prismic.io/blog/sdk-vs-api)), then continues reasoning based on the results.
+
+Here’s an example ReAct prompt: _What's the current weather in Paris? If it's raining, suggest three indoor activities. If it's sunny, suggest three outdoor activities. Show your steps._
+
+![Image of ReAct prompting](/portfolio/prismic/057-prompt-engineering/image-9.webp)
+
+ReAct is best used in systems where the AI can interact with external tools, like coding assistants, [chatbots](https://prismic.io/blog/nextjs-ai-chatbot), or decision-making agents.
+
+### Self-consistency
+
+Self-consistency means running the same prompt multiple times and comparing the outputs to find the most consistent or likely correct answer. Because AI outputs can vary with each run (due to randomness or sampling), generating multiple completions and picking the best one helps.
+
+### Tree-of-thought
+
+Tree-of-thought prompting breaks a problem into a branching series of ideas or possibilities instead of a straight line of reasoning. It allows the LLM to explore multiple angles or solutions (like a decision tree) before selecting the best one.
+
+For example, when solving an issue, you could ask the AI model: _“Generate multiple possible steps for solving this problem. Evaluate the pros and cons of each one and choose the most effective path.”_
+
+This technique is great for brainstorming, planning, coding strategies, or situations where there isn’t one correct answer.
+
+## Prompt engineering best practices and tips
+
+### Be specific and clear
+
+Vague instructions lead to vague results. Tell the model exactly what you want it to do, and avoid assuming it will fill in gaps the way a human would.
+
+### Use roleplay and instructions when needed
+
+If you want the AI to adopt a tone, persona, or behavior, say so. Role-based instructions like “ _You are a senior JavaScript instructor with 15 years of experience”_ can help determine the tone and level of expertise.
+
+### Break tasks into steps
+
+When you give an AI model a broad or complex instruction, it can be too much for it to handle, leading to inconsistent outputs. Breaking the task down makes it easier for the model to stay focused and accurate.
+
+This principle is particularly useful when tackling technical or programming-related problems. Asking a model to _“Build a full-featured to-do app with login, user management, and real-time syncing”_ is likely to fail or return low-quality results. It’s too much at once.
+
+Instead, break the project into smaller instructions that can be handled one step at a time:
+
+### When to keep it simple vs. complex
+
+Simple prompts are easier to write and test, but complex ones offer more control. If you're exploring or brainstorming, short prompts are fine. But for precise results, especially in production, more structure is better.
+
+You can start simple, then add instructions, examples, and constraints as needed.
+
+### Have prompt templates
+
+Creating reusable prompt templates can be helpful if you find yourself repeating similar tasks. These templates will save time and keep your results consistent.
+
+Templates also make it easy to scale tasks since you won’t need to start from scratch each time. You can adjust the wording, examples, or format without having to rethink the entire structure.
+
+### **Add clear constraints like: d _o not hallucinate_**
+
+LLMs tend to make educated guesses when they’re unsure about something. This behavior is known as hallucination. While the guess might sound confident, it could be completely incorrect.
+
+That behavior might be fine for low-risk tasks like brainstorming ideas or creative writing. But it can be risky in technical, legal, or financial contexts where accuracy matters.
+
+One proven way to reduce hallucinations is to explicitly tell the model _not to hallucinate_. It sounds simple, but it works. Adding clear constraints like _“Only include verifiable facts”_ or _“Don’t make up answers”_ encourages the model to stick to what it’s confident about.
+
+## Improving AI responses with prompt debugging
+
+Even well-written prompts won’t always return the result you expect. That’s where **prompt debugging** comes in. Just like debugging code, prompt debugging means identifying what’s going wrong in the output and adjusting your input to fix it.
+
+Start by looking closely at the response. Is it too vague? Too long? Off-topic? Missing a format? Then go back to your prompt and ask:
+
+- Did I give enough context?
+- Was the instruction too broad or unclear?
+- Did I forget to set constraints or define the tone?
+
+The first version of your prompt doesn’t have to be the final one. Try variations, test different angles, and compare results. Over time, you’ll learn what works best for different tasks, and your prompts will become more effective.
+
+## Why the AI model you use matters
+
+So far, we’ve covered how to write good prompts. But one of the most critical factors, often more important than the prompt itself, is the AI model you’re using.
+
+Different models are trained with different strengths, data sources, and design goals. Some are great for reasoning. Others excel at coding or summarizing.
+
+There are more AI models on the market than we can cover here. However, let’s review some models from three top providers and see what each one does best.
+
+### OpenAI’s models
+
+OpenAI gives you access to different models for different needs. If you're handling everyday tasks that don’t require deep reasoning, the [GPT-4.1](https://platform.openai.com/docs/models/gpt-4.1) model is a solid general-purpose option.
+
+When your work involves complex logic, scientific problems, or advanced reasoning, consider one of the models in the o-series. The [o3 model](https://platform.openai.com/docs/models/o3) helps you tackle high-level thinking and problem-solving. If you need even more reliability, the [o3-pro](https://platform.openai.com/docs/models/o3-pro) gives the model more time to think through its answers, but it comes at a higher cost.
+
+Looking for strong reasoning without breaking your budget? Try the [o4-mini](https://platform.openai.com/docs/models/o4-mini). It performs close to o3, but at a lower price, making it a smart choice for logic-heavy work.
+
+### Anthropic’s Claude models
+
+If you're working on tasks that involve reasoning, coding, or AI agents, Anthropic’s Claude models are worth exploring.
+
+[Claude Opus 4](https://www.anthropic.com/claude/opus) is built for advanced use cases where you need deep thinking, memory, and flexibility. You can use it for long-form content, big codebases, or building autonomous agents. With its 200K token context window, you can input large documents or long conversations without worrying about losing context.
+
+Need something faster and more affordable? [Claude Sonnet 4](https://www.anthropic.com/claude/sonnet) offers a good mix of speed, intelligence, and cost-efficiency. It’s [five times cheaper](https://docs.anthropic.com/en/docs/about-claude/models/overview#model-pricing) than Opus 4 and improves on the earlier [Claude 3.5 Sonnet](https://www.anthropic.com/news/claude-3-5-sonnet) in reasoning, accuracy, and formatting. You’ll find it helpful for chatbots, content reviews, or workflows that need smart but fast responses.
+
+### Google’s Gemini models
+
+[Gemini 2.5 Pro](https://deepmind.google/models/gemini/pro/) is Google’s most advanced thinking model. Use it when you're working on complex code, data analysis, or multimodal reasoning. It’s designed for accuracy and does best when your tasks need detailed understanding and carefully thought-out answers.
+
+[Gemini 2.5 Flash](https://deepmind.google/models/gemini/flash/) is a faster, budget-friendly option. It’s great for building apps like chatbots or assistants that need quick outputs, especially for real-time interactions, content creation, or summarizing large inputs.
+
+## Final thoughts
+
+Prompt engineering is a practical skill that helps you get better results from AI tools. By learning how to give clear instructions, provide context, set constraints, and choose the right format, you can improve the quality, accuracy, and usefulness of AI responses.
+
+Whether you're writing, coding, building apps, or just experimenting, prompt engineering gives you more control over what the AI does. As AI continues to grow in both capability and use, knowing how to prompt well will become an essential part of working with these tools effectively. Start simple, test often, and improve as you go.
+
+What interesting quirks have you noticed while working with AI tools? Maybe an output that went completely off the rails and shocked you, or a prompt that got surprisingly good results?
+
+Share your experience; drop a comment below! 👇
+
+## FAQs about Prompt Engineering
+
+### Who is a prompt engineer, and what exactly does a prompt engineer do?
+
+A prompt engineer is someone who specializes in designing and refining prompts to get accurate, useful responses from AI models. They work across different fields to help teams use AI tools effectively. Their main job is to figure out how to ask the AI the right questions in the right way.
+
+### Is prompt engineering difficult?
+
+Prompt engineering can be easy to start with, especially if you understand the goal you want to achieve.
+
+However, it becomes more challenging when you're aiming for very specific, consistent, or complex outputs, especially in areas like code generation, data extraction, or multi-step reasoning. This is where knowing how to give the model clear instructions, constraints, and context becomes more important.
+
+### What is a prompt engineer’s salary?
+
+Prompt engineer salaries vary based on experience, location, and industry. According to Glassdoor’s data, as of July 2025, total compensation typically ranges from [$96,000 to $159,000](https://www.glassdoor.com/Salaries/prompt-engineer-salary-SRCH_KO0,15.htm) per year, with a median total pay of $123,000.
+
+### How does prompt engineering work?
+
+Prompt engineering works by crafting clear and specific instructions for an AI model to follow. You guide the AI by giving it context, goals, and formats so it knows exactly what kind of output you want.
+
+### How do I improve a prompt that isn't working?
+
+Break down the task into smaller steps, clarify what you want, and give specific examples or formats. You can also test different phrasings or add instructions like “think step-by-step.”
+
+### How can I stop AI from giving wrong or made-up answers?
+
+dd constraints like “do not guess” or “do not make up facts.” You can also ask for sources or add incentives like “only answer if 100% sure.” Avoid vague prompts.
+
+### Do I need to be a developer to learn prompt engineering?
+
+No. Anyone can learn prompt engineering. You just need to know what you want and how to explain it clearly. Developers may go deeper with code tasks, but it’s useful for everyone.
+
+### What are the common mistakes people make when writing prompts?
+
+Some common ones include being too vague, asking for too much at once, not giving examples, or forgetting to set rules for the format or length you want the response to follow. Being clear and focused helps a lot.
+
+### How do I debug a prompt?
+
+Here’s a simple way to debug a prompt:
+
+1. **Check clarity**: Make sure the prompt is clear and specific. If it’s vague, rewrite it using simpler or more direct language.
+
+1. **Break it down**: If the task is complex, split it into smaller steps and ask one thing at a time.
+
+1. **Give examples**: Add a sample answer or show what format you expect.
+
+1. **Add constraints**: Set rules like “limit to 100 words” or “don’t guess if unsure.”
+
+1. **Test variations**: Try different versions of the prompt and compare which one works best.
+
+1. **Use system messages**: If available, use instructions like “You are a helpful travel agent” to guide the tone or role.
+
+By following these steps, you can improve how the AI understands and responds to your prompt.
