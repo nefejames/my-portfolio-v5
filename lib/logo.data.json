@@ -1,0 +1,20 @@
+{
+  "$comment": "SINGLE SOURCE OF TRUTH for the NEA logo mark. Edit here to change the logo everywhere, then run `node scripts/generate-logo.mjs` to regenerate the static files (public/logo.svg, app/icon.svg). The animated navbar/splash logo reads this at build time via lib/logo.ts — no regeneration needed for those.",
+  "viewBox": 80,
+  "cornerRadius": 14,
+  "strokeWidth": 6.5,
+  "accent": "#4F46E5",
+  "strokeColor": "white",
+  "label": "NEA",
+  "strokes": [
+    "M12 10L12 36",
+    "M12 10L68 36",
+    "M68 10L68 36",
+    "M12 46L12 70",
+    "M12 46L36 46",
+    "M12 58L31 58",
+    "M12 70L36 70",
+    "M44 70L56 46L68 70",
+    "M49 60L63 60"
+  ]
+}
