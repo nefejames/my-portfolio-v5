@@ -1,0 +1,377 @@
+---
+title: "7 Best Headless CMS Platforms for Nuxt (2026)"
+client: "Prismic"
+clientSlug: "prismic"
+originalUrl: "https://prismic.io/blog/best-headless-cms-for-nuxt"
+publishedAt: "2026-07-01"
+canonical: "https://prismic.io/blog/best-headless-cms-for-nuxt"
+excerpt: "Compare Prismic, Storyblok, Sanity, Strapi, Payload, Hygraph & Directus for Nuxt. See official modules, live preview & pricing for each CMS."
+coverImage: "/portfolio/prismic/068-best-headless-cms-for-nuxt/cover.webp"
+tags: []
+---
+If [Nuxt](https://prismic.io/blog/nuxt-vs-next-compare) is your frontend framework, which CMS should you pair it with? This article covers seven platforms specifically evaluated for Nuxt in 2026: Prismic, Storyblok, Sanity, Strapi, Payload, Hygraph, and Directus.
+
+## TL;DR (key takeaways)
+
+- **Prismic** stands out for its vendor-maintained @nuxtjs/prismic module, a visual Page Builder for marketers, and a component-driven Slice Machine workflow.
+- **Storyblok** is best for teams that want WYSIWYG in-page editing with real-time visual feedback through its official Nuxt module.
+- **Sanity** is the strongest choice for structured, code-defined content schemas with typed GROQ queries and auto-generated TypeScript types.
+- **Strapi** suits teams that want an open-source, self-hostable CMS with full control over the content model, backed by a Nuxt team-maintained module.
+- **Payload** fits teams that want a code-first, TypeScript-native CMS and don't mind a more manual Nuxt integration.
+- **Hygraph** is the right fit for teams already working with GraphQL and needing content federation across multiple data sources.
+- **Directus** works well for teams that want a CMS layer on top of an existing SQL database with full self-hosting control.
+
+## What makes a headless CMS a good fit for Nuxt?
+
+The following elements set a strong Nuxt CMS integration apart from a generic API that requires extra configuration.
+
+- **Official Nuxt module vs. manual plugin setup**: An official Nuxt module registers itself in nuxt.config.ts, auto-imports composables and components, and handles SSR and preview setup automatically. If the CMS ships a generic JavaScript SDK instead, you can initialize it in a Nuxt plugin, but you'll still handle auto-imports and SSR-safe fetching yourself. Without either, you're making raw API calls and wiring everything from scratch.
+- **On-demand cache invalidation**: ISR requires Nitro route rules in nuxt.config.ts and a way to invalidate cached pages when content changes. Most CMSs handle this via webhooks, but how well they document the Nuxt-specific setup varies.
+- **Rendering mode support (SSR, SSG, ISR)**: Nuxt supports all three rendering modes. CMSs that document SSR, SSG, and ISR integration will save development time.
+- **Live preview in Nuxt**: Some CMSs provide a dedicated Nuxt integration for preview mode. Others use iframe-based editors, which may require adjustments to your frontend's Content Security Policy.
+- **Nuxt starter templates**: An official starter means the module, routing, and preview are already wired up, allowing you to build faster.
+
+_Now that we have the right context and evaluation criteria in mind, let’s explore these headless CMS solutions for Nuxt. The table below summarizes the learnings from each platform._
+
+## Check out our headless CMS guides
+
+Explore our [headless CMS guides](https://prismic.io/guides/headless-cms), which cover the subject matter in detail.
+
+| CMS | Best for | Official Nuxt module | Live preview | Starts from |
+| --- | --- | --- | --- | --- |
+| Prismic | Vendor-maintained module, visual Page Builder, and component-driven workflow | ✅ | ✅ | $10/mo |
+| Storyblok | WYSIWYG in-page editing with real-time visual feedback | ✅ | ✅ | €90.75/mo |
+| Sanity | Structured, code-defined content schemas with typed GROQ queries | ❌ &lt;br>(community-maintained module available) | ✅ | $15/seat/mo |
+| Strapi | Open-source, self-hostable CMS with full control over the content model | ❌ &lt;br>(community-maintained module available) | ✅ &lt;br>(Growth plan+) | $45/mo |
+| Payload | Code-first, TypeScript-native CMS for teams comfortable with manual setup | ❌ | ✅ &lt;br>(Client-side only) | Free |
+| Hygraph | GraphQL-native teams with content federation needs | ❌ | ✅ | $199/mo |
+| Directus | Layering a CMS over an existing SQL database with full self-hosting control | ❌ | ✅ | $99/mo |
+
+## 7 Best headless CMS platforms for Nuxt
+
+### 1\. Prismic:
+
+**Best for: Nuxt teams seeking a visual Page Builder for marketers and a component-driven developer workflow**
+
+![An image of Prismic homepage](/portfolio/prismic/068-best-headless-cms-for-nuxt/image-1.webp)
+
+[Prismic](https://prismic.io/) is a headless website builder built around a component-driven [Page Builder](https://prismic.io/page-builder), designed for teams that want developers and marketers working independently without stepping on each other.
+
+Developers build reusable page sections called [Slices](https://prismic.io/features/slices) using [Slice Machine](https://prismic.io/slice-machine), locally alongside their Nuxt code. Marketers then use the Page Builder to assemble and publish the pages they need without filing a developer ticket.
+
+#### Nuxt-specific strengths
+
+- [@nuxtjs/prismic](https://prismic.io/docs/technical-reference/nuxtjs-prismic/v5) is the official Nuxt module, maintained by Prismic. Adding it to `nuxt.config.ts` auto-imports all `@prismicio/vue` components across the project, including `<PrismicRichText>`, `<PrismicImage>`, `<PrismicLink>`, and `<SliceZone>`, eliminating any manual registrations.
+- Content fetching uses the `usePrismic()` composable, which gives direct access to the Prismic client and `isFilled` helpers inside `<script setup>`. It pairs naturally with `useAsyncData`, which handles SSR, caching, and hydration the Nuxt way.
+- TypeScript types are generated per Slice and page type automatically, so content responses are fully typed in your `.vue` files.
+- The module registers a `/preview` route automatically. Editors see real-time updates inside the Page Builder via the `/slice-simulator` route and the `<SliceSimulator>` component.
+- Works with hosting providers like Cloudflare and Vercel, which support Nitro's edge runtimes.
+- The Nuxt module also handles route resolvers and i18n forwarding through `nuxt.config.ts`.
+- There's a [Prismic Nuxt starter](https://github.com/prismicio-community/nuxt-starter-prismic-minimal) that you can use to get started quickly.
+
+#### Nuxt-based limitations
+
+- New page layouts still require a developer to build the Slice first.
+
+#### Pricing
+
+- Free
+- Starter ($10/month)
+- Small ($25/month)
+- Medium ($150/month)
+- Platinum ($675/month)
+- Enterprise (Custom)
+
+#### Resources
+
+- [Prismic docs](https://prismic.io/docs)
+- [Nuxt guide](https://prismic.io/docs/nuxt)
+- [@nuxtjs/prismic v5 reference](https://prismic.io/docs/technical-reference/nuxtjs-prismic/v5)
+
+### 2\. Storyblok
+
+**Best for: Nuxt teams that want WYSIWYG in-page editing with real-time preview**
+
+![An image of Storyblok homepage](/portfolio/prismic/068-best-headless-cms-for-nuxt/image-2.webp)
+
+[Storyblok](https://www.storyblok.com/) is built around a component-based Visual Editor, where developers define reusable content blocks, and editors assemble pages through a drag-and-drop interface that supports real-time previews.
+
+#### Nuxt-specific strengths
+
+- `@storyblok/nuxt` is Storyblok's official Nuxt module. As of v9, it brings full compatibility with Nuxt 4 while maintaining backward compatibility with Nuxt 3.15+.
+- The module makes `useAsyncStoryblok` and `StoryblokComponent` available as auto-imports across the entire project, with no manual registration needed.
+- Vue components placed in the `/storyblok` directory are automatically imported and mapped to their Storyblok block names. A block called `hero` in Storyblok maps to `Hero.vue` and renders automatically via `StoryblokComponent`.
+- The `v-editable` directive connects any Vue component to the Visual Editor, so edits appear in the preview pane as the editor types, with no page reload.
+- Storyblok has a [starter repo](https://github.com/storyblok/blueprint-core-nuxt) for Nuxt projects.
+
+#### Nuxt-based limitations
+
+- No built-in TypeScript type generation for content models. You need a community tool like `storyblok-generate-ts` or manual type definitions.
+- The Visual Editor loads the frontend inside an iframe, so sites with strict Content Security Policy headers need adjustments before the editor can load.
+- `@storyblok/nuxt` v9 dropped support for older Nuxt 3 data-handling patterns, so upgrading from earlier versions requires some migration work.
+
+#### Pricing
+
+- Starter (Free)
+- Growth (€90.75/mo)
+- Growth Plus (€319.91/mo)
+- Premium & Elite (Custom)
+
+#### Resources
+
+- [Storyblok docs](https://www.storyblok.com/docs)
+- [Storyblok Nuxt guide](https://www.storyblok.com/docs/guides/nuxt)
+
+### 3\. Sanity
+
+**Best for: Nuxt teams that need structured content and visual editing configured in**
+
+![Image of Sanity homepage](/portfolio/prismic/068-best-headless-cms-for-nuxt/image-3.webp)
+
+[Sanity](https://www.sanity.io/) has a structured content approach where your schema lives in code, and your content is stored in a hosted Content Lake you query with GROQ, Sanity's own query language.
+
+#### Nuxt-specific strengths
+
+- `@nuxtjs/sanity` is a dedicated Nuxt module (maintained by the Nuxt team) that handles client configuration, data fetching, TypeScript type generation, and visual editing setup.
+- The module provides a `useSanityQuery` composable that works natively inside `<script setup>` with TypeScript generics for typed content responses.
+- The `typegen` option in `nuxt.config.ts` reads your Studio schema and `.vue` file paths to automatically generate typed GROQ query responses, with no separate codegen step.
+- Visual editing is configured via the `visualEditing` option in the module config, letting editors click on content in the preview pane to jump directly to the corresponding field in Sanity Studio.
+- The module also provides zero-config components like `SanityFile` and `SanityImage`.
+- Sanity provides two official [Nuxt starters](https://www.sanity.io/exchange/type=templates/framework=nuxt) for a quick start.
+
+#### Nuxt-based limitations
+
+- Developers must first learn how to use Sanity’s GROQ before they can fetch content effectively.
+
+#### Pricing
+
+- Free
+- Growth ($15/month/per seat)
+- Enterprise (custom)
+
+#### Resources
+
+- [Sanity docs](https://www.sanity.io/docs/getting-started)
+- [Nuxt Sanity](https://sanity.nuxtjs.org/)
+- [Sanity Nuxt guide](https://www.sanity.io/docs/nuxt-js-quickstart/setting-up-your-studio)
+
+### 4\. Strapi
+
+**Best for: Nuxt teams that want an open-source, self-hostable CMS**
+
+![Image of Strapi homepage](/portfolio/prismic/068-best-headless-cms-for-nuxt/image-4.webp)
+
+[Strapi](https://strapi.io/), an open-source headless CMS, lets you design your content models while the platform generates REST and GraphQL APIs on top of them, without writing backend code.
+
+#### Nuxt-specific strengths
+
+- There’s a `@nuxtjs/strapi` module that auto-imports composables across the project.
+- The module provides Strapi Devtools integration, built-in authentication via `useStrapiUser`, TypeScript support, and error handling hooks.
+- Because Strapi's API is framework-agnostic, you can also use `useFetch` or `useAsyncData` directly with your Strapi URL without the module.
+- Strapi 5 is supported via the `version: 'v5'` config option, and the Strapi documentation links to `@nuxtjs/strapi` as the recommended Nuxt integration path.
+- Live preview works with Nuxt's native preview mode on the Growth plan and above.
+
+#### Nuxt-based limitations
+
+- `@nuxtjs/strapi` is maintained by the Nuxt team, not Strapi, so updates depend on the Nuxt team's priorities and may not keep pace with new Strapi releases.
+- There is no official Strapi-maintained Nuxt starter template.
+- Live preview requires the Growth plan ($45/month) and is not available on the free Community version.
+
+#### Pricing
+
+- Community (Free)
+- Growth ($45/month)
+- Enterprise (Custom)
+
+#### Resources
+
+- [Strapi docs](https://docs.strapi.io/)
+- [Nuxt Strapi](https://strapi.nuxtjs.org/)
+- [Strapi Nuxt integration guide](https://strapi.io/integrations/nuxtjs-cms)
+
+### 5\. Payload
+
+**Best for: Nuxt teams that are comfortable with a manual integration setup**
+
+![An image of Payload homepage](/portfolio/prismic/068-best-headless-cms-for-nuxt/image-5.webp)
+
+[Payload](https://payloadcms.com/) is an open-source, code-first headless CMS and application framework built with TypeScript and React. You define your content schema in code, and Payload generates a full admin panel, REST API, and GraphQL API on top of it.
+
+#### Nuxt-specific strengths
+
+- `@payloadcms/live-preview-vue` provides a `useLivePreview` composable for Vue 3 and Nuxt 3 projects, giving you a client-side live preview.
+- The REST and GraphQL APIs are framework-agnostic, so you can use `useAsyncData` or `$fetch` in Nuxt, to retrieve content without any adapter.
+- Payload is TypeScript-native. Content types defined in your Payload config can be imported and used directly in your Nuxt project for typed API responses.
+
+#### Nuxt-based limitations
+
+- There is no official Nuxt module. You set up a Nuxt plugin from scratch to initialize the Payload client and manage configuration manually.
+- Server-side live preview officially supports React only. Nuxt projects are limited to client-side live preview via `useLivePreview`.
+- There are no Nuxt starter templates and no Nuxt-specific documentation beyond the live preview page.
+
+#### Pricing
+
+- Free (Open source)
+
+#### Resources
+
+- [Payload docs](https://payloadcms.com/docs/getting-started/what-is-payload)
+
+### 6\. Hygraph
+
+**Best for: Nuxt teams comfortable with GraphQL and content federation**
+
+![Image of Hygraph homepage](/portfolio/prismic/068-best-headless-cms-for-nuxt/image-6.webp)
+
+[Hygraph](https://hygraph.com/) is a GraphQL-native headless CMS with content federation at its core. Instead of treating your CMS as a single source of truth, Hygraph lets you stitch in data from external APIs, ecommerce platforms, or other systems and query everything through one GraphQL endpoint.
+
+#### Nuxt-specific strengths
+
+- `nuxt-graphql-client`, a community Nuxt module, handles GraphQL codegen for Hygraph queries. Drop your `.gql` files into a queries folder, and it auto-generates typed helper functions like `GqlPages()` and `GqlPage()`.
+- Hygraph works as a native image provider for `@nuxt/image`. Point it at Hygraph's asset CDN in nuxt.config.ts, and Nuxt handles resizing and optimization.
+- Live preview works through a Nuxt plugin that watches for a `?preview=true query param and exposes a`$preview` variable across components.`
+- There are two [Hygraph Nuxt starters](https://hygraph.com/docs/implementations/nuxt/starters) that you can use to speed up the development process.
+
+#### Nuxt-based limitations
+
+- Hygraph itself doesn't offer a dedicated Nuxt SDK, meaning you must rely on community tools like `nuxt-graphql-client`.
+- GraphQL is the only query option, so there's a learning curve if your team is coming from a REST-based CMS.
+- The free Hobby plan has usage limits that make it more ideal for prototyping, and the first paid plan costs $199/month, making Hygraph expensive.
+
+#### Pricing
+
+- Hobby (Free)
+- Growth ($199/month)
+- Enterprise (Custom)
+
+#### Resources
+
+- [Hygraph docs](https://hygraph.com/docs)
+- [Hygraph Nuxt guide](https://hygraph.com/docs/implementations/nuxt/nuxt)
+
+### 7\. Directus
+
+**Best for: Nuxt teams that want a CMS layer over an existing SQL database with full self-hosting control**
+
+![Image of Directus homepage](/portfolio/prismic/068-best-headless-cms-for-nuxt/image-7.webp)
+
+[Directus](https://directus.io/) wraps around your existing SQL database (PostgreSQL, MySQL, SQLite, and others) and instantly generates REST and GraphQL APIs, an admin interface, and real-time WebSocket support on top of it, without touching your schema.
+
+#### Nuxt-specific strengths
+
+- The `@directus/sdk` is a composable client. You initialize it in a Nuxt plugin (`plugins/directus.ts`) and expose it across all pages and components via `useNuxtApp()`.
+- The SDK supports TypeScript out of the box.
+- There's a `nuxt-directus` module maintained by the Nuxt team. It handles authentication, REST methods, and TypeScript support out of the box.
+
+#### Nuxt-based limitations
+
+- There is no official Nuxt module from Directus. The plugin approach requires more manual setup than a module.
+- `nuxt-directus` is community-maintained, not an official Directus product.
+- Directus is self-hosted by default, so running your own instance means managing infrastructure, backups, and upgrades.
+
+#### Pricing
+
+- Free (Open source)
+- Cloud ($99/month)
+
+#### Resources
+
+- [Directus docs](https://directus.io/docs)
+- [Directus Nuxt guide](https://directus.io/docs/tutorials/getting-started/fetch-data-from-directus-with-nuxt)
+- [nuxt-directus docs](https://nuxt.com/modules/directus)
+
+## **Nuxt Content vs. external headless CMS: when to use each**
+
+[Nuxt Content](https://content.nuxt.com/) is a first-party Nuxt module that turns Markdown, YAML, and JSON files into a `/content` directory into a queryable collection of documents. It has zero external API dependencies and works across static, server, serverless, and edge deployments.
+
+The decision really comes down to two things: who's editing your content, and how often it changes.
+
+**Use Nuxt Content if:**
+
+- Your editors are comfortable working in a Git workflow.
+- Your content is mostly Markdown-based, like blog posts, docs, or changelogs.
+- You want zero external API calls at build or request time.
+- Content updates can go through a pull request workflow.
+
+**Use an external headless CMS if:**
+
+- Non-technical editors need to publish content without touching the codebase.
+- You need a visual page builder that lets marketers assemble pages independently.
+- Your content model is structured, relational, or localized in ways that are complex to represent in Markdown.
+- Content updates need to happen outside of a deployment cycle.
+
+The two aren't mutually exclusive. Many teams use Nuxt Content for developer-maintained docs and an external CMS for marketing pages.
+
+## SSR vs. SSG vs. ISR in Nuxt: how your CMS choice affects rendering
+
+Nuxt supports three main rendering strategies, and your CMS choice directly affects how each one performs.
+
+**SSG (Static Site Generation)** is the simplest. Your CMS content gets fetched once at build time, and that's it. Any CMS with an API works here, but if your content changes often, you're looking at a rebuild every time.
+
+**SSR (Server-Side Rendering)** renders on every request. It’s good for frequently updated content, but every uncached page view is routed directly to your CMS API. Rate limits and response times start to matter a lot more here.
+
+**ISR (Incremental Static Regeneration)** sits between the two. Pages are cached, but you can revalidate individual ones without touching the rest of the site. You set it up via Nitro route rules in `nuxt.config.ts`.
+
+## Recap and next steps: start building with Nuxt and Prismic
+
+We've explored seven headless CMS platforms built for Nuxt in 2026, each with a different approach to content modeling, live preview, and editing experience, as well as varying prices.
+
+![](/portfolio/prismic/068-best-headless-cms-for-nuxt/image-8.gif)
+
+For Nuxt teams that want the deepest integration out of the box, including a vendor-maintained module, auto-imported composables, a visual Page Builder for marketers, and a local Slice-building workflow via Slice Machine, [get started with Prismic for free](https://prismic.io/).
+
+You can explore the platform at your own pace or [book a demo](https://prismic.io/demo) with the product team.
+
+## FAQs
+
+### What is the best headless CMS for Nuxt in 2026?
+
+No one headless CMS is the best, as it depends on your team's priorities. Having said that, below are some great options worth considering.
+
+- Prismic is the strongest fit for teams that want a vendor-maintained @nuxtjs/prismic module, a built-in visual Page Builder for marketers, and a component-driven workflow via Slice Machine.
+
+- Storyblok is the best option if your editors need WYSIWYG in-page editing with real-time visual feedback.
+
+- Sanity is the strongest choice for structured, code-defined content schemas with typed GROQ queries and auto-generated TypeScript types.
+
+- Strapi is a solid pick for teams that want an open-source, self-hostable CMS with full control over the content model.
+
+- Payload suits teams that want a code-first, TypeScript-native CMS and don't mind a more manual Nuxt setup.
+
+- Hygraph fits teams already working in GraphQL with content federation needs across multiple data sources.
+
+- Directus works well for teams that want a CMS layer over an existing SQL database with full self-hosting control.
+
+### Should I use Nuxt Content or an external headless CMS?
+
+Nuxt Content is the right choice if your editors are comfortable in a Git workflow and your content is primarily Markdown-based, like blog posts, docs, or changelogs.
+
+Use an external headless CMS if non-technical editors need to publish pages independently, your content model is structured and relational, or you need a visual page builder where marketers can assemble pages without touching any code.
+
+### Which headless CMS has an official Nuxt module?
+
+Prismic and Storyblok are the only platforms in this list with official Nuxt modules maintained by their own teams: `@nuxtjs/prismic` and `@storyblok/nuxt` respectively.
+
+The Nuxt team also maintains modules for Sanity (`@nuxtjs/sanity`) and Strapi (`@nuxtjs/strapi`), though these are not maintained by Sanity or Strapi themselves.
+
+### Does a headless CMS support Nuxt SSR?
+
+Yes, headless CMS platforms work with Nuxt SSR. Because a headless CMS delivers content via API, Nuxt handles the rendering entirely on its end.
+
+The key is wrapping CMS API calls in `useAsyncData` rather than calling the client directly in `<script setup>`. This tells Nuxt to:
+
+- Fetch content on the server
+
+- Serialize the result into the page payload
+
+- Reuse that result on the client during hydration without making a duplicate request
+
+CMSs with dedicated Nuxt modules (like Prismic and Storyblok) provide composables that integrate with `useAsyncData` without needing extra configuration
+
+### What is ISR, and which CMS supports it with Nuxt?
+
+ISR (Incremental Static Regeneration) is a rendering strategy where pages are statically cached but can be revalidated in the background when content changes. In Nuxt, it is configured via Nitro route rules in 
+
+`nuxt.config.ts`.
+
+For on-demand ISR, you need a CMS that fires a webhook on content publish. Platforms like Prismic, Storyblok, Sanity, Strapi, Hygraph, and Directus all support this.

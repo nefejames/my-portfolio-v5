@@ -61,3 +61,14 @@
 58. https://prismic.io/blog/css-sliders
 59. https://prismic.io/blog/css-ui-features
 60. https://prismic.io/blog/best-headless-cms-for-developers
+61. https://prismic.io/blog/best-headless-cms-platforms
+62. https://prismic.io/blog/best-ecommerce-headless-cms
+63. https://prismic.io/blog/best-headless-cms-for-seo
+64. https://prismic.io/blog/best-headless-cms-for-marketers
+65. https://prismic.io/blog/best-headless-cms-for-performance-and-scalability
+66. https://prismic.io/blog/best-vue-headless-cms
+67. https://prismic.io/blog/best-headless-cms-with-visual-editing
+68. https://prismic.io/blog/best-headless-cms-for-nuxt
+69. https://prismic.io/blog/best-headless-cms-for-agencies
+70. https://prismic.io/blog/best-headless-cms-for-personalization
+71. https://prismic.io/blog/best-headless-cms-for-b2b-saas
