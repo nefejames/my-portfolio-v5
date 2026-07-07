@@ -3,13 +3,12 @@
 import { useState, type CSSProperties } from 'react'
 
 // ─── Animated NEA mark ────────────────────────────────────────────────────────
-// Same geometry as public/logo.svg, but the letters "hand-write" themselves
-// stroke by stroke — a signature, which is the brand. The indigo tile pops in
-// first, then the nine strokes draw in writing order (N → E → A), staggered
-// via the --d custom property. Hovering the mark replays the whole signature
-// (the SVG remounts via `key`, restarting its CSS animations). All keyframes +
-// the reduced-motion fallback live in app/animations.css (.nea-logo).
-// The static logo.svg stays for favicons/OG.
+// The NEA letters "hand-write" themselves stroke by stroke — a signature, which
+// is the brand. The indigo tile pops in first, then the nine strokes draw in
+// writing order (N → E → A), staggered via the --d custom property. Hovering the
+// mark replays the whole signature (the SVG remounts via `key`, restarting its
+// CSS animations). All keyframes + the reduced-motion fallback live in
+// app/animations.css (.nea-logo). The favicon is app/icon.svg + app/favicon.ico.
 
 // One path per pen stroke, in the order a hand would write them.
 const STROKES = [
