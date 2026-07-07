@@ -10,8 +10,8 @@ import AnimatedLogo from '@/components/AnimatedLogo'
 // html[data-splash-seen] (CSS hides the curtain), so there is no flash while
 // React hydrates. Reduced-motion users never see it (globals.css).
 
-const FADE_AT_MS = 1600 // signature finishes ~1.54s in (see AnimatedLogo)
-const REMOVE_AT_MS = 2100 // FADE_AT + the 0.45s opacity transition
+const FADE_AT_MS = 1300 // signature finishes ~1.25s in (see AnimatedLogo)
+const REMOVE_AT_MS = 1750 // FADE_AT + the 0.45s opacity transition
 
 export const SPLASH_SEEN_KEY = 'nea-splash-seen'
 
