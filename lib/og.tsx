@@ -1,5 +1,6 @@
 import { ImageResponse } from 'next/og'
 import { SITE } from './site'
+import { LOGO } from './logo'
 
 // Shared 1200×630 social-card renderer. Used by every opengraph-image and
 // twitter-image route so the editorial look (indigo on warm paper) stays
@@ -42,22 +43,26 @@ export function renderOgImage({
         {/* Top row: brand mark + optional badge */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-            <div
-              style={{
-                width: '44px',
-                height: '44px',
-                borderRadius: '12px',
-                background: INDIGO,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'white',
-                fontSize: '26px',
-                fontWeight: 700,
-              }}
-            >
-              N
-            </div>
+            {/* The real NEA mark, from the single source (lib/logo.data.json). */}
+            <svg width="44" height="44" viewBox={`0 0 ${LOGO.size} ${LOGO.size}`}>
+              <rect
+                width={LOGO.size}
+                height={LOGO.size}
+                rx={LOGO.cornerRadius}
+                fill={LOGO.accent}
+              />
+              {LOGO.strokes.map((d) => (
+                <path
+                  key={d}
+                  d={d}
+                  stroke={LOGO.strokeColor}
+                  strokeWidth={LOGO.strokeWidth}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  fill="none"
+                />
+              ))}
+            </svg>
             <span style={{ fontSize: '26px', color: INK, fontWeight: 600 }}>{SITE.name}</span>
           </div>
           {badge ? (

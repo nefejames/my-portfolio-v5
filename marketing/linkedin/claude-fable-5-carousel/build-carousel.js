@@ -35,13 +35,13 @@ const SANS = "'Segoe UI', Arial, sans-serif"
 
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 
-// ─── NEA mark (same 9-stroke geometry as components/AnimatedLogo.tsx) ────────
+// ─── NEA mark (same 9-stroke geometry as lib/logo.data.json) ─────────────────
 function logoMark(x, y, size) {
   const s = size / 80
   const strokes = [
-    'M12 10L12 36', 'M12 10L68 36', 'M68 10L68 36',
-    'M12 46L12 70', 'M12 46L36 46', 'M12 58L31 58', 'M12 70L36 70',
-    'M44 70L56 46L68 70', 'M49 60L63 60',
+    'M12 4L12 38', 'M12 4L68 38', 'M68 4L68 38',
+    'M12 46L12 76', 'M12 46L36 46', 'M12 61L31 61', 'M12 76L36 76',
+    'M44 76L56 46L68 76', 'M49 63L63 63',
   ]
   return `<g transform="translate(${x},${y}) scale(${s})">
     <rect width="80" height="80" rx="14" fill="${C.accent}"/>
