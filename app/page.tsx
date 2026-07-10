@@ -8,6 +8,7 @@ import About from '@/components/sections/About'
 import Faq from '@/components/sections/Faq'
 import Contact from '@/components/sections/Contact'
 import JsonLd from '@/components/JsonLd'
+import SplashScreen from '@/components/SplashScreen'
 import { SITE } from '@/lib/site'
 
 // Types the homepage as a personal profile and links it to the site-wide Person
@@ -22,6 +23,8 @@ const profilePageSchema = {
 export default function Home() {
   return (
     <>
+      {/* Plays the signature intro on every homepage visit (see SplashScreen). */}
+      <SplashScreen />
       <JsonLd data={profilePageSchema} />
       <Hero />
       <Clients />

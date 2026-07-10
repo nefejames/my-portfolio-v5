@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { Fraunces, Hanken_Grotesk, Geist_Mono } from 'next/font/google'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-import SplashScreen from '@/components/SplashScreen'
 import JsonLd from '@/components/JsonLd'
 import { SITE } from '@/lib/site'
 import './globals.css'
@@ -99,24 +98,10 @@ const websiteSchema = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    // suppressHydrationWarning: scoped to this element's attributes — the
-    // pre-paint splash script legitimately adds data-splash-seen before React
-    // hydrates, which would otherwise log a mismatch on every repeat view.
-    <html
-      lang="en"
-      className={`${hanken.variable} ${fraunces.variable} ${geistMono.variable}`}
-      suppressHydrationWarning
-    >
+    <html lang="en" className={`${hanken.variable} ${fraunces.variable} ${geistMono.variable}`}>
       <body className="min-h-screen flex flex-col">
-        {/* Runs before first paint: repeat visitors this session skip the
-            splash curtain entirely (CSS hides it via the html attribute),
-            so hydration never flashes it. Key must match SplashScreen. */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `try{if(sessionStorage.getItem('nea-splash-seen'))document.documentElement.setAttribute('data-splash-seen','')}catch{}`,
-          }}
-        />
-        <SplashScreen />
+        {/* The splash intro lives on the homepage (app/page.tsx) so it plays on
+            every homepage visit and never on inner pages. */}
         <JsonLd data={[personSchema, websiteSchema]} />
         <Navbar />
         <main className="flex-1">{children}</main>
