@@ -60,11 +60,6 @@
   transition: opacity 0.45s ease;
   pointer-events: none;
 }
-/* Repeat visitors: an inline script in app/layout.tsx sets this attribute
-   before first paint, so the curtain never flashes during hydration. */
-html[data-splash-seen] .nea-splash {
-  display: none;
-}
 /* Reduced motion: the signature doesn't animate, so a splash is pure delay. */
 @media (prefers-reduced-motion: reduce) {
   .nea-splash {
