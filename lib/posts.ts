@@ -27,9 +27,10 @@ export type PostMeta = Omit<Post, 'content'>
 
 const POSTS_DIR = path.join(process.cwd(), 'content', 'posts')
 
-// cache(): deduped across callers within one render pass (blog index, featured
-// section, sitemap) instead of re-reading the posts directory each time.
-export const getAllPosts = cache(async (): Promise<PostMeta[]> => {
+// Read every post's frontmatter with tags exactly as authored, newest first.
+// Kept separate from getAllPosts so the tag-canonicalisation map (below) can be
+// built without recursion. cache(): read the directory once per render.
+const readAllRawMeta = cache((): PostMeta[] => {
   const files = fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith('.mdx'))
 
   return files
@@ -49,6 +50,42 @@ export const getAllPosts = cache(async (): Promise<PostMeta[]> => {
     })
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 })
+
+// Tags/categories are case-insensitive: "Musings" and "musings" are the same
+// category everywhere (chips, cards, post pages, search). The first casing ever
+// used for a tag — by the oldest post — becomes the canonical label, so later
+// case-variants collapse onto it and acronyms like "SEO" are preserved. Zero
+// maintenance: the category list is still just whatever tags exist.
+const getTagCanonicalMap = cache((): Map<string, string> => {
+  const map = new Map<string, string>()
+  for (const post of [...readAllRawMeta()].reverse()) {
+    for (const tag of post.tags) {
+      const key = tag.trim().toLowerCase()
+      if (key && !map.has(key)) map.set(key, tag.trim())
+    }
+  }
+  return map
+})
+
+/** Map a post's raw tags to their canonical casing, de-duped case-insensitively. */
+function canonicalizeTags(tags: string[]): string[] {
+  const map = getTagCanonicalMap()
+  const seen = new Set<string>()
+  const out: string[] = []
+  for (const tag of tags) {
+    const key = tag.trim().toLowerCase()
+    if (!key || seen.has(key)) continue
+    seen.add(key)
+    out.push(map.get(key) ?? tag.trim())
+  }
+  return out
+}
+
+// cache(): deduped across callers within one render pass (blog index, featured
+// section, sitemap) instead of re-reading the posts directory each time.
+export const getAllPosts = cache(async (): Promise<PostMeta[]> =>
+  readAllRawMeta().map((p) => ({ ...p, tags: canonicalizeTags(p.tags) })),
+)
 
 /** Featured posts for the homepage "Writing for my own brand" section, newest
  *  first, capped at `limit`. Returns [] when none are featured. */
@@ -70,7 +107,7 @@ export const getPostBySlug = cache(async (slug: string): Promise<Post | null> =>
     title: data.title as string,
     date: data.date as string,
     excerpt: data.excerpt as string,
-    tags: (data.tags as string[]) ?? [],
+    tags: canonicalizeTags((data.tags as string[]) ?? []),
     coverImage: data.coverImage as string | undefined,
     featured: (data.featured as boolean) ?? false,
     content,
