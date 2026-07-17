@@ -4,7 +4,7 @@
 // generation, and JSON-LD. Override the production origin with
 // NEXT_PUBLIC_SITE_URL when a custom domain is attached.
 
-const rawUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://my-portfolio-v5-nine.vercel.app'
+const rawUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://nefeatori.com'
 
 export const SITE = {
   /** Canonical origin, no trailing slash. */
