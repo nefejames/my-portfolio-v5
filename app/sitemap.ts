@@ -2,6 +2,7 @@ import type { MetadataRoute } from 'next'
 import { SITE } from '@/lib/site'
 import { getAllPosts } from '@/lib/posts'
 import { getAllPortfolioArticles } from '@/lib/portfolio'
+import { getAllPrompts } from '@/lib/prompts'
 
 // Generates /sitemap.xml. Intentionally excluded:
 //   • /logos — noindex (design scratchpad)
@@ -11,7 +12,11 @@ import { getAllPortfolioArticles } from '@/lib/portfolio'
 // as canonical" (harmless), but AI crawlers use the sitemap for discovery —
 // the archive is the body of work that makes the author citable.
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [posts, articles] = await Promise.all([getAllPosts(), getAllPortfolioArticles()])
+  const [posts, articles, prompts] = await Promise.all([
+    getAllPosts(),
+    getAllPortfolioArticles(),
+    getAllPrompts(),
+  ])
 
   const postEntries: MetadataRoute.Sitemap = posts.map((post) => ({
     url: `${SITE.url}/blog/${post.slug}`,
@@ -25,6 +30,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: new Date(a.publishedAt),
     changeFrequency: 'yearly',
     priority: 0.3,
+  }))
+
+  const promptEntries: MetadataRoute.Sitemap = prompts.map((p) => ({
+    url: `${SITE.url}/prompts/${p.slug}`,
+    lastModified: new Date(p.dateAdded),
+    changeFrequency: 'monthly',
+    priority: 0.6,
   }))
 
   const newestPost = posts[0]?.date ? new Date(posts[0].date) : new Date()
@@ -48,7 +60,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
+    {
+      url: `${SITE.url}/prompts`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
     ...postEntries,
     ...articleEntries,
+    ...promptEntries,
   ]
 }
