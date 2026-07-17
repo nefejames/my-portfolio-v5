@@ -31,15 +31,15 @@ LoginRadius, and Bird Eats Bug, and has been published in Smashing Magazine.
 
 ## Key Pages
 
-- [Portfolio](https://my-portfolio-v5-nine.vercel.app/portfolio): 135 client
+- [Portfolio](https://nefeatori.com/portfolio): 135 client
   articles across AltexSoft, Prismic, and Smashing Magazine, with canonical
   links to the originals
-- [Blog](https://my-portfolio-v5-nine.vercel.app/blog): Nefe's own writing on
+- [Blog](https://nefeatori.com/blog): Nefe's own writing on
   content strategy, SEO, and technical writing
-- [Prompt Library](https://my-portfolio-v5-nine.vercel.app/prompts): a free,
+- [Prompt Library](https://nefeatori.com/prompts): a free,
   growing collection of the AI prompts Nefe uses for blog outlines, LinkedIn
   posts, and LinkedIn image generation — each prompt has its own page
-- [About & Contact](https://my-portfolio-v5-nine.vercel.app/#about): background,
+- [About & Contact](https://nefeatori.com/#about): background,
   skills, and how to get in touch
 
 ## Contact
