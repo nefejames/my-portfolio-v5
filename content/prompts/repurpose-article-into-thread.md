@@ -1,6 +1,7 @@
 ---
 title: "Repurpose an Article Into a Thread"
 slug: "repurpose-article-into-thread"
+type: "Prompt"
 category: "Content"
 description: "Breaks a long-form article down into a punchy LinkedIn/X thread without losing the substance."
 dateAdded: "2026-07-10"

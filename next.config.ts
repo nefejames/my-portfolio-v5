@@ -26,6 +26,14 @@ const nextConfig: NextConfig = {
       },
     ]
   },
+  // The prompt library moved to /ai-prompts-and-skills (now prompts AND skills).
+  // Permanent redirects preserve any links to the original /prompts URLs.
+  async redirects() {
+    return [
+      { source: '/prompts', destination: '/ai-prompts-and-skills', permanent: true },
+      { source: '/prompts/:slug', destination: '/ai-prompts-and-skills/:slug', permanent: true },
+    ]
+  },
 }
 
 export default nextConfig

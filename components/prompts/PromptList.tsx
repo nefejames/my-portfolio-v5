@@ -9,8 +9,14 @@ import PromptCard from './PromptCard'
 // so "Blog" and "blog" are one chip), plus a search box. No server round trips.
 const ALL = 'All'
 
+// Type filter values map "Prompts"/"Skills" chips to the singular type stored
+// on each item ("Prompt"/"Skill").
+const TYPES = [ALL, 'Prompts', 'Skills'] as const
+const typeSingular: Record<string, string> = { Prompts: 'Prompt', Skills: 'Skill' }
+
 export default function PromptList({ prompts }: { prompts: PromptMeta[] }) {
   const [query, setQuery] = useState('')
+  const [activeType, setActiveType] = useState<string>(ALL)
   const [activeCategory, setActiveCategory] = useState(ALL)
 
   // Category chips, deduped case-insensitively with first-seen casing as the
@@ -28,15 +34,17 @@ export default function PromptList({ prompts }: { prompts: PromptMeta[] }) {
     const q = query.toLowerCase().trim()
     const cat = activeCategory.toLowerCase()
     return prompts.filter((p) => {
+      const matchesType = activeType === ALL || p.type === typeSingular[activeType]
       const matchesCategory = activeCategory === ALL || p.category.toLowerCase() === cat
       const matchesQuery =
         !q ||
         p.title.toLowerCase().includes(q) ||
         p.description.toLowerCase().includes(q) ||
-        p.category.toLowerCase().includes(q)
-      return matchesCategory && matchesQuery
+        p.category.toLowerCase().includes(q) ||
+        p.type.toLowerCase().includes(q)
+      return matchesType && matchesCategory && matchesQuery
     })
-  }, [prompts, query, activeCategory])
+  }, [prompts, query, activeType, activeCategory])
 
   return (
     <div>
@@ -52,28 +60,55 @@ export default function PromptList({ prompts }: { prompts: PromptMeta[] }) {
         </svg>
         <input
           type="text"
-          placeholder="Search prompts…"
+          placeholder="Search prompts and skills…"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           className="w-full pl-10 pr-4 py-2.5 text-sm border border-[var(--border)] rounded-lg bg-[var(--surface)] text-[var(--text)] placeholder-[var(--faint)] focus:outline-none focus:border-[var(--accent-text)] focus:ring-1 focus:ring-[var(--accent-text)] transition-colors"
         />
       </div>
 
-      {/* Category filters */}
-      <div className="flex flex-wrap gap-2 mb-10">
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            onClick={() => setActiveCategory(cat)}
-            className={`text-sm font-medium px-4 py-1.5 rounded-full border transition-colors ${
-              activeCategory === cat
-                ? 'bg-[var(--accent)] text-white border-[var(--accent-text)]'
-                : 'border-[var(--border)] text-[var(--muted)] hover:border-[var(--accent-text)] hover:text-[var(--accent-text)]'
-            }`}
-          >
-            {cat}
-          </button>
-        ))}
+      {/* Type filter (Prompts / Skills) — the primary axis */}
+      <div className="mb-4">
+        <p className="text-xs font-semibold tracking-widest uppercase text-[var(--faint)] mb-2">
+          Type
+        </p>
+        <div className="flex flex-wrap gap-2">
+          {TYPES.map((t) => (
+            <button
+              key={t}
+              onClick={() => setActiveType(t)}
+              className={`text-sm font-medium px-4 py-1.5 rounded-full border transition-colors ${
+                activeType === t
+                  ? 'bg-[var(--accent)] text-white border-[var(--accent-text)]'
+                  : 'border-[var(--border)] text-[var(--muted)] hover:border-[var(--accent-text)] hover:text-[var(--accent-text)]'
+              }`}
+            >
+              {t}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Category filter */}
+      <div className="mb-10">
+        <p className="text-xs font-semibold tracking-widest uppercase text-[var(--faint)] mb-2">
+          Category
+        </p>
+        <div className="flex flex-wrap gap-2">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`text-sm font-medium px-4 py-1.5 rounded-full border transition-colors ${
+                activeCategory === cat
+                  ? 'bg-[var(--accent)] text-white border-[var(--accent-text)]'
+                  : 'border-[var(--border)] text-[var(--muted)] hover:border-[var(--accent-text)] hover:text-[var(--accent-text)]'
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Results */}
@@ -81,12 +116,12 @@ export default function PromptList({ prompts }: { prompts: PromptMeta[] }) {
         <div className="text-center py-16">
           <p className="text-[var(--muted)] text-sm">
             {prompts.length === 0
-              ? 'No prompts yet — check back soon.'
-              : 'No prompts match your search.'}
+              ? 'Nothing here yet — check back soon.'
+              : 'Nothing matches your filters.'}
           </p>
           {prompts.length > 0 && (
             <button
-              onClick={() => { setQuery(''); setActiveCategory(ALL) }}
+              onClick={() => { setQuery(''); setActiveType(ALL); setActiveCategory(ALL) }}
               className="mt-4 text-sm text-[var(--accent-text)] hover:underline"
             >
               Clear filters
