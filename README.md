@@ -162,12 +162,6 @@ below is driven from [`lib/site.ts`](lib/site.ts) — the single SEO config.
 
 ### Infrastructure & blocking
 
-- [ ] **Buy the domain and set `NEXT_PUBLIC_SITE_URL`.** Until then the site uses
-      a placeholder Vercel origin in `lib/site.ts`, so canonicals, the sitemap, OG
-      URLs, JSON-LD, and `llms.txt` point at a non-final domain. Set the env var in
-      Vercel **and** `.env.local`, update the absolute URLs in `public/llms.txt`,
-      then re-submit the sitemap and re-verify in Search Console. **Blocks the
-      analytics item** — do the domain first.
 - [ ] **Shrink the repo (~800MB).** `.git` history is ~409MB and `public/` is
       ~410MB (1,055 portfolio images). This is the root cause of the stalling
       `git push`es. Options: move images to **Vercel Blob / a CDN**, adopt **git
@@ -221,6 +215,14 @@ below is driven from [`lib/site.ts`](lib/site.ts) — the single SEO config.
       (2) **blur placeholders** (build step with `sharp`/`plaiceholder`, adds a
       dependency); (3) drop image **quality** 75→65. Note: most first-scroll lag is
       Vercel's one-time on-demand optimization, cached at the edge after first view.
+- [ ] **Fill in the real prompt & skill content, + optional download field.** The
+      seeded items in `content/prompts/*.md` are placeholders — replace each body
+      with the actual prompt/SKILL.md text. The copy button grabs the file body
+      **verbatim**, so for a skill, paste the real SKILL.md and readers can copy it
+      straight into a Claude project. If a skill is actually a multi-file package
+      rather than one block, add an optional `downloadUrl` / `repoUrl` frontmatter
+      field + a button on the item page (small change to `lib/prompts.ts` + the
+      `[slug]` page).
 - [ ] **Reading-time estimate** on blog + portfolio articles ("6 min read").
 - [ ] **Visible breadcrumb nav.** `BreadcrumbList` schema is emitted but there's
       no visible breadcrumb UI; adding it reinforces the structured data.
@@ -232,6 +234,12 @@ below is driven from [`lib/site.ts`](lib/site.ts) — the single SEO config.
 
 ### Done
 
+- [x] **Custom domain live** — nefeatori.com attached in Vercel; the `SITE.url`
+      default in `lib/site.ts` points to it (canonicals/sitemap/robots/OG/JSON-LD
+      all derive from it). Still to do off-site: verify in Search Console + Bing.
+- [x] **Prompt & Skill Library** — `/ai-prompts-and-skills` (prompts + skills,
+      filter by type and category, per-item pages with copy button + HowTo schema);
+      old `/prompts` URLs 308-redirect to it.
 - [x] **AEO/SEO foundation** — geo `Person` schema, AI-crawler robots rules,
       `llms.txt`, homepage FAQ + `FAQPage` schema, manifest, portfolio URLs in the
       sitemap, visible Lagos/Nigeria copy.
@@ -242,6 +250,42 @@ below is driven from [`lib/site.ts`](lib/site.ts) — the single SEO config.
       regenerated via `scripts/generate-logo.mjs`.
 - [x] **Shared `ArticleLayout`** for blog + portfolio; **CodePen embeds**;
       **click-to-copy code blocks**; dead-code/dependency cleanup.
+
+## Parked idea — a living "codebase context" doc (revisit)
+
+**Problem it solves:** the planning phase happens in a separate Claude that has
+**no repo access**, so its master prompts are written against an *imagined*
+codebase — it invents `lib/seo.ts`, shadcn/ui, Framer Motion (none exist here),
+and I then have to correct course. A living context doc grounds any LLM, and also
+lets Claude Code skip re-reading files.
+
+**Core idea — one tight doc, split by who can keep each part true:**
+1. **Generated "map" (facts that can't drift)** — routes, key files + exports,
+   dependencies, content types, and a **"what this codebase does NOT use"** list
+   (that list is the highest-value part — it's what stops the hallucinations).
+   Produced by a script from the actual code.
+2. **Curated "conventions & gotchas" (judgment)** — e.g. *JSON-LD is inline via
+   `<JsonLd>`, not a lib; content lives in `content/*`; MDX crashes on `{}`/`<>`
+   so prompts render as plain text; SEO flows from `SITE.url`; the Norton proxy
+   breaks TLS.* Changes rarely; updated deliberately.
+
+**Two ways to keep it "living":**
+- **Without Claude Code (any LLM):** a Node generator + a **git pre-commit hook or
+  CI** that regenerates the map and *fails if the committed doc is stale*. Feed it
+  to the planning Claude by pasting into the Project's knowledge — or **connect the
+  GitHub repo to the Claude.ai Project** (attacks the root cause: it reads the real
+  code, not a snapshot).
+- **With Claude Code:** import the doc into **`AGENTS.md`** (auto-loaded every
+  session — the "don't re-read files" win); run the generator in the existing
+  **auto-commit Stop hook**; refresh the prose via a `/sync-context` command after
+  meaningful architectural changes.
+
+**Recommendation (hybrid):** `scripts/generate-context.mjs` (mirrors
+`generate-logo.mjs`) writes the map into `AGENTS.md`; I curate the conventions +
+"does NOT use" list once; run it in the Stop hook + CI; paste/connect to the
+planning Project. Keep it **short** (~40 lines) — a generator enforces that.
+**Open decision:** full hybrid, or lean on the GitHub-connector and skip the
+generated doc?
 
 ## Deploy
 
