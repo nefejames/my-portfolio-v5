@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
 import { getAllPrompts } from '@/lib/prompts'
+import { SITE } from '@/lib/site'
 import PromptList from '@/components/prompts/PromptList'
 
 const title = 'Prompt & Skill Library — AI Prompts and Claude Skills'
 const description =
-  'A free, growing library of the AI prompts and Claude skills Emadamerho-Atori Nefe uses for content writing, blog outlines, LinkedIn posts, and image creation. Copy and use them.'
+  `A free, growing library of the AI prompts and Claude skills ${SITE.name} uses for content writing, blog outlines, LinkedIn posts, and image creation. Copy and use them.`
 
 export const metadata: Metadata = {
   title,
