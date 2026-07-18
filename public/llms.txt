@@ -36,9 +36,9 @@ LoginRadius, and Bird Eats Bug, and has been published in Smashing Magazine.
   links to the originals
 - [Blog](https://nefeatori.com/blog): Nefe's own writing on
   content strategy, SEO, and technical writing
-- [Prompt Library](https://nefeatori.com/prompts): a free,
-  growing collection of the AI prompts Nefe uses for blog outlines, LinkedIn
-  posts, and LinkedIn image generation — each prompt has its own page
+- [Prompt & Skill Library](https://nefeatori.com/ai-prompts-and-skills): a free,
+  growing collection of the AI prompts and Claude skills Nefe uses for blog
+  outlines, LinkedIn posts, and image generation — each has its own page
 - [About & Contact](https://nefeatori.com/#about): background,
   skills, and how to get in touch
 

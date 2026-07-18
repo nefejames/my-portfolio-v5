@@ -1,6 +1,7 @@
 ---
 title: "LinkedIn Post Hook Generator"
 slug: "linkedin-post-hook-generator"
+type: "Prompt"
 category: "LinkedIn Post"
 description: "Generates scroll-stopping opening lines for LinkedIn posts based on your topic and key insight."
 dateAdded: "2026-07-13"

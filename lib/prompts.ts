@@ -13,16 +13,21 @@ import matter from 'gray-matter'
 // When migrating to Prismic, only the functions below need to change; keep the
 // Prompt interface stable — it is the contract with the consuming components.
 
+/** Each library item is either a reusable prompt or a Claude/AI skill. */
+export type ResourceType = 'Prompt' | 'Skill'
+
 export interface Prompt {
   slug: string
   title: string
+  /** Prompt vs. Skill — the primary filter axis on the library. */
+  type: ResourceType
   /** Free-form category label, e.g. "LinkedIn Post". Filtered case-insensitively;
    *  the category list on the index is derived from whatever categories exist. */
   category: string
   description: string
   /** ISO date (YYYY-MM-DD). */
   dateAdded: string
-  /** The raw prompt text — displayed verbatim and copied as-is. */
+  /** The raw prompt/skill text — displayed verbatim and copied as-is. */
   content: string
 }
 
@@ -37,6 +42,7 @@ function parseFile(file: string): Prompt {
   return {
     slug: (data.slug as string) || slug,
     title: data.title as string,
+    type: (data.type as ResourceType) === 'Skill' ? 'Skill' : 'Prompt',
     category: (data.category as string) ?? 'Uncategorized',
     description: data.description as string,
     dateAdded: data.dateAdded as string,

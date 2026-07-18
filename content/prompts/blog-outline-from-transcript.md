@@ -1,6 +1,7 @@
 ---
 title: "Blog Outline From a Transcript"
 slug: "blog-outline-from-transcript"
+type: "Prompt"
 category: "Blog"
 description: "Turns a raw voice note or interview transcript into a structured, SEO-aware blog outline."
 dateAdded: "2026-07-11"

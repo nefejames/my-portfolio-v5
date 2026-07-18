@@ -33,7 +33,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }))
 
   const promptEntries: MetadataRoute.Sitemap = prompts.map((p) => ({
-    url: `${SITE.url}/prompts/${p.slug}`,
+    url: `${SITE.url}/ai-prompts-and-skills/${p.slug}`,
     lastModified: new Date(p.dateAdded),
     changeFrequency: 'monthly',
     priority: 0.6,
@@ -61,7 +61,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     {
-      url: `${SITE.url}/prompts`,
+      url: `${SITE.url}/ai-prompts-and-skills`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.8,
