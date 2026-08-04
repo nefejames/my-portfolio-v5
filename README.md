@@ -160,8 +160,16 @@ below is driven from [`lib/site.ts`](lib/site.ts) — the single SEO config.
 
 ## Backlog / TODO
 
-### Infrastructure & blocking
+Each area lists everything for it — done (checked + struck through) and open — so
+a single category is a complete view of that part of the project.
 
+### Infrastructure
+
+- [x] ~~**Custom domain — nefeatori.com**~~ attached in Vercel; the `SITE.url`
+      default in `lib/site.ts` points to it, so canonicals/sitemap/robots/OG/
+      JSON-LD all derive from it. (Off-site remaining is under **SEO & AEO**.)
+- [x] ~~**`firecrawl` → devDependencies**~~ only the import script uses it, so it
+      no longer installs on production deploys.
 - [ ] **Shrink the repo (~800MB).** `.git` history is ~409MB and `public/` is
       ~410MB (1,055 portfolio images). This is the root cause of the stalling
       `git push`es. Options: move images to **Vercel Blob / a CDN**, adopt **git
@@ -171,8 +179,11 @@ below is driven from [`lib/site.ts`](lib/site.ts) — the single SEO config.
       simple Action catches TypeScript/lint regressions before they reach
       production.
 
-### Growth & SEO
+### SEO & AEO
 
+- [x] ~~**AEO/SEO foundation**~~ geo `Person` schema, AI-crawler robots rules,
+      `llms.txt`, homepage FAQ + `FAQPage` schema, manifest, portfolio + prompt
+      URLs in the sitemap, visible Lagos/Nigeria copy.
 - [ ] **Set up Google Search Console + GA4 analytics.**
       - *Search Console:* the `google` verification meta tag is already emitted
         (`verification.google` in `lib/site.ts`). Remaining is account-side: add
@@ -191,6 +202,22 @@ below is driven from [`lib/site.ts`](lib/site.ts) — the single SEO config.
       old "content marketer" title, so this is now about tightening value props
       and CTAs across Hero, Services, Results, About, FAQ, Contact, and the two
       index pages. Copy-only; no layout/design changes.
+- [ ] **Automate the `llms.txt` article count.** Currently bumped by hand each
+      import batch; a small build step could inject the live count so it can't drift.
+
+### Content & import pipeline
+
+- [x] ~~**Per-client import cleanup**~~ `altexsoftCleanup()`, `smashingCleanup()`,
+      and slice-driven `prismicCleanup()` all exist.
+- [x] ~~**WebP on import**~~ PNG/JPEG downloads re-encoded to WebP (~60–90% smaller).
+- [ ] **Fill in the real prompt & skill content, + optional download field.** The
+      seeded items in `content/prompts/*.md` are placeholders — replace each body
+      with the actual prompt/SKILL.md text. The copy button grabs the file body
+      **verbatim**, so for a skill, paste the real SKILL.md and readers can copy it
+      straight into a Claude project. If a skill is actually a multi-file package
+      rather than one block, add an optional `downloadUrl` / `repoUrl` frontmatter
+      field + a button on the item page (small change to `lib/prompts.ts` + the
+      `[slug]` page).
 - [ ] **Migrate content to Prismic (CMS).** The data layer is already abstracted
       behind `lib/posts.ts` / `lib/portfolio.ts`, so a swap touches mainly those
       files plus the frontmatter → props mapping; the shared MDX renderer and page
@@ -200,8 +227,24 @@ below is driven from [`lib/site.ts`](lib/site.ts) — the single SEO config.
       Prismic or stays file-based (it's write-once and canonical-attributed, so
       MDX is reasonable).
 
+### Features & UX
+
+- [x] ~~**Prompt & Skill Library**~~ `/ai-prompts-and-skills` (prompts + skills,
+      filter by type and category, per-item pages with copy button + HowTo schema);
+      old `/prompts` URLs 308-redirect to it.
+- [x] ~~**Single-source animated logo**~~ geometry in `lib/logo.data.json`; static
+      assets regenerated via `scripts/generate-logo.mjs`.
+- [x] ~~**Shared `ArticleLayout`**~~ for blog + portfolio; plus **CodePen embeds**,
+      click-to-copy code blocks, and dead-code/dependency cleanup.
+- [ ] **Reading-time estimate** on blog + portfolio articles ("6 min read").
+- [ ] **Visible breadcrumb nav.** `BreadcrumbList` schema is emitted but there's
+      no visible breadcrumb UI; adding it reinforces the structured data.
+
 ### Performance & polish
 
+- [x] ~~**Paginated `/portfolio`**~~ renders an initial 24 cards with a "Load more"
+      button (`PAGE_SIZE` in `PortfolioList.tsx`); resets to the first page when
+      the client filter or sort changes.
 - [ ] **Further image optimization.** Images already serve sized WebP via
       `next/image` + a `sizes` hint (imports are WebP too). If pages feel slow, in
       rough priority: (1) enable **AVIF** — `images: { formats: ['image/avif',
@@ -209,46 +252,9 @@ below is driven from [`lib/site.ts`](lib/site.ts) — the single SEO config.
       (2) **blur placeholders** (build step with `sharp`/`plaiceholder`, adds a
       dependency); (3) drop image **quality** 75→65. Note: most first-scroll lag is
       Vercel's one-time on-demand optimization, cached at the edge after first view.
-- [ ] **Fill in the real prompt & skill content, + optional download field.** The
-      seeded items in `content/prompts/*.md` are placeholders — replace each body
-      with the actual prompt/SKILL.md text. The copy button grabs the file body
-      **verbatim**, so for a skill, paste the real SKILL.md and readers can copy it
-      straight into a Claude project. If a skill is actually a multi-file package
-      rather than one block, add an optional `downloadUrl` / `repoUrl` frontmatter
-      field + a button on the item page (small change to `lib/prompts.ts` + the
-      `[slug]` page).
-- [ ] **Reading-time estimate** on blog + portfolio articles ("6 min read").
-- [ ] **Visible breadcrumb nav.** `BreadcrumbList` schema is emitted but there's
-      no visible breadcrumb UI; adding it reinforces the structured data.
-- [ ] **Automate the `llms.txt` article count.** Currently bumped by hand each
-      import batch; a small build step could inject the live count so it can't drift.
 - [ ] **Add a full Content-Security-Policy.** Omitted in `next.config.ts` for now
       — needs an allowlist for YouTube iframes, react-tweet, CodePen embeds, and
       Google Fonts, tested so it doesn't silently break embeds.
-
-### Done
-
-- [x] **`firecrawl` → devDependencies** — it's only used by the import script,
-      so it no longer installs on production deploys.
-- [x] **Paginated `/portfolio`** — renders an initial 24 cards with a "Load more"
-      button (`PAGE_SIZE` in `PortfolioList.tsx`); resets to the first page when
-      the client filter or sort changes.
-- [x] **Custom domain live** — nefeatori.com attached in Vercel; the `SITE.url`
-      default in `lib/site.ts` points to it (canonicals/sitemap/robots/OG/JSON-LD
-      all derive from it). Still to do off-site: verify in Search Console + Bing.
-- [x] **Prompt & Skill Library** — `/ai-prompts-and-skills` (prompts + skills,
-      filter by type and category, per-item pages with copy button + HowTo schema);
-      old `/prompts` URLs 308-redirect to it.
-- [x] **AEO/SEO foundation** — geo `Person` schema, AI-crawler robots rules,
-      `llms.txt`, homepage FAQ + `FAQPage` schema, manifest, portfolio URLs in the
-      sitemap, visible Lagos/Nigeria copy.
-- [x] **Per-client import cleanup** — `altexsoftCleanup()`, `smashingCleanup()`,
-      and slice-driven `prismicCleanup()` all exist.
-- [x] **WebP on import** — PNG/JPEG downloads re-encoded to WebP (~60–90% smaller).
-- [x] **Single-source logo** — geometry in `lib/logo.data.json`; static assets
-      regenerated via `scripts/generate-logo.mjs`.
-- [x] **Shared `ArticleLayout`** for blog + portfolio; **CodePen embeds**;
-      **click-to-copy code blocks**; dead-code/dependency cleanup.
 
 ## Parked idea — a living "codebase context" doc (revisit)
 
