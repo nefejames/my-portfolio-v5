@@ -1,10 +1,13 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import type { PortfolioCardData } from '@/lib/portfolio'
 import PortfolioCard from './PortfolioCard'
 
 const ALL = 'All'
+// Render an initial slice and reveal more on demand, so the archive (135+
+// articles, each with a next/image thumbnail) doesn't mount all at once.
+const PAGE_SIZE = 24
 type SortOrder = 'newest' | 'oldest'
 
 type Client = { slug: string; name: string; logo?: string | null }
@@ -18,6 +21,7 @@ export default function PortfolioList({
 }) {
   const [activeClient, setActiveClient] = useState(ALL)
   const [sort, setSort] = useState<SortOrder>('newest')
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE)
 
   const filtered = useMemo(() => {
     const list = articles.filter(
@@ -28,6 +32,13 @@ export default function PortfolioList({
       return sort === 'newest' ? -diff : diff
     })
   }, [articles, activeClient, sort])
+
+  // Changing the filter or sort collapses back to the first page.
+  useEffect(() => {
+    setVisibleCount(PAGE_SIZE)
+  }, [activeClient, sort])
+
+  const visible = filtered.slice(0, visibleCount)
 
   return (
     <div>
@@ -102,11 +113,27 @@ export default function PortfolioList({
           )}
         </div>
       ) : (
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((article) => (
-            <PortfolioCard key={`${article.clientSlug}/${article.slug}`} article={article} />
-          ))}
-        </div>
+        <>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {visible.map((article) => (
+              <PortfolioCard key={`${article.clientSlug}/${article.slug}`} article={article} />
+            ))}
+          </div>
+
+          {visibleCount < filtered.length && (
+            <div className="mt-12 flex flex-col items-center gap-3">
+              <p className="text-sm text-[var(--muted)]">
+                Showing {visible.length} of {filtered.length}
+              </p>
+              <button
+                onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}
+                className="px-6 py-2.5 text-sm font-medium border border-[var(--border)] text-[var(--text)] rounded-lg hover:border-[var(--accent-text)] hover:text-[var(--accent-text)] transition-colors"
+              >
+                Load more
+              </button>
+            </div>
+          )}
+        </>
       )}
     </div>
   )
