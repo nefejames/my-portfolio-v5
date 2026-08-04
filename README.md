@@ -167,9 +167,6 @@ below is driven from [`lib/site.ts`](lib/site.ts) — the single SEO config.
       `git push`es. Options: move images to **Vercel Blob / a CDN**, adopt **git
       LFS**, or a one-time history rewrite (BFG) to reclaim `.git` bloat. Highest
       infra ROI — also speeds clones and any future CI.
-- [ ] **Move `firecrawl` to `devDependencies`.** It's a production dependency but
-      only `scripts/import-article.js` uses it, so Vercel installs it on every
-      deploy for nothing. One-line `package.json` move.
 - [ ] **Add CI (GitHub Actions).** No workflow runs `build`/`lint` on push. A
       simple Action catches TypeScript/lint regressions before they reach
       production.
@@ -205,9 +202,6 @@ below is driven from [`lib/site.ts`](lib/site.ts) — the single SEO config.
 
 ### Performance & polish
 
-- [ ] **Paginate the `/portfolio` list.** It renders all 135 cards (and 135
-      `next/image` thumbnails) in one DOM — fine now, degrades as the archive
-      grows. Add pagination or an initial slice with load-more.
 - [ ] **Further image optimization.** Images already serve sized WebP via
       `next/image` + a `sizes` hint (imports are WebP too). If pages feel slow, in
       rough priority: (1) enable **AVIF** — `images: { formats: ['image/avif',
@@ -234,6 +228,11 @@ below is driven from [`lib/site.ts`](lib/site.ts) — the single SEO config.
 
 ### Done
 
+- [x] **`firecrawl` → devDependencies** — it's only used by the import script,
+      so it no longer installs on production deploys.
+- [x] **Paginated `/portfolio`** — renders an initial 24 cards with a "Load more"
+      button (`PAGE_SIZE` in `PortfolioList.tsx`); resets to the first page when
+      the client filter or sort changes.
 - [x] **Custom domain live** — nefeatori.com attached in Vercel; the `SITE.url`
       default in `lib/site.ts` points to it (canonicals/sitemap/robots/OG/JSON-LD
       all derive from it). Still to do off-site: verify in Search Console + Bing.
