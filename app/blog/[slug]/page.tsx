@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { getAllPosts, getPostBySlug } from '@/lib/posts'
+import { getAllPosts, getPostBySlug, getRelatedPosts } from '@/lib/posts'
 import { readingMinutes } from '@/lib/utils'
 import { extractToc } from '@/lib/toc'
 import { SITE, absoluteUrl } from '@/lib/site'
 import MdxContent from '@/components/blog/MdxContent'
 import ArticleLayout from '@/components/ArticleLayout'
+import RelatedArticles from '@/components/RelatedArticles'
 import JsonLd from '@/components/JsonLd'
 
 type Props = { params: Promise<{ slug: string }> }
@@ -48,6 +49,7 @@ export default async function BlogPostPage({ params }: Props) {
   if (!post) notFound()
 
   const toc = extractToc(post.content)
+  const related = await getRelatedPosts(post.slug)
 
   const articleSchema = {
     '@context': 'https://schema.org',
@@ -91,6 +93,9 @@ export default async function BlogPostPage({ params }: Props) {
         byline={`Written by ${SITE.name}`}
         moreHref="/blog"
         moreLabel="More posts"
+        related={
+          <RelatedArticles items={related.map((data) => ({ type: 'post' as const, data }))} />
+        }
       >
         <MdxContent content={post.content} />
       </ArticleLayout>

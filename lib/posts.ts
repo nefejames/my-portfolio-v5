@@ -114,4 +114,27 @@ export const getPostBySlug = cache(async (slug: string): Promise<Post | null> =>
   }
 })
 
+/** Score items by the number of tags they share with `tags`, highest first.
+ *  Items with zero overlap keep their original order (recency fallback). */
+function scoreByTagOverlap<T extends { tags: string[] }>(tags: string[], items: T[]): T[] {
+  const tagSet = new Set(tags.map((t) => t.toLowerCase()))
+  return items
+    .map((item, idx) => ({
+      item,
+      score: item.tags.filter((t) => tagSet.has(t.toLowerCase())).length,
+      idx,
+    }))
+    .sort((a, b) => b.score - a.score || a.idx - b.idx)
+    .map(({ item }) => item)
+}
+
+/** Up to `limit` blog posts most related to `slug` by tag overlap.
+ *  Falls back to the most recent posts when there are no tag matches. */
+export async function getRelatedPosts(slug: string, limit = 3): Promise<PostMeta[]> {
+  const [current, all] = await Promise.all([getPostBySlug(slug), getAllPosts()])
+  if (!current) return []
+  const others = all.filter((p) => p.slug !== slug)
+  return scoreByTagOverlap(current.tags, others).slice(0, limit)
+}
+
 export { formatDate } from './utils'

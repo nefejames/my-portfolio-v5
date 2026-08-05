@@ -15,8 +15,9 @@ export default function Hero() {
         </h1>
 
         <p className="text-xl md:text-2xl text-[var(--muted)] leading-relaxed max-w-2xl mb-12">
-          I write technical content that ranks, reads well, and drives real
-          results — for audiences that range from developers to decision-makers.
+          I write B2B tech and SaaS content that earns top rankings, builds
+          authority, and drives real results — for audiences from developers to
+          decision-makers.
         </p>
 
         <div className="flex flex-wrap gap-4">
