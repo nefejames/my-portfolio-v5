@@ -159,4 +159,34 @@ export const getPortfolioArticle = cache(
   },
 )
 
+/** Score items by the number of tags they share with `tags`, highest first.
+ *  Items with zero overlap keep their original order (recency fallback). */
+function scoreByTagOverlap<T extends { tags: string[] }>(tags: string[], items: T[]): T[] {
+  const tagSet = new Set(tags.map((t) => t.toLowerCase()))
+  return items
+    .map((item, idx) => ({
+      item,
+      score: item.tags.filter((t) => tagSet.has(t.toLowerCase())).length,
+      idx,
+    }))
+    .sort((a, b) => b.score - a.score || a.idx - b.idx)
+    .map(({ item }) => item)
+}
+
+/** Up to `limit` portfolio articles most related to `clientSlug/slug` by tag overlap.
+ *  Falls back to the most recent articles when there are no tag matches. */
+export async function getRelatedPortfolioArticles(
+  clientSlug: string,
+  slug: string,
+  limit = 3,
+): Promise<PortfolioMeta[]> {
+  const [current, all] = await Promise.all([
+    getPortfolioArticle(clientSlug, slug),
+    getAllPortfolioArticles(),
+  ])
+  if (!current) return []
+  const others = all.filter((a) => !(a.clientSlug === clientSlug && a.slug === slug))
+  return scoreByTagOverlap(current.tags, others).slice(0, limit)
+}
+
 export { formatDate } from './utils'

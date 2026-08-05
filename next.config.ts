@@ -1,14 +1,35 @@
 import type { NextConfig } from 'next'
 
-// Baseline security headers applied to every route. These are safe defaults that
-// don't risk breaking third-party embeds (YouTube, react-tweet) or fonts.
+// Security headers applied to every route.
 //
-// NOTE: A full Content-Security-Policy is deliberately omitted — it needs an
-// allowlist for the YouTube iframes, react-tweet, and Google Fonts this site
-// loads, and should be added + tested separately to avoid silently breaking them.
+// CSP design notes:
+// - Fonts: next/font/google self-hosts at build time → no external font URLs needed.
+// - Scripts: Next.js App Router injects inline hydration scripts, so 'unsafe-inline'
+//   is required here. A nonce-based strict CSP would remove this but needs middleware.
+// - Styles: 'unsafe-inline' covers Tailwind's runtime utilities and react-tweet styles.
+// - Images: 'self' + data: covers local assets; pbs.twimg.com / i.ytimg.com cover
+//   react-tweet avatars and YouTube thumbnails from the lite-youtube component.
+// - Frames: explicit allowlist for the three embed types used in MDX articles.
+// - frame-ancestors 'none' replaces X-Frame-Options: DENY in CSP-aware browsers.
+const cspDirectives = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-inline'",
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: https://pbs.twimg.com https://abs.twimg.com https://i.ytimg.com https://img.youtube.com",
+  "media-src 'self'",
+  "frame-src https://www.youtube.com https://www.youtube-nocookie.com https://codepen.io https://www.linkedin.com",
+  "connect-src 'self'",
+  "font-src 'self'",
+  "frame-ancestors 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+]
+
 const securityHeaders = [
+  { key: 'Content-Security-Policy', value: cspDirectives.join('; ') },
   { key: 'X-Content-Type-Options', value: 'nosniff' },
-  { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+  // X-Frame-Options is the pre-CSP fallback for browsers that don't support frame-ancestors.
+  { key: 'X-Frame-Options', value: 'DENY' },
   { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
   { key: 'X-DNS-Prefetch-Control', value: 'on' },
   {

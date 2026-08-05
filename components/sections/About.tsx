@@ -39,8 +39,8 @@ export default function About() {
               </p>
               <p>
                 I've worked with companies like LogRocket, Prismic, AltexSoft, and Dojah, and
-                been published in Smashing Magazine. I'm comfortable owning a full content
-                strategy or slotting in as a skilled individual contributor.
+                been published in Smashing Magazine. I'm equally comfortable owning a full
+                content strategy end-to-end or embedding as a senior writer on an existing team.
               </p>
             </div>
           </div>

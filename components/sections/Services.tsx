@@ -12,10 +12,10 @@ const services = [
     tags: ['Keyword Research', 'On-page SEO', 'Content Audits', 'Performance Tracking'],
   },
   {
-    title: 'Content Campaigns',
+    title: 'Content Marketing',
     description:
-      'Social media, email newsletters, landing page copy, and gated content that converts. I have run campaigns across LinkedIn, Twitter/X, and email at scale.',
-    tags: ['Email Marketing', 'Social Media', 'Landing Pages', 'Ad Copy'],
+      'Social media, email newsletters, landing page copy, and gated assets that convert. I have planned and executed content marketing campaigns across LinkedIn, email, and X.',
+    tags: ['Email Marketing', 'Social Media', 'Landing Pages', 'Gated Content'],
   },
 ]
 

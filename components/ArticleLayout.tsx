@@ -38,6 +38,8 @@ type Props = {
   moreLabel: string
   /** The rendered article body (an <MdxContent /> element). */
   children: ReactNode
+  /** Optional section rendered below the article footer, e.g. related articles. */
+  related?: ReactNode
 }
 
 export default function ArticleLayout({
@@ -53,6 +55,7 @@ export default function ArticleLayout({
   moreHref,
   moreLabel,
   children,
+  related,
 }: Props) {
   // "Back to blog" → "Blog" for the breadcrumb's section crumb, so callers don't
   // need a new prop. The section link doubles as the "back" navigation.
@@ -130,6 +133,8 @@ export default function ArticleLayout({
                 </Link>
               </div>
             </footer>
+
+            {related}
           </div>
 
           {/* Sticky TOC sidebar — capped to the viewport so long TOCs scroll

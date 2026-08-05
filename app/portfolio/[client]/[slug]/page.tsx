@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import {
   getAllPortfolioArticles,
   getPortfolioArticle,
+  getRelatedPortfolioArticles,
   formatDate,
 } from '@/lib/portfolio'
 import { extractToc } from '@/lib/toc'
@@ -10,6 +11,7 @@ import { readingMinutes } from '@/lib/utils'
 import { SITE, absoluteUrl } from '@/lib/site'
 import MdxContent from '@/components/blog/MdxContent'
 import ArticleLayout from '@/components/ArticleLayout'
+import RelatedArticles from '@/components/RelatedArticles'
 import JsonLd from '@/components/JsonLd'
 
 type Props = { params: Promise<{ client: string; slug: string }> }
@@ -53,6 +55,7 @@ export default async function PortfolioArticlePage({ params }: Props) {
   if (!article) notFound()
 
   const toc = extractToc(article.content)
+  const related = await getRelatedPortfolioArticles(article.clientSlug, article.slug)
 
   const pageUrl = absoluteUrl(`/portfolio/${article.clientSlug}/${article.slug}`)
   const articleSchema = {
@@ -95,6 +98,11 @@ export default async function PortfolioArticlePage({ params }: Props) {
         byline={`Written by ${SITE.name} for ${article.client}`}
         moreHref="/portfolio"
         moreLabel="More articles"
+        related={
+          <RelatedArticles
+            items={related.map((data) => ({ type: 'portfolio' as const, data }))}
+          />
+        }
         headerExtra={
           <div className="mt-6 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 px-4 py-3 bg-[var(--surface-2)] border border-[var(--border)] rounded-xl">
             <p className="text-sm text-[var(--muted)]">
