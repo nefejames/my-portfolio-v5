@@ -175,9 +175,9 @@ a single category is a complete view of that part of the project.
       `git push`es. Options: move images to **Vercel Blob / a CDN**, adopt **git
       LFS**, or a one-time history rewrite (BFG) to reclaim `.git` bloat. Highest
       infra ROI — also speeds clones and any future CI.
-- [ ] **Add CI (GitHub Actions).** No workflow runs `build`/`lint` on push. A
-      simple Action catches TypeScript/lint regressions before they reach
-      production.
+- [x] ~~**CI (GitHub Actions)**~~ [`.github/workflows/ci.yml`](.github/workflows/ci.yml)
+      runs `npm run build` (which type-checks) on every push/PR to master. Lint
+      isn't gated yet — pre-existing lint warnings to clean up first.
 
 ### SEO & AEO
 
