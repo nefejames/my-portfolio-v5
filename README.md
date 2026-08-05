@@ -192,6 +192,16 @@ a single category is a complete view of that part of the project.
       - *GA4:* `@next/third-parties` is already installed. Create a GA4 property,
         put the ID in `NEXT_PUBLIC_GA_ID`, render `<GoogleAnalytics
         gaId={process.env.NEXT_PUBLIC_GA_ID} />` in `app/layout.tsx` (env-guarded).
+- [ ] **Add PostHog product analytics.** Goes beyond GA4's pageview/traffic
+      reporting: autocaptured event tracking, conversion funnels (e.g. blog →
+      portfolio → "Get in touch"), session replay, heatmaps/clickmaps, feature
+      flags, and A/B testing. Useful for seeing *how* readers move through the
+      archive and which prompts/articles convert. **Overlaps with the GA4 item —
+      pick one as the primary analytics tool** (PostHog if product/behaviour
+      insight matters more than Search-Console-style acquisition reporting;
+      the two can also run side by side, at the cost of a second script). Wire
+      via `posthog-js` in a client provider, key in `NEXT_PUBLIC_POSTHOG_KEY`
+      (env-guarded, EU host for GDPR).
 - [x] ~~**RSS feed for the blog**~~ RSS 2.0 at `/rss.xml`
       ([`app/rss.xml/route.ts`](app/rss.xml/route.ts)), with an autodiscovery
       `<link>` in the root layout.

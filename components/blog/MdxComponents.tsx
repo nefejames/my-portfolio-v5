@@ -171,6 +171,38 @@ function Figure({
   )
 }
 
+// ─── Video (muted looping clip with caption) ─────────────────────────────────
+// The GIF replacement. Screen-recording demos used to ship as multi-MB GIFs;
+// H.264 MP4 is ~10× smaller at the same clarity. Plays exactly like a GIF —
+// autoplay, muted, looping, inline, no controls — so the reading experience is
+// unchanged. Markdown images pointing at .mp4/.webm route here automatically
+// (see the `img` handler below), so articles keep the ![alt](file) syntax and
+// the alt text still becomes the caption.
+// Usage: <Video src="/path/demo.mp4" caption="Optional caption" />
+function Video({ src, caption }: { src: string; caption?: string }) {
+  return (
+    // Matches Figure's cap + centering so clips sit in the same column rhythm.
+    <figure className="my-8 max-w-2xl mx-auto">
+      <div className="relative w-full rounded-xl overflow-hidden bg-[var(--surface-2)]">
+        <video
+          src={src}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="w-full h-auto"
+        />
+      </div>
+      {caption && (
+        <figcaption className="mt-3 text-center text-sm text-[var(--muted)] italic">
+          {caption}
+        </figcaption>
+      )}
+    </figure>
+  )
+}
+
 // ─── Headings with auto-generated IDs (required for TOC anchor links) ────────
 function getTextContent(node: ReactNode): string {
   if (typeof node === 'string') return node
@@ -202,13 +234,18 @@ export const mdxComponents = {
   LinkedIn,
   CodePen,
   Figure,
+  Video,
   h2: H2,
   h3: H3,
   // Markdown images render as a <figure>; the alt text doubles as the visible
   // caption (![This is the caption](./image.jpg)). Shared by blog + portfolio.
-  img: ({ src, alt }: { src?: string; alt?: string }) => (
-    <Figure src={src ?? ''} alt={alt ?? ''} caption={alt || undefined} />
-  ),
+  // A .mp4/.webm src (former GIFs) routes to <Video> instead of <Image>, so the
+  // markdown stays ![alt](file) regardless of whether the asset is a still or a clip.
+  img: ({ src, alt }: { src?: string; alt?: string }) => {
+    const url = src ?? ''
+    if (/\.(mp4|webm)$/i.test(url)) return <Video src={url} caption={alt || undefined} />
+    return <Figure src={url} alt={alt ?? ''} caption={alt || undefined} />
+  },
   // Fenced code blocks get VS Code-style chrome: language icon + name and a
   // click-to-copy button (see CodeBlock.tsx). Inline code is untouched.
   pre: CodeBlock,
