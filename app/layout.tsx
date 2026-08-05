@@ -27,6 +27,9 @@ export const metadata: Metadata = {
   publisher: SITE.name,
   alternates: {
     canonical: '/',
+    types: {
+      'application/rss+xml': [{ url: '/rss.xml', title: `${SITE.name} — Blog` }],
+    },
   },
   verification: {
     google: 'GcQps8NnuJg7pln3rZQ2sGB1P8haOsu0iGWzI_CuUDU',

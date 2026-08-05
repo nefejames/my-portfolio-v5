@@ -192,8 +192,9 @@ a single category is a complete view of that part of the project.
       - *GA4:* `@next/third-parties` is already installed. Create a GA4 property,
         put the ID in `NEXT_PUBLIC_GA_ID`, render `<GoogleAnalytics
         gaId={process.env.NEXT_PUBLIC_GA_ID} />` in `app/layout.tsx` (env-guarded).
-- [ ] **RSS/Atom feed for the blog.** None exists. Good for subscribers and a
-      discovery signal for both classic and AI crawlers. ~one route file.
+- [x] ~~**RSS feed for the blog**~~ RSS 2.0 at `/rss.xml`
+      ([`app/rss.xml/route.ts`](app/rss.xml/route.ts)), with an autodiscovery
+      `<link>` in the root layout.
 - [ ] **Related-articles internal linking.** Article pages have no "related posts"
       section. Internal links spread ranking signal and make the 135-article
       archive navigable — high on-page-SEO ROI.
@@ -236,7 +237,9 @@ a single category is a complete view of that part of the project.
       assets regenerated via `scripts/generate-logo.mjs`.
 - [x] ~~**Shared `ArticleLayout`**~~ for blog + portfolio; plus **CodePen embeds**,
       click-to-copy code blocks, and dead-code/dependency cleanup.
-- [ ] **Reading-time estimate** on blog + portfolio articles ("6 min read").
+- [x] ~~**Reading-time estimate**~~ "N min read" beside the date on blog +
+      portfolio articles (`readingMinutes` in `lib/utils.ts`, shown by
+      `ArticleLayout`).
 - [ ] **Visible breadcrumb nav.** `BreadcrumbList` schema is emitted but there's
       no visible breadcrumb UI; adding it reinforces the structured data.
 
@@ -245,13 +248,12 @@ a single category is a complete view of that part of the project.
 - [x] ~~**Paginated `/portfolio`**~~ renders an initial 24 cards with a "Load more"
       button (`PAGE_SIZE` in `PortfolioList.tsx`); resets to the first page when
       the client filter or sort changes.
-- [ ] **Further image optimization.** Images already serve sized WebP via
-      `next/image` + a `sizes` hint (imports are WebP too). If pages feel slow, in
-      rough priority: (1) enable **AVIF** — `images: { formats: ['image/avif',
-      'image/webp'] }` in `next.config.ts` (~20–30% smaller, no dependency);
-      (2) **blur placeholders** (build step with `sharp`/`plaiceholder`, adds a
-      dependency); (3) drop image **quality** 75→65. Note: most first-scroll lag is
-      Vercel's one-time on-demand optimization, cached at the edge after first view.
+- [x] ~~**AVIF enabled**~~ `next.config.ts` serves AVIF first, WebP fallback
+      (~20–30% smaller); `next/image` negotiates per request via the Accept header.
+- [ ] **Further image optimization (optional).** If pages still feel slow: **blur
+      placeholders** (build step with `sharp`/`plaiceholder`, adds a dependency),
+      or drop image **quality** 75→65. Note: most first-scroll lag is Vercel's
+      one-time on-demand optimization, cached at the edge after the first view.
 - [ ] **Add a full Content-Security-Policy.** Omitted in `next.config.ts` for now
       — needs an allowlist for YouTube iframes, react-tweet, CodePen embeds, and
       Google Fonts, tested so it doesn't silently break embeds.

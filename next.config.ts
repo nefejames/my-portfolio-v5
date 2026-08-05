@@ -18,6 +18,11 @@ const securityHeaders = [
 ]
 
 const nextConfig: NextConfig = {
+  // Serve AVIF first (≈20–30% smaller than WebP), falling back to WebP. next/image
+  // negotiates per request via the Accept header; source files are untouched.
+  images: {
+    formats: ['image/avif', 'image/webp'],
+  },
   async headers() {
     return [
       {
