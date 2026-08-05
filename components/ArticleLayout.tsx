@@ -25,6 +25,8 @@ type Props = {
   title: string
   /** ISO date string; rendered with the shared formatDate. */
   date: string
+  /** Estimated reading time in minutes; shown next to the date when provided. */
+  readingMinutes?: number
   tags: string[]
   toc: TocItem[]
   /** Route-specific header content below the date, e.g. the portfolio
@@ -43,6 +45,7 @@ export default function ArticleLayout({
   backLabel,
   title,
   date,
+  readingMinutes,
   tags,
   toc,
   headerExtra,
@@ -82,7 +85,10 @@ export default function ArticleLayout({
               <h1 className="text-3xl md:text-4xl font-bold text-[var(--text)] leading-tight mb-4">
                 {title}
               </h1>
-              <time className="text-sm text-[var(--muted)]">{formatDate(date)}</time>
+              <p className="text-sm text-[var(--muted)]">
+                <time>{formatDate(date)}</time>
+                {readingMinutes ? <span> · {readingMinutes} min read</span> : null}
+              </p>
               {headerExtra}
             </header>
 

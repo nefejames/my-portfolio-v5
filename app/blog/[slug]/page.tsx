@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { getAllPosts, getPostBySlug } from '@/lib/posts'
+import { readingMinutes } from '@/lib/utils'
 import { extractToc } from '@/lib/toc'
 import { SITE, absoluteUrl } from '@/lib/site'
 import MdxContent from '@/components/blog/MdxContent'
@@ -84,6 +85,7 @@ export default async function BlogPostPage({ params }: Props) {
         backLabel="Back to blog"
         title={post.title}
         date={post.date}
+        readingMinutes={readingMinutes(post.content)}
         tags={post.tags}
         toc={toc}
         byline={`Written by ${SITE.name}`}

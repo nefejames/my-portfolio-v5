@@ -6,6 +6,7 @@ import {
   formatDate,
 } from '@/lib/portfolio'
 import { extractToc } from '@/lib/toc'
+import { readingMinutes } from '@/lib/utils'
 import { SITE, absoluteUrl } from '@/lib/site'
 import MdxContent from '@/components/blog/MdxContent'
 import ArticleLayout from '@/components/ArticleLayout'
@@ -88,6 +89,7 @@ export default async function PortfolioArticlePage({ params }: Props) {
         backLabel="Back to portfolio"
         title={article.title}
         date={article.publishedAt}
+        readingMinutes={readingMinutes(article.content)}
         tags={article.tags}
         toc={toc}
         byline={`Written by ${SITE.name} for ${article.client}`}
