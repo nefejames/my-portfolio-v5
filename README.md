@@ -203,8 +203,10 @@ a single category is a complete view of that part of the project.
       old "content marketer" title, so this is now about tightening value props
       and CTAs across Hero, Services, Results, About, FAQ, Contact, and the two
       index pages. Copy-only; no layout/design changes.
-- [ ] **Automate the `llms.txt` article count.** Currently bumped by hand each
-      import batch; a small build step could inject the live count so it can't drift.
+- [x] ~~**Automated `llms.txt`**~~ now a generated route
+      ([`app/llms.txt/route.ts`](app/llms.txt/route.ts)) — the article count is
+      computed live from the content and URLs/email/socials come from `lib/site.ts`,
+      so nothing drifts (no more hand-bumping the count).
 
 ### Content & import pipeline
 
@@ -240,8 +242,9 @@ a single category is a complete view of that part of the project.
 - [x] ~~**Reading-time estimate**~~ "N min read" beside the date on blog +
       portfolio articles (`readingMinutes` in `lib/utils.ts`, shown by
       `ArticleLayout`).
-- [ ] **Visible breadcrumb nav.** `BreadcrumbList` schema is emitted but there's
-      no visible breadcrumb UI; adding it reinforces the structured data.
+- [x] ~~**Visible breadcrumb nav**~~ articles show a Home / Section / Title
+      breadcrumb (in `ArticleLayout`) that mirrors the `BreadcrumbList` schema; the
+      section crumb doubles as the back link.
 
 ### Performance & polish
 

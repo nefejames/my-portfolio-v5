@@ -54,17 +54,34 @@ export default function ArticleLayout({
   moreLabel,
   children,
 }: Props) {
+  // "Back to blog" → "Blog" for the breadcrumb's section crumb, so callers don't
+  // need a new prop. The section link doubles as the "back" navigation.
+  const sectionLabel = backLabel.replace(/^back to\s+/i, '').replace(/^\w/, (c) => c.toUpperCase())
+
   return (
     <>
       <ScrollProgress />
 
       <div className="max-w-5xl mx-auto px-6 pt-32 pb-24">
-        <Link
-          href={backHref}
-          className="inline-flex items-center gap-1.5 text-sm text-[var(--muted)] hover:text-[var(--accent-text)] transition-colors mb-12"
-        >
-          ← {backLabel}
-        </Link>
+        {/* Visible breadcrumb — mirrors the BreadcrumbList JSON-LD on the page.
+            The section crumb ("Blog"/"Portfolio") also serves as the back link. */}
+        <nav aria-label="Breadcrumb" className="mb-12 text-sm text-[var(--muted)]">
+          <ol className="flex flex-wrap items-center gap-2">
+            <li>
+              <Link href="/" className="hover:text-[var(--accent-text)] transition-colors">
+                Home
+              </Link>
+            </li>
+            <li aria-hidden className="text-[var(--faint)]">/</li>
+            <li>
+              <Link href={backHref} className="hover:text-[var(--accent-text)] transition-colors">
+                {sectionLabel}
+              </Link>
+            </li>
+            <li aria-hidden className="text-[var(--faint)]">/</li>
+            <li className="text-[var(--text)] truncate max-w-[min(60vw,32rem)]">{title}</li>
+          </ol>
+        </nav>
 
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_220px] gap-12 items-start">
           {/* Article */}
