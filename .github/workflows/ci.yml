@@ -1,0 +1,26 @@
+name: CI
+
+# Runs the production build (which also type-checks) on every push and PR to
+# master, so TypeScript / build regressions are caught before they ship.
+# Lint is intentionally not gated yet — there are pre-existing lint warnings to
+# clean up first (see backlog); add an `npm run lint` step once that's done.
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build
+        env:
+          NEXT_PUBLIC_SITE_URL: 'https://nefeatori.com'
