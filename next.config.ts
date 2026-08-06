@@ -11,14 +11,18 @@ import type { NextConfig } from 'next'
 //   react-tweet avatars and YouTube thumbnails from the lite-youtube component.
 // - Frames: explicit allowlist for the three embed types used in MDX articles.
 // - frame-ancestors 'none' replaces X-Frame-Options: DENY in CSP-aware browsers.
+const posthogHost = process.env.NEXT_PUBLIC_POSTHOG_HOST
+const posthogDomain = posthogHost ? new URL(posthogHost).hostname.split('.').slice(-2).join('.') : undefined
+
 const cspDirectives = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline'",
+  `script-src 'self' 'unsafe-inline'${posthogDomain ? ` https://*.${posthogDomain}` : ''}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: https://pbs.twimg.com https://abs.twimg.com https://i.ytimg.com https://img.youtube.com",
   "media-src 'self'",
   "frame-src https://www.youtube.com https://www.youtube-nocookie.com https://codepen.io https://www.linkedin.com",
-  "connect-src 'self' https://us.i.posthog.com https://us-assets.i.posthog.com",
+  `connect-src 'self'${posthogHost ? ` ${posthogHost}` : ''}`,
+  "worker-src 'self' blob:",
   "font-src 'self'",
   "frame-ancestors 'none'",
   "base-uri 'self'",

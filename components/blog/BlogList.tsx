@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useMemo } from 'react'
+import posthog from 'posthog-js'
 import type { PostMeta } from '@/lib/posts'
 import BlogCard from './BlogCard'
 
@@ -55,7 +56,10 @@ export default function BlogList({ posts }: { posts: PostMeta[] }) {
         {tags.map((tag) => (
           <button
             key={tag}
-            onClick={() => setActiveTag(tag)}
+            onClick={() => {
+              setActiveTag(tag)
+              posthog.capture('blog_filtered', { filter_type: 'tag', filter_value: tag })
+            }}
             className={`text-sm font-medium px-4 py-1.5 rounded-full border transition-colors ${
               activeTag === tag
                 ? 'bg-[var(--accent)] text-white border-[var(--accent-text)]'

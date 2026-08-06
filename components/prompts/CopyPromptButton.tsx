@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import posthog from 'posthog-js'
 
 // Copies the raw prompt/skill text (passed as a prop from the server page) to
 // the clipboard and shows a 2s "Copied!" confirmation. Mirrors the copy
@@ -25,6 +26,7 @@ export default function CopyPromptButton({ text, label = 'Copy' }: { text: strin
         ta.remove()
       }
     }
+    posthog.capture('prompt_copied', { content_type: label.toLowerCase().replace(/\s+/g, '_') })
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }
