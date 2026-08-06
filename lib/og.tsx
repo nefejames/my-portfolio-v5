@@ -9,7 +9,6 @@ import { LOGO } from './logo'
 export const ogSize = { width: 1200, height: 630 }
 export const ogContentType = 'image/png'
 
-const INDIGO = '#4F46E5' // brand mark fill (white "N" sits on it)
 const ACCENT = '#818CF8' // brighter indigo for text/accents on the dark card
 const INK = '#F4F4F5'
 const MUTED = '#A1A1AA'

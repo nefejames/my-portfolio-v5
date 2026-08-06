@@ -11,12 +11,12 @@ export default function Contact() {
           Get in touch
         </p>
         <h2 className="text-3xl md:text-4xl font-bold text-[var(--text)] mb-6">
-          Let's work together
+          Let&apos;s work together
         </h2>
         <p className="text-lg text-[var(--muted)] max-w-xl mx-auto mb-10">
           Open to full-time roles, freelance projects, and long-term content partnerships.
           Based in Lagos, Nigeria — working with clients worldwide. If you need content that
-          ranks and converts, let's talk.
+          ranks and converts, let&apos;s talk.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
           <a

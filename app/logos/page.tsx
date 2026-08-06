@@ -36,7 +36,7 @@ export default function LogosPage() {
             <div className="flex-1 h-px bg-[#E5E7EB]" />
           </div>
           <p className="text-xs text-[#9CA3AF] mt-2 mb-6">
-            The N's diagonal carries calligraphic weight — thin where the pen touches down, thick where it lifts. Everything else is geometric and clean.
+            The N&apos;s diagonal carries calligraphic weight — thin where the pen touches down, thick where it lifts. Everything else is geometric and clean.
           </p>
         </div>
 
@@ -594,8 +594,8 @@ export default function LogosPage() {
 
           <Card id={39} name="Double Quotes" el={
             <svg viewBox="0 0 100 100" fill="none" className="w-full h-full">
-              <text x="2" y="62" fontSize="80" fontFamily="Georgia, serif" fill="#4F46E5" opacity="0.12" fontWeight="bold">"</text>
-              <text x="46" y="98" fontSize="80" fontFamily="Georgia, serif" fill="#4F46E5" opacity="0.12" fontWeight="bold">"</text>
+              <text x="2" y="62" fontSize="80" fontFamily="Georgia, serif" fill="#4F46E5" opacity="0.12" fontWeight="bold">{'“'}</text>
+              <text x="46" y="98" fontSize="80" fontFamily="Georgia, serif" fill="#4F46E5" opacity="0.12" fontWeight="bold">{'”'}</text>
               <path d="M14 30L14 70M14 30L34 70M34 30L34 70" stroke="#4F46E5" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" />
               <path d="M40 30L40 70M40 30L60 30M40 50L57 50M40 70L60 70" stroke="#4F46E5" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" />
               <path d="M66 70L76 30L86 70M69.5 53L82.5 53" stroke="#4F46E5" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" />
