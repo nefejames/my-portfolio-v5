@@ -27,19 +27,19 @@ export default function About() {
             </h2>
             <div className="flex flex-col gap-4 text-[var(--muted)] text-base leading-relaxed">
               <p>
-                I'm Nefe — a content writer and SEO manager based in Lagos, Nigeria, with over
+                I&apos;m Nefe — a content writer and SEO manager based in Lagos, Nigeria, with over
                 four years of experience creating content that earns rankings, builds authority,
                 and drives measurable business outcomes for clients across Africa, Europe, and
                 North America.
               </p>
               <p>
                 My background in software development means I can go deep on technical topics
-                without losing the thread — whether I'm writing a tutorial for developers, a
+                without losing the thread — whether I&apos;m writing a tutorial for developers, a
                 whitepaper for a CTO, or a newsletter for a fintech product.
               </p>
               <p>
-                I've worked with companies like LogRocket, Prismic, AltexSoft, and Dojah, and
-                been published in Smashing Magazine. I'm equally comfortable owning a full
+                I&apos;ve worked with companies like LogRocket, Prismic, AltexSoft, and Dojah, and
+                been published in Smashing Magazine. I&apos;m equally comfortable owning a full
                 content strategy end-to-end or embedding as a senior writer on an existing team.
               </p>
             </div>

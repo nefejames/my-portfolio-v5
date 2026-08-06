@@ -11,6 +11,7 @@
  * Fonts: Georgia stands in for Fraunces (site serif), Segoe UI for Hanken
  * Grotesk — the closest system fonts available to sharp's SVG rasterizer.
  */
+/* eslint-disable @typescript-eslint/no-require-imports */
 const fs = require('fs')
 const path = require('path')
 const sharp = require('sharp')
