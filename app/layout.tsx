@@ -3,6 +3,7 @@ import { Fraunces, Hanken_Grotesk, Geist_Mono } from 'next/font/google'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import JsonLd from '@/components/JsonLd'
+import PostHogProvider from '@/components/PostHogProvider'
 import { SITE } from '@/lib/site'
 import './globals.css'
 
@@ -106,9 +107,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* The splash intro lives on the homepage (app/page.tsx) so it plays on
             every homepage visit and never on inner pages. */}
         <JsonLd data={[personSchema, websiteSchema]} />
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <PostHogProvider>
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </PostHogProvider>
       </body>
     </html>
   )
