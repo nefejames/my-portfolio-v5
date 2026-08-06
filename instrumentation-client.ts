@@ -16,7 +16,7 @@ if (!projectToken || !host) {
 } else {
   posthog.init(projectToken, {
     api_host: host,
-    defaults: '2026-01-30',
+    defaults: '2026-05-30',
     capture_exceptions: true,
     capture_pageview: false,
   })

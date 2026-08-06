@@ -26,7 +26,7 @@ export default function PostHogProvider({ children }: { children: React.ReactNod
     if (key && host && !posthog.__loaded) {
       posthog.init(key, {
         api_host: host,
-        defaults: '2026-01-30',
+        defaults: '2026-05-30',
         capture_exceptions: true,
         capture_pageview: false,
       })

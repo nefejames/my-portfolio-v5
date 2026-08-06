@@ -11,20 +11,18 @@ import type { NextConfig } from 'next'
 //   react-tweet avatars and YouTube thumbnails from the lite-youtube component.
 // - Frames: explicit allowlist for the three embed types used in MDX articles.
 // - frame-ancestors 'none' replaces X-Frame-Options: DENY in CSP-aware browsers.
-// - PostHog: us.i.posthog.com (API + config scripts) and us-assets.i.posthog.com
-//   (exception-autocapture.js and other static modules). Hardcoded so the CSP is
-//   correct regardless of whether NEXT_PUBLIC_POSTHOG_HOST is set at build time.
-//   CSP wildcards (*.posthog.com) only cover one subdomain level and would miss
-//   multi-level hosts like us.i.posthog.com — hence the explicit entries.
+// - PostHog: all traffic (API calls, flags, static modules) routes through the
+//   managed reverse proxy at t.nefeatori.com, bypassing ad blockers. Only that
+//   subdomain needs to be in the CSP — no direct posthog.com entries needed.
 
 const cspDirectives = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://us.i.posthog.com https://us-assets.i.posthog.com",
+  "script-src 'self' 'unsafe-inline' https://t.nefeatori.com",
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: https://pbs.twimg.com https://abs.twimg.com https://i.ytimg.com https://img.youtube.com",
   "media-src 'self'",
   "frame-src https://www.youtube.com https://www.youtube-nocookie.com https://codepen.io https://www.linkedin.com",
-  "connect-src 'self' https://us.i.posthog.com https://us-assets.i.posthog.com",
+  "connect-src 'self' https://t.nefeatori.com",
   "worker-src 'self' blob:",
   "font-src 'self'",
   "frame-ancestors 'none'",
