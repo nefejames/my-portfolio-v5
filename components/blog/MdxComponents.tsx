@@ -14,15 +14,15 @@ import type { ReactNode } from 'react'
 // graceful fallback link instead of crashing the page.
 // Usage: <Tweet id="1234567890" />
 async function Tweet({ id }: { id: string }) {
+  let tweet = null
+  let fetchError = false
   try {
-    const tweet = await getTweet(id)
-    if (!tweet) return <TweetNotFound />
-    return (
-      <div className="my-8 flex justify-center">
-        <EmbeddedTweet tweet={tweet} />
-      </div>
-    )
+    tweet = await getTweet(id)
   } catch {
+    fetchError = true
+  }
+
+  if (fetchError) {
     return (
       <div className="my-8 p-5 border border-[var(--border)] rounded-xl bg-[var(--surface-2)] flex items-center gap-3">
         <svg className="w-5 h-5 text-[var(--muted)] shrink-0" fill="currentColor" viewBox="0 0 24 24">
@@ -42,6 +42,14 @@ async function Tweet({ id }: { id: string }) {
       </div>
     )
   }
+
+  if (!tweet) return <TweetNotFound />
+
+  return (
+    <div className="my-8 flex justify-center">
+      <EmbeddedTweet tweet={tweet} />
+    </div>
+  )
 }
 
 // ─── YouTube embed ───────────────────────────────────────────────────────────

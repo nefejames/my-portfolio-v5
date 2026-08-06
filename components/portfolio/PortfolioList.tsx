@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo } from 'react'
 import posthog from 'posthog-js'
 import type { PortfolioCardData } from '@/lib/portfolio'
 import PortfolioCard from './PortfolioCard'
@@ -34,11 +34,6 @@ export default function PortfolioList({
     })
   }, [articles, activeClient, sort])
 
-  // Changing the filter or sort collapses back to the first page.
-  useEffect(() => {
-    setVisibleCount(PAGE_SIZE)
-  }, [activeClient, sort])
-
   const visible = filtered.slice(0, visibleCount)
 
   return (
@@ -53,6 +48,7 @@ export default function PortfolioList({
                 key={client.slug}
                 onClick={() => {
                   setActiveClient(client.slug)
+                  setVisibleCount(PAGE_SIZE)
                   posthog.capture('portfolio_filtered', { filter_type: 'client', filter_value: client.slug })
                 }}
                 aria-pressed={active}
@@ -92,6 +88,7 @@ export default function PortfolioList({
               key={order}
               onClick={() => {
                 setSort(order)
+                setVisibleCount(PAGE_SIZE)
                 posthog.capture('portfolio_filtered', { filter_type: 'sort', filter_value: order })
               }}
               className={`text-sm font-medium px-4 py-1.5 rounded-full border transition-colors ${

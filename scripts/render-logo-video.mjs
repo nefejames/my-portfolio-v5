@@ -6,7 +6,7 @@
 //   node scripts/render-logo-video.mjs
 //
 // Output: marketing/brand-assets/logo-animation.mp4 and .gif
-import { readFileSync, writeFileSync, mkdirSync, rmSync, readdirSync, statSync } from 'node:fs'
+import { readFileSync, writeFileSync, mkdirSync, rmSync, statSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
 import { execFileSync } from 'node:child_process'
