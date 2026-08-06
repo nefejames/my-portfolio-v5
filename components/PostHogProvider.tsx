@@ -16,6 +16,23 @@ function PageViewTracker() {
 }
 
 export default function PostHogProvider({ children }: { children: React.ReactNode }) {
+  useEffect(() => {
+    // instrumentation-client.ts initialises PostHog before hydration when both
+    // env vars are present. This useEffect is the fallback: if the build ran
+    // before the env vars were set (so instrumentation-client skipped init),
+    // we initialise here instead. posthog.__loaded guards against double-init.
+    const key = process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN
+    const host = process.env.NEXT_PUBLIC_POSTHOG_HOST
+    if (key && host && !posthog.__loaded) {
+      posthog.init(key, {
+        api_host: host,
+        defaults: '2026-01-30',
+        capture_exceptions: true,
+        capture_pageview: false,
+      })
+    }
+  }, [])
+
   return (
     <>
       <Suspense fallback={null}>
