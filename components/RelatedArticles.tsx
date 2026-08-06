@@ -28,6 +28,7 @@ export default function RelatedArticles({ items }: { items: RelatedItem[] }) {
             <Link
               key={href}
               href={href}
+              prefetch={false}
               className="group flex flex-col gap-1 p-4 rounded-xl border border-[var(--border)] hover:border-[var(--accent-text)] transition-colors"
             >
               {label && (
