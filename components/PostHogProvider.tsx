@@ -10,6 +10,9 @@ function PageViewTracker() {
 
   useEffect(() => {
     posthog.capture('$pageview')
+    return () => {
+      posthog.capture('$pageleave')
+    }
   }, [pathname, searchParams])
 
   return null
@@ -30,6 +33,7 @@ export default function PostHogProvider({ children }: { children: React.ReactNod
         defaults: '2026-05-30',
         capture_exceptions: true,
         capture_pageview: false,
+        capture_pageleave: true,
       })
     }
   }, [])
