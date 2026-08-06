@@ -13,7 +13,8 @@ function PageViewTracker() {
 
   useEffect(() => {
     if (pathname) {
-      const url = pathname + (searchParams?.toString() ? `?${searchParams}` : '')
+      const qs = searchParams?.toString()
+      const url = window.origin + pathname + (qs ? `?${qs}` : '')
       ph.capture('$pageview', { $current_url: url })
     }
   }, [pathname, searchParams, ph])
@@ -24,6 +25,7 @@ function PageViewTracker() {
 if (typeof window !== 'undefined' && process.env.NEXT_PUBLIC_POSTHOG_KEY) {
   posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY, {
     api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST ?? 'https://us.i.posthog.com',
+    defaults: '2026-05-30',
     capture_pageview: false, // handled manually above so App Router nav is tracked
     capture_pageleave: true,
     person_profiles: 'identified_only',
