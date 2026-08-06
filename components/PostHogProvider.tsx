@@ -1,23 +1,19 @@
 'use client'
 
 import posthog from 'posthog-js'
-import { PostHogProvider as PHProvider, usePostHog } from 'posthog-js/react'
+import { PostHogProvider as PHProvider } from 'posthog-js/react'
 import { usePathname, useSearchParams } from 'next/navigation'
 import { useEffect, Suspense } from 'react'
 
-// Track page views on client-side navigation (App Router doesn't reload on route change).
+// Call posthog directly (not via usePostHog hook) — the hook can return
+// undefined before the client is ready and silently drop the capture.
 function PageViewTracker() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
-  const ph = usePostHog()
 
   useEffect(() => {
-    if (pathname) {
-      const qs = searchParams?.toString()
-      const url = window.origin + pathname + (qs ? `?${qs}` : '')
-      ph.capture('$pageview', { $current_url: url })
-    }
-  }, [pathname, searchParams, ph])
+    posthog.capture('$pageview')
+  }, [pathname, searchParams])
 
   return null
 }
