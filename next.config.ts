@@ -18,7 +18,7 @@ const cspDirectives = [
   "img-src 'self' data: https://pbs.twimg.com https://abs.twimg.com https://i.ytimg.com https://img.youtube.com",
   "media-src 'self'",
   "frame-src https://www.youtube.com https://www.youtube-nocookie.com https://codepen.io https://www.linkedin.com",
-  "connect-src 'self' https://us.i.posthog.com https://us-assets.i.posthog.com",
+  "connect-src 'self'",
   "font-src 'self'",
   "frame-ancestors 'none'",
   "base-uri 'self'",
