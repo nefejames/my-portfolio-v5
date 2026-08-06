@@ -24,8 +24,9 @@ export default function PostHogProvider({ children }: { children: React.ReactNod
     const key = process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN
     const host = process.env.NEXT_PUBLIC_POSTHOG_HOST
     if (key && host && !posthog.__loaded) {
+      const apiHost = host.startsWith('http') ? host : `https://${host}`
       posthog.init(key, {
-        api_host: host,
+        api_host: apiHost,
         defaults: '2026-05-30',
         capture_exceptions: true,
         capture_pageview: false,

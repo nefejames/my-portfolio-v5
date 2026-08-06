@@ -14,10 +14,12 @@ if (!projectToken || !host) {
     )
   }
 } else {
+  const apiHost = host.startsWith('http') ? host : `https://${host}`
   posthog.init(projectToken, {
-    api_host: host,
+    api_host: apiHost,
     defaults: '2026-05-30',
     capture_exceptions: true,
     capture_pageview: false,
+    capture_pageleave: true,
   })
 }
