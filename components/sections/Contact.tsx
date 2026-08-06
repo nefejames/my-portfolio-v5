@@ -1,3 +1,6 @@
+'use client'
+
+import posthog from 'posthog-js'
 import { SITE } from '@/lib/site'
 
 export default function Contact() {
@@ -8,22 +11,24 @@ export default function Contact() {
           Get in touch
         </p>
         <h2 className="text-3xl md:text-4xl font-bold text-[var(--text)] mb-6">
-          Let's work together
+          Let&apos;s work together
         </h2>
         <p className="text-lg text-[var(--muted)] max-w-xl mx-auto mb-10">
           Open to full-time roles, freelance projects, and long-term content partnerships.
           Based in Lagos, Nigeria — working with clients worldwide. If you need content that
-          ranks and converts, let's talk.
+          ranks and converts, let&apos;s talk.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
           <a
             href={`mailto:${SITE.email}`}
+            onClick={() => posthog.capture('contact_initiated', { channel: 'email', placement: 'contact_section' })}
             className="px-8 py-3 bg-[var(--accent)] text-white text-sm font-medium rounded-lg hover:bg-[var(--accent-hover)] transition-colors"
           >
             {SITE.email}
           </a>
           <a
             href={SITE.social.linkedin}
+            onClick={() => posthog.capture('contact_initiated', { channel: 'linkedin', placement: 'contact_section' })}
             target="_blank"
             rel="noopener noreferrer"
             className="px-8 py-3 border border-[var(--accent-text)] text-[var(--accent-text)] text-sm font-medium rounded-lg hover:bg-[var(--surface)] transition-colors"

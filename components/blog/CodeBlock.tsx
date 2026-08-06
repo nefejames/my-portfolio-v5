@@ -1,6 +1,7 @@
 'use client'
 
 import { useRef, useState, type HTMLAttributes } from 'react'
+import posthog from 'posthog-js'
 
 // ─── Code block chrome ────────────────────────────────────────────────────────
 // Wraps every fenced code block (mapped to `pre` in MdxComponents) with a
@@ -123,6 +124,7 @@ export default function CodeBlock({
         ta.remove()
       }
     }
+    posthog.capture('code_copied', { language: rawLang || 'unknown' })
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }

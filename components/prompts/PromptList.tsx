@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useMemo } from 'react'
+import posthog from 'posthog-js'
 import type { PromptMeta } from '@/lib/prompts'
 import PromptCard from './PromptCard'
 
@@ -76,7 +77,10 @@ export default function PromptList({ prompts }: { prompts: PromptMeta[] }) {
           {TYPES.map((t) => (
             <button
               key={t}
-              onClick={() => setActiveType(t)}
+              onClick={() => {
+                setActiveType(t)
+                posthog.capture('prompt_filtered', { filter_type: 'type', filter_value: t })
+              }}
               className={`text-sm font-medium px-4 py-1.5 rounded-full border transition-colors ${
                 activeType === t
                   ? 'bg-[var(--accent)] text-white border-[var(--accent-text)]'
@@ -98,7 +102,10 @@ export default function PromptList({ prompts }: { prompts: PromptMeta[] }) {
           {categories.map((cat) => (
             <button
               key={cat}
-              onClick={() => setActiveCategory(cat)}
+              onClick={() => {
+                setActiveCategory(cat)
+                posthog.capture('prompt_filtered', { filter_type: 'category', filter_value: cat })
+              }}
               className={`text-sm font-medium px-4 py-1.5 rounded-full border transition-colors ${
                 activeCategory === cat
                   ? 'bg-[var(--accent)] text-white border-[var(--accent-text)]'

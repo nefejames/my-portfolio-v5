@@ -16,6 +16,7 @@
  * the same slug already exists, you are prompted before it is overwritten.
  */
 
+/* eslint-disable @typescript-eslint/no-require-imports */
 const fs = require('fs')
 const path = require('path')
 const readline = require('readline')
