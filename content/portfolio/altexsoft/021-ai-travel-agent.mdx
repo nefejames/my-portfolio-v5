@@ -6,7 +6,7 @@ originalUrl: "https://www.altexsoft.com/blog/ai-travel-agent/"
 publishedAt: "2025-05-19"
 canonical: "https://www.altexsoft.com/blog/ai-travel-agent/"
 excerpt: "Breaking down the key components and integrations of AI travel agents and sharing insights from AltexSoft engineers’ hands-on experience."
-coverImage: "/portfolio/altexsoft/021-ai-travel-agent/cover.jpg"
+coverImage: "https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/021-ai-travel-agent/cover.jpg"
 tags: []
 ---
 Almost [one in five millennials](https://www2.deloitte.com/content/dam/insights/articles/us187281_cic_summer-travel/DI_2024-summer-travel.pdf) use [generative AI](https://www.altexsoft.com/blog/generative-ai/) to plan their trips, and many of them make bookings based on the machine’s suggestions. The increased adoption of artificial intelligence in travel pushed our engineers to the idea of building an LLM-fueled [travel assistant](https://www.altexsoft.com/case-studies/travel/ai-travel-assistant-altexsoft/) during an internal GenAI hackathon. The [proof of concept](https://www.altexsoft.com/blog/proof-of-concept/) took a week and the efforts of four experts. This article shares our hands-on experience and lessons learned from designing an agentic AI system.
@@ -21,7 +21,7 @@ An **AI travel agent** is a digital assistant that uses artificial intelligence
 
 If you’re not sure about a particular location, you can drop questions like _“Where should I go for a beach holiday in July?”_ The assistant would suggest destinations. Once a place is defined, you go on with requesting a hotel—for example, _“Find me a room for 2 in Paris under $150 a night.”_ In turn, the tool generates a list of available options that meet your requirements. That’s how the most basic flow looks from a user’s perspective. Now, let’s look at what happens under the hood.
 
-![AI travel agent flow chart](/portfolio/altexsoft/021-ai-travel-agent/image-1.png)
+![AI travel agent flow chart](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/021-ai-travel-agent/image-1.png)
 
 **The agent adds instructions to the user’s request.** Each time a user communicates with the tool, the agent passes the request to the large [language model](https://www.altexsoft.com/blog/language-models-gpt/) together with instructions dictating the next steps along with tools and systems to use.
 
@@ -37,7 +37,7 @@ As you can see, an [AI agent](https://www.altexsoft.com/blog/ai-agents/) combin
 
 Our agent is implemented as a [React](https://www.altexsoft.com/blog/react-pros-and-cons/)-based, single-page application with a chat interface that lets users type natural language requests. To enable real-time communication, we used the [WebSocket](https://www.altexsoft.com/blog/websockets/) protocol, which allows the assistant to stream responses as they’re generated.
 
-![Basic chat interface created for the AI travel agent prototype](/portfolio/altexsoft/021-ai-travel-agent/image-2.png)
+![Basic chat interface created for the AI travel agent prototype](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/021-ai-travel-agent/image-2.png)
 
 A basic chat interface created for the AI travel agent prototype
 
@@ -53,7 +53,7 @@ We chose **GPT-4o** from OpenAI as the model behind our assistant. Our team had
 
 In traditional LLM setups, the model answers questions based only on the knowledge it was trained on. That can be limiting when up-to-date or domain-focused information is needed. RAG helps solve this by letting the model retrieve relevant data from an external source during a conversation.
 
-![How RAG works](/portfolio/altexsoft/021-ai-travel-agent/image-3.png)
+![How RAG works](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/021-ai-travel-agent/image-3.png)
 
 As a source of domain information, we use a document containing detailed descriptions of destinations, activities, and travel tips. But instead of feeding the entire document to the model, which would be inefficient and costly, we break it into smaller parts using a process called **chunking**. It involves splitting large sections of text into smaller, manageable pieces. There are different strategies, but we used **semantic chunking**—implemented using LangChain’s built-in tools—for this project. This method organizes content based on meaning.
 

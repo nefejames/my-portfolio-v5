@@ -6,7 +6,7 @@ originalUrl: "https://www.altexsoft.com/blog/a2a-protocol-explained/"
 publishedAt: "2025-08-07"
 canonical: "https://www.altexsoft.com/blog/a2a-protocol-explained/"
 excerpt: "Agent2Agent Protocol lets AI agents communicate and coordinate actions. Learn how it works and why it matters."
-coverImage: "/portfolio/altexsoft/027-a2a-protocol-explained/cover.jpg"
+coverImage: "https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/027-a2a-protocol-explained/cover.jpg"
 tags: []
 ---
 [AI agents](https://www.altexsoft.com/blog/ai-agents/) are increasingly becoming integral in complex task automation, but communication between them remains a challenge. The Agent2Agent (A2A) protocol aims to bridge the collaboration gap. In this article, we’ll break down how A2A works, why it matters, where it’s already being tested in the real world, and what it means for the future of [multi-agent AI systems](https://www.altexsoft.com/blog/building-multi-agent-systems/).
@@ -39,7 +39,7 @@ The Agent2Agent protocol is designed to solve a few core problems that arise whe
 
 The [model context protocol (MCP)](https://www.altexsoft.com/blog/model-context-protocol/), on the other hand, focuses on how agents interact with external and internal tools and resources. It standardizes the way agents access things like file systems, [databases](https://www.altexsoft.com/blog/databases-database-management-systems/), [APIs](https://www.altexsoft.com/blog/what-is-api-definition-types-specifications-documentation/), or applications on a machine or across a network. Instead of custom integrations for each tool, MCP offers a consistent method for connecting and exchanging data.
 
-![The Agent2Agent Protocol vs the Model Context Protocol](/portfolio/altexsoft/027-a2a-protocol-explained/image-1.png)
+![The Agent2Agent Protocol vs the Model Context Protocol](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/027-a2a-protocol-explained/image-1.png)
 
 Even with A2A, agents still need to contact [MCP servers](https://www.altexsoft.com/blog/mcp-servers-travel/) to extend their functionality, interact with different tools, and get things done. In fact, the Google team explicitly stated that A2A was built to complement MCP. So A2A and MCP aren’t competing. They’re meant to work side by side: A2A handles collaboration while MCP is responsible for execution.
 
@@ -47,7 +47,7 @@ Even with A2A, agents still need to contact [MCP servers](https://www.altexsoft.
 
 Here’s an overview of the components and building blocks powering the A2A protocol.
 
-![Architecture and components of the A2A protocol ](/portfolio/altexsoft/027-a2a-protocol-explained/image-2.png)
+![Architecture and components of the A2A protocol ](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/027-a2a-protocol-explained/image-2.png)
 
 ### A2A agents: clients, servers, or both
 
@@ -126,7 +126,7 @@ This flexible setup allows client agents to choose the most efficient interactio
 
 Let’s say a user is chatting with an [AI travel agent](https://www.altexsoft.com/blog/ai-travel-agent/) and says, _“Help me find and book flights and hotels for a trip from Lagos to London for October 15.”_ This assistant—A2A client—handles general travel planning but doesn’t directly search booking systems. Instead, it decides to delegate parts of the task to specialized agents that can perform flight and hotel searches.
 
-![A sample flow with the Agent2Agent protocol](/portfolio/altexsoft/027-a2a-protocol-explained/image-3.png)
+![A sample flow with the Agent2Agent protocol](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/027-a2a-protocol-explained/image-3.png)
 
 Here’s how the Agent2Agent protocol enables that.
 
@@ -138,7 +138,7 @@ The AI travel agent (client agent) receives the user's request and decides it ne
 
 Next, the client agent uses the A2A protocol to find agents that can handle each subtask. It looks for one agent with access to [flight booking APIs](https://www.altexsoft.com/blog/airline-flight-booking-apis-gdss-specialized-data-providers-otas-and-metasearch-engines/) and another that connects to [hotel search and booking APIs](https://www.altexsoft.com/blog/hotel-api/).
 
-![Simplified version of the agent card for a flight booking server agent](/portfolio/altexsoft/027-a2a-protocol-explained/image-4.png)
+![Simplified version of the agent card for a flight booking server agent](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/027-a2a-protocol-explained/image-4.png)
 
 The agents share metadata via agent cards, which advertise their capabilities, like “flight-search-book” or “search\_hotels”—and outline the kinds of inputs they accept.
 
@@ -146,7 +146,7 @@ The agents share metadata via agent cards, which advertise their capabilities, l
 
 The client agent sends task request messages to both agents.
 
-![2. An A2A task with a message and part, where a client agent requests a direct flight](/portfolio/altexsoft/027-a2a-protocol-explained/image-5.png)
+![2. An A2A task with a message and part, where a client agent requests a direct flight](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/027-a2a-protocol-explained/image-5.png)
 
 An A2A task with a message and part, where a client agent requests a direct flight
 
@@ -166,7 +166,7 @@ If something goes wrong, like a long delay or an error, the client agent can ste
 
 The client agent gets back two artifacts. Each one contains the result of that task: a flight itinerary and a hotel reservation.
 
-![A2A artifact containing the response for a task](/portfolio/altexsoft/027-a2a-protocol-explained/image-6.png)
+![A2A artifact containing the response for a task](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/027-a2a-protocol-explained/image-6.png)
 
 Then the client agent reviews the results to make sure they match the user’s original request. If something is missing or doesn’t meet the user’s preferences, it can loop back and ask the server agents for alternatives or more refined options using follow-up messages. These updates come back as new artifacts, and the agent can repeat this loop until it’s happy with the final [itinerary](https://www.altexsoft.com/glossary/itinerary/).
 

@@ -6,7 +6,7 @@ originalUrl: "https://www.smashingmagazine.com/2020/11/data-visualization-apexch
 publishedAt: "2020-11-05"
 canonical: "https://www.smashingmagazine.com/2020/11/data-visualization-apexcharts/"
 excerpt: "In this article, you will be exposed to ApexCharts and to the different types and variants of charts it provides. Along the way, we’ll build several types of charts and learn how we can customize the appearance of our charts. By the end of the article, you will be able to integrate different types and variants of chats in your applications with ApexCharts."
-coverImage: "/portfolio/smashing-magazine/004-data-visualization-apexcharts/cover.png"
+coverImage: "https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/smashing-magazine/004-data-visualization-apexcharts/cover.png"
 tags: []
 ---
 In this article, you will be exposed to ApexCharts and to the different types and variants of charts it provides. Along the way, we’ll build several types of charts and learn how we can customize the appearance of our charts. By the end of the article, you will be able to integrate different types and variants of chats in your applications with ApexCharts.
@@ -62,7 +62,7 @@ This is because the docs were written with vanilla JavaScript application in min
 
 This is a type of chart used to show information that changes over time. We plot a line using several points connected by straight lines. We use Line charts to visualize how a piece of data changes over time. For example, in a financial application, you could use it to show a user how their purchases have increased over some time.
 
-[![An example of a Line chart built with ApexCharts](/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-1.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/e7f6b43d-dc17-4cf1-86d0-c45d0086b457/line-chart-with-axes-labels.png) An example of a Line chart built with ApexCharts. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/e7f6b43d-dc17-4cf1-86d0-c45d0086b457/line-chart-with-axes-labels.png))
+[![An example of a Line chart built with ApexCharts](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-1.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/e7f6b43d-dc17-4cf1-86d0-c45d0086b457/line-chart-with-axes-labels.png) An example of a Line chart built with ApexCharts. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/e7f6b43d-dc17-4cf1-86d0-c45d0086b457/line-chart-with-axes-labels.png))
 
 This chart consists of the following components:
 
@@ -98,7 +98,7 @@ return (
 
 The critical part of an ApexChart is its `series` data. The configurations defined in the `options` property are optional. Without setting any definitions in `options`, the data will still be displayed. However, it may not be the most readable chart. If you decide not to set any custom definitions in `options`, it must still be present as an empty object.
 
-[![The default form of a Line chart without configurations added to the options object](/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-2.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/4e93f408-86a8-4440-aa4b-3a37bc022002/default-form-of-a-line-chart.png) The default view of a line chart. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/4e93f408-86a8-4440-aa4b-3a37bc022002/default-form-of-a-line-chart.png))
+[![The default form of a Line chart without configurations added to the options object](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-2.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/4e93f408-86a8-4440-aa4b-3a37bc022002/default-form-of-a-line-chart.png) The default view of a line chart. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/4e93f408-86a8-4440-aa4b-3a37bc022002/default-form-of-a-line-chart.png))
 
 Let’s configure the options of the chart by adding some values to the `options` object we have in the `config` object.
 
@@ -122,7 +122,7 @@ dataLabels: {
 },
 ```
 
-[![A line chart with data labels added](/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-3.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/2d2e07ed-4bfe-4bd1-b60c-8c653882b488/line-chart-with-data-labels.png) A line chart with data labels added. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/2d2e07ed-4bfe-4bd1-b60c-8c653882b488/line-chart-with-data-labels.png))
+[![A line chart with data labels added](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-3.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/2d2e07ed-4bfe-4bd1-b60c-8c653882b488/line-chart-with-data-labels.png) A line chart with data labels added. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/2d2e07ed-4bfe-4bd1-b60c-8c653882b488/line-chart-with-data-labels.png))
 
 By default, the stroke of a line chart is straight. However, we can make it curved. We add the `stroke` property to `options` and set to it’s `curve` to `smooth`.
 
@@ -132,7 +132,7 @@ stroke: {
 }
 ```
 
-[![A curved line chart](/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-4.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b048988c-b890-4480-9878-0fd3804cf005/curved-line-chart.png) A curved line chart. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b048988c-b890-4480-9878-0fd3804cf005/curved-line-chart.png))
+[![A curved line chart](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-4.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b048988c-b890-4480-9878-0fd3804cf005/curved-line-chart.png) A curved line chart. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b048988c-b890-4480-9878-0fd3804cf005/curved-line-chart.png))
 
 An important part of any chart is its title. We add a `title` property to `options` to give the chart a title.
 
@@ -143,7 +143,7 @@ title: {
 },
 ```
 
-[![A line chart with a title on the top left corner](/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-5.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b5c7cb53-8afe-4809-a48a-6e942a168b03/line-chart-with-title.png) A line chart with a title on the top left corner. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b5c7cb53-8afe-4809-a48a-6e942a168b03/line-chart-with-title.png))
+[![A line chart with a title on the top left corner](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-5.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b5c7cb53-8afe-4809-a48a-6e942a168b03/line-chart-with-title.png) A line chart with a title on the top left corner. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b5c7cb53-8afe-4809-a48a-6e942a168b03/line-chart-with-title.png))
 
 We can add labels to the x and y axes of the chart. To do this we add `xaxis` and `yaxis` properties to `options` and there, we define the `title` for each axis.
 
@@ -161,7 +161,7 @@ yaxis: {
 }
 ```
 
-[![A line chart with labels added to it’s x and y axes](/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-1.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/e7f6b43d-dc17-4cf1-86d0-c45d0086b457/line-chart-with-axes-labels.png) A Line chart with axes labels added. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/e7f6b43d-dc17-4cf1-86d0-c45d0086b457/line-chart-with-axes-labels.png))
+[![A line chart with labels added to it’s x and y axes](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-1.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/e7f6b43d-dc17-4cf1-86d0-c45d0086b457/line-chart-with-axes-labels.png) A Line chart with axes labels added. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/e7f6b43d-dc17-4cf1-86d0-c45d0086b457/line-chart-with-axes-labels.png))
 
 In the end, your code should look like this. With these steps, we’ve not only built a line chart but seen a breakdown of how the `options` we define can enhance a chart.
 
@@ -216,7 +216,7 @@ return (
 
 An area chart is like a line chart in terms of how data values are plotted on the chart and connected using line segments. The only difference is that in an area chart, the area plotted by the data points is filled with shades or colors. Like line charts, area charts depict how a piece of data changes over time. However, unlike line charts, they can also visually represent volume. We can use it to show how groups in a series of data intersect. For example, a chart that shows you the volume of users that access your application through different browsers.
 
-[![An example of an area chart built with ApexCharts](/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-6.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6dc76d80-38ea-47b4-b055-d7ec496e0c0e/unstacked-area-chart.png) An example of an Area chart built with ApexCharts. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6dc76d80-38ea-47b4-b055-d7ec496e0c0e/unstacked-area-chart.png))
+[![An example of an area chart built with ApexCharts](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-6.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6dc76d80-38ea-47b4-b055-d7ec496e0c0e/unstacked-area-chart.png) An example of an Area chart built with ApexCharts. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6dc76d80-38ea-47b4-b055-d7ec496e0c0e/unstacked-area-chart.png))
 
 In the image above, we have an example of an area chart. Like the line chart, it has a title, data labels, and axis labels. The shaded portion of the plotted area chart shows the volume in the data. It also shows how the data in `series1` intersects with that of `series2`. Another use case of area charts is in showing the relationship between two or more pieces of data and how they intersect.
 
@@ -238,7 +238,7 @@ return (
 )
 ```
 
-[![An unstacked area chart](/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-6.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6dc76d80-38ea-47b4-b055-d7ec496e0c0e/unstacked-area-chart.png) An unstacked area chart. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6dc76d80-38ea-47b4-b055-d7ec496e0c0e/unstacked-area-chart.png))
+[![An unstacked area chart](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-6.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6dc76d80-38ea-47b4-b055-d7ec496e0c0e/unstacked-area-chart.png) An unstacked area chart. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6dc76d80-38ea-47b4-b055-d7ec496e0c0e/unstacked-area-chart.png))
 
 To make it a stacked chart, in the `chart` property of the `options` object, we set `stacked` to `true`.
 
@@ -258,13 +258,13 @@ return (
 )
 ```
 
-[![A stacked Area chart](/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-7.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/e47a8774-c4a5-4ea1-b503-6eb045049fcd/stacked-area-chart.png) A stacked area chart. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/e47a8774-c4a5-4ea1-b503-6eb045049fcd/stacked-area-chart.png))
+[![A stacked Area chart](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-7.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/e47a8774-c4a5-4ea1-b503-6eb045049fcd/stacked-area-chart.png) A stacked area chart. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/e47a8774-c4a5-4ea1-b503-6eb045049fcd/stacked-area-chart.png))
 
 ## Bar Charts
 
 We use bar charts to presents data with rectangular bars at heights or lengths proportional to the values they represent. It is best used to compare different categories, like what type of car people have or how many customers a shop has on different days.
 
-[![A bar chart showing some data](/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-8.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/7e974ed5-2802-401a-9b24-641b2087c458/final-form-of-bar-chart.png) A bar chart showing some data. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/7e974ed5-2802-401a-9b24-641b2087c458/final-form-of-bar-chart.png))
+[![A bar chart showing some data](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-8.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/7e974ed5-2802-401a-9b24-641b2087c458/final-form-of-bar-chart.png) A bar chart showing some data. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/7e974ed5-2802-401a-9b24-641b2087c458/final-form-of-bar-chart.png))
 
 The horizontal bars are the major components of a bar chart. They allow us to easily compare values of different categories with ease.
 
@@ -283,7 +283,7 @@ return (
 )
 ```
 
-[![The default form of a bar chart](/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-9.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/31948bc6-9acc-4b51-966a-4f152c71c2f9/default-form-of-a-bar-chart.png) The default view of a bar chart. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/31948bc6-9acc-4b51-966a-4f152c71c2f9/default-form-of-a-bar-chart.png))
+[![The default form of a bar chart](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-9.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/31948bc6-9acc-4b51-966a-4f152c71c2f9/default-form-of-a-bar-chart.png) The default view of a bar chart. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/31948bc6-9acc-4b51-966a-4f152c71c2f9/default-form-of-a-bar-chart.png))
 
 Let’s add more life and distinction to the bars. By default, bar charts are vertical. To make them horizontal, we define how we want the bars to look in the `plotOptions` property. We set the `horizontal` prop to `true` to make the bars horizontal. We set the position of the `dataLabels` to `bottom`. We can also set it to `top` or `center`. The `distributed` prop adds distinction to our bars. Without it, no distinct colors will be applied to the bars, and the legend will not show at the bottom of the chart. We also define the shape of the bars using the `startingShape` and `endingShape` properties.
 
@@ -303,7 +303,7 @@ options{
 }
 ```
 
-[![Bars with the distributed property set to false](/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-10.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/2631bec4-7dbe-4b62-ae24-333733e82800/bars-with-false-distributed-prop.png) Bars with the `distributed` property set to false. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/2631bec4-7dbe-4b62-ae24-333733e82800/bars-with-false-distributed-prop.png))[![Bars with the distributed property set to true](/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-11.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/2d90a905-bda6-42d3-a544-98b7aada5d11/bars-with-true-distributed-prop.png) Bars with the `distributed` property set to true. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/2d90a905-bda6-42d3-a544-98b7aada5d11/bars-with-true-distributed-prop.png))
+[![Bars with the distributed property set to false](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-10.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/2631bec4-7dbe-4b62-ae24-333733e82800/bars-with-false-distributed-prop.png) Bars with the `distributed` property set to false. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/2631bec4-7dbe-4b62-ae24-333733e82800/bars-with-false-distributed-prop.png))[![Bars with the distributed property set to true](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-11.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/2d90a905-bda6-42d3-a544-98b7aada5d11/bars-with-true-distributed-prop.png) Bars with the `distributed` property set to true. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/2d90a905-bda6-42d3-a544-98b7aada5d11/bars-with-true-distributed-prop.png))
 
 Next, we add the categories, labels, and titles to the chart.
 
@@ -318,13 +318,13 @@ title: {
 },
 ```
 
-[![The final form of the bar chart with the labels added](/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-8.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/7e974ed5-2802-401a-9b24-641b2087c458/final-form-of-bar-chart.png) The final result of the horizontal bars. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/7e974ed5-2802-401a-9b24-641b2087c458/final-form-of-bar-chart.png))
+[![The final form of the bar chart with the labels added](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-8.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/7e974ed5-2802-401a-9b24-641b2087c458/final-form-of-bar-chart.png) The final result of the horizontal bars. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/7e974ed5-2802-401a-9b24-641b2087c458/final-form-of-bar-chart.png))
 
 ## Column Charts
 
 A column chart is a data visualization where each category is represented by a rectangle, with the height of the rectangle being proportional to the plotted values. Like bar charts, column charts are used to compare different categories of data. Column charts are also known as vertical bar charts. To convert the bar chart above to a column chart, all we have to do is set `horizontal` to `false` in the `plotOptions`.
 
-[![A column chart comparing profit, revenue, and cash flow of a business](/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-12.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/94a9c100-3a23-4d67-a19f-3f92796fb361/final-form-of-column-chart.png) A column chart comparing profit, revenue, and cash flow of a business. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/94a9c100-3a23-4d67-a19f-3f92796fb361/final-form-of-column-chart.png))
+[![A column chart comparing profit, revenue, and cash flow of a business](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-12.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/94a9c100-3a23-4d67-a19f-3f92796fb361/final-form-of-column-chart.png) A column chart comparing profit, revenue, and cash flow of a business. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/94a9c100-3a23-4d67-a19f-3f92796fb361/final-form-of-column-chart.png))
 
 The vertical columns make it easy to interpret the data we visualize. Also, the data labels added to the top of each column increase the readability of the chart.
 
@@ -352,7 +352,7 @@ return (
 )
 ```
 
-[![The default form of a column chart](/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-13.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/2f3f6b05-8356-4152-8da8-80d59726986f/default-form-of-column-chart.png) The default view of a column chart. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/2f3f6b05-8356-4152-8da8-80d59726986f/default-form-of-column-chart.png))
+[![The default form of a column chart](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-13.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/2f3f6b05-8356-4152-8da8-80d59726986f/default-form-of-column-chart.png) The default view of a column chart. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/2f3f6b05-8356-4152-8da8-80d59726986f/default-form-of-column-chart.png))
 
 This is what we get out of the box. However, we can customize it. We define the width and shape of the bars in the `plotOptions` property. We also set the position of the `dataLabel` to `top`.
 
@@ -370,7 +370,7 @@ options: {
 }
 ```
 
-[![A column chart with data labels added](/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-14.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/7eb0715a-05fa-4127-a537-04e6b9746e2c/column-chart-with-data-labels.png) A column chart with data labels added. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/7eb0715a-05fa-4127-a537-04e6b9746e2c/column-chart-with-data-labels.png))
+[![A column chart with data labels added](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-14.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/7eb0715a-05fa-4127-a537-04e6b9746e2c/column-chart-with-data-labels.png) A column chart with data labels added. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/7eb0715a-05fa-4127-a537-04e6b9746e2c/column-chart-with-data-labels.png))
 
 Next, we define the style and font-size of the data labels and their distance from the graphs. Finally, we add the labels for the x and y axes.
 
@@ -396,7 +396,7 @@ options: {
 }
 ```
 
-[![The final form of the column chart](/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-12.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/94a9c100-3a23-4d67-a19f-3f92796fb361/final-form-of-column-chart.png) The final form of the column. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/94a9c100-3a23-4d67-a19f-3f92796fb361/final-form-of-column-chart.png))
+[![The final form of the column chart](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-12.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/94a9c100-3a23-4d67-a19f-3f92796fb361/final-form-of-column-chart.png) The final form of the column. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/94a9c100-3a23-4d67-a19f-3f92796fb361/final-form-of-column-chart.png))
 
 To convert this to a stacked chart, all we have to do is add a `stacked` property to the `chart` and set it to `true`. Also, since we switched to a stacked chart, we’ll change the `endingShape` of the bars to `flat` to remove the curves.
 
@@ -414,13 +414,13 @@ options: {
 }
 ```
 
-[![A stacked column chart](/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-15.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/7fecb040-e36e-473f-b34c-f209b30390b5/stacked-column-chart.png) A stacked column chart. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/7fecb040-e36e-473f-b34c-f209b30390b5/stacked-column-chart.png))
+[![A stacked column chart](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-15.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/7fecb040-e36e-473f-b34c-f209b30390b5/stacked-column-chart.png) A stacked column chart. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/7fecb040-e36e-473f-b34c-f209b30390b5/stacked-column-chart.png))
 
 ## Pie And Donut Charts
 
 A pie chart is a circular graph that shows individual categories as slices – or percentages – of the whole. The donut chart is a variant of the pie chart, with a hole in its center, and it displays categories as arcs rather than slices. Both make part-to-whole relationships easy to grasp at a glance. Pie charts and donut charts are commonly used to visualize election and census results, revenue by product or division, recycling data, survey responses, budget breakdowns, educational statistics, spending plans, or population segmentation.
 
-[![Sample of a pie chart](/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-16.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b6fcb5a4-2849-4038-9053-a6868739fa09/pie-chart.png) Sample of a pie chart. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b6fcb5a4-2849-4038-9053-a6868739fa09/pie-chart.png))
+[![Sample of a pie chart](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-16.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b6fcb5a4-2849-4038-9053-a6868739fa09/pie-chart.png) Sample of a pie chart. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b6fcb5a4-2849-4038-9053-a6868739fa09/pie-chart.png))
 
 In pie and donut charts, `series` is calculated in percentages. This means the sum of the values in the `series` should be 100.
 
@@ -439,7 +439,7 @@ return (
 )
 ```
 
-[![A pie chart](/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-16.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b6fcb5a4-2849-4038-9053-a6868739fa09/pie-chart.png) A pie chart. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b6fcb5a4-2849-4038-9053-a6868739fa09/pie-chart.png))
+[![A pie chart](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-16.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b6fcb5a4-2849-4038-9053-a6868739fa09/pie-chart.png) A pie chart. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b6fcb5a4-2849-4038-9053-a6868739fa09/pie-chart.png))
 
 We can control the responsive nature of our charts. To do this, we add a `responsive` property to the chart’s `options`. Here we set the `max-width` breakpoint to `480px`. Then, we set the `width` of the chart to `450px` and the `position` of the legend to `bottom`. Now, at screen sizes of `480px` and below, the legend will appear at the bottom of the chart.
 
@@ -466,13 +466,13 @@ To convert the pie chart to a donut chart, all you have to do is change the comp
 <ReactApexChart options={config.options} series={config.series} type="donut" />
 ```
 
-[![A donut chart](/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-17.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/03f0c440-fe7a-49d1-8726-6b9a3ad5a36b/donut-chart.png) A donut chart. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/03f0c440-fe7a-49d1-8726-6b9a3ad5a36b/donut-chart.png))
+[![A donut chart](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-17.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/03f0c440-fe7a-49d1-8726-6b9a3ad5a36b/donut-chart.png) A donut chart. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/03f0c440-fe7a-49d1-8726-6b9a3ad5a36b/donut-chart.png))
 
 ## Mixed Charts
 
 Mixed charts allow you to combine two or more chart types into a single chart. You can use mixed charts when the numbers in your data vary widely from data series to data series or when you have mixed type of data (for example, price and volume). Mixed charts make it easy to visualize different data types in the same format simultaneously.
 
-[![A mixed chart](/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-18.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/79798df3-788e-48ba-97c4-74306fd2af53/mixed-chart-with-adjusted-opacity.png) A mixed chart. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/79798df3-788e-48ba-97c4-74306fd2af53/mixed-chart-with-adjusted-opacity.png))
+[![A mixed chart](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-18.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/79798df3-788e-48ba-97c4-74306fd2af53/mixed-chart-with-adjusted-opacity.png) A mixed chart. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/79798df3-788e-48ba-97c4-74306fd2af53/mixed-chart-with-adjusted-opacity.png))
 
 Let’s make a combination of a line, area, and column chart.
 
@@ -497,7 +497,7 @@ const config = {
 }
 ```
 
-[![The default form of a mixed chart](/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-19.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6ebcfb66-d492-4d61-ab4c-78e6b8d1b181/mixed-chart.png) The default form of a mixed chart. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6ebcfb66-d492-4d61-ab4c-78e6b8d1b181/mixed-chart.png))
+[![The default form of a mixed chart](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-19.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6ebcfb66-d492-4d61-ab4c-78e6b8d1b181/mixed-chart.png) The default form of a mixed chart. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6ebcfb66-d492-4d61-ab4c-78e6b8d1b181/mixed-chart.png))
 
 Next, we set the stroke type to `smooth` and define its width. We pass in an array of values to define the width of each chart. The values in the array correspond to the order of the charts defined in `series`. We also define the opacity of each chart’s fill. For this, we also pass in an array. This way, we can control the opacity of each chart separately.
 
@@ -522,7 +522,7 @@ options: {
 }
 ```
 
-[![A mixed chart with adjusted opacity](/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-18.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/79798df3-788e-48ba-97c4-74306fd2af53/mixed-chart-with-adjusted-opacity.png) A mixed chart with adjusted opacity. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/79798df3-788e-48ba-97c4-74306fd2af53/mixed-chart-with-adjusted-opacity.png))
+[![A mixed chart with adjusted opacity](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-18.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/79798df3-788e-48ba-97c4-74306fd2af53/mixed-chart-with-adjusted-opacity.png) A mixed chart with adjusted opacity. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/79798df3-788e-48ba-97c4-74306fd2af53/mixed-chart-with-adjusted-opacity.png))
 
 ## Customizing Our Charts
 
@@ -545,7 +545,7 @@ options: {
 }
 ```
 
-[![A line chart with grids added](/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-20.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/8bba3208-ef0a-4475-a345-f9681fd1b812/line-chart-with-grids.png) A line chart with grids added. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/8bba3208-ef0a-4475-a345-f9681fd1b812/line-chart-with-grids.png))
+[![A line chart with grids added](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-20.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/8bba3208-ef0a-4475-a345-f9681fd1b812/line-chart-with-grids.png) A line chart with grids added. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/8bba3208-ef0a-4475-a345-f9681fd1b812/line-chart-with-grids.png))
 
 We can adjust the stroke of the charts and define their colors. Let’s do that with the column chart. Each color in the `colors` array corresponds with the data in the `series` array.
 
@@ -559,7 +559,7 @@ options: {
 }
 ```
 
-[![A column chart with stroke added](/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-21.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/8a3641a0-75ba-44be-9bc4-434125535791/column-chart-with-strokes.png) A column chart with stroke added. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/8a3641a0-75ba-44be-9bc4-434125535791/column-chart-with-strokes.png))
+[![A column chart with stroke added](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/smashing-magazine/004-data-visualization-apexcharts/image-21.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/8a3641a0-75ba-44be-9bc4-434125535791/column-chart-with-strokes.png) A column chart with stroke added. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/8a3641a0-75ba-44be-9bc4-434125535791/column-chart-with-strokes.png))
 
 ## Conclusion
 

@@ -6,7 +6,7 @@ originalUrl: "https://prismic.io/blog/nextjs-image-component-optimization"
 publishedAt: "2023-07-26"
 canonical: "https://prismic.io/blog/nextjs-image-component-optimization"
 excerpt: "Learn how Next.js image component, or next/image, enhances website performance and improves SEO. Discover its properties and how to add it to your Next.js project."
-coverImage: "/portfolio/prismic/010-nextjs-image-component-optimization/cover.png"
+coverImage: "https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/prismic/010-nextjs-image-component-optimization/cover.png"
 tags: []
 ---
 Images are a vital part of any website. They allow us to engage users and visually convey complex information. As the saying goes, “A picture is worth a thousand words.”
@@ -21,7 +21,7 @@ This article will explore the Next.js image component and how it helps with imag
 
 Data from Web Almanac 2019 shows that [images account for almost 75% of a webpage’s weight](https://almanac.httparchive.org/en/2019/page-weight#what-types-of-assets-does-the-http-archive-track-and-how-much-do-they-matter), and 75% is a lot! Web Almanac 2022 data shows that [images are the number one contributor to a page’s weight](https://almanac.httparchive.org/en/2022/page-weight#content-type-and-file-formats), whether on desktop or mobile.
 
-![An image of Web Almanac median page weight data.](/portfolio/prismic/010-nextjs-image-component-optimization/image-1.png)
+![An image of Web Almanac median page weight data.](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/prismic/010-nextjs-image-component-optimization/image-1.png)
 
 Images are a major culprit when it comes to a webpage’s size. This doesn’t mean we should stop adding images to our websites, as doing so will lead to a poor browsing experience and affect industries that rely heavily on them, such as the e-commerce industry.
 
@@ -51,13 +51,13 @@ The component automatically compresses images for peak performance, improving a 
 
 Take [this 640x896 Pexels JPG image](https://www.pexels.com/photo/entry-to-the-chinatown-in-london-15520949/), for example. When working with the default HTML `img` component, the image's size is 105kb.
 
-![An image showing the size of an image with default HTML.](/portfolio/prismic/010-nextjs-image-component-optimization/image-2.png)
+![An image showing the size of an image with default HTML.](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/prismic/010-nextjs-image-component-optimization/image-2.png)
 
 However, switching to `<Image/>` reduces the size to 80kb—a 23.81% reduction!
 
 I performed this test with the 1920x2688 version of the same image. That version's size was 603kb, and `<Image/>` also reduced it to 80kb—an 86.7% decrease.
 
-![An image showing the size of an image with next/image.](/portfolio/prismic/010-nextjs-image-component-optimization/image-3.png)
+![An image showing the size of an image with next/image.](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/prismic/010-nextjs-image-component-optimization/image-3.png)
 
 ### Serves images in modern formats
 
@@ -129,7 +129,7 @@ export default function Page() {
 
 When working with remote images in Next.js, we have to register the images’ root URL for them to render in the browser. We can handle this configuration in the `remotePatterns` [property](https://nextjs.org/docs/app/api-reference/components/image#remotepatterns). Failure to do that will result in the following error.
 
-![An image of an unhandled rentime error.](/portfolio/prismic/010-nextjs-image-component-optimization/image-4.png)
+![An image of an unhandled rentime error.](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/prismic/010-nextjs-image-component-optimization/image-4.png)
 
 To fix the error, add the `protocol` and `hostname` of the URL to the `images.remotePatterns` config in `next.config.js` file.
 
@@ -274,7 +274,7 @@ This shows [a blurry base64 version of the image](https://nextjs.org/docs/app/ap
 
 The gif below shows the `next/image` blur effect in action.
 
-![A GIF of next/image blur effect.](/portfolio/prismic/010-nextjs-image-component-optimization/image-5.mp4)
+![A GIF of next/image blur effect.](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/prismic/010-nextjs-image-component-optimization/image-5.mp4)
 
 ## Improvements with Next.js 14
 

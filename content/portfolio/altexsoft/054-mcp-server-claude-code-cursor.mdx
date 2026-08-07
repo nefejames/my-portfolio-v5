@@ -6,7 +6,7 @@ originalUrl: "https://www.altexsoft.com/blog/mcp-server-claude-code-cursor/"
 publishedAt: "2026-04-28"
 canonical: "https://www.altexsoft.com/blog/mcp-server-claude-code-cursor/"
 excerpt: "Learn how AltexSoft built Interlace's MCP server for Claude Code and Cursor, and what we learned about MCP server design along the way."
-coverImage: "/portfolio/altexsoft/054-mcp-server-claude-code-cursor/cover.jpg"
+coverImage: "https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/054-mcp-server-claude-code-cursor/cover.jpg"
 tags: []
 ---
 When we built [Interlace](https://www.askinterlace.com/), our code knowledge graph platform, we deliberately chose to skip the graphical interface entirely and build an MCP server instead, one that coding assistants could connect to directly. For a tool whose entire purpose is to give [AI agents](https://www.altexsoft.com/blog/subagents/) structured, persistent knowledge about a codebase, putting a dashboard in the middle would have been the wrong abstraction. The agents are the interface.
@@ -23,7 +23,7 @@ Before [AI coding tools](https://www.altexsoft.com/blog/ai-coding-tools/) like 
 
 Interlace performs automated reverse engineering of software systems and stores the discovered knowledge as a persistent, queryable [knowledge graph](https://www.altexsoft.com/blog/knowledge-graph/) in FalkorDB—which [AI agents](https://www.altexsoft.com/blog/ai-agents/) can access via an [MCP server](https://www.altexsoft.com/blog/model-context-protocol/). Where tools like Cursor operate within a single session's [context window](https://www.altexsoft.com/glossary/context-window/) and reset when that window closes, Interlace builds a durable, system-wide understanding of a codebase that persists across sessions, teams, and tools.
 
-![Interlace and how it assists with navigating complex codebases](/portfolio/altexsoft/054-mcp-server-claude-code-cursor/image-1.png)
+![Interlace and how it assists with navigating complex codebases](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/054-mcp-server-claude-code-cursor/image-1.png)
 
 The platform runs a structured nine-phase analysis pipeline, powered by the Anthropic API, that takes a codebase from raw source files all the way to business-level understanding: structural discovery, endpoint and entity extraction, dependency mapping, service grouping, user flow reconstruction, and auto-generated documentation. Everything ends up in a graph where every function is placed in context, showing which user flow it belongs to, what services it depends on, and what might break if it changes.
 

@@ -19,8 +19,8 @@ const cspDirectives = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' https://t.nefeatori.com https://cdn.jsdelivr.net",
   "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net",
-  "img-src 'self' data: https://pbs.twimg.com https://abs.twimg.com https://i.ytimg.com https://img.youtube.com",
-  "media-src 'self'",
+  "img-src 'self' data: https://pbs.twimg.com https://abs.twimg.com https://i.ytimg.com https://img.youtube.com https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com",
+  "media-src 'self' https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com",
   "frame-src https://www.youtube.com https://www.youtube-nocookie.com https://codepen.io https://www.linkedin.com",
   "connect-src 'self' https://t.nefeatori.com",
   "worker-src 'self' blob:",
@@ -48,6 +48,12 @@ const nextConfig: NextConfig = {
   // negotiates per request via the Accept header; source files are untouched.
   images: {
     formats: ['image/avif', 'image/webp'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com',
+      },
+    ],
   },
   async headers() {
     return [

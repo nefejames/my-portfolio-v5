@@ -6,7 +6,7 @@ originalUrl: "https://www.altexsoft.com/blog/chain-of-thought-prompting/"
 publishedAt: "2025-09-17"
 canonical: "https://www.altexsoft.com/blog/chain-of-thought-prompting/"
 excerpt: "Chain of thought prompting helps AI reason step by step. Learn how it works and why it improves problem-solving."
-coverImage: "/portfolio/altexsoft/030-chain-of-thought-prompting/cover.jpg"
+coverImage: "https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/030-chain-of-thought-prompting/cover.jpg"
 tags: []
 ---
 Think about a time you faced a tough problem, like a tricky math equation or a bug in your code. It may have felt overwhelming since you couldn’t figure out how to approach the issue. But once you broke it into smaller steps, each part became easier to handle, and the answer started coming together. That process of working step by step is what turns confusion into clarity—and it’s the same idea behind the chain-of-thought (CoT) process for [large language models (LLMs)](https://www.altexsoft.com/blog/language-models-gpt/).
@@ -27,11 +27,11 @@ Here’s how it looks from the user’s end.
 - The model generates a sequence of short reasoning steps that lead to the final answer.
 - Those steps make the model’s logic visible and often help it reach a more accurate result.
 
-![ChatGPT showing the reasoning steps it took to solve an arithmetic problem](/portfolio/altexsoft/030-chain-of-thought-prompting/image-1.png)
+![ChatGPT showing the reasoning steps it took to solve an arithmetic problem](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/030-chain-of-thought-prompting/image-1.png)
 
 Chain-of-thought prompting matters because it enhances a model’s accuracy and performance. It is particularly useful for tasks that require multistep reasoning, such as solving math word problems or logic puzzles. Additionally, it is applied in areas like planning, coding, and debugging, where breaking down intermediate steps enables the model to produce clearer and more reliable outcomes.
 
-![Claude showing its reasoning steps for a logic puzzle](/portfolio/altexsoft/030-chain-of-thought-prompting/image-2.png)
+![Claude showing its reasoning steps for a logic puzzle](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/030-chain-of-thought-prompting/image-2.png)
 
 How exactly do CoT prompts work and affect a model internally? Researchers have provided answers to the question of what happens when you trigger a reasoning process and why it leads to better outcomes.
 
@@ -49,19 +49,19 @@ Not all chain-of-thought prompts look the same. Over time, researchers and [prom
 
 **Few-shot chain-of-thought**. Rather than simply telling the model what to do, you provide examples that include both reasoning steps and answers. This "demonstration" of the desired approach is especially useful when you want the LLM to adopt a specific reasoning style or when the problem is complex and examples can lead to more reliable and accurate outputs.
 
-![An example of a few-shot CoT prompt in action](/portfolio/altexsoft/030-chain-of-thought-prompting/image-3.png)
+![An example of a few-shot CoT prompt in action](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/030-chain-of-thought-prompting/image-3.png)
 
 **Least-to-most chain-of-thought**. Here, you instruct the model to begin with the simplest version of the problem and then build up gradually to the full solution. This mirrors how people often learn and solve challenges—starting with basics before handling a complex case. It's excellent for big, layered problems where breaking them into smaller steps helps stay on track.
 
-![An example of a least-to-most CoT prompt in action](/portfolio/altexsoft/030-chain-of-thought-prompting/image-4.png)
+![An example of a least-to-most CoT prompt in action](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/030-chain-of-thought-prompting/image-4.png)
 
 **Zero-shot chain-of-thought**. In this approach, you don’t provide examples; instead, you give a direct command like "Let’s think step by step." This method is best for relatively simple tasks, such as basic math problems or short logic puzzles, where the model can generate a reasoning process without needing prior examples.
 
-![An example of a zero-shot CoT prompt in action](/portfolio/altexsoft/030-chain-of-thought-prompting/image-5.png)
+![An example of a zero-shot CoT prompt in action](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/030-chain-of-thought-prompting/image-5.png)
 
 **Self-consistency chain-of-thought**. This technique involves asking the model to solve the same problem multiple times using step-by-step reasoning, compare the answers, and select the most consistent output. The prompt reduces errors on problems with tricky steps and works especially well when having only one reasoning path might lead to mistakes.
 
-![An example of a self-consistency CoT prompt in action](/portfolio/altexsoft/030-chain-of-thought-prompting/image-6.png)
+![An example of a self-consistency CoT prompt in action](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/030-chain-of-thought-prompting/image-6.png)
 
 ## From prompting to reasoning models
 
@@ -69,7 +69,7 @@ Chain-of-thought has evolved beyond a prompt technique to become a standard feat
 
 This is achieved through additional fine-tuning. Models are trained with [reinforcement learning](https://www.altexsoft.com/blog/reinforcement-learning-explained-overview-comparisons-and-applications-in-business/) systems that not only check if the final answer is correct but also assess the quality of the reasoning process itself. Some methods reward each reasoning step, others focus on rewarding correct outcomes, and some utilize simple rule-based checks to ensure accuracy.
 
-![Comparison of reasoning-first capabilities across LLM providers](/portfolio/altexsoft/030-chain-of-thought-prompting/image-7.png)
+![Comparison of reasoning-first capabilities across LLM providers](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/030-chain-of-thought-prompting/image-7.png)
 
 To strengthen reasoning further, these models are trained to generate longer chains of thought, explore multiple solution paths, or use search-based methods to backtrack and refine their answers. The result is reasoning that feels intrinsic rather than externally prompted.
 

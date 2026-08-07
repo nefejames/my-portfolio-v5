@@ -6,7 +6,7 @@ originalUrl: "https://www.altexsoft.com/blog/vector-database/"
 publishedAt: "2025-01-29"
 canonical: "https://www.altexsoft.com/blog/vector-database/"
 excerpt: "Exploring vector databases, embeddings, their use cases, how they work, the differences between vector and graph databases, and an overview of VD platforms."
-coverImage: "/portfolio/altexsoft/050-vector-database/cover.jpg"
+coverImage: "https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/050-vector-database/cover.jpg"
 tags: []
 ---
 This article explores vector databases and embeddings, their use cases, and how they work. It also explains the key differences between vector and graph databases and offers a brief overview of popular solutions: Pinecone, Chroma, Milvus, Weaviate, and Qdrant.
@@ -17,7 +17,7 @@ A **vector database** is a specialized type of [database](https://www.altexsoft
 
 _Learn about [Redis](https://www.altexsoft.com/blog/redis-pros-and-cons/) and its vector database solution in our dedicated article._
 
-![Vector database containing image embeddings](/portfolio/altexsoft/050-vector-database/image-1.png)
+![Vector database containing image embeddings](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/050-vector-database/image-1.png)
 
 A **vector embedding** is a sequence of numbers like \[0.4, 0.8, -0.1, 0.6, 1.1, ...\] that captures the original meaning of a data point (a sentence, an image, an audio signal, etc.) in relation to other points.
 
@@ -80,7 +80,7 @@ Vector databases and [graph databases](https://www.altexsoft.com/blog/graph-data
 
 Both databases manage connections in data, but they do so using different structures and techniques suited for different purposes.
 
-![Vector database vs. graph database](/portfolio/altexsoft/050-vector-database/image-2.png)
+![Vector database vs. graph database](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/050-vector-database/image-2.png)
 
 Vector databases arrange data in a multidimensional space based on similarities: Data points with much in common will be relatively close. [Graphs](https://www.altexsoft.com/blog/knowledge-graph/) store data as nodes (entities) and edges (relationships) between them. They enable efficient traversal and querying of complex relationships, making them ideal for applications where connections and interactions between entities are central.
 
@@ -92,7 +92,7 @@ Graph databases, on the other hand, would be more suited for social recommendati
 
 Let's break down an example of a recommendation workflow on a movie streaming service.
 
-![How a vector database works](/portfolio/altexsoft/050-vector-database/image-3.png)
+![How a vector database works](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/050-vector-database/image-3.png)
 
 **Input.** Say the user watches _Inception_, a sci-fi movie directed by Christopher Nolan. The system tracks their interaction and updates their preferences. It prepares the input data and groups relevant attributes (e.g., movie genres, cast, crew, director, etc.).
 
@@ -120,7 +120,7 @@ When you ask an [AI chatbot](https://www.altexsoft.com/blog/a-technological-guid
 
 The database compares the query vector to the vectors it stores and calculates the "distance" between them using different metrics. The closer the vectors are, the more they have in common. Here are the three most popular approaches to the task.
 
-![Cosine similarity vs. Dot product vs. Euclidean distance](/portfolio/altexsoft/050-vector-database/image-4.png)
+![Cosine similarity vs. Dot product vs. Euclidean distance](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/050-vector-database/image-4.png)
 
 **Cosine similarity** measures how similar two data points are in terms of their direction. Instead of focusing on the distance between them, it checks their alignment. Think of it as comparing the angle between two arrows pointing out from the same origin.
 
@@ -144,7 +144,7 @@ Unlike nearest neighbor search, which exhaustively compares the query to all poi
 
 **Indexing** is the method of organizing the data for efficient searching. Various approaches, each with its own strengths, can be used for indexing.
 
-![Indexing methods](/portfolio/altexsoft/050-vector-database/image-5.png)
+![Indexing methods](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/050-vector-database/image-5.png)
 
 A **hierarchical navigable small world (HNSW)** uses a multilayered graph structure for an ANN search. The top contains fewer vectors, while the lower layers have more vectors and provide finer detail.
 
@@ -164,7 +164,7 @@ This section briefly overviews some of the leading vector databases.
 
 _For an in-depth review, explore our dedicated article on [vector databases](https://www.altexsoft.com/blog/vector-databases-compared/) compared._
 
-![A general overview of five vector databases](/portfolio/altexsoft/050-vector-database/image-6.png)
+![A general overview of five vector databases](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/050-vector-database/image-6.png)
 
 ### Chroma: Vector database for LLMs
 

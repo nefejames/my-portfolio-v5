@@ -6,7 +6,7 @@ originalUrl: "https://www.altexsoft.com/blog/master-data-management-explained-wi
 publishedAt: "2024-11-29"
 canonical: "https://www.altexsoft.com/blog/master-data-management-explained-with-examples/"
 excerpt: "Understand master data management with examples. Explore MDM tools and the roles needed for success."
-coverImage: "/portfolio/altexsoft/012-master-data-management-explained-with-examples/cover.jpg"
+coverImage: "https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/012-master-data-management-explained-with-examples/cover.jpg"
 tags: []
 ---
 Businesses gather vast amounts of data from many sources. However, when this data is stored in multiple places without any central organization, it leads to issues like duplicate records, inconsistencies, and errors, resulting in poor insights and decisions. This is where Master Data Management (MDM) comes in.
@@ -21,7 +21,7 @@ Let’s consider Nimbus Digital, a fictitious tech platform offering various ser
 
 Organizations can have multiple subdomains of master data that represent a specific category of business-critical information:
 
-![Master data and its subdomains ](/portfolio/altexsoft/012-master-data-management-explained-with-examples/image-1.png)
+![Master data and its subdomains ](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/012-master-data-management-explained-with-examples/image-1.png)
 
 **Customer master data** is about individuals or organizations that interact with a business. It includes customer ID, full name, contact details, addresses, account preferences, purchase history, [loyalty program](https://www.altexsoft.com/blog/airline-loyalty-program/) details, etc.
 
@@ -55,13 +55,13 @@ In the case of Nimbus Digital, which we explored earlier, the following data cat
 
 Creating a [data model](https://www.altexsoft.com/blog/data-modeling/) is necessary to ensure consistency throughout your master data. The model should outline how data will be structured, related, and organized, including rules for hierarchies, relationships, and metadata definitions. This model forms the foundation for data governance and helps ensure data consistency as it flows through your system.
 
-![Master data model](/portfolio/altexsoft/012-master-data-management-explained-with-examples/image-2.png)
+![Master data model](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/012-master-data-management-explained-with-examples/image-2.png)
 
 ### Choose an MDM architecture
 
 There are different architectural approaches to MDM implementation. The one you choose depends on several factors, including your organization’s specific needs, goals, and existing integration capabilities.
 
-![Master data architecture patterns](/portfolio/altexsoft/012-master-data-management-explained-with-examples/image-3.png)
+![Master data architecture patterns](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/012-master-data-management-explained-with-examples/image-3.png)
 
 **Registry architecture.** Here, the master data stays in its original systems but is indexed for reference in a central hub. This hub links and matches records from different sources, providing a virtual view of master data. The registry approach causes minimal disruption to the existing infrastructure and is not complex to implement. However, it can lead to performance issues when querying multiple data sources. Also, the central hub doesn’t update information in the original systems, which makes it harder to maintain the organization's data quality and consistency.
 
@@ -87,7 +87,7 @@ Let’s explore the daily MDM operations that occur in an organization and the t
 
 Data integration involves using [ETL (Extract, Transform, Load)](https://www.altexsoft.com/blog/etl-vs-elt/) processes to pull the relevant data from various sources, put it into a staging area (temporary repository) for processing, and then deliver it to the final destination (for example, a centralized master data hub).
 
-![Extract, transform, load process](/portfolio/altexsoft/012-master-data-management-explained-with-examples/image-4.png)
+![Extract, transform, load process](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/012-master-data-management-explained-with-examples/image-4.png)
 
 Once the data is in the staging area, it goes through a set of transformations.
 
@@ -114,7 +114,7 @@ Data merging involves resolving any duplicates that exist in the dataset into a 
 
 Merging uses survivorship rules to resolve conflicts by determining the "best version" of a data attribute to use when multiple sources provide opposing or duplicate information. These rules assign higher weights to certain data based on specific criteria.
 
-![Data merging based on survivorship rules](/portfolio/altexsoft/012-master-data-management-explained-with-examples/image-5.png)
+![Data merging based on survivorship rules](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/012-master-data-management-explained-with-examples/image-5.png)
 
 Examples of survivorship rules include the following.
 
@@ -137,7 +137,7 @@ Enriching data leads to an actionable dataset that can improve marketing campaig
 
 Publishing involves pushing fully processed, high-quality master data from the MDM hub to downstream systems like CRMs, ERPs, [BI tools](https://www.altexsoft.com/blog/best-bi-tools-comparison/), or other operational platforms.
 
-![The master data ready for use by other systems](/portfolio/altexsoft/012-master-data-management-explained-with-examples/image-6.png)
+![The master data ready for use by other systems](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/012-master-data-management-explained-with-examples/image-6.png)
 
 There are several approaches to publishing master data.
 
@@ -155,13 +155,13 @@ Master data implementation is not a done-and-dusted deal. It's a continuous proc
 
 Organizations can implement various master data management platforms to store, organize, and manage essential business data in one central system. These solutions incorporate AI for data cleaning, matching, and analytics. They typically use a subscription-based pricing model, and costs will depend on factors like deployment options, requested add-ons, and data volumes.
 
-![Master data management platforms compared](/portfolio/altexsoft/012-master-data-management-explained-with-examples/image-7.png)
+![Master data management platforms compared](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/012-master-data-management-explained-with-examples/image-7.png)
 
 ### IBM Infosphere
 
 [IBM Infosphere](https://www.ibm.com/products/ibm-infosphere-master-data-management) is a robust MDM solution designed for large enterprises that need to manage complex, distributed data environments. It offers both physical (centralized) and virtual (federated) MDM deployment options. This flexibility allows organizations to manage data in ways that fit their needs.
 
-![IBM Infosphere information governance catalog](/portfolio/altexsoft/012-master-data-management-explained-with-examples/image-8.png)
+![IBM Infosphere information governance catalog](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/012-master-data-management-explained-with-examples/image-8.png)
 
 IBM Infosphere information governance catalog. Source: [DBMS Tools](https://dbmstools.com/tools/ibm-infosphere-information-governance)
 
@@ -171,7 +171,7 @@ One standout feature is its ability to analyze relationships using graph databas
 
 [Profisee](https://profisee.com/platform/) is an MDM solution known for its ease of use and flexibility. It is popular with mid-sized businesses and organizations looking for a quick deployment. The platform serves the manufacturing, healthcare, retail, financial services, oil and gas, life sciences, insurance, customer goods, and professional services industries.
 
-![Profisee’s customer matching interface](/portfolio/altexsoft/012-master-data-management-explained-with-examples/image-9.png)
+![Profisee’s customer matching interface](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/012-master-data-management-explained-with-examples/image-9.png)
 
 Profisee’s customer matching interface. Source: [Profisee](https://profisee.com/platform/features/)
 
@@ -181,7 +181,7 @@ Profisee comes with 20+ integrations, including its integration with [Azure Open
 
 [Informatica’s MDM solution](https://www.informatica.com/products/master-data-management.html) is one of the offerings of its larger Intelligent Data Management Cloud (IDMC) platform. The MDM solution integrates data governance, data quality, and data enrichment functionalities that help businesses get a birds-eye view of their information.
 
-![Informatica’s customer 360 interface for mastering customer data](/portfolio/altexsoft/012-master-data-management-explained-with-examples/image-10.png)
+![Informatica’s customer 360 interface for mastering customer data](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/012-master-data-management-explained-with-examples/image-10.png)
 
 Informatica’s customer 360 interface for mastering customer data. Source: [Informatica](https://www.informatica.com/blogs/three-ways-informaticas-intelligent-data-management-cloud-improves-master-data-management.html)
 
@@ -193,7 +193,7 @@ Informatica comes with 40+ prebuilt integrations and is targeted at higher educa
 
 [Ataccama](https://www.ataccama.com/platform/master-data-management) makes data management easy for everyone, including those without a technical background. It combines data governance, data quality, and MDM into one user-friendly platform, enabling quick and accurate data processing. Ataccama targets the banking, healthcare, retail, government, life sciences, telecom, and transportation industries.
 
-![PII (Personally Identifiable Information)  data quality monitoring in Ataccama’s platform](/portfolio/altexsoft/012-master-data-management-explained-with-examples/image-11.png)
+![PII (Personally Identifiable Information)  data quality monitoring in Ataccama’s platform](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/012-master-data-management-explained-with-examples/image-11.png)
 
 PII (Personally Identifiable Information)  data quality monitoring in Ataccama’s platform. Source: [Ataccama](https://www.ataccama.com/blog/what-is-data-governance)
 
@@ -203,7 +203,7 @@ Ataccama’s AI-powered data governance and quality management features automate
 
 [SAP MDM solution](https://www.sap.com/products/technology-platform/master-data-governance.html) is an MDM tool that integrates with SAP applications and is a good fit for enterprises that are already using SAP systems for other business processes.
 
-![SAP master data consolidation process](/portfolio/altexsoft/012-master-data-management-explained-with-examples/image-12.png)
+![SAP master data consolidation process](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/012-master-data-management-explained-with-examples/image-12.png)
 
 SAP master data consolidation process. Source: [SAP](https://www.sap.com/products/technology-platform/master-data-governance.html)
 

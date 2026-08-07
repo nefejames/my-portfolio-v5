@@ -6,7 +6,7 @@ originalUrl: "https://www.smashingmagazine.com/2020/11/authenticating-react-apps
 publishedAt: "2020-11-11"
 canonical: "https://www.smashingmagazine.com/2020/11/authenticating-react-apps-auth0/"
 excerpt: "An important aspect of app development is ensuring that only verified users have access to our apps. This can be tedious and costly do, especially when you add alternative methods of logging in outside emails and passwords. Auth0 is a service that provides authentication functionalities to developers out of the box.\nIn this article, we’ll learn how to authenticate our React apps using Auth0. We will also learn how to set up Social Logins in our apps. This article will be beneficial to readers who want to add some form of authentication to their apps or want to get familiar with Auth0."
-coverImage: "/portfolio/smashing-magazine/003-authenticating-react-apps-auth0/cover.png"
+coverImage: "https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/smashing-magazine/003-authenticating-react-apps-auth0/cover.png"
 tags: []
 ---
 An important aspect of app development is ensuring that only verified users have access to our apps. This can be tedious and costly do, especially when you add alternative methods of logging in outside emails and passwords. Auth0 is a service that provides authentication functionalities to developers out of the box.
@@ -59,19 +59,19 @@ Auth0 provides several platform integrations. In this article, we will take a lo
 
 - Create your Auth0 app on [your dashboard.](https://manage.auth0.com/)
 
-[![Your Auth0 dashboard](/portfolio/smashing-magazine/003-authenticating-react-apps-auth0/image-1.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/55157775-e4fe-4726-834b-319695943e0f/1-authenticating-react-apps-auth0.png) Your Auth0 dashboard. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/55157775-e4fe-4726-834b-319695943e0f/1-authenticating-react-apps-auth0.png))
+[![Your Auth0 dashboard](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/smashing-magazine/003-authenticating-react-apps-auth0/image-1.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/55157775-e4fe-4726-834b-319695943e0f/1-authenticating-react-apps-auth0.png) Your Auth0 dashboard. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/55157775-e4fe-4726-834b-319695943e0f/1-authenticating-react-apps-auth0.png))
 
 - Select the type of app. Ours is a SPA.
 
-[![Choose app type](/portfolio/smashing-magazine/003-authenticating-react-apps-auth0/image-2.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/ee7fa49b-b99f-4daf-8ebc-b5fedfe17ab9/7-authenticating-react-apps-auth0.png) Choose app type. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/ee7fa49b-b99f-4daf-8ebc-b5fedfe17ab9/7-authenticating-react-apps-auth0.png))
+[![Choose app type](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/smashing-magazine/003-authenticating-react-apps-auth0/image-2.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/ee7fa49b-b99f-4daf-8ebc-b5fedfe17ab9/7-authenticating-react-apps-auth0.png) Choose app type. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/ee7fa49b-b99f-4daf-8ebc-b5fedfe17ab9/7-authenticating-react-apps-auth0.png))
 
 - Select the technology.
 
-[![Choose technology](/portfolio/smashing-magazine/003-authenticating-react-apps-auth0/image-3.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/69741805-9c5c-4edb-8166-51eaee37bd71/5-authenticating-react-apps-auth0.png) Choose technology. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/69741805-9c5c-4edb-8166-51eaee37bd71/5-authenticating-react-apps-auth0.png))
+[![Choose technology](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/smashing-magazine/003-authenticating-react-apps-auth0/image-3.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/69741805-9c5c-4edb-8166-51eaee37bd71/5-authenticating-react-apps-auth0.png) Choose technology. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/69741805-9c5c-4edb-8166-51eaee37bd71/5-authenticating-react-apps-auth0.png))
 
 - Take note of your app credentials. We’ll need them to integrate Auth0 into our react app.
 
-[![app credentials](/portfolio/smashing-magazine/003-authenticating-react-apps-auth0/image-4.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/19c2d3c4-1084-4d4d-a349-4b764c150e50/8-authenticating-react-apps-auth0.png) App credentials. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/19c2d3c4-1084-4d4d-a349-4b764c150e50/8-authenticating-react-apps-auth0.png))
+[![app credentials](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/smashing-magazine/003-authenticating-react-apps-auth0/image-4.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/19c2d3c4-1084-4d4d-a349-4b764c150e50/8-authenticating-react-apps-auth0.png) App credentials. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/19c2d3c4-1084-4d4d-a349-4b764c150e50/8-authenticating-react-apps-auth0.png))
 
 We configure the URLs of the app in its settings for the login and logout functionality to work properly.
 
@@ -604,15 +604,15 @@ By default, Auth0 comes with Google login activated. However, you may want to gi
 
 - On your dashboard, go to the Connections tab and select Social. There, you’ll see the connections you have set up. Click on the **Create Connection** button. I have already enabled Github in my app, and that is why you see it here.
 
-[![Social Connections settings](/portfolio/smashing-magazine/003-authenticating-react-apps-auth0/image-5.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/f0ff8108-88b8-4d96-bbe1-55180cccdc75/2-authenticating-react-apps-auth0.png) Social Connections settings. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/f0ff8108-88b8-4d96-bbe1-55180cccdc75/2-authenticating-react-apps-auth0.png))
+[![Social Connections settings](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/smashing-magazine/003-authenticating-react-apps-auth0/image-5.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/f0ff8108-88b8-4d96-bbe1-55180cccdc75/2-authenticating-react-apps-auth0.png) Social Connections settings. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/f0ff8108-88b8-4d96-bbe1-55180cccdc75/2-authenticating-react-apps-auth0.png))
 
 - Select the Github connection. We will get the `clientID` and the `clientSecret` from Github and put that into the social connection settings.
 
-[![Choose connection](/portfolio/smashing-magazine/003-authenticating-react-apps-auth0/image-6.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/947cbba7-55b8-45a7-b74a-4f7d019f42a7/6-authenticating-react-apps-auth0.png) Choose connection. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/947cbba7-55b8-45a7-b74a-4f7d019f42a7/6-authenticating-react-apps-auth0.png))[![Github connection credentials](/portfolio/smashing-magazine/003-authenticating-react-apps-auth0/image-7.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/de93b34c-55c2-4e1a-8749-0523d7a8ee55/4-authenticating-react-apps-auth0.png) Github connection credentials. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/de93b34c-55c2-4e1a-8749-0523d7a8ee55/4-authenticating-react-apps-auth0.png))
+[![Choose connection](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/smashing-magazine/003-authenticating-react-apps-auth0/image-6.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/947cbba7-55b8-45a7-b74a-4f7d019f42a7/6-authenticating-react-apps-auth0.png) Choose connection. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/947cbba7-55b8-45a7-b74a-4f7d019f42a7/6-authenticating-react-apps-auth0.png))[![Github connection credentials](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/smashing-magazine/003-authenticating-react-apps-auth0/image-7.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/de93b34c-55c2-4e1a-8749-0523d7a8ee55/4-authenticating-react-apps-auth0.png) Github connection credentials. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/de93b34c-55c2-4e1a-8749-0523d7a8ee55/4-authenticating-react-apps-auth0.png))
 
 - Next, you have to [register a new app](https://github.com/settings/developers) on Github.
 
-[![Register a new 0Auth app](/portfolio/smashing-magazine/003-authenticating-react-apps-auth0/image-8.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/35e49e47-6900-4ca8-8d41-bfde8cfe6435/3-authenticating-react-apps-auth0.png) Register a new 0Auth app. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/35e49e47-6900-4ca8-8d41-bfde8cfe6435/3-authenticating-react-apps-auth0.png))
+[![Register a new 0Auth app](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/smashing-magazine/003-authenticating-react-apps-auth0/image-8.png)](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/35e49e47-6900-4ca8-8d41-bfde8cfe6435/3-authenticating-react-apps-auth0.png) Register a new 0Auth app. ( [Large preview](https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/35e49e47-6900-4ca8-8d41-bfde8cfe6435/3-authenticating-react-apps-auth0.png))
 
 For the Homepage URL and the Authorization callback URL fields, you can use `https://localhost:3000` or whatever URL your project needs.
 

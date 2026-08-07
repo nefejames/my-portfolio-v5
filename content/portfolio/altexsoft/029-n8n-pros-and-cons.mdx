@@ -6,7 +6,7 @@ originalUrl: "https://www.altexsoft.com/blog/n8n-pros-and-cons/"
 publishedAt: "2025-09-09"
 canonical: "https://www.altexsoft.com/blog/n8n-pros-and-cons/"
 excerpt: "Discover the pros and cons of n8n workflow automation, an open-source tool for building and managing workflows."
-coverImage: "/portfolio/altexsoft/029-n8n-pros-and-cons/cover.jpg"
+coverImage: "https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/029-n8n-pros-and-cons/cover.jpg"
 tags: []
 ---
 Businesses are all about being more efficient and doing more with less time and resources. One way they’re achieving this is by applying [workflow automation software](https://www.altexsoft.com/blog/workflow-automation-software-ai-agents/) to the repetitive, time-consuming tasks, from customer support to reporting.
@@ -25,13 +25,13 @@ Before diving into the pros and cons of n8n, it’s important to understand the 
 
 In n8n, a **workflow** is a sequence of steps carried out after a trigger is fired. It can be simple, like sending an email when a new form is submitted, or complex, involving multiple data sources, conditional logic, [RAG](https://www.altexsoft.com/blog/retrieval-augmented-generation-rag/) pipelines, etc.
 
-![An n8n workflow that automates the process of summarizing YouTube videos](/portfolio/altexsoft/029-n8n-pros-and-cons/image-1.png)
+![An n8n workflow that automates the process of summarizing YouTube videos](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/029-n8n-pros-and-cons/image-1.png)
 
 An n8n workflow that automates the process of summarizing YouTube videos. It pulls a transcript from the provided URL and uses the content to generate a summary
 
 Each step in a workflow is handled by a **node**, a fundamental building block that performs a specific action, such as sending an email, updating a spreadsheet, making an API call, or fetching data from a [vector database](https://www.altexsoft.com/blog/vector-database/). Workflows are built by linking multiple nodes together so data can flow from one step to the next.
 
-![A n8n workflow made of various nodes: trigger, data transformation, code, conditional, and 3rd-party service nodes](/portfolio/altexsoft/029-n8n-pros-and-cons/image-2.png)
+![A n8n workflow made of various nodes: trigger, data transformation, code, conditional, and 3rd-party service nodes](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/029-n8n-pros-and-cons/image-2.png)
 
 You can think of nodes like bus stops along a route. At each stop, something happens: Passengers get off, new ones get on, or the driver decides where to go next. In the same way, each node in n8n is a decision point where you define what happens in the workflow at that stage.
 
@@ -44,7 +44,7 @@ Each node passes the items or data it receives to the next node in the workflow.
 
 _C_ _luster nodes_ are groups of connected nodes that work together, usually with a root node that has _sub-nodes_ for extending their functionality. For example, an agent node can act as the root, while _sub-nodes_ define the AI model it should use, its memory, and the tools it can access.
 
-![A n8n’s cluster node with an agent node as the root](/portfolio/altexsoft/029-n8n-pros-and-cons/image-3.png)
+![A n8n’s cluster node with an agent node as the root](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/029-n8n-pros-and-cons/image-3.png)
 
 A n8n’s cluster node with an agent node as the root. Source: [n8n](https://docs.n8n.io/integrations/builtin/cluster-nodes/)
 
@@ -70,7 +70,7 @@ n8n comes with a visual editor that makes it easy to build and manage workflows.
 
 While adding new nodes is straightforward, it may take a little practice since the editor has many features and interactive elements.
 
-![n8n’s GUI with sticky notes explaining how different nodes in a workflow work](/portfolio/altexsoft/029-n8n-pros-and-cons/image-4.png)
+![n8n’s GUI with sticky notes explaining how different nodes in a workflow work](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/029-n8n-pros-and-cons/image-4.png)
 
 Another useful feature is the ability to add labels and sticky notes to nodes. Labels let you describe what each node does or what action to expect, which makes it easier to revisit workflows later. Sticky notes allow you to add extra context—such as what credentials are required or reminders for teammates—which is especially helpful when collaborating with others. Together, these features make the editor more than just a tool for building workflows; it’s also a space for documenting and communicating how an automation works.
 
@@ -80,7 +80,7 @@ One thing to note is that the visual editor does not autosave, so you’ll need 
 
 The AI Assistant in n8n is designed to make building, fixing, and improving workflows much easier. It can guide you step by step, whether you’re trying to understand how something works, need help writing code, or want advice on setting up integrations.
 
-![n8n’s AI assistant providing guidance on how to fetch credentials for Telegram’s API](/portfolio/altexsoft/029-n8n-pros-and-cons/image-5.png)
+![n8n’s AI assistant providing guidance on how to fetch credentials for Telegram’s API](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/029-n8n-pros-and-cons/image-5.png)
 
 n8n’s AI assistant guiding how to fetch credentials for Telegram’s API
 
@@ -100,7 +100,7 @@ The assistant can access elements shown in your n8n editor, but not private data
 
 Data pinning makes testing workflows faster and more efficient. When you’re working with nodes that fetch data from external systems, you don’t always want to trigger a fresh request every time you run a test, especially when dealing with costly API calls. With data pinning, you can freeze the output of a node after a run and reuse that same data across multiple tests.
 
-![n8n’s data pinning feature](/portfolio/altexsoft/029-n8n-pros-and-cons/image-6.png)
+![n8n’s data pinning feature](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/029-n8n-pros-and-cons/image-6.png)
 
 This development-only helper saves you from hitting API rate limits, wasting tokens, or waiting on slow requests. It also ensures you’re testing your workflow with consistent, stable data, which makes debugging and refining logic much easier. To use it, you simply run the workflow once to get real data, then click the “ **Pin data**” icon in the node output. From that point on, any workflow tests will use the pinned data instead of making new calls.
 
@@ -108,7 +108,7 @@ This development-only helper saves you from hitting API rate limits, wasting tok
 
 When a node fails, whether because of a misconfiguration, missing input data, or an external service being unavailable, n8n marks the workflow as failed and logs it in the execution history.
 
-![A failed n8n workflow execution](/portfolio/altexsoft/029-n8n-pros-and-cons/image-7.png)
+![A failed n8n workflow execution](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/029-n8n-pros-and-cons/image-7.png)
 
 From there, you can inspect it on the canvas, replay the workflow with that exact data, reproduce errors, test changes, and verify fixes without sending new requests or re-triggering external services. In case your edits and debugging attempts lead to new errors, you can roll back those changes since n8n has a version history.
 
@@ -116,7 +116,7 @@ From there, you can inspect it on the canvas, replay the workflow with that exac
 
 n8n has an **Error Trigger node** that you can use to build a dedicated error workflow to run whenever the main workflow fails. You can decide how you’d like to be notified about failures, whether by email, Slack, Discord, or another channel.
 
-![An n8n workflow consisting of the “Error Trigger” and “Stop and Error” nodes](/portfolio/altexsoft/029-n8n-pros-and-cons/image-8.png)
+![An n8n workflow consisting of the “Error Trigger” and “Stop and Error” nodes](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/029-n8n-pros-and-cons/image-8.png)
 
 Notifications can include details such as which workflow failed and the exact error message, so you have the full context of the issue. Once created, you must link this error workflow to each of your other workflows in the settings, so you’re always alerted when something breaks.
 
@@ -210,7 +210,7 @@ An interesting thing about [Zapier](https://zapier.com/) is how AI-centric it i
 
 **AI agents**. Zapier lets you build custom [AI agents](https://www.altexsoft.com/blog/ai-travel-agent/) designed for specific tasks, such as qualifying leads, answering customer questions, or assisting with IT support. Each agent can be given its own set of instructions and [guardrails](https://www.altexsoft.com/blog/ai-guardrails/) so its behavior is consistent and it stays within the guidelines you set.
 
-![Various AI agents created in Zapier](/portfolio/altexsoft/029-n8n-pros-and-cons/image-9.png)
+![Various AI agents created in Zapier](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/029-n8n-pros-and-cons/image-9.png)
 
 Various AI agents created in Zapier. Source: [Zapier](https://zapier.com/blog/ai-agent/)
 
@@ -218,11 +218,11 @@ A unique part of this feature is the [Zapier Agents Chrome extension](https://ch
 
 **AI copilot**. Zapier also provides a built-in [AI copilot](https://zapier.com/blog/zapier-copilot-guide/) that does more than answer questions. It can help you design entire workflows (called _Zaps_) from scratch. The copilot can also automatically create AI agents for you. Based on your [prompt](https://www.altexsoft.com/blog/prompt-engineer/), it will determine which triggers and apps the agent needs and set them up. This reduces the complexity of getting started and makes Zapier more accessible to people who don’t have technical experience.
 
-![Zapier’s AI copilot interface](/portfolio/altexsoft/029-n8n-pros-and-cons/image-10.png)
+![Zapier’s AI copilot interface](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/029-n8n-pros-and-cons/image-10.png)
 
 n8n also has an AI assistant. However, it can only help you debug workflows, [generate code](https://www.altexsoft.com/blog/ai-coding-tools/), answer your questions, and set up credentials for third-party apps.
 
-![Zapier’s AI copilot generating a workflow based on a user’s prompts](/portfolio/altexsoft/029-n8n-pros-and-cons/image-11.png)
+![Zapier’s AI copilot generating a workflow based on a user’s prompts](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/029-n8n-pros-and-cons/image-11.png)
 
 Zapier’s AI copilot generating a workflow based on a user’s prompts. Source: [Zapier](https://zapier.com/blog/zapier-copilot-guide/)
 
@@ -230,7 +230,7 @@ Zapier’s AI copilot generating a workflow based on a user’s prompts. Source:
 
 **Custom code**. While Zapier is largely a no-code platform, you can still write lightweight scripts to customize workflows (Zaps) using JavaScript or Python with [Code by Zapier](https://help.zapier.com/hc/en-us/sections/38070755248141-Code). Also, Zapier introduced [Functions](https://zapier.com/functions) (currently, in beta version) that let you run Python to handle more complex logic and import standard Python libraries, like [Pandas](https://www.altexsoft.com/blog/pandas-library/) for data analysis, [NumPy](https://www.altexsoft.com/blog/numpy-pros-and-cons/) for scientific computing, or [PyTorch](https://www.altexsoft.com/blog/pytorch-library/) for [machine learning](https://www.altexsoft.com/blog/machine-learning-explained) and AI.
 
-![Zapier Functions’ interface](/portfolio/altexsoft/029-n8n-pros-and-cons/image-12.png)
+![Zapier Functions’ interface](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/029-n8n-pros-and-cons/image-12.png)
 
 Zapier Functions’ interface. Source: [Zapier](https://help.zapier.com/hc/en-us/articles/32942766367885-Create-a-workflow-using-Python-with-Functions#h_01K2PJQ1SWDH9N4MEMPEZ8KEM0)
 
@@ -250,13 +250,13 @@ In n8n, you can use the [Code node](https://docs.n8n.io/code/code-node/) to wri
 
 **AI Agents**. Make has its own AI Agents, and you can build custom ones. You decide the system prompts, the model the agent uses, and the tools it has access to. You can set global system prompts for consistency across agents, but also customize prompts for specific workflows or scenarios.
 
-![An AI agent being created on Make](/portfolio/altexsoft/029-n8n-pros-and-cons/image-13.png)
+![An AI agent being created on Make](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/029-n8n-pros-and-cons/image-13.png)
 
 These agents aren’t static. They have real-time AI reasoning, error handling, and memory recall. That means they can adapt to the context of the task, remember past inputs when needed, and make decisions on the fly as a workflow runs.
 
 **AI assistant**. If you don’t want to build a workflow or scenario from scratch, Make also gives you an AI Assistant. It works through a simple chat interface where you can describe the kind of scenario you need, and the Assistant will build it for you. Beyond setup, the AI Assistant can also review and analyze your existing scenarios, point out missing connections, troubleshoot errors, and answer questions about the platform.
 
-![A workflow generated by Make’s AI assistant](/portfolio/altexsoft/029-n8n-pros-and-cons/image-14.png)
+![A workflow generated by Make’s AI assistant](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/029-n8n-pros-and-cons/image-14.png)
 
 **Type coercion**. An interesting thing about Make is how it handles situations where it receives data in unexpected formats. When a workflow expects a certain type of data structure—and receives something else—Make will attempt to convert the input into the correct type (for example, a number to a Boolean or string to a number).
 
@@ -268,7 +268,7 @@ The **data** stores are handy for situations like keeping a running list of lea
 
 **Make Grid**. As your automations grow, they can get messy. That’s where Make Grid shines. It gives you a live, visual map of your entire automation setup. Instead of drawing diagrams or digging through workflows, you can see how everything connects at a glance.
 
-![Make Grid](/portfolio/altexsoft/029-n8n-pros-and-cons/image-15.png)
+![Make Grid](https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com/portfolio/altexsoft/029-n8n-pros-and-cons/image-15.png)
 
 Make Grid. Source: [Make](https://www.make.com/en/blog/introducing-make-grid)
 
