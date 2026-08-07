@@ -2,7 +2,7 @@ import { put } from '@vercel/blob'
 import { readdir, readFile, stat } from 'fs/promises'
 import { join, relative } from 'path'
 
-const ROOT   = new URL('..', import.meta.url).pathname
+const ROOT   = decodeURIComponent(new URL('..', import.meta.url).pathname)
 const SRC    = join(ROOT, 'public', 'portfolio')
 const TOKEN  = process.env.BLOB_READ_WRITE_TOKEN
 const CONCURRENCY = 5
