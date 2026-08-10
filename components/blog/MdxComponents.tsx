@@ -7,6 +7,7 @@ import 'react-tweet/theme.css'
 import { YouTubeEmbed } from '@next/third-parties/google'
 import { slugify } from '@/lib/toc'
 import CodeBlock from './CodeBlock'
+import ZoomImage from './ZoomImage'
 import type { ReactNode } from 'react'
 
 // ─── Twitter/X embed ─────────────────────────────────────────────────────────
@@ -158,18 +159,20 @@ function Figure({
     // Capped and centered so images stay readable-editorial instead of growing
     // with the article column on wide screens.
     <figure className="my-8 max-w-2xl mx-auto">
-      <div className="relative w-full rounded-xl overflow-hidden bg-[var(--surface-2)]">
-        <Image
-          src={src}
-          alt={alt}
-          width={width}
-          height={height}
-          // Matches the figure's max-w-2xl (672px) cap above; full width below
-          // it. Without this, next/image assumes 100vw and serves oversized files.
-          sizes="(min-width: 768px) 672px, 100vw"
-          className="w-full h-auto"
-        />
-      </div>
+      <ZoomImage>
+        <div className="relative w-full rounded-xl overflow-hidden bg-[var(--surface-2)]">
+          <Image
+            src={src}
+            alt={alt}
+            width={width}
+            height={height}
+            // Matches the figure's max-w-2xl (672px) cap above; full width below
+            // it. Without this, next/image assumes 100vw and serves oversized files.
+            sizes="(min-width: 768px) 672px, 100vw"
+            className="w-full h-auto cursor-zoom-in"
+          />
+        </div>
+      </ZoomImage>
       {caption && (
         <figcaption className="mt-3 text-center text-sm text-[var(--muted)] italic">
           {caption}
