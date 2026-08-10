@@ -19,8 +19,8 @@ const cspDirectives = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' https://t.nefeatori.com https://cdn.jsdelivr.net",
   "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net",
-  "img-src 'self' data: https://pbs.twimg.com https://abs.twimg.com https://i.ytimg.com https://img.youtube.com https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com",
-  "media-src 'self' https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com",
+  "img-src 'self' data: https://pbs.twimg.com https://abs.twimg.com https://i.ytimg.com https://img.youtube.com https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com https://hdfqv9nqsbc5flin.public.blob.vercel-storage.com",
+  "media-src 'self' https://hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com https://hdfqv9nqsbc5flin.public.blob.vercel-storage.com",
   "frame-src https://www.youtube.com https://www.youtube-nocookie.com https://codepen.io https://www.linkedin.com",
   "connect-src 'self' https://t.nefeatori.com",
   "worker-src 'self' blob:",
@@ -51,7 +51,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'hdFQv9NqSbC5FLiN.public.blob.vercel-storage.com',
+        hostname: '*.public.blob.vercel-storage.com',
       },
     ],
   },
