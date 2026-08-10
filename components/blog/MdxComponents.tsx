@@ -159,7 +159,7 @@ function Figure({
     // Capped and centered so images stay readable-editorial instead of growing
     // with the article column on wide screens.
     <figure className="my-8 max-w-2xl mx-auto">
-      <ZoomImage src={src} alt={alt}>
+      <ZoomImage>
         <div className="relative w-full rounded-xl overflow-hidden bg-[var(--surface-2)]">
           <Image
             src={src}

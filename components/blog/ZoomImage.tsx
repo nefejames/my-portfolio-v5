@@ -1,34 +1,21 @@
 'use client'
 
-import { useState } from 'react'
-import Lightbox from 'yet-another-react-lightbox'
-import 'yet-another-react-lightbox/styles.css'
+import { useEffect, useRef } from 'react'
+import mediumZoom from 'medium-zoom'
 import type { ReactNode } from 'react'
 
-export default function ZoomImage({
-  src,
-  alt,
-  children,
-}: {
-  src: string
-  alt: string
-  children: ReactNode
-}) {
-  const [open, setOpen] = useState(false)
+export default function ZoomImage({ children }: { children: ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null)
 
-  return (
-    <>
-      <div onClick={() => setOpen(true)} className="cursor-zoom-in">
-        {children}
-      </div>
-      <Lightbox
-        open={open}
-        close={() => setOpen(false)}
-        slides={[{ src, alt }]}
-        carousel={{ finite: true }}
-        controller={{ closeOnBackdropClick: true }}
-        render={{ buttonPrev: () => null, buttonNext: () => null }}
-      />
-    </>
-  )
+  useEffect(() => {
+    const imgs = ref.current?.querySelectorAll('img')
+    if (!imgs?.length) return
+    const zoom = mediumZoom(imgs, {
+      background: 'rgba(0, 0, 0, 0.8)',
+      margin: 48,
+    })
+    return () => { zoom.detach() }
+  }, [])
+
+  return <div ref={ref}>{children}</div>
 }
