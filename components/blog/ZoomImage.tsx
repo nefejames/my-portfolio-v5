@@ -11,8 +11,8 @@ export default function ZoomImage({ children }: { children: ReactNode }) {
     const imgs = ref.current?.querySelectorAll('img')
     if (!imgs?.length) return
     const zoom = mediumZoom(imgs, {
-      background: 'rgba(0, 0, 0, 0.8)',
-      margin: 48,
+      background: 'rgba(0, 0, 0, 0.85)',
+      margin: 8,
     })
     return () => { zoom.detach() }
   }, [])
