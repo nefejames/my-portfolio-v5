@@ -38,7 +38,7 @@ export default function Navbar() {
             href={`mailto:${SITE.email}`}
             className="text-sm font-medium px-4 py-2 bg-[var(--accent)] text-white rounded-lg hover:bg-[var(--accent-hover)] transition-colors"
           >
-            Hire me
+            Get in touch
           </a>
         </div>
 
@@ -77,7 +77,7 @@ export default function Navbar() {
             href={`mailto:${SITE.email}`}
             className="text-sm font-medium px-4 py-2 bg-[var(--accent)] text-white rounded-lg hover:bg-[var(--accent-hover)] transition-colors text-center"
           >
-            Hire me
+            Get in touch
           </a>
         </div>
       )}

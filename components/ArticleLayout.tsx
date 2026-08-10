@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import type { ReactNode } from 'react'
 import type { TocItem } from '@/lib/toc'
-import { SITE } from '@/lib/site'
 import { formatDate } from '@/lib/utils'
 import TableOfContents from '@/components/blog/TableOfContents'
 import MobileTableOfContents from '@/components/blog/MobileTableOfContents'
@@ -32,10 +31,6 @@ type Props = {
   /** Route-specific header content below the date, e.g. the portfolio
    *  "Originally published for …" attribution banner. */
   headerExtra?: ReactNode
-  /** Footer byline, e.g. "Written by … for AltexSoft". */
-  byline: string
-  moreHref: string
-  moreLabel: string
   /** The rendered article body (an <MdxContent /> element). */
   children: ReactNode
   /** Optional section rendered below the article footer, e.g. related articles. */
@@ -51,9 +46,6 @@ export default function ArticleLayout({
   tags,
   toc,
   headerExtra,
-  byline,
-  moreHref,
-  moreLabel,
   children,
   related,
 }: Props) {
@@ -115,24 +107,6 @@ export default function ArticleLayout({
             <MobileTableOfContents items={toc} />
 
             <article className={PROSE_CLASSES}>{children}</article>
-
-            <footer className="mt-16 pt-8 border-t border-[var(--border)]">
-              <p className="text-sm text-[var(--muted)] mb-4">{byline}</p>
-              <div className="flex gap-4">
-                <a
-                  href={`mailto:${SITE.email}`}
-                  className="text-sm font-medium text-[var(--accent-text)] hover:text-[var(--accent-text)] transition-colors"
-                >
-                  Get in touch
-                </a>
-                <Link
-                  href={moreHref}
-                  className="text-sm font-medium text-[var(--muted)] hover:text-[var(--text)] transition-colors"
-                >
-                  {moreLabel}
-                </Link>
-              </div>
-            </footer>
 
             {related}
           </div>

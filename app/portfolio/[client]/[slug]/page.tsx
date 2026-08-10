@@ -95,9 +95,6 @@ export default async function PortfolioArticlePage({ params }: Props) {
         readingMinutes={readingMinutes(article.content)}
         tags={article.tags}
         toc={toc}
-        byline={`Written by ${SITE.name} for ${article.client}`}
-        moreHref="/portfolio"
-        moreLabel="More articles"
         related={
           <RelatedArticles
             items={related.map((data) => ({ type: 'portfolio' as const, data }))}

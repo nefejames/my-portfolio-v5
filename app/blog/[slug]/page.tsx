@@ -90,9 +90,6 @@ export default async function BlogPostPage({ params }: Props) {
         readingMinutes={readingMinutes(post.content)}
         tags={post.tags}
         toc={toc}
-        byline={`Written by ${SITE.name}`}
-        moreHref="/blog"
-        moreLabel="More posts"
         related={
           <RelatedArticles items={related.map((data) => ({ type: 'post' as const, data }))} />
         }
