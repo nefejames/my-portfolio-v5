@@ -10,39 +10,39 @@ After long weeks of intending to, I eventually set up PostHog on some of my proj
 
 ## What is PostHog?
 
-PostHog is an open source product analytics platform. You drop their JavaScript SDK into your app, and it captures events, page views, clicks, custom interactions, and sends all of it to PostHog's servers. From there you get dashboards, session recordings, feature flags, and A/B testing — all from one integration. No more stitching together five different tools.
+PostHog is an open source product analytics platform. You drop their JavaScript SDK into your app, and it captures events, page views, clicks, custom interactions, and sends all of it to PostHog's servers. From there you get dashboards, session recordings, feature flags, and A/B testing, all from one integration. No more stitching together five different tools.
 
 ## What I love about PostHog
 
-The first thing that jumped out for me was their generous — and I mean generous — free tier. It's an actual free plan, not a fourteen-day free trial.
+The first thing that jumped out for me was their generous, and I mean generous, free tier. It's actually a free plan and not a fourteen day free trial.
 
-With the free plan, you get all of the following for one project:
+With the free plan, you get all of the following for one project.
 
-- Analytics, up to 1 million events
-- Session replay, up to 5,000 recordings
-- Feature flags, up to 1 million requests
-- Error tracking, up to 100,000 exceptions
+* Analytics, up to 1 million events
+* Session replay, up to 5,000 recordings
+* Feature flags, up to 1 million requests
+* Error tracking, up to 100,000 exceptions
 
 That's more than I'd need for my personal projects.
 
-Then there's usage-based pricing. Thanks to this model, I didn't need to pay for a subscription just to add more projects — I only needed to add my credit card.
+Then, next is usage-based pricing. Thanks to this model, I didn't need to pay for a subscription just so I could add more projects. I only needed to add my credit card.
 
-The usage-based pricing is generous too. If you're a solo dev doing basic stuff, personal experimentation, and you don't have a lot of traffic or sessions, it's possible to pay almost nothing in perpetuity, which is exactly what I'm aiming for. Currently, I have three projects set up on PostHog.
+The usage based pricing is generous too. If you're a solo dev just doing some basic stuff, personal experimentation, and you don't have a lot of traffic and sessions, it's possible to pay almost nothing in perpetuity, which is exactly what I'm aiming for. Currently, I have three projects set up on PostHog.
 
 ## Integrating PostHog into Next.js
 
 Speaking of setting up, here's my experience.
 
-PostHog offers two integration paths: a manual process where you install `posthog-js` yourself, initialize it, and write every event by hand; and a setup wizard that does most of that work for you. I went with the wizard.
+PostHog offers two integration paths, a manual process where you install posthog-js yourself, initialize it, and write every event by hand, and a setup wizard that does most of that work for you. I went with the wizard.
 
 ### The PostHog wizard
 
 With this approach, you connect PostHog to your GitHub repo, and the wizard reads your actual codebase. It looks at your components and your routing and figures out where the meaningful interactions are, then it opens a real pull request in your repo with all the scaffolding already written.
 
-One positively surprising part is that the wizard doesn't drop in one generic click event and call it done. I have a sermon archive built around helping people find and watch a sermon, and a portfolio built around getting someone to reach out. Based on the context it got from studying each codebase, it generated events that actually fit.
+One positively surprising part about the wizard is that it doesn't drop in one generic click event and call it done. I have a sermon archive built around helping people find and watch a sermon, and a portfolio built around getting someone to reach out. Based on the context the wizard got from studying each codebase, it generated events that actually fit.
 
-- For the sermon archive, it created `sermon_search_performed`, `sermon_filter_changed`, and `sermon_opened`.
-- For the portfolio, it created `contact_initiated`, `portfolio_filtered`, and `prompt_copied`.
+* For the sermon archive, it created sermon_search_performed, sermon_filter_changed, and sermon_opened.
+* For the portfolio, it created contact_initiated, portfolio_filtered, and prompt_copied.
 
 The wizard doesn't stop you from adding your own events either. Once it's done its pass, dropping in a new one is just a function call wherever the action happens.
 
@@ -53,13 +53,13 @@ posthog.capture('contact_form_submitted', {
 })
 ```
 
-If I'd gone the manual route, it'd have been a much more tedious process — deciding on my own what was worth tracking and writing every single capture call by hand.
+If I'd gone the manual route, it'd have been a much more tedious process, deciding on my own what was worth tracking and writing every single capture call by hand.
 
-### A limitation of the wizard
+### A limitation of the wizard?
 
-I may be looking at it from the wrong lens, but I was disappointed that even though the wizard generates a provider component, it never wires that component into your layout. You'd assume that since it created the file, it also wraps it around your app — but it doesn't.
+I may be looking at it from the wrong lens, but I was disappointed that even though the wizard generates a provider component, it never wires that component into your layout. You'd assume that since it created the file, it also wraps it around your app, but it doesn't.
 
-This caused a long debugging session for me and Claude Code. I eventually asked the PostHog AI bot what could be the issue, and it gave me a few options that helped me spot and fix the error.
+This caused a long debugging session for me and Claude Code. "How did Claude Code miss that?" you ask. I wonder myself. I eventually asked the PostHog AI bot what could be the issue, and it gave me a few options that helped me spot and fix the error.
 
 ```tsx
 import PostHogProvider from '@/components/PostHogProvider'
@@ -77,6 +77,4 @@ export default function RootLayout({ children }) {
 
 Without that one line, PostHog captures nothing, and there's no error telling you why. The app runs fine, the wizard's PR is merged, everything looks done, and you're tracking zero events.
 
----
-
-Overall, the integration went more smoothly than I expected, and I now have PostHog running across three of my projects. I'll be sharing more of what I learn from the data as each one develops.
+Overall, it was a smooth integration process, and I'm excited about adding this to my projects. I'll be sharing more of my experimentation with PostHog over time.
