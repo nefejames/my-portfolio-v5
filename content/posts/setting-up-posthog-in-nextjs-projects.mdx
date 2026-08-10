@@ -9,12 +9,11 @@ featured: true
 After long weeks of intending to, I eventually set up PostHog on some of my projects. The integration was more complex than I thought. This piece is all about my experience.
 
 ## What is PostHog?
-
-PostHog is an open source product analytics platform. You drop their JavaScript SDK into your app, and it captures events, page views, clicks, custom interactions, and sends all of it to PostHog's servers. From there you get dashboards, session recordings, feature flags, and A/B testing, all from one integration. No more stitching together five different tools.
+[PostHog](https://posthog.com/) is an open source product analytics platform. You drop their JavaScript SDK into your app, and it captures events, page views, clicks, custom interactions, and sends all of it to PostHog's servers. From there, you get dashboards, session recordings, feature flags, and A/B testing, all from one integration. No more stitching together five different tools.
 
 ## What I love about PostHog
 
-The first thing that jumped out for me was their generous, and I mean generous, free tier. It's actually a free plan and not a fourteen day free trial.
+The first thing that jumped out for me was their generous, and I mean generous, [free tier](https://posthog.com/pricing). It's actually a free plan and not an X-day free trial.
 
 With the free plan, you get all of the following for one project.
 
@@ -27,13 +26,13 @@ That's more than I'd need for my personal projects.
 
 Then, next is usage-based pricing. Thanks to this model, I didn't need to pay for a subscription just so I could add more projects. I only needed to add my credit card.
 
-The usage based pricing is generous too. If you're a solo dev just doing some basic stuff, personal experimentation, and you don't have a lot of traffic and sessions, it's possible to pay almost nothing in perpetuity, which is exactly what I'm aiming for. Currently, I have three projects set up on PostHog.
+The usage-based pricing is generous too. If you're a solo dev just doing some basic stuff, personal experimentation, and you don't have a lot of traffic and sessions, it's possible to pay almost nothing in perpetuity, which is exactly what I'm aiming for. Currently, I have three projects set up on PostHog.
 
 ## Integrating PostHog into Next.js
 
 Speaking of setting up, here's my experience.
 
-PostHog offers two integration paths, a manual process where you install posthog-js yourself, initialize it, and write every event by hand, and a setup wizard that does most of that work for you. I went with the wizard.
+PostHog offers two integration paths: a manual process where you install posthog-js yourself, initialize it, and write every event by hand, and a setup wizard that does most of that work for you. I went with the wizard.
 
 ### The PostHog wizard
 
@@ -59,7 +58,7 @@ If I'd gone the manual route, it'd have been a much more tedious process, decidi
 
 I may be looking at it from the wrong lens, but I was disappointed that even though the wizard generates a provider component, it never wires that component into your layout. You'd assume that since it created the file, it also wraps it around your app, but it doesn't.
 
-This caused a long debugging session for me and Claude Code. "How did Claude Code miss that?" you ask. I wonder myself. I eventually asked the PostHog AI bot what could be the issue, and it gave me a few options that helped me spot and fix the error.
+This caused a long debugging session for Claude Code and me. "How did Claude Code miss that?" you ask. I wonder myself. I eventually asked the PostHog AI bot what could be the issue, and it gave me a few options that helped me spot and fix the error.
 
 ```tsx
 import PostHogProvider from '@/components/PostHogProvider'
