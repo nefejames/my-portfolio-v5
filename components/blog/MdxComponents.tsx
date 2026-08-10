@@ -159,7 +159,7 @@ function Figure({
     // Capped and centered so images stay readable-editorial instead of growing
     // with the article column on wide screens.
     <figure className="my-8 max-w-2xl mx-auto">
-      <ZoomImage>
+      <ZoomImage src={src} alt={alt}>
         <div className="relative w-full rounded-xl overflow-hidden bg-[var(--surface-2)]">
           <Image
             src={src}
@@ -169,7 +169,7 @@ function Figure({
             // Matches the figure's max-w-2xl (672px) cap above; full width below
             // it. Without this, next/image assumes 100vw and serves oversized files.
             sizes="(min-width: 768px) 672px, 100vw"
-            className="w-full h-auto cursor-zoom-in"
+            className="w-full h-auto"
           />
         </div>
       </ZoomImage>
