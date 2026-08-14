@@ -2,8 +2,8 @@ import Link from 'next/link'
 
 export default function Hero() {
   return (
-    <section className="pt-16">
-      <div className="max-w-5xl mx-auto px-6 pt-16 pb-10">
+    <section className="pt-16 min-h-[calc(100vh-160px)] flex flex-col justify-center">
+      <div className="max-w-5xl mx-auto px-6 py-10">
         <span className="inline-block text-xs font-semibold tracking-widest uppercase text-[var(--accent-text)] mb-4">
           Content Marketer &amp; SEO+GEO Manager &amp; Technical Writer
         </span>
