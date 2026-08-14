@@ -17,7 +17,7 @@ const testimonials: {
     name: 'Liudmyla Semyvolos',
     role: 'IT Journalist & Editor, AltexSoft',
     initials: 'LS',
-    photo: 'https://hdfqv9nqsbc5flin.public.blob.vercel-storage.com/testimonials/Liudmyla.jpeg',
+    photo: 'https://hdfqv9nqsbc5flin.public.blob.vercel-storage.com/testimonials/liudmyla.jpeg',
     quote:
       'I worked with Nefe as his editor for two years. During this time, I saw him grow into a strong professional who can independently produce thoughtful, in-depth articles on highly technical subjects. As an editor, I was especially impressed by his ability to learn quickly, his productivity, and his reliability with deadlines. I sincerely recommend him as an experienced IT journalist who can turn complex technical ideas into clear, accessible, and engaging content.',
   },
@@ -73,7 +73,7 @@ const testimonials: {
     name: 'Success Eriamiantoe',
     role: 'Technical Writer, Hackmamba',
     initials: 'SE',
-    photo: 'https://hdfqv9nqsbc5flin.public.blob.vercel-storage.com/testimonials/Success.jpeg',
+    photo: 'https://hdfqv9nqsbc5flin.public.blob.vercel-storage.com/testimonials/success.jpeg',
     quote:
       'I highly recommend Nefe as a technical writer and content writer. I have enjoyed working with him at Hackmamba for over a year and have been consistently impressed with his exceptional skills and dedication. His ability to communicate complex technical concepts and produce high-quality content is commendable. He is a reliable team player who consistently meets deadlines and exceeds expectations.',
   },
