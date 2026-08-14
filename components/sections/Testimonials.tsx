@@ -9,6 +9,7 @@ const testimonials: {
     name: 'Anton Borysov',
     role: 'Marketing Director, AltexSoft',
     initials: 'AB',
+    photo: 'https://hdfqv9nqsbc5flin.public.blob.vercel-storage.com/testimonials/Anton.jpeg',
     quote:
       'Nefe is an excellent technical copywriter. On my team at AltexSoft, he consistently translated complex engineering topics — like AI systems and legacy modernization — into clear, accurate articles for senior technical audiences. Because he has a strong grasp of software development, his work is always technically precise. He required minimal oversight and reliably delivered well-researched, ready-to-publish content. Nefe would be a strong, practical asset to any marketing team that needs to communicate effectively with developers and engineering leaders.',
   },
@@ -16,6 +17,7 @@ const testimonials: {
     name: 'Liudmyla Semyvolos',
     role: 'IT Journalist & Editor, AltexSoft',
     initials: 'LS',
+    photo: 'https://hdfqv9nqsbc5flin.public.blob.vercel-storage.com/testimonials/Liudmyla.jpeg',
     quote:
       'I worked with Nefe as his editor for two years. During this time, I saw him grow into a strong professional who can independently produce thoughtful, in-depth articles on highly technical subjects. As an editor, I was especially impressed by his ability to learn quickly, his productivity, and his reliability with deadlines. I sincerely recommend him as an experienced IT journalist who can turn complex technical ideas into clear, accessible, and engaging content.',
   },
@@ -23,6 +25,7 @@ const testimonials: {
     name: 'Oleksandr Kolisnykov',
     role: 'Content Strategist, AltexSoft',
     initials: 'OK',
+    photo: 'https://hdfqv9nqsbc5flin.public.blob.vercel-storage.com/testimonials/Oleksandr.jpeg',
     quote:
       'I loved working with Nefe! He was able to take complex, unfamiliar topics and turn them into clear, useful explanations without losing their substance. If he was covering a product or platform, he would actually test it himself — sometimes even building a small prototype — so his writing was based on real understanding rather than surface-level research. Nefe is disciplined, reliable, and great with deadlines. I\'d happily recommend him for both writing and strategic marketing roles.',
   },
@@ -30,6 +33,7 @@ const testimonials: {
     name: 'Linda Nguyen',
     role: 'Creative Copywriter, AltexSoft',
     initials: 'LN',
+    photo: 'https://hdfqv9nqsbc5flin.public.blob.vercel-storage.com/testimonials/Linda.jpeg',
     quote:
       'I\'ve worked with Nefe for over two years, and he is one of those people who can make even the most complex technical topics accessible and engaging. The best way to appreciate his work is to read a few of his articles yourself — they\'re exceptionally well researched, thoughtfully structured, and often go much deeper than the average technical content you\'ll find online. Just as importantly, Nefe is a great teammate. Any team would benefit from both his expertise and his professionalism.',
   },
@@ -37,6 +41,7 @@ const testimonials: {
     name: 'Lea Thomas',
     role: 'Founder, AI Development Systems',
     initials: 'LT',
+    photo: 'https://hdfqv9nqsbc5flin.public.blob.vercel-storage.com/testimonials/Lea.jpeg',
     quote:
       'Nefe embodies professionalism and would be an asset to any company. The quality of his work speaks for itself. His technical articles were frequently top traffic drivers. I appreciated being able to trust that he\'d always deliver ahead of schedule and give his best. I truly hope to work with him again in the future.',
   },
@@ -44,6 +49,7 @@ const testimonials: {
     name: 'Grace Miller',
     role: 'Freelance Client, Prismic',
     initials: 'GM',
+    photo: 'https://hdfqv9nqsbc5flin.public.blob.vercel-storage.com/testimonials/Grace.jpeg',
     quote:
       'As a freelance technical writer for Prismic\'s blog, Nefe has been an outstanding contributor. He\'s not only reliable and timely with his work, but he\'s also great to work with. He implements feedback well and applies SEO practices that go above and beyond expectations. His research and content are always thorough, high-quality, and well-composed. If you\'re looking for a freelancer to work with, you\'ll be lucky to work with Nefe.',
   },
@@ -51,6 +57,7 @@ const testimonials: {
     name: 'Hanna Filatova',
     role: 'L&D Manager, AltexSoft',
     initials: 'HF',
+    photo: 'https://hdfqv9nqsbc5flin.public.blob.vercel-storage.com/testimonials/Hanna.jpeg',
     quote:
       'I had the pleasure of working with Nefe for 2 years and can confidently say he is an outstanding technical writer. He consistently turns complex topics into clear, engaging articles that resonate with both technical and non-technical audiences. Nefe has mastered the art of visualizing intricate concepts and explaining them through practical, well-chosen examples that make the material immediately actionable.',
   },
@@ -58,6 +65,7 @@ const testimonials: {
     name: 'Olga Pereverzieva',
     role: 'Tech Journalist, AltexSoft',
     initials: 'OP',
+    photo: 'https://hdfqv9nqsbc5flin.public.blob.vercel-storage.com/testimonials/Olga.jpeg',
     quote:
       'I had the pleasure of working with Nefe and found him to be consistently friendly, professional, and eager to learn. He approaches new challenges with curiosity and a positive attitude, always looking for opportunities to expand his knowledge and improve his skills. Nefe is reliable, easy to work with, and communicates well with colleagues. I am confident he will be a valuable asset to any team.',
   },
@@ -65,6 +73,7 @@ const testimonials: {
     name: 'Success Eriamiantoe',
     role: 'Technical Writer, Hackmamba',
     initials: 'SE',
+    photo: 'https://hdfqv9nqsbc5flin.public.blob.vercel-storage.com/testimonials/Success.jpeg',
     quote:
       'I highly recommend Nefe as a technical writer and content writer. I have enjoyed working with him at Hackmamba for over a year and have been consistently impressed with his exceptional skills and dedication. His ability to communicate complex technical concepts and produce high-quality content is commendable. He is a reliable team player who consistently meets deadlines and exceeds expectations.',
   },
@@ -72,6 +81,7 @@ const testimonials: {
     name: 'Divine Orji',
     role: 'Software Engineer & Creator',
     initials: 'DO',
+    photo: 'https://hdfqv9nqsbc5flin.public.blob.vercel-storage.com/testimonials/Divine.jpeg',
     quote:
       'Nefe is very good at research and brainstorming topics that will resonate with the current questions developers are asking. It\'s always a pleasure working on projects with him.',
   },
