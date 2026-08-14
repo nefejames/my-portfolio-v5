@@ -2,19 +2,19 @@ import Link from 'next/link'
 
 export default function Hero() {
   return (
-    <section className="min-h-screen flex items-center pt-16">
-      <div className="max-w-5xl mx-auto px-6 py-24">
-        <span className="inline-block text-xs font-semibold tracking-widest uppercase text-[var(--accent-text)] mb-6">
+    <section className="pt-16">
+      <div className="max-w-5xl mx-auto px-6 pt-16 pb-10">
+        <span className="inline-block text-xs font-semibold tracking-widest uppercase text-[var(--accent-text)] mb-4">
           Content Marketer &amp; SEO+GEO Manager &amp; Technical Writer
         </span>
 
-        <h1 className="text-5xl md:text-7xl font-bold text-[var(--text)] leading-[1.05] tracking-tight mb-8">
+        <h1 className="text-5xl md:text-7xl font-bold text-[var(--text)] leading-[1.05] tracking-tight mb-6">
           Emadamerho-
           <br />
           Atori Nefe
         </h1>
 
-        <p className="text-xl md:text-2xl text-[var(--muted)] leading-relaxed max-w-2xl mb-12">
+        <p className="text-xl md:text-2xl text-[var(--muted)] leading-relaxed max-w-2xl mb-8">
           I create (B2B + B2C) content that readers love, drives conversions, earns top rankings, and builds
           authority.
         </p>
