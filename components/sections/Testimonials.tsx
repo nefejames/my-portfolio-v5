@@ -39,7 +39,7 @@ const testimonials: {
   },
   {
     name: 'Lea Thomas',
-    role: 'Founder, AI Development Systems',
+    role: 'Content Strategist, Prismic',
     initials: 'LT',
     photo: 'https://hdfqv9nqsbc5flin.public.blob.vercel-storage.com/testimonials/lea.jpeg',
     quote:
@@ -47,7 +47,7 @@ const testimonials: {
   },
   {
     name: 'Grace Miller',
-    role: 'Freelance Client, Prismic',
+    role: 'Senior Brand Strategist, Prismic',
     initials: 'GM',
     photo: 'https://hdfqv9nqsbc5flin.public.blob.vercel-storage.com/testimonials/grace%20miller.jpeg',
     quote:
@@ -55,7 +55,7 @@ const testimonials: {
   },
   {
     name: 'Hanna Filatova',
-    role: 'L&D Manager, AltexSoft',
+    role: 'Competency Knowledge Manager, AltexSoft',
     initials: 'HF',
     photo: 'https://hdfqv9nqsbc5flin.public.blob.vercel-storage.com/testimonials/hanna.jpeg',
     quote:
@@ -63,7 +63,7 @@ const testimonials: {
   },
   {
     name: 'Olga Pereverzieva',
-    role: 'Tech Journalist, AltexSoft',
+    role: 'Technical Journalist, AltexSoft',
     initials: 'OP',
     photo: 'https://hdfqv9nqsbc5flin.public.blob.vercel-storage.com/testimonials/olga.jpeg',
     quote:
@@ -79,7 +79,7 @@ const testimonials: {
   },
   {
     name: 'Divine Orji',
-    role: 'Software Engineer & Creator',
+    role: 'Tech Writer, Hackmamba',
     initials: 'DO',
     photo: 'https://hdfqv9nqsbc5flin.public.blob.vercel-storage.com/testimonials/divine.png',
     quote:
