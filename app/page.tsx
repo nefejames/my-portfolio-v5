@@ -5,7 +5,6 @@ import Results from '@/components/sections/Results'
 import SelectedWork from '@/components/sections/SelectedWork'
 import BlogPreview from '@/components/sections/BlogPreview'
 import About from '@/components/sections/About'
-import Faq from '@/components/sections/Faq'
 import Contact from '@/components/sections/Contact'
 import JsonLd from '@/components/JsonLd'
 import SplashScreen from '@/components/SplashScreen'
@@ -33,7 +32,6 @@ export default function Home() {
       <SelectedWork />
       <BlogPreview />
       <About />
-      <Faq />
       <Contact />
     </>
   )
