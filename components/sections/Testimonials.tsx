@@ -79,7 +79,7 @@ const testimonials: {
   },
   {
     name: 'Divine Orji',
-    role: 'Tech Writer, Hackmamba',
+    role: 'Technical Writer, Hackmamba',
     initials: 'DO',
     photo: 'https://hdfqv9nqsbc5flin.public.blob.vercel-storage.com/testimonials/divine.png',
     quote:
