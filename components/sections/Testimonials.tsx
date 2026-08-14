@@ -42,7 +42,7 @@ export default function Testimonials() {
           Testimonials
         </p>
         <h2 className="text-3xl md:text-4xl font-bold text-[var(--text)] mb-16">
-          What clients say
+          Letters of love from people I&apos;ve worked for and with
         </h2>
 
         <div className="grid md:grid-cols-2 gap-6">
