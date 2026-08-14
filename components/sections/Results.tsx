@@ -34,7 +34,7 @@ export default function Results() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {metrics.map((m) => (
-            <div key={m.stat} className="flex flex-col gap-2">
+            <div key={m.stat} className="flex flex-col gap-2 bg-[var(--surface)] border border-[var(--border)] rounded-xl p-6">
               <span className="text-5xl font-bold text-[var(--accent-text)]">{m.stat}</span>
               <span className="text-sm font-semibold text-[var(--text)]">{m.label}</span>
               <p className="text-xs text-[var(--muted)] leading-relaxed mt-1">{m.context}</p>

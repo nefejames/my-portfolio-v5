@@ -31,7 +31,7 @@ export default function Services() {
 
         <div className="grid md:grid-cols-3 gap-10">
           {services.map((s) => (
-            <div key={s.title} className="flex flex-col gap-4">
+            <div key={s.title} className="flex flex-col gap-4 bg-[var(--surface)] border border-[var(--border)] rounded-xl p-6">
               <h3 className="text-lg font-semibold text-[var(--text)]">{s.title}</h3>
               <p className="text-sm text-[var(--muted)] leading-relaxed">{s.description}</p>
             </div>
