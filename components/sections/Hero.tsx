@@ -13,7 +13,7 @@ export default function Hero() {
         </h1>
 
         <p className="text-xl md:text-2xl text-[var(--muted)] leading-relaxed max-w-2xl mb-8 md:mx-auto">
-          I create (B2B + B2C) content that readers love, drives conversions, earns top rankings, and builds
+          5+ years of experience creating (B2B + B2C) content that readers love, drives conversions, earns top rankings, and builds
           authority.
         </p>
 
