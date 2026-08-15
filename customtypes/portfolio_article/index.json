@@ -1,0 +1,94 @@
+{
+  "id": "portfolio_article",
+  "label": "Portfolio Article",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "Slug (clientSlug--articleSlug)",
+          "placeholder": "altexsoft--my-article-slug"
+        }
+      },
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "Title",
+          "placeholder": "Article title"
+        }
+      },
+      "client": {
+        "type": "Text",
+        "config": {
+          "label": "Client display name",
+          "placeholder": "AltexSoft"
+        }
+      },
+      "client_slug": {
+        "type": "Text",
+        "config": {
+          "label": "Client slug (URL segment)",
+          "placeholder": "altexsoft"
+        }
+      },
+      "original_url": {
+        "type": "Text",
+        "config": {
+          "label": "Original URL",
+          "placeholder": "https://www.altexsoft.com/blog/..."
+        }
+      },
+      "published_at": {
+        "type": "Date",
+        "config": {
+          "label": "Published at"
+        }
+      },
+      "canonical": {
+        "type": "Text",
+        "config": {
+          "label": "Canonical URL (leave blank to use original URL)"
+        }
+      },
+      "excerpt": {
+        "type": "Text",
+        "config": {
+          "label": "Excerpt",
+          "placeholder": "Short description for listings"
+        }
+      },
+      "cover_image": {
+        "type": "Text",
+        "config": {
+          "label": "Cover Image URL",
+          "placeholder": "https://..."
+        }
+      },
+      "featured": {
+        "type": "Boolean",
+        "config": {
+          "label": "Featured on homepage",
+          "default_value": false,
+          "placeholder_false": "No",
+          "placeholder_true": "Yes"
+        }
+      },
+      "order": {
+        "type": "Number",
+        "config": {
+          "label": "Order (from filename prefix)",
+          "placeholder": "1"
+        }
+      },
+      "body_mdx": {
+        "type": "Text",
+        "config": {
+          "label": "Body (MDX source)",
+          "placeholder": "Raw MDX content"
+        }
+      }
+    }
+  }
+}
