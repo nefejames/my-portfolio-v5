@@ -1,4 +1,4 @@
-import type { KeyTextField, DateField, BooleanField, NumberField } from '@prismicio/client'
+import type { KeyTextField, DateField, BooleanField } from '@prismicio/client'
 
 export interface BlogPostDocument {
   type: 'blog_post'
@@ -14,23 +14,4 @@ export interface BlogPostDocument {
   }
 }
 
-export interface PortfolioArticleDocument {
-  type: 'portfolio_article'
-  uid: string
-  tags: string[]
-  data: {
-    title: KeyTextField
-    client: KeyTextField
-    client_slug: KeyTextField
-    original_url: KeyTextField
-    published_at: DateField
-    canonical: KeyTextField
-    excerpt: KeyTextField
-    cover_image: KeyTextField
-    featured: BooleanField
-    order: NumberField
-    body_mdx: KeyTextField
-  }
-}
-
-export type AllDocumentTypes = BlogPostDocument | PortfolioArticleDocument
+export type AllDocumentTypes = BlogPostDocument
