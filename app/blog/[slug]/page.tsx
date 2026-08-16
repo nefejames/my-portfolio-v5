@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { getAllPosts, getPostBySlug, getRelatedPosts } from '@/lib/posts'
+import { getPostBySlug, getRelatedPosts } from '@/lib/posts'
 import { readingMinutes } from '@/lib/utils'
 import { extractToc } from '@/lib/toc'
 import { SITE, absoluteUrl } from '@/lib/site'
@@ -11,10 +11,8 @@ import JsonLd from '@/components/JsonLd'
 
 type Props = { params: Promise<{ slug: string }> }
 
-export async function generateStaticParams() {
-  const posts = await getAllPosts()
-  return posts.map((p) => ({ slug: p.slug }))
-}
+export const revalidate = 3600
+export const dynamicParams = true
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
