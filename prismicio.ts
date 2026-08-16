@@ -8,8 +8,8 @@ export function createClient(config: prismic.ClientConfig = {}) {
     accessToken: process.env.PRISMIC_ACCESS_TOKEN,
     fetchOptions:
       process.env.NODE_ENV === 'production'
-        ? { next: { tags: ['prismic'], revalidate: 3600 } }
-        : { next: { revalidate: 0 } },
+        ? { next: { tags: ['prismic'], revalidate: 3600 }, signal: AbortSignal.timeout(8000) }
+        : { next: { revalidate: 0 }, signal: AbortSignal.timeout(8000) },
     ...config,
   })
   prismicNext.enableAutoPreviews({ client })
