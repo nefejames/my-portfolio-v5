@@ -1,14 +1,14 @@
 # Emadamerho-Atori Nefe — Portfolio & Blog
 
 Personal site for **Nefe Emadamerho-Atori** — a content writer, technical writer,
-and SEO manager based in Lagos, Nigeria. It combines a personal **blog**, a
-**portfolio archive** of 135 articles written for client publications (AltexSoft,
-Prismic, Smashing Magazine), and a shared MDX rendering pipeline so both surfaces
-get the same features automatically.
+and SEO manager based in Lagos, Nigeria. It combines a personal **blog** (managed
+in Prismic CMS), a **portfolio archive** of 135 articles written for client
+publications (AltexSoft, Prismic, Smashing Magazine), and a shared MDX rendering
+pipeline for portfolio articles.
 
-Built with **Next.js 16 (App Router)**, **TypeScript**, **Tailwind CSS v4**, and
-**MDX**. Deployed on Vercel. Dark, editorial-minimalist design with an animated
-signature logo.
+Built with **Next.js 16 (App Router)**, **TypeScript**, **Tailwind CSS v4**,
+**MDX**, and **Prismic**. Deployed on Vercel. Dark, editorial-minimalist design
+with an animated signature logo.
 
 ## Getting started
 
@@ -26,9 +26,16 @@ see [Branding](#branding--the-logo)).
 Create `.env.local` (gitignored):
 
 ```bash
-FIRECRAWL_API_KEY=fc-...          # for the portfolio import script only
-NEXT_PUBLIC_SITE_URL=https://...  # canonical production origin (see Backlog)
+PRISMIC_REPOSITORY_NAME=nefe-portfolio  # Prismic repo slug (defaults to this value)
+PRISMIC_ACCESS_TOKEN=...                # Prismic API access token (from API & Security settings)
+FIRECRAWL_API_KEY=fc-...               # for the portfolio import script only
+NEXT_PUBLIC_SITE_URL=https://...       # canonical production origin (see Backlog)
 ```
+
+`PRISMIC_REPOSITORY_NAME` and `PRISMIC_ACCESS_TOKEN` must also be set in Vercel
+environment variables — the blog reads from the Prismic API at runtime and at
+build time (if Prismic is unreachable during build the blog section renders empty
+and ISR fills it in on first request).
 
 > If `NEXT_PUBLIC_SITE_URL` is unset, the site falls back to a placeholder
 > origin defined in [`lib/site.ts`](lib/site.ts). That origin feeds **every**
@@ -39,19 +46,22 @@ NEXT_PUBLIC_SITE_URL=https://...  # canonical production origin (see Backlog)
 
 | Type | Location | Notes |
 |---|---|---|
-| Blog posts | `content/posts/*.mdx` | Personal-brand articles (4 today) |
+| Blog posts | Prismic CMS (`nefe-portfolio` repo) | Managed at prismic.io — title, date, excerpt, tags, cover image, featured flag, MDX body |
 | Portfolio articles | `content/portfolio/<client>/NNN-slug.mdx` | Client-published work, numbered per client (135 today) |
 | Article images | `public/portfolio/<client>/<article>/` | WebP, served by `next/image` |
 
 Portfolio archive today: **59 AltexSoft + 71 Prismic + 5 Smashing Magazine = 135**.
-Both content types load through [`lib/posts.ts`](lib/posts.ts) /
-[`lib/portfolio.ts`](lib/portfolio.ts) — the data layer is abstracted so a future
-CMS swap (see Backlog → Prismic) touches only those files. Loaders are wrapped in
-React `cache()` so a page render reads each file once.
+Blog posts load through [`lib/posts.ts`](lib/posts.ts) (Prismic client);
+portfolio articles through [`lib/portfolio.ts`](lib/portfolio.ts) (MDX filesystem).
+Both loaders are wrapped in React `cache()` so a page render reads each source once.
 
-**Featuring on the homepage:** add `featured: true` to a post's or article's
-frontmatter. The homepage "Writing for my own brand" and "Selected work" sections
-each show up to 6 featured items.
+**Featuring on the homepage:** set `featured: true` on a blog post in Prismic, or
+add `featured: true` to a portfolio article's frontmatter. Each section shows up
+to 6 featured items.
+
+**Blog post meta description:** the **Excerpt** field in Prismic maps directly to
+`<meta name="description">`, Open Graph description, and Twitter card description —
+keep it 120–160 characters.
 
 ### Shared MDX renderer
 
@@ -231,14 +241,18 @@ a single category is a complete view of that part of the project.
       rather than one block, add an optional `downloadUrl` / `repoUrl` frontmatter
       field + a button on the item page (small change to `lib/prompts.ts` + the
       `[slug]` page).
-- [ ] **Migrate content to Prismic (CMS).** The data layer is already abstracted
-      behind `lib/posts.ts` / `lib/portfolio.ts`, so a swap touches mainly those
-      files plus the frontmatter → props mapping; the shared MDX renderer and page
-      components stay. Model blog posts as a Prismic type (Slice Machine), point
-      `lib/posts.ts` at the Prismic client, keep `content/**` MDX as fallback until
-      parity is confirmed. Decide whether the 135-article archive moves into
-      Prismic or stays file-based (it's write-once and canonical-attributed, so
-      MDX is reasonable).
+- [x] ~~**Migrate blog posts to Prismic (CMS).**~~ `lib/posts.ts` now reads from
+      the `nefe-portfolio` Prismic repository via `@prismicio/client`. Blog posts
+      are managed at prismic.io — title, date, excerpt, tags, cover image, featured
+      flag, and MDX body. The 135-article portfolio archive stays file-based
+      (`content/portfolio/`) — it's write-once, canonical-attributed work that
+      doesn't need a CMS editing workflow. Old `content/posts/*.mdx` files have
+      been removed from the repo.
+- [ ] **Make website copy editable via Prismic singleton types.** Hero, Services,
+      Results, Testimonials, About, and Contact sections are currently hard-coded.
+      Model each as a Prismic singleton document type (one per section), fetch in
+      the relevant component, and update `lib/site.ts` values where they overlap.
+      This lets copy updates happen in Prismic without a code deploy.
 
 ### Features & UX
 
