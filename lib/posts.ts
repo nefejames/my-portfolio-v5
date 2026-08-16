@@ -65,6 +65,10 @@ async function canonicalizeTags(tags: string[]): Promise<string[]> {
 }
 
 export const getAllPosts = cache(async (): Promise<PostMeta[]> => {
+  // During `next build`, the Prismic CDN may be unreachable (build-environment
+  // proxy allowlist). Return empty so static pages build without a 60-second hang;
+  // ISR revalidation fills in the real data at runtime.
+  if (process.env.NEXT_PHASE === 'phase-production-build') return []
   try {
     const client = createClient()
     const docs = await client.getAllByType('blog_post', {
