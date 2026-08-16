@@ -1,14 +1,12 @@
-import { getAllPortfolioArticles, getPortfolioArticle } from '@/lib/portfolio'
+import { getPortfolioArticle } from '@/lib/portfolio'
 import { renderOgImage, ogSize, ogContentType } from '@/lib/og'
 
 export const size = ogSize
 export const contentType = ogContentType
 export const alt = 'Portfolio article'
 
-export async function generateStaticParams() {
-  const articles = await getAllPortfolioArticles()
-  return articles.map((a) => ({ client: a.clientSlug, slug: a.slug }))
-}
+export const revalidate = false
+export const dynamicParams = true
 
 export default async function Image({
   params,

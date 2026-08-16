@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import {
-  getAllPortfolioArticles,
   getPortfolioArticle,
   getRelatedPortfolioArticles,
   formatDate,
@@ -16,10 +15,8 @@ import JsonLd from '@/components/JsonLd'
 
 type Props = { params: Promise<{ client: string; slug: string }> }
 
-export async function generateStaticParams() {
-  const articles = await getAllPortfolioArticles()
-  return articles.map((a) => ({ client: a.clientSlug, slug: a.slug }))
-}
+export const revalidate = false
+export const dynamicParams = true
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { client, slug } = await params
