@@ -1,0 +1,60 @@
+{
+  "id": "blog_post",
+  "label": "Blog Post",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "Slug",
+          "placeholder": "my-post-slug"
+        }
+      },
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "Title",
+          "placeholder": "Post title"
+        }
+      },
+      "date": {
+        "type": "Date",
+        "config": {
+          "label": "Date"
+        }
+      },
+      "excerpt": {
+        "type": "Text",
+        "config": {
+          "label": "Excerpt",
+          "placeholder": "Short description shown in listings"
+        }
+      },
+      "cover_image": {
+        "type": "Text",
+        "config": {
+          "label": "Cover Image URL",
+          "placeholder": "https://..."
+        }
+      },
+      "featured": {
+        "type": "Boolean",
+        "config": {
+          "label": "Featured on homepage",
+          "default_value": false,
+          "placeholder_false": "No",
+          "placeholder_true": "Yes"
+        }
+      },
+      "body_mdx": {
+        "type": "Text",
+        "config": {
+          "label": "Body (MDX source)",
+          "placeholder": "Raw MDX content"
+        }
+      }
+    }
+  }
+}
