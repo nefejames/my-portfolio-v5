@@ -1,11 +1,8 @@
 import 'server-only'
 import { cache } from 'react'
-import fs from 'fs'
-import path from 'path'
-import matter from 'gray-matter'
+import { createClient } from '@/prismicio'
 
 // ─── Types ───────────────────────────────────────────────────────────────────
-// When migrating to Prismic, only the functions below need to change.
 // Keep this interface stable — it is the contract between the content layer
 // and all consuming components.
 
@@ -23,42 +20,29 @@ export interface Post {
 
 export type PostMeta = Omit<Post, 'content'>
 
-// ─── File-system implementation (swap for Prismic client later) ───────────────
+// ─── Prismic implementation ───────────────────────────────────────────────────
 
-const POSTS_DIR = path.join(process.cwd(), 'content', 'posts')
-
-// Read every post's frontmatter with tags exactly as authored, newest first.
-// Kept separate from getAllPosts so the tag-canonicalisation map (below) can be
-// built without recursion. cache(): read the directory once per render.
-const readAllRawMeta = cache((): PostMeta[] => {
-  const files = fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith('.mdx'))
-
-  return files
-    .map((file) => {
-      const slug = file.replace(/\.mdx$/, '')
-      const raw = fs.readFileSync(path.join(POSTS_DIR, file), 'utf8')
-      const { data } = matter(raw)
-      return {
-        slug,
-        title: data.title as string,
-        date: data.date as string,
-        excerpt: data.excerpt as string,
-        tags: (data.tags as string[]) ?? [],
-        coverImage: data.coverImage as string | undefined,
-        featured: (data.featured as boolean) ?? false,
-      }
-    })
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-})
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function mapDocument(doc: any): Post {
+  return {
+    slug: doc.uid,
+    title: doc.data.title ?? '',
+    date: doc.data.date ?? '',
+    excerpt: doc.data.excerpt ?? '',
+    tags: doc.tags ?? [],
+    coverImage: doc.data.cover_image ?? undefined,
+    featured: doc.data.featured ?? false,
+    content: doc.data.body_mdx ?? '',
+  }
+}
 
 // Tags/categories are case-insensitive: "Musings" and "musings" are the same
-// category everywhere (chips, cards, post pages, search). The first casing ever
-// used for a tag — by the oldest post — becomes the canonical label, so later
-// case-variants collapse onto it and acronyms like "SEO" are preserved. Zero
-// maintenance: the category list is still just whatever tags exist.
-const getTagCanonicalMap = cache((): Map<string, string> => {
+// category everywhere. The first casing used — by the oldest post — becomes
+// canonical, so later variants collapse onto it and acronyms like "SEO" stay.
+const getTagCanonicalMap = cache(async (): Promise<Map<string, string>> => {
+  const posts = await getAllPosts()
   const map = new Map<string, string>()
-  for (const post of [...readAllRawMeta()].reverse()) {
+  for (const post of [...posts].reverse()) {
     for (const tag of post.tags) {
       const key = tag.trim().toLowerCase()
       if (key && !map.has(key)) map.set(key, tag.trim())
@@ -67,9 +51,8 @@ const getTagCanonicalMap = cache((): Map<string, string> => {
   return map
 })
 
-/** Map a post's raw tags to their canonical casing, de-duped case-insensitively. */
-function canonicalizeTags(tags: string[]): string[] {
-  const map = getTagCanonicalMap()
+async function canonicalizeTags(tags: string[]): Promise<string[]> {
+  const map = await getTagCanonicalMap()
   const seen = new Set<string>()
   const out: string[] = []
   for (const tag of tags) {
@@ -81,41 +64,36 @@ function canonicalizeTags(tags: string[]): string[] {
   return out
 }
 
-// cache(): deduped across callers within one render pass (blog index, featured
-// section, sitemap) instead of re-reading the posts directory each time.
-export const getAllPosts = cache(async (): Promise<PostMeta[]> =>
-  readAllRawMeta().map((p) => ({ ...p, tags: canonicalizeTags(p.tags) })),
-)
+export const getAllPosts = cache(async (): Promise<PostMeta[]> => {
+  const client = createClient()
+  const docs = await client.getAllByType('blog_post', {
+    orderings: [{ field: 'my.blog_post.date', direction: 'desc' }],
+  })
+  return Promise.all(
+    docs.map(async (doc) => {
+      const { content: _content, ...meta } = mapDocument(doc)
+      return { ...meta, tags: await canonicalizeTags(meta.tags) }
+    }),
+  )
+})
 
-/** Featured posts for the homepage "Writing for my own brand" section, newest
- *  first, capped at `limit`. Returns [] when none are featured. */
+/** Featured posts for the homepage "Writing for my own brand" section. */
 export async function getFeaturedPosts(limit = 6): Promise<PostMeta[]> {
   const posts = await getAllPosts()
   return posts.filter((p) => p.featured).slice(0, limit)
 }
 
-// cache(): generateMetadata and the page component both call this per request.
 export const getPostBySlug = cache(async (slug: string): Promise<Post | null> => {
-  const filePath = path.join(POSTS_DIR, `${slug}.mdx`)
-  if (!fs.existsSync(filePath)) return null
-
-  const raw = fs.readFileSync(filePath, 'utf8')
-  const { data, content } = matter(raw)
-
-  return {
-    slug,
-    title: data.title as string,
-    date: data.date as string,
-    excerpt: data.excerpt as string,
-    tags: canonicalizeTags((data.tags as string[]) ?? []),
-    coverImage: data.coverImage as string | undefined,
-    featured: (data.featured as boolean) ?? false,
-    content,
+  const client = createClient()
+  try {
+    const doc = await client.getByUID('blog_post', slug)
+    const post = mapDocument(doc)
+    return { ...post, tags: await canonicalizeTags(post.tags) }
+  } catch {
+    return null
   }
 })
 
-/** Score items by the number of tags they share with `tags`, highest first.
- *  Items with zero overlap keep their original order (recency fallback). */
 function scoreByTagOverlap<T extends { tags: string[] }>(tags: string[], items: T[]): T[] {
   const tagSet = new Set(tags.map((t) => t.toLowerCase()))
   return items
@@ -128,8 +106,7 @@ function scoreByTagOverlap<T extends { tags: string[] }>(tags: string[], items: 
     .map(({ item }) => item)
 }
 
-/** Up to `limit` blog posts most related to `slug` by tag overlap.
- *  Falls back to the most recent posts when there are no tag matches. */
+/** Up to `limit` blog posts most related to `slug` by tag overlap. */
 export async function getRelatedPosts(slug: string, limit = 3): Promise<PostMeta[]> {
   const [current, all] = await Promise.all([getPostBySlug(slug), getAllPosts()])
   if (!current) return []
