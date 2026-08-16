@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import { getAllPosts } from '@/lib/posts'
+
+export const dynamic = 'force-dynamic'
 import BlogList from '@/components/blog/BlogList'
 
 const description =

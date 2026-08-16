@@ -65,16 +65,20 @@ async function canonicalizeTags(tags: string[]): Promise<string[]> {
 }
 
 export const getAllPosts = cache(async (): Promise<PostMeta[]> => {
-  const client = createClient()
-  const docs = await client.getAllByType('blog_post', {
-    orderings: [{ field: 'my.blog_post.date', direction: 'desc' }],
-  })
-  return Promise.all(
-    docs.map(async (doc) => {
-      const { content: _content, ...meta } = mapDocument(doc)
-      return { ...meta, tags: await canonicalizeTags(meta.tags) }
-    }),
-  )
+  try {
+    const client = createClient()
+    const docs = await client.getAllByType('blog_post', {
+      orderings: [{ field: 'my.blog_post.date', direction: 'desc' }],
+    })
+    return Promise.all(
+      docs.map(async (doc) => {
+        const { content: _content, ...meta } = mapDocument(doc)
+        return { ...meta, tags: await canonicalizeTags(meta.tags) }
+      }),
+    )
+  } catch {
+    return []
+  }
 })
 
 /** Featured posts for the homepage "Writing for my own brand" section. */

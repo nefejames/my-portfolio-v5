@@ -13,9 +13,9 @@ import { getAllPrompts } from '@/lib/prompts'
 // the archive is the body of work that makes the author citable.
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [posts, articles, prompts] = await Promise.all([
-    getAllPosts(),
-    getAllPortfolioArticles(),
-    getAllPrompts(),
+    getAllPosts().catch(() => []),
+    getAllPortfolioArticles().catch(() => []),
+    getAllPrompts().catch(() => []),
   ])
 
   const postEntries: MetadataRoute.Sitemap = posts.map((post) => ({
