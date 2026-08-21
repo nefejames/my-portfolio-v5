@@ -21,9 +21,7 @@ export default function About() {
               About
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-[var(--text)] mb-8">
-              Developer by background.
-              <br />
-              Writer by craft.
+              The content guy AI can&apos;t and won&apos;t replace.
             </h2>
             <div className="flex flex-col gap-4 text-[var(--muted)] text-base leading-relaxed">
               <p>
