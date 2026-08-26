@@ -180,11 +180,11 @@ a single category is a complete view of that part of the project.
       JSON-LD all derive from it. (Off-site remaining is under **SEO & AEO**.)
 - [x] ~~**`firecrawl` → devDependencies**~~ only the import script uses it, so it
       no longer installs on production deploys.
-- [ ] **Shrink the repo (~800MB).** `.git` history is ~409MB and `public/` is
-      ~410MB (1,055 portfolio images). This is the root cause of the stalling
-      `git push`es. Options: move images to **Vercel Blob / a CDN**, adopt **git
-      LFS**, or a one-time history rewrite (BFG) to reclaim `.git` bloat. Highest
-      infra ROI — also speeds clones and any future CI.
+- [x] ~~**Shrink the repo.**~~ `public/portfolio/` was already in `.gitignore`
+      and was never committed, so there is no git-history bloat from images. Portfolio
+      images have been migrated to **Vercel Blob** (portfolio/, posts/, testimonials/
+      folders, ~174 MB). New images added via Prismic upload without touching the
+      repo. Push times are no longer an issue.
 - [x] ~~**CI (GitHub Actions)**~~ [`.github/workflows/ci.yml`](.github/workflows/ci.yml)
       runs `npm run build` (which type-checks) on every push/PR to master. Lint
       isn't gated yet — pre-existing lint warnings to clean up first.
@@ -202,22 +202,18 @@ a single category is a complete view of that part of the project.
       - *GA4:* `@next/third-parties` is already installed. Create a GA4 property,
         put the ID in `NEXT_PUBLIC_GA_ID`, render `<GoogleAnalytics
         gaId={process.env.NEXT_PUBLIC_GA_ID} />` in `app/layout.tsx` (env-guarded).
-- [ ] **Add PostHog product analytics.** Goes beyond GA4's pageview/traffic
-      reporting: autocaptured event tracking, conversion funnels (e.g. blog →
-      portfolio → "Get in touch"), session replay, heatmaps/clickmaps, feature
-      flags, and A/B testing. Useful for seeing *how* readers move through the
-      archive and which prompts/articles convert. **Overlaps with the GA4 item —
-      pick one as the primary analytics tool** (PostHog if product/behaviour
-      insight matters more than Search-Console-style acquisition reporting;
-      the two can also run side by side, at the cost of a second script). Wire
-      via `posthog-js` in a client provider, key in `NEXT_PUBLIC_POSTHOG_KEY`
-      (env-guarded, EU host for GDPR).
+- [x] ~~**Add PostHog product analytics.**~~ `PostHogProvider` wraps the app in
+      `app/layout.tsx`; `posthog.capture()` fires on contact-form submit in
+      `components/sections/Contact.tsx`. Key stored in `NEXT_PUBLIC_POSTHOG_KEY`
+      (env-guarded). Session replay, funnels, and heatmaps are available in the
+      PostHog dashboard without further code changes.
 - [x] ~~**RSS feed for the blog**~~ RSS 2.0 at `/rss.xml`
       ([`app/rss.xml/route.ts`](app/rss.xml/route.ts)), with an autodiscovery
       `<link>` in the root layout.
-- [ ] **Related-articles internal linking.** Article pages have no "related posts"
-      section. Internal links spread ranking signal and make the 135-article
-      archive navigable — high on-page-SEO ROI.
+- [x] ~~**Related-articles internal linking.**~~ `RelatedArticles` component is
+      wired into both blog article pages (`app/blog/[slug]/page.tsx`) and portfolio
+      article pages (`app/portfolio/[client]/[slug]/page.tsx`). Related items are
+      scored by tag overlap via `getRelatedPosts` / `getRelatedPortfolioArticles`.
 - [ ] **Adjust copy across all pages.** Editorial polish pass for consistency and
       geo positioning ("content writer in Nigeria"). Components no longer say the
       old "content marketer" title, so this is now about tightening value props
