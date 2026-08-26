@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { BLUR_DATA_URL } from '@/lib/image-placeholder'
 import { getTweet } from 'react-tweet/api'
 import { EmbeddedTweet, TweetNotFound } from 'react-tweet'
 // Tweet styling ships only with routes that render MDX (blog + portfolio
@@ -170,6 +171,8 @@ function Figure({
             // it. Without this, next/image assumes 100vw and serves oversized files.
             sizes="(min-width: 768px) 672px, 100vw"
             className="w-full h-auto"
+            placeholder="blur"
+            blurDataURL={BLUR_DATA_URL}
           />
         </div>
       </ZoomImage>

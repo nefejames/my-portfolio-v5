@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import type { PortfolioCardData } from '@/lib/portfolio'
 import { formatDate } from '@/lib/utils'
+import { BLUR_DATA_URL } from '@/lib/image-placeholder'
 
 export default function PortfolioCard({ article }: { article: PortfolioCardData }) {
   return (
@@ -19,6 +20,8 @@ export default function PortfolioCard({ article }: { article: PortfolioCardData 
             // 2-up at sm. Keep the hint honest so browsers don't fetch 2x files.
             sizes="(min-width: 1024px) 330px, (min-width: 640px) 50vw, 100vw"
             className="object-cover"
+            placeholder="blur"
+            blurDataURL={BLUR_DATA_URL}
           />
         </div>
       )}
