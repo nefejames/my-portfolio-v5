@@ -1,3 +1,5 @@
+export const revalidate = 3600
+
 import Hero from '@/components/sections/Hero'
 import Clients from '@/components/sections/Clients'
 import Services from '@/components/sections/Services'
