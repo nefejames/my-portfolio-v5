@@ -13,27 +13,24 @@ interface BlogCardProps {
 export default function BlogCard({ post, onTeaser }: BlogCardProps) {
   const inner = (
     <>
-      <div className="flex items-center justify-between gap-2">
+      <div className="flex items-center justify-between">
         <time className="text-xs text-[var(--muted)]">{formatDate(post.date)}</time>
-        <div className="flex items-center gap-1.5">
-          {post.tags[0] && (
-            <span className="text-xs font-medium px-2.5 py-1 bg-[var(--accent-subtle)] text-[var(--accent-text)] rounded-md">
-              {post.tags[0]}
-            </span>
-          )}
-          {onTeaser && (
-            <span className="text-xs font-semibold tracking-wide uppercase px-2.5 py-1 bg-[var(--text)] text-[var(--bg)] rounded-md">
-              Coming soon
-            </span>
-          )}
-        </div>
+        {post.tags[0] && (
+          <span className="text-xs font-medium px-2.5 py-1 bg-[var(--accent-subtle)] text-[var(--accent-text)] rounded-md">
+            {post.tags[0]}
+          </span>
+        )}
       </div>
 
       <h2 className="text-base font-semibold text-[var(--text)] group-hover:text-[var(--accent-text)] transition-colors leading-snug">
         {post.title}
       </h2>
 
-      {!onTeaser && (
+      {onTeaser ? (
+        <span className="absolute bottom-6 right-6 text-xs font-semibold tracking-wide uppercase px-2.5 py-1 bg-[var(--text)] text-[var(--bg)] rounded-md">
+          Coming soon
+        </span>
+      ) : (
         <span className="text-xs font-medium text-[var(--accent-text)] mt-auto pt-2">
           Read more →
         </span>
