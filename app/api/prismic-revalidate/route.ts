@@ -8,7 +8,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ message: 'Invalid secret' }, { status: 401 })
   }
 
-  revalidateTag('prismic')
+  // Second arg is the cache-life profile for refetched data; 3600s matches
+  // the revalidate setting on the Prismic client in prismicio.ts.
+  revalidateTag('prismic', { expire: 3600 })
 
   return NextResponse.json({ revalidated: true })
 }
