@@ -43,7 +43,7 @@ export default async function BlogPreview() {
                   {post.tags.slice(0, 2).map((tag) => (
                     <span
                       key={tag}
-                      className="text-xs font-medium px-2.5 py-1 bg-[var(--surface-2)] text-[var(--muted)] rounded-md"
+                      className="text-xs font-medium px-2.5 py-1 bg-[var(--accent-subtle)] text-[var(--accent-text)] rounded-md"
                     >
                       {tag}
                     </span>
