@@ -1,4 +1,4 @@
-import { revalidateTag } from 'next/cache'
+import { revalidateTag, revalidatePath } from 'next/cache'
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(request: NextRequest) {
@@ -8,9 +8,10 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ message: 'Invalid secret' }, { status: 401 })
   }
 
-  // Second arg is the cache-life profile for refetched data; 3600s matches
-  // the revalidate setting on the Prismic client in prismicio.ts.
   revalidateTag('prismic', { expire: 3600 })
+
+  // Explicitly bust the full route cache for all Prismic-driven pages
+  revalidatePath('/', 'layout')
 
   return NextResponse.json({ revalidated: true })
 }
