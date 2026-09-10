@@ -132,7 +132,7 @@ export const getAllPosts = cache(async (): Promise<PostMeta[]> => {
 /** Featured posts for the homepage "Writing for my own brand" section. */
 export async function getFeaturedPosts(limit = 6): Promise<PostMeta[]> {
   const posts = await getAllPosts()
-  return posts.filter((p) => p.featured).slice(0, limit)
+  return posts.filter((p) => p.featured && !p.comingSoon).slice(0, limit)
 }
 
 export const getPostBySlug = cache(async (slug: string): Promise<Post | null> => {
