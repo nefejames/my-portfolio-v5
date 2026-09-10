@@ -2,12 +2,17 @@ import Link from 'next/link'
 import type { PostMeta } from '@/lib/posts'
 import { formatDate } from '@/lib/utils'
 
-export default function BlogCard({ post }: { post: PostMeta }) {
-  return (
-    <Link
-      href={`/blog/${post.slug}`}
-      className="group flex flex-col gap-3 p-6 bg-[var(--surface)] border border-[var(--border)] rounded-xl hover:border-[var(--accent-text)] hover:shadow-sm transition-all"
-    >
+const sharedClass =
+  'group relative flex flex-col gap-3 p-6 bg-[var(--surface)] border border-[var(--border)] rounded-xl hover:border-[var(--accent-text)] hover:shadow-sm transition-all text-left w-full'
+
+interface BlogCardProps {
+  post: PostMeta
+  onTeaser?: () => void
+}
+
+export default function BlogCard({ post, onTeaser }: BlogCardProps) {
+  const inner = (
+    <>
       <div className="flex items-center justify-between">
         <time className="text-xs text-[var(--muted)]">{formatDate(post.date)}</time>
         {post.tags[0] && (
@@ -16,12 +21,34 @@ export default function BlogCard({ post }: { post: PostMeta }) {
           </span>
         )}
       </div>
+
       <h2 className="text-base font-semibold text-[var(--text)] group-hover:text-[var(--accent-text)] transition-colors leading-snug">
         {post.title}
       </h2>
-      <span className="text-xs font-medium text-[var(--accent-text)] mt-auto pt-2">
-        Read more →
-      </span>
+
+      {onTeaser ? (
+        <span className="absolute bottom-3 right-3 text-xs font-semibold tracking-wide uppercase text-[var(--accent-text)] bg-[var(--accent-subtle)] px-2.5 py-1 rounded-md">
+          Coming soon
+        </span>
+      ) : (
+        <span className="text-xs font-medium text-[var(--accent-text)] mt-auto pt-2">
+          Read more →
+        </span>
+      )}
+    </>
+  )
+
+  if (onTeaser) {
+    return (
+      <button className={sharedClass} onClick={onTeaser}>
+        {inner}
+      </button>
+    )
+  }
+
+  return (
+    <Link href={`/blog/${post.slug}`} className={sharedClass}>
+      {inner}
     </Link>
   )
 }

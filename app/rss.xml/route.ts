@@ -10,10 +10,11 @@ const escape = (s: string) =>
 
 export async function GET() {
   const posts = await getAllPosts()
+  const published = posts.filter((p) => !p.comingSoon)
   const feedUrl = absoluteUrl('/rss.xml')
-  const lastBuild = posts[0]?.date ? new Date(posts[0].date) : new Date()
+  const lastBuild = published[0]?.date ? new Date(published[0].date) : new Date()
 
-  const items = posts
+  const items = published
     .map((post) => {
       const url = absoluteUrl(`/blog/${post.slug}`)
       return `    <item>

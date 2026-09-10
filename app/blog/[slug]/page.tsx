@@ -17,7 +17,7 @@ export const dynamicParams = true
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const post = await getPostBySlug(slug)
-  if (!post) return {}
+  if (!post || post.comingSoon) return {}
 
   const url = `/blog/${post.slug}`
   return {
@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params
   const post = await getPostBySlug(slug)
-  if (!post) notFound()
+  if (!post || post.comingSoon) notFound()
 
   const toc = extractToc(post.content)
   const related = await getRelatedPosts(post.slug)

@@ -18,12 +18,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     getAllPrompts().catch(() => []),
   ])
 
-  const postEntries: MetadataRoute.Sitemap = posts.map((post) => ({
-    url: `${SITE.url}/blog/${post.slug}`,
-    lastModified: new Date(post.date),
-    changeFrequency: 'monthly',
-    priority: 0.7,
-  }))
+  const postEntries: MetadataRoute.Sitemap = posts
+    .filter((post) => !post.comingSoon)
+    .map((post) => ({
+      url: `${SITE.url}/blog/${post.slug}`,
+      lastModified: new Date(post.date),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    }))
 
   const articleEntries: MetadataRoute.Sitemap = articles.map((a) => ({
     url: `${SITE.url}/portfolio/${a.clientSlug}/${a.slug}`,

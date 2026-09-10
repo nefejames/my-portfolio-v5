@@ -4,12 +4,14 @@ import { useState, useMemo } from 'react'
 import posthog from 'posthog-js'
 import type { PostMeta } from '@/lib/posts'
 import BlogCard from './BlogCard'
+import ComingSoonModal from './ComingSoonModal'
 
 const ALL = 'All'
 
 export default function BlogList({ posts }: { posts: PostMeta[] }) {
   const [query, setQuery] = useState('')
   const [activeTag, setActiveTag] = useState(ALL)
+  const [selectedTeaser, setSelectedTeaser] = useState<PostMeta | null>(null)
 
   const tags = useMemo(() => {
     const set = new Set<string>()
@@ -85,9 +87,20 @@ export default function BlogList({ posts }: { posts: PostMeta[] }) {
       ) : (
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filtered.map((post) => (
-            <BlogCard key={post.slug} post={post} />
+            <BlogCard
+              key={post.slug}
+              post={post}
+              onTeaser={post.comingSoon ? () => setSelectedTeaser(post) : undefined}
+            />
           ))}
         </div>
+      )}
+
+      {selectedTeaser && (
+        <ComingSoonModal
+          post={selectedTeaser}
+          onClose={() => setSelectedTeaser(null)}
+        />
       )}
     </div>
   )

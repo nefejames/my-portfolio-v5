@@ -15,6 +15,10 @@ export interface Post {
   coverImage?: string
   /** When true, this post is surfaced in the homepage "Writing for my own brand" section. */
   featured: boolean
+  /** When true, the article is not yet written — renders as a teaser card with a modal. */
+  comingSoon: boolean
+  /** Bullet points shown in the coming-soon modal teaser. */
+  previewBullets: string[]
   content: string
 }
 
@@ -32,6 +36,9 @@ function mapDocument(doc: any): Post {
     tags: doc.tags ?? [],
     coverImage: doc.data.cover_image ?? undefined,
     featured: doc.data.featured ?? false,
+    comingSoon: doc.data.coming_soon ?? false,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    previewBullets: (doc.data.preview_bullets ?? []).map((item: any) => item.bullet ?? '').filter(Boolean),
     content: doc.data.body_mdx ?? '',
   }
 }
