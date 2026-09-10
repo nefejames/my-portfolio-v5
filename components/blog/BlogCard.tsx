@@ -3,7 +3,7 @@ import type { PostMeta } from '@/lib/posts'
 import { formatDate } from '@/lib/utils'
 
 const sharedClass =
-  'group relative flex flex-col gap-3 p-6 bg-[var(--surface)] border border-[var(--border)] rounded-xl hover:border-[var(--accent-text)] hover:shadow-sm transition-all text-left w-full'
+  'group relative flex flex-col gap-3 p-6 min-h-[180px] bg-[var(--surface)] border border-[var(--border)] rounded-xl hover:border-[var(--accent-text)] hover:shadow-sm transition-all text-left w-full'
 
 interface BlogCardProps {
   post: PostMeta
@@ -22,7 +22,7 @@ export default function BlogCard({ post, onTeaser }: BlogCardProps) {
         )}
       </div>
 
-      <h2 className="text-base font-semibold text-[var(--text)] group-hover:text-[var(--accent-text)] transition-colors leading-snug">
+      <h2 className={`text-base font-semibold text-[var(--text)] group-hover:text-[var(--accent-text)] transition-colors leading-snug${onTeaser ? ' pb-8' : ''}`}>
         {post.title}
       </h2>
 
